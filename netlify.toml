@@ -1,0 +1,16 @@
+[build]
+  command = "npm run build"
+  publish = "out"
+  functions = "out_functions"
+
+[build.environment]
+  NEXT_TELEMETRY_DISABLED = "1"
+  NETLIFY_NEXT_PLUGIN_SKIP = "true"
+
+[functions]
+  node_bundler = "esbuild"
+
+[dev]
+  framework = "next"
+  targetPort = 3000
+  command = "npm run dev"
