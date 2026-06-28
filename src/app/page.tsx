@@ -64,6 +64,7 @@ export default function Home() {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -10 }}
         transition={{ duration: 0.35, ease: 'easeOut' }}
+        // style={{backgroundColor: "black"}}
         className="min-h-screen"
       >
         <ScrollProgress />
@@ -74,14 +75,11 @@ export default function Home() {
         <section id="hero" className="section-animate pt-18">
           <Hero />
         </section>
-        <section id="social-proof" className="section-animate">
-          <SocialProof />
-        </section>
         <section id="about" className="section-animate">
           <MovementPositioning />
         </section>
-        <section id="fomo" className="section-animate">
-          <FOMOLayer />
+        <section id="social-proof" className="section-animate">
+          <SocialProof />
         </section>
         <section id="projects-showcase" className="section-animate">
           <ProjectsSummary />
@@ -91,6 +89,9 @@ export default function Home() {
         </section>
         <section id="gallery" className="section-animate">
           <Gallery />
+        <section id="fomo" className="section-animate">
+          <FOMOLayer />
+        </section>
         </section>
         <TeamSection />
         <section id="hiring" className="section-animate">

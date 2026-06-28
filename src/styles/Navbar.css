@@ -15,6 +15,19 @@
   --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+
+.tx-navbar .tx-logo-text {
+  color: white;
+  transition: all 0.3s var(--ease-in-out);
+}
+
+.tx-navbar.tx-scrolled .tx-logo-text {
+  color: black;
+  transition: all 0.3s var(--ease-in-out);
+}
+
+
+
 /* Base Navbar Container */
 .tx-navbar {
   position: fixed;
@@ -22,10 +35,10 @@
   left: 0;
   right: 0;
   z-index: 100;
-  background-color: rgba(249, 250, 251, 0.7);
-  backdrop-filter: blur(12px);
+  background-color: rgba(0, 0, 0, 0);
+  backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(226, 232, 240, 0.5);
+  border-bottom: 1px solid rgba(226, 232, 240, 0);
   transition: all 0.3s var(--ease-in-out);
   font-family: var(--nav-font);
 }
@@ -120,7 +133,7 @@
   border: none;
   font-size: 14px;
   font-weight: 500;
-  color: var(--nav-text-secondary);
+  color: white;
   cursor: pointer;
   padding: 8px 12px;
   position: relative;
@@ -128,9 +141,23 @@
   font-family: var(--nav-font);
 }
 
+.tx-navbar.tx-scrolled .tx-nav-item {
+  color: var(--nav-text-primary);
+  transition: all 0.3s ease;
+}
+
 .tx-nav-item:hover {
+  color: white;
+  /* background-color: rgba(15, 23, 42, 0.05); */
+}
+
+.tx-navbar.tx-scrolled .tx-nav-item:hover {
   color: var(--nav-text-primary);
 }
+
+/* .tx-nav-item:hover {
+  color: var(--nav-text-primary);
+} */
 
 .tx-nav-item.tx-active {
   color: var(--nav-text-active);
@@ -190,21 +217,18 @@
   width: 36px;
   height: 36px;
   border-radius: 8px;
-  color: var(--nav-text-secondary);
+  color: white;
   transition: all 0.2s ease;
 }
 
-.tx-social-link:hover {
-  color: var(--nav-text-primary);
-  background-color: rgba(15, 23, 42, 0.05);
-}
+
 
 .tx-btn-cta {
   position: relative;
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #ffffff;
+  color: #000000;
   padding: 10px 24px;
   border-radius: 35px;
   font-size: 14px;
@@ -213,8 +237,15 @@
   transition: all 0.3s ease;
   font-family: var(--nav-font);
   text-decoration: none;
-  background: transparent;
+  background: white;
   border: none;
+  transition: all 0.3s ease;
+}
+
+.tx-navbar.tx-scrolled .tx-btn-cta {
+  color: #ffffff;
+  background: transparent;
+  transition: all 0.3s ease;
 }
 
 /* Ensure child elements are always rendered on top of pseudo-elements */
@@ -289,6 +320,16 @@
   .tx-mobile-toggle {
     display: flex;
   }
+
+  .tx-mobile-toggle {
+  color: white;
+  transition: all 0.3s var(--ease-in-out);
+}
+
+.tx-navbar.tx-scrolled .tx-mobile-toggle {
+  color: var(--nav-text-primary);
+  transition: all 0.3s var(--ease-in-out);
+}
 }
 
 @media (max-width: 768px) {
@@ -300,34 +341,7 @@
     padding: 0 10px;
   }
 
-   .tx-navbar {
-    background-color: rgba(0, 0, 0, 0);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(226, 232, 240, 0);
-    transition: all 0.3s var(--ease-in-out);
-    font-family: var(--nav-font);
-  }
 
-  .tx-navbar .tx-logo-text {
-    color: white;
-    transition: all 0.3s var(--ease-in-out);
-  }
-
-  .tx-navbar.tx-scrolled .tx-logo-text {
-    color: black;
-    transition: all 0.3s var(--ease-in-out);
-  }
-
-  .tx-mobile-toggle {
-    color: white;
-    transition: all 0.3s var(--ease-in-out);
-  }
-
-   .tx-navbar.tx-scrolled .tx-mobile-toggle {
-    color: var(--nav-text-primary);
-    transition: all 0.3s var(--ease-in-out);
-  }
 }
 
 /* Drawer / Sidebar styling for Mobile Menu */

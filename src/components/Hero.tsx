@@ -86,6 +86,7 @@ const Hero = () => {
             <div className="hero-mouse">
               <div className="hero-mouse-wheel" />
             </div>
+            <span>SCROLL DOWN</span>
           </motion.div>
         </div>
       </motion.div>

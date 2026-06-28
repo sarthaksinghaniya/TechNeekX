@@ -141,7 +141,7 @@ const SocialProof = () => {
   };
 
   return (
-    <section id="social-proof" className="py-20 relative">
+    <section id="social-proof" className="py-20 pt-2 relative">
       {/* Background decoration */}
       <div className="absolute inset-0">
         <motion.div 
@@ -178,20 +178,20 @@ const SocialProof = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <motion.h2 
+          {/* <motion.h2 
             variants={itemVariants}
             className="text-4xl sm:text-5xl font-bold text-white mb-6 heading-premium"
           >
             Proven
             <span className="text-gradient"> Excellence</span>
-          </motion.h2>
+          </motion.h2> */}
           <motion.div 
             variants={itemVariants}
             className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mb-8 rounded-full"
           ></motion.div>
           <motion.p 
             variants={itemVariants}
-            className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed subheading-premium"
+            className="pt-8 text-xl text-white/80 max-w-3xl mx-auto leading-relaxed subheading-premium"
           >
             Our track record speaks for itself. We consistently deliver results and build 
             solutions that make a real impact in the tech ecosystem.
