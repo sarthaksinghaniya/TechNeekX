@@ -69,9 +69,9 @@ export default function Home() {
         <ScrollProgress />
         <Loader />
         <Navbar />
-        <StickyCTA />
-        <CommandPalette />
-        <section id="hero" className="section-animate">
+        {/* <StickyCTA /> */}
+        {/* <CommandPalette /> */}
+        <section id="hero" className="section-animate pt-18">
           <Hero />
         </section>
         <section id="social-proof" className="section-animate">
@@ -122,7 +122,7 @@ export default function Home() {
           <FinalCTA />
         </section>
         <Footer />
-        <LiveActivityFeed />
+        {/* <LiveActivityFeed /> */}
       </motion.main>
     </AnimatePresence>
   );
