@@ -1,9 +1,17 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Github, Linkedin, Instagram, Mail } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import data from '../constants/data.json';
 import '../styles/Hero.css';
+
+const iconMap: { [key: string]: any } = {
+  Github: Github,
+  Linkedin: Linkedin,
+  Instagram: Instagram,
+  Mail: Mail
+};
 
 const Hero = () => {
   const router = useRouter();
@@ -89,6 +97,26 @@ const Hero = () => {
             >
               Explore Our Work
             </motion.button>
+          </motion.div>
+
+          <motion.div className="hero-socials" variants={itemVariants}>
+            {data.socialLinks.map((social, idx) => {
+              const IconComponent = iconMap[social.icon];
+              return (
+                <motion.a
+                  key={idx}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hero-social-link"
+                  aria-label={social.label}
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {IconComponent && <IconComponent size={20} />}
+                </motion.a>
+              );
+            })}
           </motion.div>
 
           <motion.div className="hero-scroll-indicator" variants={itemVariants}>

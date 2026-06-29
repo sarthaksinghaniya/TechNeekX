@@ -180,6 +180,34 @@
   transform: translateY(0);
 }
 
+/* Hero Social Links Styling */
+.hero-socials {
+  display: flex;
+  gap: 16px;
+  margin-top: 24px;
+  align-items: center;
+  z-index: 2;
+}
+
+.hero-social-link {
+  color: rgba(255, 255, 255, 0.55);
+  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hero-social-link:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.05);
+}
+
 /* Mouse Scroll Down Indicator styling */
 .hero-scroll-indicator {
   position: absolute;
@@ -267,10 +295,6 @@
   .hero-description {
     font-size: 13px;
   }
-
-  .hero-scroll-indicator {
-    left: 40%;
-  }
 }
 
 @media (max-width: 768px) {
@@ -300,5 +324,10 @@
   .hero-btn-primary,
   .hero-btn-secondary {
     justify-content: center;
+  }
+
+  .hero-socials {
+    justify-content: center;
+    margin-top: 20px;
   }
 }
