@@ -239,13 +239,24 @@
   text-decoration: none;
   background: white;
   border: none;
-  transition: all 0.3s ease;
+  transition: all 0.05s ease;
 }
 
 .tx-navbar.tx-scrolled .tx-btn-cta {
   color: #ffffff;
   background: transparent;
-  transition: all 0.3s ease;
+  transition: all 0.5s ease;
+}
+
+.tx-btn-cta:hover {
+  background: white;
+  color: #000000;
+  transform: translateY(-1.5px);
+}
+
+.tx-navbar.tx-scrolled .tx-btn-cta:hover {
+  background: transparent;
+  color: #ffffff;
 }
 
 /* Ensure child elements are always rendered on top of pseudo-elements */
@@ -260,11 +271,11 @@
   position: absolute;
   inset: 0px;
   background: linear-gradient(90deg, #ff0080, #0062ff);
-  /* border-radius: inherit; */
+  border-radius: inherit;
   z-index: -2;
   filter: blur(12px);
   opacity: 0.4;
-  transition: all 0.3s ease;
+  transition: all 0.5s ease;
 }
 
 .tx-btn-cta:hover::before {
@@ -277,17 +288,23 @@
   content: '';
   position: absolute;
   inset: 0px;
-  background: linear-gradient(#080b11, #080b11) padding-box,
-    linear-gradient(90deg, #ff0080, #0062ff) border-box;
-  /* border: 1.5px solid transparent; */
+  background: transparent;
+  border: 1.5px solid transparent;
   border-radius: inherit;
   z-index: -1;
-  transition: all 0.3s ease;
+  transition: all 0.5s ease;
 }
 
-.tx-btn-cta:hover::after {
+.tx-navbar.tx-scrolled .tx-btn-cta::after {
+  background: linear-gradient(#080b11, #080b11) padding-box,
+    linear-gradient(90deg, #ff0080, #0062ff) border-box;
+    transition: all 0.5s ease;
+}
+
+.tx-navbar.tx-scrolled .tx-btn-cta:hover::after {
   background: linear-gradient(#0e131f, #0e131f) padding-box,
     linear-gradient(90deg, #ff0080, #0062ff) border-box;
+    transition: all 0.5s ease;
 }
 
 .tx-btn-cta:hover {

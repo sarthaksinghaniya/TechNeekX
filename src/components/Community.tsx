@@ -31,7 +31,7 @@ const Community = () => {
   ];
 
   return (
-    <section id="community" className="py-20 relative">
+    <section id="community" className="py-20 pb-10 relative">
       {/* Background decoration */}
       <div className="absolute inset-0">
         <div className="gradient-blob w-96 h-96 bg-gradient-to-r from-purple-500/10 to-pink-500/10 top-10 left-10" style={{ animationDelay: '1s' }}></div>
@@ -122,33 +122,6 @@ const Community = () => {
               <div className="text-3xl font-bold text-gradient mb-2">5+</div>
               <div className="text-white/70">Event Experience</div>
             </div>
-          </div>
-        </motion.div>
-
-        {/* CTA Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center"
-        >
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => router.push('/join')}
-            className="btn-primary flex items-center gap-2 mx-auto text-lg px-8 py-4"
-          >
-            Join as Member
-            <ArrowRight size={20} />
-          </motion.button>
-          <div className="text-center mt-4">
-            <p className="text-white/60 text-sm">
-              {FORM_CONFIG.member.trustIndicator}
-            </p>
-            <p className="text-white/40 text-xs mt-1">
-              {FORM_CONFIG.member.timeEstimate}
-            </p>
           </div>
         </motion.div>
       </div>

@@ -17,7 +17,13 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrolled = window.scrollY > 20;
+      let scrolled = false;
+      if (pathname === '/') {
+        const heroHeight = window.innerHeight;
+        scrolled = window.scrollY > (heroHeight - 80);
+      } else {
+        scrolled = true;
+      }
       setIsScrolled(scrolled);
       
       // Update active section based on scroll position
@@ -36,9 +42,12 @@ const Navbar = () => {
       }
     };
     
+    // Set initial state
+    handleScroll();
+    
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [pathname]);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -130,7 +139,7 @@ const Navbar = () => {
               />
             </div>
             <div className="tx-logo-text-group">
-              <span className="tx-logo-text">TECHNEEK<span className="tx-logo-x">X</span></span>
+              <span className="tx-logo-text">TechNeek<span className="tx-logo-x">X</span></span>
               <span className="tx-logo-subtitle">BUILD • INNOVATE • INSPIRE</span>
             </div>
           </motion.button>

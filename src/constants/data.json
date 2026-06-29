@@ -1,0 +1,81 @@
+{
+  "aboutSubtitle": "ABOUT TechNeekX",
+  "aboutTitle": "Who We Are",
+  "aboutDescription1": "We were tired of learning technology without building it. We created TechNeekX to bring together students who learn by shipping projects, solving real-world problems, and collaborating with passionate builders—not by just attending lectures.",
+  "aboutDescription2": "Today, our community builds AI products, competes in hackathons, hosts workshops, contributes to open source, and turns ambitious ideas into impactful technology.",
+  "stats": [
+    
+    {
+      "value": 80,
+      "suffix": "+",
+      "label": "Hackathons Participated"
+    },
+    {
+      "value": 15,
+      "suffix": "+",
+      "label": "AI Product Builds"
+    },
+    {
+      "value": 4,
+      "suffix": "+",
+      "label": "National Ranking"
+    },
+    {
+      "value": 2,
+      "suffix": "+",
+      "label": "International Recognition"
+    }
+  ],
+  "carouselImages": [
+    {
+      "src": "/gallery/IMG-2.jpg.jpeg",
+      "title": "TRAE Re:Vibe Hackathon",
+      "venue": "GeeksforGeeks Office, Noida"
+    },
+    {
+      "src": "/gallery/gal5.jpeg",
+      "title": "InnVedX Code Hackathon",
+      "venue": "BBD University, Lucknow"
+    },
+    {
+      "src": "/gallery/judge.jpeg",
+      "title": "Project Evaluation & Demo",
+      "venue": "TechNeekX Hub"
+    },
+    {
+      "src": "/gallery/IMG_0143.JPG.jpeg",
+      "title": "Brainstorming & Designing",
+      "venue": "TechNeekX Workshop"
+    },
+    {
+      "src": "/gallery/IMG_0150.JPG.jpeg",
+      "title": "Winners & Award Ceremony",
+      "venue": "Kalpathon 2.0"
+    },
+    {
+      "src": "/gallery/IMG_0683.JPG.jpeg",
+      "title": "Collaborative Development",
+      "venue": "National Hackathon Team"
+    },
+    {
+      "src": "/gallery/IMG_0144.JPG.jpeg",
+      "title": "Workshops & Brainstorming",
+      "venue": "TechNeekX Meetup"
+    },
+    {
+      "src": "/gallery/IMG_0697.JPG.jpeg",
+      "title": "Hackathon Coding Sprint",
+      "venue": "InnVedX Campus"
+    },
+    {
+      "src": "/gallery/WhatsApp Image 2026-04-06 at 6.42.51 PM.jpeg",
+      "title": "Technical Presentations",
+      "venue": "Noida Tech Center"
+    },
+    {
+      "src": "/gallery/WhatsApp Image 2026-04-09 at 8.20.03 PM.jpeg",
+      "title": "Collaborative Coding",
+      "venue": "Lucknow Dev Lab"
+    }
+  ]
+}

@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
+import About from '@/components/About';
 import SocialProof from '@/components/SocialProof';
 import MovementPositioning from '@/components/MovementPositioning';
 import FOMOLayer from '@/components/FOMOLayer';
@@ -75,12 +76,17 @@ export default function Home() {
         <section id="hero" className="section-animate pt-18">
           <Hero />
         </section>
-        <section id="about" className="section-animate">
+        <About />
+        <section id="community" className="section-animate">
+          <Community />
+          <CommunityPartnersWall />
+        </section>
+        <section id="builder-movement" className="section-animate">
           <MovementPositioning />
         </section>
-        <section id="social-proof" className="section-animate">
+        {/* <section id="social-proof" className="section-animate">
           <SocialProof />
-        </section>
+        </section> */}
         <section id="projects-showcase" className="section-animate">
           <ProjectsSummary />
         </section>
@@ -89,27 +95,24 @@ export default function Home() {
         </section>
         <section id="gallery" className="section-animate">
           <Gallery />
-        <section id="fomo" className="section-animate">
+        {/* <section id="fomo" className="section-animate">
           <FOMOLayer />
-        </section>
+        </section> */}
         </section>
         <TeamSection />
-        <section id="hiring" className="section-animate">
+        {/* <section id="hiring" className="section-animate">
           <CoreTeamHiring />
-        </section>
-        <section id="partners" className="section-animate">
+        </section> */}
+        {/* <section id="partners" className="section-animate">
           <Partnership />
         </section>
         <section id="elite" className="section-animate">
           <EliteClub />
-        </section>
-        <section id="invite" className="section-animate">
+        </section> */}
+        {/* <section id="invite" className="section-animate">
           <ViralLoop />
-        </section>
-        <section id="community" className="section-animate">
-          <CommunityPartnersWall />
-          <Community />
-        </section>
+        </section> */}
+        
         <section id="journey" className="section-animate">
           <JourneySummary />
         </section>

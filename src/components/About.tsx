@@ -1,122 +1,243 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { Target, Lightbulb, Users, Rocket } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { motion as motionImport, AnimatePresence as AnimatePresenceImport } from 'framer-motion';
+// Let's use clean imports
+import data from '../constants/data.json';
+import '../styles/About.css';
 
-const About = () => {
-  const values = [
-    {
-      icon: Target,
-      title: "Mission-Driven",
-      description: "We focus on creating meaningful solutions that make a real impact in the digital world."
-    },
-    {
-      icon: Lightbulb,
-      title: "Innovation First",
-      description: "Embracing cutting-edge technologies and creative approaches to solve complex challenges."
-    },
-    {
-      icon: Users,
-      title: "Collaborative Spirit",
-      description: "Building strong partnerships and fostering teamwork to achieve extraordinary results."
-    },
-    {
-      icon: Rocket,
-      title: "Growth Mindset",
-      description: "Continuously learning, adapting, and pushing boundaries to reach new heights."
+// Reusable animated count component using IntersectionObserver
+interface StatCounterProps {
+  target: number;
+  duration?: number;
+  suffix?: string;
+}
+
+const StatCounter = ({ target, duration = 2000, suffix = "" }: StatCounterProps) => {
+  const [count, setCount] = useState(0);
+  const elementRef = useRef<HTMLSpanElement>(null);
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
+          let start = 0;
+          const end = target;
+          if (start === end) return;
+
+          const totalMs = duration;
+          const stepTime = 16; // ~60fps
+          const steps = Math.ceil(totalMs / stepTime);
+
+          let currentStep = 0;
+          const timer = setInterval(() => {
+            currentStep++;
+            const progress = currentStep / steps;
+            
+            // Easing function: easeOutQuart
+            const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+            const nextValue = Math.floor(end * easeOutQuart);
+            
+            if (currentStep >= steps) {
+              clearInterval(timer);
+              setCount(end);
+            } else {
+              setCount(nextValue);
+            }
+          }, stepTime);
+
+          return () => clearInterval(timer);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (elementRef.current) {
+      observer.observe(elementRef.current);
     }
-  ];
+
+    return () => {
+      if (elementRef.current) {
+        observer.unobserve(elementRef.current);
+      }
+    };
+  }, [target, duration, hasAnimated]);
 
   return (
-    <section id="about" className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
-            About <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">TechNeekX</span>
-          </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mb-8 rounded-full"></div>
-        </motion.div>
+    <span ref={elementRef} className="about-stat-value">
+      {count.toLocaleString()}{suffix}
+    </span>
+  );
+};
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+const About = () => {
+  const images = data.carouselImages;
+
+  // Initialize block indices to unique starting points [0, 1, 2, 3, 4]
+  const [activeIndices, setActiveIndices] = useState<number[]>([0, 1, 2, 3, 4]);
+  const activeBlockRef = useRef(0);
+
+  // Staggered image rotation loop
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const blockToUpdate = activeBlockRef.current;
+      activeBlockRef.current = (activeBlockRef.current + 1) % 5;
+
+      setActiveIndices((prev) => {
+        // Collect indices currently in use by the OTHER 4 blocks
+        const otherIndices = prev.filter((_, idx) => idx !== blockToUpdate);
+        
+        // Find all indices from the 10-image pool that are NOT in use
+        // and also not the current index of the block itself (to guarantee a change)
+        const availableIndices = [];
+        for (let i = 0; i < images.length; i++) {
+          if (!otherIndices.includes(i) && i !== prev[blockToUpdate]) {
+            availableIndices.push(i);
+          }
+        }
+        
+        // Pick a random available index
+        const randomIndex = availableIndices[Math.floor(Math.random() * availableIndices.length)];
+        
+        const next = [...prev];
+        next[blockToUpdate] = randomIndex;
+        return next;
+      });
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [images.length]);
+
+  return (
+    <section id="about" className="about-section">
+      {/* Background blur blobs */}
+      <div className="about-bg-blob about-blob-1" />
+      <div className="about-bg-blob about-blob-2" />
+
+      <div className="about-container">
+        <div className="about-grid">
+          {/* Left Column: Intro & Stats */}
+          <motionImport.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            className="about-content"
           >
-            <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-6">
-              Our Vision
-            </h3>
-            <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-              TechNeekX represents the perfect fusion of youthful energy and professional excellence. 
-              We believe that innovation thrives when diverse perspectives come together with a shared 
-              vision of creating something extraordinary.
+            <span className="about-subtitle">{data.aboutSubtitle}</span>
+            <h2 className="about-title">{data.aboutTitle}</h2>
+            <div className="about-title-line" />
+            
+            <p className="about-description">
+              {data.aboutDescription1} <br /><br />
+              {data.aboutDescription2}
             </p>
-            <p className="text-lg text-gray-600 leading-relaxed">
-              Our team is dedicated to pushing the boundaries of what's possible in technology, 
-              design, and digital experiences. We don't just build products – we craft solutions 
-              that inspire, engage, and make a lasting impact.
-            </p>
-          </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            <div className="about-stats-grid">
+              {data.stats.map((stat, idx) => (
+                <div key={idx} className="about-stat-card">
+                  <StatCounter target={stat.value} suffix={stat.suffix} />
+                  <span className="about-stat-label">{stat.label}</span>
+                </div>
+              ))}
+            </div>
+          </motionImport.div>
+
+          {/* Right Column: Asymmetric 5-Block Image Grid */}
+          <motionImport.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="relative"
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="about-mosaic-wrapper"
           >
-            <div className="bg-white rounded-3xl p-8 shadow-xl border border-gray-100">
-              <div className="bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl p-6 text-white mb-6">
-                <h4 className="text-xl font-bold mb-2">What Drives Us</h4>
-                <p className="text-blue-100">
-                  Passion for innovation, commitment to excellence, and the belief that 
-                  great things happen when talented minds collaborate.
-                </p>
+            <div className="about-mosaic-grid">
+              {/* Column 1: Left */}
+              <div className="about-mosaic-col">
+                <div className="about-mosaic-card about-card-small">
+                  <AnimatePresenceImport mode="wait">
+                    <motionImport.img
+                      key={activeIndices[0]}
+                      src={images[activeIndices[0]].src}
+                      alt={images[activeIndices[0]].title}
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 1.05 }}
+                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                      className="about-mosaic-image"
+                    />
+                  </AnimatePresenceImport>
+                </div>
+                <div className="about-mosaic-card about-card-small">
+                  <AnimatePresenceImport mode="wait">
+                    <motionImport.img
+                      key={activeIndices[1]}
+                      src={images[activeIndices[1]].src}
+                      alt={images[activeIndices[1]].title}
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 1.05 }}
+                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                      className="about-mosaic-image"
+                    />
+                  </AnimatePresenceImport>
+                </div>
               </div>
-              <div className="space-y-4">
-                <div className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                  <span className="text-gray-700">Creative Problem Solving</span>
+
+              {/* Column 2: Center */}
+              <div className="about-mosaic-col">
+                <div className="about-mosaic-card about-card-large">
+                  <AnimatePresenceImport mode="wait">
+                    <motionImport.img
+                      key={activeIndices[2]}
+                      src={images[activeIndices[2]].src}
+                      alt={images[activeIndices[2]].title}
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 1.05 }}
+                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                      className="about-mosaic-image"
+                    />
+                  </AnimatePresenceImport>
                 </div>
-                <div className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                  <span className="text-gray-700">User-Centric Design</span>
+              </div>
+
+              {/* Column 3: Right */}
+              <div className="about-mosaic-col">
+                <div className="about-mosaic-card about-card-small">
+                  <AnimatePresenceImport mode="wait">
+                    <motionImport.img
+                      key={activeIndices[3]}
+                      src={images[activeIndices[3]].src}
+                      alt={images[activeIndices[3]].title}
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 1.05 }}
+                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                      className="about-mosaic-image"
+                    />
+                  </AnimatePresenceImport>
                 </div>
-                <div className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-pink-500 rounded-full"></div>
-                  <span className="text-gray-700">Cutting-Edge Technology</span>
+                <div className="about-mosaic-card about-card-small">
+                  <AnimatePresenceImport mode="wait">
+                    <motionImport.img
+                      key={activeIndices[4]}
+                      src={images[activeIndices[4]].src}
+                      alt={images[activeIndices[4]].title}
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 1.05 }}
+                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                      className="about-mosaic-image"
+                    />
+                  </AnimatePresenceImport>
                 </div>
               </div>
             </div>
-          </motion.div>
-        </div>
-
-        {/* Values Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {values.map((value, index) => (
-            <motion.div
-              key={value.title}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -10, scale: 1.02 }}
-              className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
-            >
-              <div className="bg-gradient-to-br from-blue-500 to-purple-600 w-12 h-12 rounded-xl flex items-center justify-center mb-4">
-                <value.icon className="text-white" size={24} />
-              </div>
-              <h4 className="text-xl font-bold text-gray-900 mb-3">{value.title}</h4>
-              <p className="text-gray-600 leading-relaxed">{value.description}</p>
-            </motion.div>
-          ))}
+          </motionImport.div>
         </div>
       </div>
     </section>

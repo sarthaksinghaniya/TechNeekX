@@ -34,6 +34,15 @@ const Hero = () => {
 
   return (
     <div className="hero-frame">
+      <video
+        className="hero-video"
+        src="/hero/download.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+        poster="/hero/main.jpeg"
+      />
       <div className="hero-overlay" />
       
       <motion.div
