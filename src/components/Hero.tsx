@@ -44,7 +44,7 @@ const Hero = () => {
     <div className="hero-frame">
       <video
         className="hero-video"
-        src="/hero/download.mp4"
+        src="/hero/WhatsApp Video 2026-06-30 at 10.59.36.mp4"
         autoPlay
         loop
         muted

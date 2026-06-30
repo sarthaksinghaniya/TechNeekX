@@ -379,7 +379,7 @@
 
 .tx-drawer-content {
   position: relative;
-  height: 100vh;
+  height: 100dvh;
   width: 100%;
   max-width: 300px;
   background-color: #0f172a;
@@ -442,7 +442,7 @@
   border: none;
   text-align: left;
   padding: 14px 16px;
-  border-radius: 12px;
+  border-radius: 35px;
   font-size: 16px;
   font-weight: 500;
   color: #94a3b8;
@@ -482,7 +482,7 @@
   justify-content: center;
   width: 44px;
   height: 44px;
-  border-radius: 12px;
+  border-radius: 35px;
   background-color: rgba(255, 255, 255, 0.05);
   color: rgba(255, 255, 255, 0.7);
   transition: all 0.2s ease;
@@ -504,7 +504,7 @@
   color: #ffffff;
   font-weight: 600;
   font-size: 15px;
-  border-radius: 10px;
+  border-radius: 35px;
   cursor: pointer;
   font-family: var(--nav-font);
   transition: all 0.3s ease;

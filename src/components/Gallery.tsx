@@ -1,9 +1,10 @@
 'use client';
 
 import Image from 'next/image';
-import { useEffect, useMemo, useState, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Camera, ArrowLeft, ArrowRight, Play, Pause } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence, useScroll, useVelocity, useSpring, useTransform } from 'framer-motion';
+import { X } from 'lucide-react';
+import '../styles/Gallery.css';
 
 type GalleryImage = {
   src: string;
@@ -41,11 +42,10 @@ const galleryImages: GalleryImage[] = [
 ];
 
 const Gallery = () => {
-  const orderedImages = useMemo(() => galleryImages, []);
   const [active, setActive] = useState(0);
+  const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
-  const sliderRef = useRef<HTMLDivElement>(null);
 
   // Screen size detection
   useEffect(() => {
@@ -55,154 +55,217 @@ const Gallery = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Auto-slide effect
+  // Autoplay functionality
   useEffect(() => {
     if (!isPlaying) return;
     const interval = setInterval(() => {
-      setActive((prev) => (prev + 1) % orderedImages.length);
-    }, 3200);
+      setActive((prev) => (prev + 1) % galleryImages.length);
+    }, 3000);
     return () => clearInterval(interval);
-  }, [isPlaying, orderedImages.length]);
+  }, [isPlaying]);
 
   const goNext = () => {
-    setActive((prev) => (prev + 1) % orderedImages.length);
+    setActive((prev) => (prev + 1) % galleryImages.length);
   };
 
   const goPrev = () => {
-    setActive((prev) => (prev - 1 + orderedImages.length) % orderedImages.length);
+    setActive((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
   };
 
-  // Card dimensions: 300px width + 24px gap = 324px step
-  const cardStep = isMobile ? 290 : 324;
+  // Helper to calculate circular shortest distance to center card
+  const getRelativeOffset = (index: number) => {
+    const length = galleryImages.length;
+    let diff = index - active;
+    while (diff > length / 2) diff -= length;
+    while (diff < -length / 2) diff += length;
+    return diff;
+  };
+
+  const handleCardClick = (index: number) => {
+    const offset = getRelativeOffset(index);
+    if (offset === 0) {
+      setSelectedImage(galleryImages[index]);
+    } else {
+      setActive(index);
+    }
+  };
+
+  // Track page scroll to tilt the entire 3D carousel plane slightly
+  const { scrollY } = useScroll();
+  const scrollVelocity = useVelocity(scrollY);
+  const smoothVelocity = useSpring(scrollVelocity, {
+    damping: 50,
+    stiffness: 300,
+    mass: 0.5
+  });
+
+  const scrollTilt = useTransform(smoothVelocity, [-3000, 3000], [-10, 10]);
+  const scrollTranslateZ = useTransform(smoothVelocity, [-3000, 3000], [-30, 30]);
 
   return (
-    <section className="py-20 relative overflow-hidden bg-[#f9fafb] border-t border-slate-100">
-      {/* Background decoration */}
-      <div className="absolute inset-0 pointer-events-none z-0">
-        <motion.div
-          className="gradient-blob w-[400px] h-[400px] bg-gradient-to-r from-purple-500/10 to-pink-500/10 top-10 right-10"
-          animate={{ scale: [1, 1.15, 1], rotate: [0, 180, 360] }}
-          transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
-        />
-        <motion.div
-          className="gradient-blob w-[350px] h-[350px] bg-gradient-to-r from-blue-500/10 to-cyan-500/10 bottom-10 left-10"
-          animate={{ scale: [1.1, 1, 1.1], rotate: [360, 180, 0] }}
-          transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
-        />
-      </div>
+    <section id="gallery" className="gallery-section">
+      {/* Background decoration blur blobs */}
+      <div className="gallery-bg-blob gallery-blob-1" />
+      <div className="gallery-bg-blob gallery-blob-2" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-5 gap-12 items-center">
-          {/* Left Column: Heading and Info (2/5 size) */}
-          <div className="lg:col-span-2 space-y-6">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r from-purple-600 to-pink-600 shadow-[0_0_20px_rgba(168,85,247,0.2)]"
-            >
-              <Camera className="w-8 h-8 text-white" />
-            </motion.div>
-            
-            <div className="space-y-4">
-              <h2 className="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight heading-premium">
-                📸 Inside <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">TechNeekX</span>
-              </h2>
-              <p className="text-slate-600 text-base sm:text-lg leading-relaxed max-w-md">
-                A glimpse into our builder culture. Late-night sprints, intense hackathons, and community meetups where we build, deploy, and ship the future of AI.
-              </p>
-            </div>
-
-            {/* Slider Controls */}
-            <div className="flex items-center gap-6 pt-4">
-              <div className="flex items-center gap-3">
-                <button
-                  onClick={goPrev}
-                  className="w-12 h-12 rounded-xl bg-white border border-slate-200 hover:border-slate-300 text-slate-700 flex items-center justify-center transition-all hover:bg-slate-50"
-                  aria-label="Previous Slide"
-                >
-                  <ArrowLeft className="w-5 h-5" />
-                </button>
-                <button
-                  onClick={goNext}
-                  className="w-12 h-12 rounded-xl bg-white border border-slate-200 hover:border-slate-300 text-slate-700 flex items-center justify-center transition-all hover:bg-slate-50"
-                  aria-label="Next Slide"
-                >
-                  <ArrowRight className="w-5 h-5" />
-                </button>
-                <button
-                  onClick={() => setIsPlaying(!isPlaying)}
-                  className="w-12 h-12 rounded-xl bg-white border border-slate-200 hover:border-slate-300 text-slate-700 flex items-center justify-center transition-all hover:bg-slate-50"
-                  aria-label={isPlaying ? "Pause Autoplay" : "Start Autoplay"}
-                >
-                  {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
-                </button>
-              </div>
-
-              {/* Progress Tracker */}
-              <div className="text-sm font-semibold tracking-wider text-slate-500">
-                <span className="text-purple-600 font-bold text-lg">{String(active + 1).padStart(2, '0')}</span>
-                <span className="mx-1">/</span>
-                <span>{String(orderedImages.length).padStart(2, '0')}</span>
-              </div>
-            </div>
+      <div className="gallery-container">
+        <div className="gallery-grid">
+          {/* Left Column: Heading and Info */}
+          <div className="gallery-left">
+            <span className="gallery-subtitle">Our memorable moments</span>
+            <h2 className="gallery-title">Photo Gallery</h2>
+            <div className="gallery-title-line" />
+            <p className="gallery-description">
+              A glimpse into our builder culture. Late-night sprints, intense hackathons, and community meetups where we build, deploy, and ship the future of AI.
+            </p>
           </div>
 
-          {/* Right Column: Sliding Grid of Images (3/5 size) */}
-          <div className="lg:col-span-3 overflow-hidden relative">
-            <div className="absolute top-0 bottom-0 left-0 w-8 bg-gradient-to-r from-[#f9fafb] to-transparent z-10 pointer-events-none" />
-            <div className="absolute top-0 bottom-0 right-0 w-8 bg-gradient-to-l from-[#f9fafb] to-transparent z-10 pointer-events-none" />
+          {/* Right Column: 3D Coverflow Carousel */}
+          <div className="gallery-right">
+            <motion.div
+              className="gallery-carousel-wrapper"
+              style={{
+                rotateY: scrollTilt,
+                z: scrollTranslateZ,
+              }}
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.2}
+              onDragEnd={(event, info) => {
+                const swipeThreshold = 50;
+                if (info.offset.x < -swipeThreshold) {
+                  goNext();
+                } else if (info.offset.x > swipeThreshold) {
+                  goPrev();
+                }
+              }}
+              onMouseEnter={() => setIsPlaying(false)}
+              onMouseLeave={() => setIsPlaying(true)}
+            >
+              {galleryImages.map((image, index) => {
+                const offset = getRelativeOffset(index);
+                const absOffset = Math.abs(offset);
+                
+                // Only render or show elements within 2 steps from center
+                const isVisible = absOffset <= 2;
+                if (!isVisible) return null;
 
-            <div className="w-full py-4 overflow-hidden" ref={sliderRef}>
-              <motion.div
-                className="flex gap-6"
-                animate={{ x: -active * cardStep }}
-                transition={{ type: 'spring', stiffness: 80, damping: 15 }}
-                style={{ width: `${orderedImages.length * cardStep}px` }}
-              >
-                {orderedImages.map((image, index) => {
-                  const isActive = index === active;
-                  return (
-                    <div
-                      key={image.src + index}
-                      className={`relative shrink-0 rounded-3xl overflow-hidden border transition-all duration-500 select-none bg-white ${
-                        isActive
-                          ? 'border-purple-500/40 shadow-[0_15px_40px_rgba(168,85,247,0.15)] scale-[1.02]'
-                          : 'border-slate-200/60 opacity-60 scale-95 hover:opacity-80'
-                      }`}
-                      style={{
-                        width: `${isMobile ? 266 : 300}px`,
-                        height: `${isMobile ? 332 : 375}px`
-                      }}
-                    >
-                      {/* Image */}
+                // Dynamic 3D calculations for Coverflow positioning
+                let xValue = 0;
+                let zValue = 0;
+                let rotateYValue = 0;
+                let scaleValue = 0.7;
+
+                if (offset === 0) {
+                  xValue = 0;
+                  zValue = 50;
+                  rotateYValue = 0;
+                  scaleValue = 1;
+                } else if (offset === -1) {
+                  xValue = isMobile ? -75 : -140;
+                  zValue = -80;
+                  rotateYValue = 35;
+                  scaleValue = 0.85;
+                } else if (offset === 1) {
+                  xValue = isMobile ? 75 : 140;
+                  zValue = -80;
+                  rotateYValue = -35;
+                  scaleValue = 0.85;
+                } else if (offset === -2) {
+                  xValue = isMobile ? -140 : -250;
+                  zValue = -160;
+                  rotateYValue = 45;
+                  scaleValue = 0.7;
+                } else if (offset === 2) {
+                  xValue = isMobile ? 140 : 250;
+                  zValue = -160;
+                  rotateYValue = -45;
+                  scaleValue = 0.7;
+                }
+
+                return (
+                  <motion.div
+                    key={index}
+                    className={`gallery-carousel-card ${offset === 0 ? 'active' : ''}`}
+                    onClick={() => handleCardClick(index)}
+                    style={{
+                      zIndex: 10 - absOffset,
+                      pointerEvents: isVisible ? 'auto' : 'none',
+                    }}
+                    animate={{
+                      x: xValue,
+                      z: zValue,
+                      rotateY: rotateYValue,
+                      scale: scaleValue,
+                    }}
+                    transition={{
+                      type: 'spring',
+                      stiffness: 300,
+                      damping: 28,
+                    }}
+                  >
+                    <div className="gallery-image-container">
                       <Image
                         src={image.src}
                         alt={image.caption}
                         fill
-                        sizes="300px"
-                        className="object-cover pointer-events-none"
-                        priority={index === 0}
+                        sizes="(max-width: 640px) 200px, 300px"
+                        className="gallery-img"
+                        priority={absOffset === 0}
                       />
-                      
-                      {/* Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/25 to-transparent z-10 pointer-events-none" />
-                      
-                      {/* Caption wrapped in .dark so text remains white */}
-                      <div className="dark absolute bottom-0 left-0 right-0 p-5 z-20">
-                        <p className="text-white text-sm sm:text-base font-bold leading-snug drop-shadow-md">
-                          {image.caption}
-                        </p>
-                      </div>
+                      <div className="gallery-overlay" />
                     </div>
-                  );
-                })}
-              </motion.div>
-            </div>
+                    {offset === 0 && (
+                      <div className="gallery-caption-wrapper">
+                        <p className="gallery-caption">{image.caption}</p>
+                      </div>
+                    )}
+                  </motion.div>
+                );
+              })}
+            </motion.div>
           </div>
         </div>
       </div>
+
+      {/* Lightbox Modal */}
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="lightbox-overlay"
+            onClick={() => setSelectedImage(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.95, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.95, y: 20 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+              className="lightbox-content"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button 
+                className="lightbox-close" 
+                onClick={() => setSelectedImage(null)}
+              >
+                <X className="w-5 h-5 inline mr-1" /> Close
+              </button>
+              <div className="lightbox-img-wrapper">
+                <Image
+                  src={selectedImage.src}
+                  alt={selectedImage.caption}
+                  fill
+                  style={{ objectFit: 'contain' }}
+                  sizes="80vw"
+                />
+              </div>
+              <p className="lightbox-caption">{selectedImage.caption}</p>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

@@ -249,7 +249,7 @@ const Navbar = () => {
                       />
                     </div>
                     <div className="tx-logo-text-group">
-                      <span className="tx-drawer-logo-text">TECHNEEK<b className="tx-logo-x">X</b></span>
+                      <span className="tx-drawer-logo-text">TechNeek<b className="tx-logo-x">X</b></span>
                       <span className="tx-logo-subtitle tx-drawer-logo-subtitle">BUILD • INNOVATE • INSPIRE</span>
                     </div>
                   </div>

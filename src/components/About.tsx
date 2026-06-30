@@ -127,6 +127,9 @@ const About = () => {
             transition={{ duration: 0.8 }}
             className="about-content"
           >
+            <div className="about-watermark">
+              <img src="/about/tnx-wings.png" alt="Watermark" />
+            </div>
             <span className="about-subtitle">{data.aboutSubtitle}</span>
             <h2 className="about-title">{data.aboutTitle}</h2>
             <div className="about-title-line" />
