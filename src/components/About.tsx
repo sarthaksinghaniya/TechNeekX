@@ -5,6 +5,7 @@ import { motion as motionImport, AnimatePresence as AnimatePresenceImport } from
 // Let's use clean imports
 import data from '../constants/data.json';
 import '../styles/About.css';
+import PartnersMarquee from './PartnersMarquee';
 
 // Reusable animated count component using IntersectionObserver
 interface StatCounterProps {
@@ -243,6 +244,7 @@ const About = () => {
           </motionImport.div>
         </div>
       </div>
+      <PartnersMarquee />
     </section>
   );
 };

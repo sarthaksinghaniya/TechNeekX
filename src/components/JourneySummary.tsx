@@ -36,7 +36,7 @@ export default function JourneySummary() {
   };
 
   return (
-    <section className="py-20 relative bg-[#f9fafb] overflow-hidden border-t border-slate-100">
+    <section className="py-16 md:py-28 relative bg-[#f9fafb] overflow-hidden border-t border-slate-100">
       {/* Background decoration */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/3 left-1/4 w-72 h-72 bg-purple-500/5 rounded-full blur-3xl" />

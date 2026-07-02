@@ -1,0 +1,57 @@
+[
+  {
+    "id": "innovate-with-trae",
+    "name": "Innovate with TRAE",
+    "type": "Community Meetup",
+    "location": "NIT Jalandhar",
+    "registrations": "277+",
+    "attendees": "49+",
+    "image": "/gallery/IMG_0143.JPG.jpeg",
+    "cardTheme": "green",
+    "isFeatured": true
+  },
+  {
+    "id": "trae-re-vibe",
+    "name": "TRAE Re:Vibe <Hackathon>",
+    "type": "Hackathon",
+    "location": "GeeksforGeeks Office, Noida",
+    "registrations": "499+",
+    "attendees": "33+",
+    "image": "/gallery/IMG_0144.JPG.jpeg",
+    "cardTheme": "pink",
+    "isFeatured": true
+  },
+  {
+    "id": "notion-unlocked",
+    "name": "Notion Unlocked",
+    "type": "Workshop",
+    "location": "Noida",
+    "registrations": "111+",
+    "attendees": "33+",
+    "image": "/gallery/IMG_0150.JPG.jpeg",
+    "cardTheme": "grey",
+    "isFeatured": true
+  },
+  {
+    "id": "frame-by-frame",
+    "name": "Frame by Frame",
+    "type": "Media / Creative",
+    "location": "BBD University",
+    "registrations": "100+",
+    "attendees": "40+",
+    "image": "/gallery/IMG_0683.JPG.jpeg",
+    "cardTheme": "grey",
+    "isFeatured": false
+  },
+  {
+    "id": "innvedx-hackathon",
+    "name": "InnVedX Code Hackathon",
+    "type": "Hackathon",
+    "location": "LPU Campus",
+    "registrations": "491",
+    "attendees": "200+",
+    "image": "/gallery/IMG_0697.JPG.jpeg",
+    "cardTheme": "green",
+    "isFeatured": false
+  }
+]

@@ -108,7 +108,7 @@ export default function TeamSection() {
   return (
     <section
       id="team"
-      className="relative overflow-hidden bg-white py-16 sm:py-20"
+      className="relative overflow-hidden bg-white py-16 md:py-28"
     >
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -top-24 -left-24 h-80 w-80 rounded-full blur-3xl opacity-90 bg-[radial-gradient(circle_at_center,rgba(100,116,139,0.08),transparent_65%)]" />

@@ -5,6 +5,8 @@ import { ExternalLink, Plus } from 'lucide-react';
 import { useState } from 'react';
 import { openTeamForm, FORM_CONFIG } from '@/config/teamForms';
 
+import partnersData from '../../data/community_partners.json';
+
 const CommunityPartnersWall = () => {
   const [hoveredPartner, setHoveredPartner] = useState<number | null>(null);
 
@@ -44,44 +46,8 @@ const CommunityPartnersWall = () => {
     link?: string;
   };
 
-  const partners: Partner[] = [
-    {
-      name: "Innosphere",
-      role: "Community Partner",
-      avatar: "/innosphere.jpg",
-      description: "Empowering students through collaboration, tech events, and skill-building initiatives.",
-      badge: "Collaboration Partner",
-      expertise: ["Student Collaboration", "Tech Events", "Skill Development"],
-      gradient: "from-indigo-500 to-cyan-500",
-      link: "https://www.linkedin.com/company/innosphere-student-forum/posts/?feedView=all"
-    },
-    {
-      name: "ByteQuest",
-      role: "Hackathon Organiser",
-      avatar: "/byte quest hack.png",
-      description: "Powering high-impact hackathons that turn ideas into real-world solutions.",
-      badge: "Collaboration Partner",
-      expertise: ["Hospital AI", "National Hackathon", "Innovation"],
-      gradient: "from-yellow-500 to-orange-500"
-    },
-    {
-      name: "Gemini",
-      role: "AI Innovation Partner",
-      avatar: "/download.png",
-      description: "Leveraging cutting-edge AI technology to drive innovation and intelligent solutions.",
-      badge: "Technology Partner",
-      expertise: ["AI Innovation", "Generative AI", "Smart Solutions"],
-      gradient: "from-blue-500 to-cyan-400"
-    },
-    {
-      name: "Join as Partner",
-      role: "Become Part of Ecosystem",
-      avatar: null,
-      expertise: ["Your Expertise", "Your Impact", "Your Growth"],
-      gradient: "from-gray-500 to-gray-700",
-      isCTA: true
-    }
-  ];
+  const partners = partnersData as Partner[];
+
 
   const getInitials = (name: string) => {
     return name.split(' ').map(word => word[0]).join('').toUpperCase().slice(0, 2);

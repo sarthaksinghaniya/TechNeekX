@@ -1,0 +1,64 @@
+[
+  {
+    "name": "Innosphere",
+    "role": "Community Partner",
+    "avatar": "/innosphere.jpg",
+    "description": "Empowering students through collaboration, tech events, and skill-building initiatives.",
+    "badge": "Collaboration Partner",
+    "expertise": [
+      "Student Collaboration",
+      "Tech Events",
+      "Skill Development"
+    ],
+    "gradient": "from-indigo-500 to-cyan-500",
+    "link": "https://www.linkedin.com/company/innosphere-student-forum/posts/?feedView=all"
+  },
+  {
+    "name": "ByteQuest",
+    "role": "Hackathon Organiser",
+    "avatar": "/byte quest hack.png",
+    "description": "Powering high-impact hackathons that turn ideas into real-world solutions.",
+    "badge": "Collaboration Partner",
+    "expertise": [
+      "Hospital AI",
+      "National Hackathon",
+      "Innovation"
+    ],
+    "gradient": "from-yellow-500 to-orange-500"
+  },
+  {
+    "name": "Gemini",
+    "role": "AI Innovation Partner",
+    "avatar": "/download.png",
+    "description": "Leveraging cutting-edge AI technology to drive innovation and intelligent solutions.",
+    "badge": "Technology Partner",
+    "expertise": [
+      "AI Innovation",
+      "Generative AI",
+      "Smart Solutions"
+    ],
+    "gradient": "from-blue-500 to-cyan-400"
+  },
+  {
+    "name": "UnStop",
+    "role": "Hosting Partner",
+    "avatar": "/unstop-logo.svg",
+    "expertise": [
+      "Your Expertise",
+      "Your Impact",
+      "Your Growth"
+    ],
+    "gradient": "from-gray-500 to-gray-700"
+  },
+  {
+    "name": "AI4Tomorrow",
+    "role": "AI Partner",
+    "avatar": "/AI4Tomorrow logo.png",
+    "expertise": [
+      "Your Expertise",
+      "Your Impact",
+      "Your Growth"
+    ],
+    "gradient": "from-gray-500 to-gray-700"
+  }
+]

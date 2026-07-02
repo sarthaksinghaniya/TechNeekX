@@ -66,7 +66,7 @@ const TrustElements = () => {
   };
 
   return (
-    <section id="trust" className="py-20 relative">
+    <section id="trust" className="py-16 md:py-28 relative">
       {/* Background decoration */}
       <div className="absolute inset-0">
         <motion.div 

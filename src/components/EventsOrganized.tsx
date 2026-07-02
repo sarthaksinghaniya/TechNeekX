@@ -99,7 +99,7 @@ const EventsOrganized = () => {
   ];
 
   return (
-    <section className="px-4 sm:px-6 py-14 md:py-20 max-w-6xl mx-auto">
+    <section className="px-4 sm:px-8 py-16 md:py-28 max-w-6xl mx-auto">
       <div className="text-left mb-12">
         <motion.h2 
           variants={itemVariants}

@@ -4,6 +4,9 @@ import { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
+import FeaturedProjects from '@/components/FeaturedProjects';
+import FeaturedEvents from '@/components/FeaturedEvents';
+import PartnersMarquee from '@/components/PartnersMarquee';
 import SocialProof from '@/components/SocialProof';
 import MovementPositioning from '@/components/MovementPositioning';
 import FOMOLayer from '@/components/FOMOLayer';
@@ -77,6 +80,8 @@ export default function Home() {
           <Hero />
         </section>
         <About />
+        <FeaturedProjects />
+        <FeaturedEvents />
         <section id="community" className="section-animate">
           <Community />
           <CommunityPartnersWall />

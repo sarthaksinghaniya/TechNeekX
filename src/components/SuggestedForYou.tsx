@@ -28,7 +28,7 @@ const SuggestedForYou = () => {
 
   if (list.length === 0) {
     return (
-      <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8">
+    <section className="py-16 md:py-28 px-4 sm:px-8">
         <div className="max-w-4xl mx-auto glass rounded-2xl p-6 text-center shadow-[0_10px_30px_rgba(0,0,0,0.06)]">
           <p className="text-sm text-[var(--text-secondary)] mb-2">No recommendations yet.</p>
           <p className="text-base font-semibold text-[var(--text-primary)]">Personalize to unlock tailored picks.</p>
@@ -38,7 +38,7 @@ const SuggestedForYou = () => {
   }
 
   return (
-    <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8">
+    <section className="py-16 md:py-28 px-4 sm:px-8">
       <div className="max-w-5xl mx-auto">
         <div className="flex items-center justify-between mb-6">
           <div>

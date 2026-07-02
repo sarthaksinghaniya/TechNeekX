@@ -29,7 +29,7 @@ const MovementPositioning = () => {
   };
 
   return (
-    <section className="py-20 relative">
+    <section className="py-16 md:py-28 relative">
       {/* Background decoration */}
       <div className="absolute inset-0">
         <motion.div 

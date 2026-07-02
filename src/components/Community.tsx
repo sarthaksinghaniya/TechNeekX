@@ -31,7 +31,7 @@ const Community = () => {
   ];
 
   return (
-    <section id="community" className="py-20 pb-10 relative">
+    <section id="community" className="py-16 md:py-28 pb-10 md:pb-14 relative">
       {/* Background decoration */}
       <div className="absolute inset-0">
         <div className="gradient-blob w-96 h-96 bg-gradient-to-r from-purple-500/10 to-pink-500/10 top-10 left-10" style={{ animationDelay: '1s' }}></div>
