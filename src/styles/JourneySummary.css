@@ -1,0 +1,329 @@
+/* TechNeekX Journey Timeline Stylesheet */
+
+/* Background blob decorations */
+.tnx-section-alt {
+  background: linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
+}
+
+.journey-bg-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.journey-blob-1 {
+  width: 400px;
+  height: 400px;
+  background: rgba(59, 130, 246, 0.08); /* light blue */
+  top: -100px;
+  right: -100px;
+}
+
+.journey-blob-2 {
+  width: 350px;
+  height: 350px;
+  background: rgba(236, 72, 153, 0.08); /* light pink */
+  bottom: -50px;
+  left: -100px;
+}
+
+.journey-layout {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr; /* Left: Timeline, Right: Info Text */
+  grid-template-areas: "info timeline";
+  gap: 80px;
+  align-items: flex-start;
+}
+
+@media (max-width: 1024px) {
+  .journey-layout {
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+      "info"
+      "timeline";
+    gap: 48px;
+  }
+}
+
+/* Right Column: Sticky Text Panel */
+.journey-info-col {
+  grid-area: info;
+  position: sticky;
+  top: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  height: 100%;
+}
+
+@media (max-width: 1024px) {
+  .journey-info-col {
+    position: static;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+/* Left Column: Timeline Wrapper */
+.journey-timeline-wrapper {
+  grid-area: timeline;
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Center dashed line */
+.journey-line {
+  position: absolute;
+  left: 50%;
+  top: 10px;
+  bottom: 70px; /* Ends near the bottom of the last item */
+  width: 0;
+  border-left: 2px dashed rgba(124, 58, 237, 0.25);
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+@media (max-width: 768px) {
+  .journey-line {
+    left: 20px;
+    bottom: 100px;
+    transform: none;
+  }
+}
+
+/* Timeline Items Container */
+.journey-timeline-items {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* Milestone Item Row */
+.journey-milestone-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 48px;
+}
+
+/* Alternate alignment */
+.journey-milestone-row.align-left {
+  justify-content: flex-start;
+}
+
+.journey-milestone-row.align-right {
+  justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+  .journey-milestone-row.align-left,
+  .journey-milestone-row.align-right {
+    justify-content: flex-start;
+    padding-left: 48px;
+  }
+}
+
+/* Timeline Central Dot */
+.journey-dot-wrapper {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+.journey-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--tnx-purple);
+  border: 3px solid #ffffff;
+  box-shadow: 0 0 10px rgba(124, 58, 237, 0.4);
+  transition: all 0.3s ease;
+}
+
+.journey-milestone-row:hover .journey-dot {
+  transform: scale(1.2);
+  background: var(--tnx-pink);
+  box-shadow: 0 0 15px rgba(255, 0, 128, 0.6);
+}
+
+.journey-dot-wrapper.now .journey-dot {
+  background: var(--tnx-pink);
+  box-shadow: 0 0 12px rgba(255, 0, 128, 0.5);
+  animation: dot-pulse 2s infinite;
+}
+
+@keyframes dot-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 0, 128, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(255, 0, 128, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 0, 128, 0);
+  }
+}
+
+@media (max-width: 768px) {
+  .journey-dot-wrapper {
+    left: 20px;
+    transform: translateX(-50%);
+  }
+}
+
+/* Timeline Date Label (Desktop only) */
+.journey-date-label {
+  position: absolute;
+  width: calc(50% - 48px);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--tnx-purple);
+  display: flex;
+  align-items: center;
+}
+
+.journey-milestone-row.align-left .journey-date-label {
+  left: calc(50% + 32px);
+  justify-content: flex-start;
+}
+
+.journey-milestone-row.align-right .journey-date-label {
+  right: calc(50% + 32px);
+  justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+  .journey-date-label {
+    display: none; /* date shown inside card on mobile */
+  }
+}
+
+/* Milestone Card Container */
+.journey-card {
+  width: calc(50% - 32px);
+  display: flex;
+  flex-direction: column;
+  padding: 24px 28px;
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 24px;
+  box-shadow: 0 15px 35px rgba(15, 23, 42, 0.04),
+              inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  z-index: 2;
+}
+
+.journey-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(15, 23, 42, 0.15);
+  box-shadow: 0 25px 50px rgba(15, 23, 42, 0.1);
+}
+
+@media (max-width: 768px) {
+  .journey-card {
+    width: 100%;
+  }
+}
+
+/* Card Content Section */
+.journey-card-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.journey-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.journey-card-title-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.journey-card-icon-box {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.journey-card-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--tnx-text-dark);
+}
+
+.journey-card-description {
+  font-size: 14px;
+  color: var(--tnx-text-muted);
+  line-height: 1.6;
+}
+
+/* Mobile-only Date Tag */
+.journey-card-mobile-date {
+  display: none;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--tnx-purple);
+  margin-bottom: 4px;
+}
+
+@media (max-width: 768px) {
+  .journey-card-mobile-date {
+    display: block;
+  }
+}
+
+/* Badge design */
+.journey-status-badge {
+  font-size: 9px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 99px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1;
+}
+
+.journey-status-badge.completed {
+  background: rgba(16, 185, 129, 0.08);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.15);
+}
+
+.journey-status-badge.now {
+  background: rgba(236, 72, 153, 0.08);
+  color: var(--tnx-pink);
+  border: 1px solid rgba(236, 72, 153, 0.15);
+}
+
+/* Explore button positioning at the bottom of the left column */
+.journey-cta-wrapper {
+  /* margin-top: 48px; */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
+}

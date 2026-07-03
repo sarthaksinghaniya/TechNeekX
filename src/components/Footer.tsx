@@ -40,15 +40,15 @@ const Footer = () => {
         { name: "Careers", href: "#" },
       ]
     },
-    {
-      title: "Legal",
-      links: [
-        { name: "Privacy Policy", href: "#" },
-        { name: "Terms of Service", href: "#" },
-        { name: "Cookie Policy", href: "#" },
-        { name: "Code of Conduct", href: "#" },
-      ]
-    }
+    // {
+    //   title: "Legal",
+    //   links: [
+    //     { name: "Privacy Policy", href: "#" },
+    //     { name: "Terms of Service", href: "#" },
+    //     { name: "Cookie Policy", href: "#" },
+    //     { name: "Code of Conduct", href: "#" },
+    //   ]
+    // }
   ];
 
   const scrollToTop = () => {

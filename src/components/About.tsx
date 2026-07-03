@@ -74,21 +74,46 @@ const StatCounter = ({ target, duration = 2000, suffix = "" }: StatCounterProps)
   );
 };
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, scale: 0.82, y: 40 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: {
+      type: 'spring',
+      stiffness: 100,
+      damping: 16,
+    },
+  },
+};
+
 const About = () => {
   const images = data.carouselImages;
 
-  // Initialize block indices to unique starting points [0, 1, 2, 3, 4]
-  const [activeIndices, setActiveIndices] = useState<number[]>([0, 1, 2, 3, 4]);
+  // Initialize block indices to unique starting points [0, 1, 2, 3]
+  const [activeIndices, setActiveIndices] = useState<number[]>([0, 1, 2, 3]);
   const activeBlockRef = useRef(0);
 
   // Staggered image rotation loop
   useEffect(() => {
     const interval = setInterval(() => {
       const blockToUpdate = activeBlockRef.current;
-      activeBlockRef.current = (activeBlockRef.current + 1) % 5;
+      activeBlockRef.current = (activeBlockRef.current + 1) % 4;
 
       setActiveIndices((prev) => {
-        // Collect indices currently in use by the OTHER 4 blocks
+        // Collect indices currently in use by the OTHER 3 blocks
         const otherIndices = prev.filter((_, idx) => idx !== blockToUpdate);
         
         // Find all indices from the 10-image pool that are NOT in use
@@ -113,14 +138,102 @@ const About = () => {
   }, [images.length]);
 
   return (
-    <section id="about" className="about-section">
+    <section id="about" className="tnx-section-alt">
       {/* Background blur blobs */}
       <div className="about-bg-blob about-blob-1" />
       <div className="about-bg-blob about-blob-2" />
 
-      <div className="about-container">
-        <div className="about-grid">
-          {/* Left Column: Intro & Stats */}
+      <div className="tnx-container">
+        <div className="tnx-grid-layout-swapped">
+          
+          {/* Left Column: Overlapping 4-Photo Layout */}
+          <motionImport.div 
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="about-mosaic-wrapper"
+          >
+            <div className="about-photo-layout">
+              {/* Photo 1: Left/Middle */}
+              <motionImport.div 
+                variants={cardVariants}
+                className="about-photo-card about-photo-card-1"
+              >
+                <AnimatePresenceImport mode="wait">
+                  <motionImport.img
+                    key={activeIndices[0]}
+                    src={images[activeIndices[0]].src}
+                    alt={images[activeIndices[0]].title}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 1.05 }}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                    className="about-photo-img"
+                  />
+                </AnimatePresenceImport>
+              </motionImport.div>
+
+              {/* Photo 2: Top Right */}
+              <motionImport.div 
+                variants={cardVariants}
+                className="about-photo-card about-photo-card-2"
+              >
+                <AnimatePresenceImport mode="wait">
+                  <motionImport.img
+                    key={activeIndices[1]}
+                    src={images[activeIndices[1]].src}
+                    alt={images[activeIndices[1]].title}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 1.05 }}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                    className="about-photo-img"
+                  />
+                </AnimatePresenceImport>
+              </motionImport.div>
+
+              {/* Photo 3: Bottom Center */}
+              <motionImport.div 
+                variants={cardVariants}
+                className="about-photo-card about-photo-card-3"
+              >
+                <AnimatePresenceImport mode="wait">
+                  <motionImport.img
+                    key={activeIndices[2]}
+                    src={images[activeIndices[2]].src}
+                    alt={images[activeIndices[2]].title}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 1.05 }}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                    className="about-photo-img"
+                  />
+                </AnimatePresenceImport>
+              </motionImport.div>
+
+              {/* Photo 4: Small Middle-Right */}
+              <motionImport.div 
+                variants={cardVariants}
+                className="about-photo-card about-photo-card-4"
+              >
+                <AnimatePresenceImport mode="wait">
+                  <motionImport.img
+                    key={activeIndices[3]}
+                    src={images[activeIndices[3]].src}
+                    alt={images[activeIndices[3]].title}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 1.05 }}
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                    className="about-photo-img"
+                  />
+                </AnimatePresenceImport>
+              </motionImport.div>
+            </div>
+          </motionImport.div>
+
+          {/* Right Column: Intro & Stats */}
           <motionImport.div 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -131,11 +244,13 @@ const About = () => {
             <div className="about-watermark">
               <img src="/about/tnx-wings.png" alt="Watermark" />
             </div>
-            <span className="about-subtitle">{data.aboutSubtitle}</span>
-            <h2 className="about-title">{data.aboutTitle}</h2>
-            <div className="about-title-line" />
             
-            <p className="about-description">
+            <span className="tnx-section-label">
+              ABOUT <span style={{ textTransform: 'none' }}>TechNeekX</span>
+            </span>
+            <h2 className="tnx-main-heading">{data.aboutTitle}</h2>
+            
+            <p className="tnx-body-text" style={{ marginBottom: '32px' }}>
               {data.aboutDescription1} <br /><br />
               {data.aboutDescription2}
             </p>
@@ -143,108 +258,16 @@ const About = () => {
             <div className="about-stats-grid">
               {data.stats.map((stat, idx) => (
                 <div key={idx} className="about-stat-card">
-                  <StatCounter target={stat.value} suffix={stat.suffix} />
-                  <span className="about-stat-label">{stat.label}</span>
+                  <span className="tnx-stat-number">
+                    <StatCounter target={stat.value} suffix={stat.suffix} />
+                  </span>
+                  <span className="tnx-stat-label">{stat.label}</span>
                 </div>
               ))}
             </div>
           </motionImport.div>
-
-          {/* Right Column: Asymmetric 5-Block Image Grid */}
-          <motionImport.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="about-mosaic-wrapper"
-          >
-            <div className="about-mosaic-grid">
-              {/* Column 1: Left */}
-              <div className="about-mosaic-col">
-                <div className="about-mosaic-card about-card-small">
-                  <AnimatePresenceImport mode="wait">
-                    <motionImport.img
-                      key={activeIndices[0]}
-                      src={images[activeIndices[0]].src}
-                      alt={images[activeIndices[0]].title}
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 1.05 }}
-                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                      className="about-mosaic-image"
-                    />
-                  </AnimatePresenceImport>
-                </div>
-                <div className="about-mosaic-card about-card-small">
-                  <AnimatePresenceImport mode="wait">
-                    <motionImport.img
-                      key={activeIndices[1]}
-                      src={images[activeIndices[1]].src}
-                      alt={images[activeIndices[1]].title}
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 1.05 }}
-                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                      className="about-mosaic-image"
-                    />
-                  </AnimatePresenceImport>
-                </div>
-              </div>
-
-              {/* Column 2: Center */}
-              <div className="about-mosaic-col">
-                <div className="about-mosaic-card about-card-large">
-                  <AnimatePresenceImport mode="wait">
-                    <motionImport.img
-                      key={activeIndices[2]}
-                      src={images[activeIndices[2]].src}
-                      alt={images[activeIndices[2]].title}
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 1.05 }}
-                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                      className="about-mosaic-image"
-                    />
-                  </AnimatePresenceImport>
-                </div>
-              </div>
-
-              {/* Column 3: Right */}
-              <div className="about-mosaic-col">
-                <div className="about-mosaic-card about-card-small">
-                  <AnimatePresenceImport mode="wait">
-                    <motionImport.img
-                      key={activeIndices[3]}
-                      src={images[activeIndices[3]].src}
-                      alt={images[activeIndices[3]].title}
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 1.05 }}
-                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                      className="about-mosaic-image"
-                    />
-                  </AnimatePresenceImport>
-                </div>
-                <div className="about-mosaic-card about-card-small">
-                  <AnimatePresenceImport mode="wait">
-                    <motionImport.img
-                      key={activeIndices[4]}
-                      src={images[activeIndices[4]].src}
-                      alt={images[activeIndices[4]].title}
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 1.05 }}
-                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                      className="about-mosaic-image"
-                    />
-                  </AnimatePresenceImport>
-                </div>
-              </div>
-            </div>
-          </motionImport.div>
         </div>
       </div>
-      <PartnersMarquee />
     </section>
   );
 };

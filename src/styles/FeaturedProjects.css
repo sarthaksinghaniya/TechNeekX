@@ -2,8 +2,8 @@
 
 .featured-projects-section {
   position: relative;
-  padding: 120px 0; /* Updated to 120px for premium spacing */
-  background-color: #030508; /* Pure premium black */
+  padding: 100px 0; /* Updated to 120px for premium spacing */
+  background: linear-gradient(180deg, #f9fafb 0%, #ffffff 100%); /* Premium white / light theme */
   overflow: hidden;
   font-family: var(--nav-font);
 }
@@ -136,13 +136,13 @@
   height: 400px; /* Card height on desktop */
   margin: 0 auto;
   padding: 28px;
-  border-radius: 32px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45),
-              inset 0 1px 0 rgba(255, 255, 255, 0.6);
-  background: rgba(255, 255, 255, 0.82);
+  border-radius: 24px; /* Updated to 24px */
+  box-shadow: 0 15px 35px rgba(15, 23, 42, 0.04),
+              inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(15, 23, 42, 0.08);
 }
 
 .featured-projects-grid.mobile-carousel-deck .featured-project-card:hover {
@@ -161,74 +161,70 @@
 .featured-projects-subtitle-badge {
   font-size: 13px;
   font-weight: 700;
-  letter-spacing: 0.15em;
+  letter-spacing: 12px; /* Updated to 12px spacing */
   background: linear-gradient(135deg, #ff0080, #0062ff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  margin-bottom: 12px;
+  margin-bottom: 24px; /* Updated to 24px */
   display: inline-block;
 }
 
 .featured-projects-title {
-  font-size: 48px;
+  font-size: 56px; /* Updated to 56px main heading */
   font-weight: 800;
-  color: #ffffff;
+  color: #0f172a;
   line-height: 1.15;
   letter-spacing: -0.02em;
-  margin-bottom: 16px;
+  margin-bottom: 24px; /* Updated to 24px */
   text-align: left;
 }
 
 .featured-projects-title-line {
-  width: 80px;
-  height: 6px;
-  border-radius: 9999px;
-  background: linear-gradient(90deg, #0062ff 0%, #ff0080 100%);
-  margin: 12px 0 24px 0;
-  box-shadow: 0 0 10px rgba(0, 98, 255, 0.3), 0 0 20px rgba(255, 0, 128, 0.2);
+  display: none; /* Removed for Apple-style editorial simplicity */
 }
 
 .featured-projects-subtitle {
-  font-size: 16px;
-  color: #94a3b8;
-  max-width: 500px;
-  line-height: 1.6;
+  font-size: 18px; /* Updated to 18px body text */
+  color: #64748b;
+  max-width: 650px; /* Updated to 650px max width */
+  line-height: 1.7;
   text-align: left;
+  margin-bottom: 32px; /* Button -> Description spacing */
 }
 
 .featured-projects-cta-wrapper {
   display: flex;
   justify-content: flex-start;
-  margin-top: 36px;
+  margin-top: 0;
 }
 
 /* Modern Glassmorphic Project Card */
 .featured-project-card {
   flex: 0 0 360px; /* Adjust width slightly for spacing */
-  background: rgba(255, 255, 255, 0.82); /* Premium light glass */
+  background: rgba(255, 255, 255, 0.9); /* Premium light glass */
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.45);
-  border-radius: 32px; /* Rounded corners like in the reference image */
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 24px; /* Updated to 24px card border radius */
   padding: 28px;
   display: flex;
   flex-direction: column;
   height: auto;
   max-height: 400px; /* Safe minimum height */
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25),
-              inset 0 1px 0 rgba(255, 255, 255, 0.6);
-  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow: 0 15px 35px rgba(15, 23, 42, 0.04),
+              inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   position: relative;
   overflow: hidden; /* For clipping reflection shimmer */
   scroll-snap-align: start;
 }
 
 .featured-project-card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(255, 255, 255, 0.7);
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35),
-              0 0 30px rgba(0, 98, 255, 0.1);
+  transform: translateY(-6px); /* Updated to translateY(-6px) hover */
+  border-color: rgba(15, 23, 42, 0.15);
+  box-shadow: 0 25px 50px rgba(15, 23, 42, 0.1),
+              0 0 30px rgba(0, 98, 255, 0.05);
 }
 
 /* Card reflection sweep effect */
@@ -543,16 +539,16 @@
   }
 
   .featured-projects-title {
-    font-size: 36px;
+    font-size: 40px; /* Updated to 40px Tablet */
     text-align: center;
   }
 
   .featured-projects-title-line {
-    margin: 12px auto 20px auto;
+    display: none;
   }
 
   .featured-projects-subtitle {
-    font-size: 14.5px;
+    font-size: 16px; /* Updated to 16px mobile/tablet */
     text-align: center;
     max-width: 550px;
   }
@@ -590,13 +586,13 @@
     padding: 0 16px;
   }
   .featured-projects-section {
-    padding: 80px 0 100px 0;
+    padding: 80px 0; /* Updated to 80px mobile padding */
   }
   .featured-projects-title {
-    font-size: 28px;
+    font-size: 32px; /* Updated to 32px Mobile */
   }
   .featured-projects-subtitle {
-    font-size: 14px;
+    font-size: 16px; /* Updated to 16px */
   }
 }
 

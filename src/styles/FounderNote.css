@@ -1,0 +1,151 @@
+/* TechNeekX FounderNote Stylesheet */
+
+.founder-note-section {
+  position: relative;
+  padding: 120px 0;
+  background-color: var(--tnx-bg-slate, #f8fafc);
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .founder-note-section {
+    padding: 80px 0;
+  }
+}
+
+.founder-note-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 480px) {
+  .founder-note-container {
+    padding: 0 16px;
+  }
+}
+
+/* Paper Card styling */
+.founder-note-paper {
+  background: #ffffff;
+  width: 100%;
+  max-width: 800px;
+  padding: 64px 72px;
+  border-radius: 32px;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  box-shadow: 0 30px 60px -15px rgba(15, 23, 42, 0.05),
+              0 0 0 1px rgba(15, 23, 42, 0.02);
+  transform-origin: center center;
+  transition: box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.founder-note-paper:hover {
+  border-color: rgba(15, 23, 42, 0.12);
+  box-shadow: 0 40px 80px -20px rgba(15, 23, 42, 0.08),
+              0 0 0 1px rgba(15, 23, 42, 0.03);
+}
+
+@media (max-width: 768px) {
+  .founder-note-paper {
+    padding: 40px 32px;
+    border-radius: 24px;
+  }
+}
+
+/* Headings */
+.founder-note-heading {
+  font-size: 40px;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.2;
+  margin-bottom: 32px;
+  letter-spacing: -0.02em;
+}
+
+@media (max-width: 768px) {
+  .founder-note-heading {
+    font-size: 32px;
+    margin-bottom: 24px;
+  }
+}
+
+/* Body Text formatting */
+.founder-note-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.founder-note-body p {
+  font-size: 18px;
+  color: #334155;
+  line-height: 1.8;
+  margin: 0;
+  text-align: left;
+}
+
+.founder-note-body p strong {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.founder-note-accent {
+  font-weight: 700;
+  color: #0f172a !important;
+}
+
+@media (max-width: 768px) {
+  .founder-note-body p {
+    font-size: 16px;
+    line-height: 1.7;
+  }
+}
+
+/* Signature & Avatar */
+.founder-note-signature {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.founder-avatar-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.founder-avatar-svg {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+}
+
+.founder-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.founder-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #f97316; /* Aditya Pandey's signature orange */
+  margin: 0 0 2px 0;
+  line-height: 1.2;
+}
+
+.founder-role {
+  font-size: 13px;
+  font-weight: 500;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.2;
+}

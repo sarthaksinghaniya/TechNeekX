@@ -1,0 +1,269 @@
+/* TechNeekX RealJourney Page Timeline Stylesheet */
+
+.real-journey-section {
+  position: relative;
+  padding: 120px 0;
+  background-color: var(--tnx-bg-slate);
+  overflow: hidden;
+  font-family: var(--nav-font, 'Inter', sans-serif);
+}
+
+.real-journey-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 480px) {
+  .real-journey-container {
+    padding: 0 16px;
+  }
+}
+
+/* Timeline Wrapper (Centered) */
+.real-timeline-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  margin: 64px auto 0 auto;
+}
+
+/* Central vertical dashed line */
+.real-timeline-line {
+  position: absolute;
+  left: 50%;
+  top: 10px;
+  bottom: 80px;
+  width: 0;
+  border-left: 2px dashed rgba(124, 58, 237, 0.25);
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+@media (max-width: 768px) {
+  .real-timeline-line {
+    left: 20px;
+    transform: none;
+  }
+}
+
+/* Timeline Items Container */
+.real-timeline-items {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* Milestone Row */
+.real-milestone-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 56px;
+}
+
+.real-milestone-row.align-left {
+  justify-content: flex-start;
+}
+
+.real-milestone-row.align-right {
+  justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+  .real-milestone-row.align-left,
+  .real-milestone-row.align-right {
+    justify-content: flex-start;
+    padding-left: 48px;
+  }
+}
+
+/* Indicator Dot on Central Line */
+.real-dot-wrapper {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+.real-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--tnx-purple);
+  border: 3px solid #ffffff;
+  box-shadow: 0 0 10px rgba(124, 58, 237, 0.4);
+  transition: all 0.3s ease;
+}
+
+.real-milestone-row:hover .real-dot {
+  transform: scale(1.2);
+  background: var(--tnx-pink);
+  box-shadow: 0 0 15px rgba(255, 0, 128, 0.6);
+}
+
+.real-dot-wrapper.now .real-dot {
+  background: var(--tnx-pink);
+  box-shadow: 0 0 12px rgba(255, 0, 128, 0.5);
+  animation: real-dot-pulse 2s infinite;
+}
+
+@keyframes real-dot-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 0, 128, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(255, 0, 128, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 0, 128, 0);
+  }
+}
+
+@media (max-width: 768px) {
+  .real-dot-wrapper {
+    left: 20px;
+    transform: translateX(-50%);
+  }
+}
+
+/* Date Label on opposite side of line */
+.real-date-label {
+  position: absolute;
+  width: calc(50% - 48px);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--tnx-purple);
+  display: flex;
+  align-items: center;
+}
+
+.real-milestone-row.align-left .real-date-label {
+  left: calc(50% + 32px);
+  justify-content: flex-start;
+}
+
+.real-milestone-row.align-right .real-date-label {
+  right: calc(50% + 32px);
+  justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+  .real-date-label {
+    display: none; /* date shown inside card on mobile */
+  }
+}
+
+/* Card Container */
+.real-card {
+  width: calc(50% - 32px);
+  display: flex;
+  flex-direction: column;
+  padding: 24px 28px;
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 24px;
+  box-shadow: 0 15px 35px rgba(15, 23, 42, 0.04),
+              inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  z-index: 2;
+}
+
+.real-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(15, 23, 42, 0.15);
+  box-shadow: 0 25px 50px rgba(15, 23, 42, 0.1);
+}
+
+@media (max-width: 768px) {
+  .real-card {
+    width: 100%;
+  }
+}
+
+/* Card content details */
+.real-card-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.real-card-mobile-date {
+  display: none;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--tnx-purple);
+  margin-bottom: 6px;
+}
+
+@media (max-width: 768px) {
+  .real-card-mobile-date {
+    display: block;
+  }
+}
+
+.real-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.real-card-title-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.real-card-icon-box {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.real-card-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--tnx-text-dark);
+}
+
+.real-card-description {
+  font-size: 14px;
+  color: var(--tnx-text-muted);
+  line-height: 1.6;
+}
+
+/* Status and Impact Badges */
+.real-status-badge {
+  font-size: 9px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 99px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1;
+}
+
+.real-status-badge.completed {
+  background: rgba(16, 185, 129, 0.08);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.15);
+}
+
+.real-status-badge.now {
+  background: rgba(236, 72, 153, 0.08);
+  color: var(--tnx-pink);
+  border: 1px solid rgba(236, 72, 153, 0.15);
+}

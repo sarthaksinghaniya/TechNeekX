@@ -1,14 +1,15 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Award, Zap, ArrowRight } from 'lucide-react';
+import * as LucideIcons from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { journey } from '@/constants/journey';
+import '../styles/JourneySummary.css';
 
-export default function JourneySummary() {
+const JourneySummary = () => {
   const router = useRouter();
-  
-  // Show only the 3 most recent milestones
+
+  // Show only the 3 most recent milestones from the original data
   const recentMilestones = journey.slice(-3);
 
   const containerVariants = {
@@ -16,9 +17,8 @@ export default function JourneySummary() {
     visible: {
       opacity: 1,
       transition: {
-        duration: 0.6,
-        staggerChildren: 0.1,
-        ease: [0.22, 1, 0.36, 1]
+        staggerChildren: 0.15,
+        delayChildren: 0.1
       }
     }
   };
@@ -29,95 +29,165 @@ export default function JourneySummary() {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.5,
+        duration: 0.7,
         ease: [0.22, 1, 0.36, 1]
       }
     }
   };
 
-  return (
-    <section className="py-16 md:py-28 relative bg-[#f9fafb] overflow-hidden border-t border-slate-100">
-      {/* Background decoration */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/3 left-1/4 w-72 h-72 bg-purple-500/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/3 right-1/4 w-72 h-72 bg-pink-500/5 rounded-full blur-3xl" />
-      </div>
+  // Helper to construct CSS linear-gradient background from Tailwind "from-X to-Y" classes
+  const getGradientStyle = (gradientString: string) => {
+    if (!gradientString) return { background: 'linear-gradient(135deg, #7c3aed, #ff0080)' };
+    const parts = gradientString.split(' ');
+    const fromClass = parts.find(p => p.startsWith('from-'))?.replace('from-', '') || 'purple-500';
+    const toClass = parts.find(p => p.startsWith('to-'))?.replace('to-', '') || 'pink-500';
+    
+    const colorMap: Record<string, string> = {
+      'indigo-500': '#6366f1',
+      'purple-500': '#7c3aed',
+      'pink-500': '#ff0080',
+      'red-500': '#ef4444',
+      'blue-500': '#0062ff',
+      'cyan-500': '#06b6d4',
+      'green-500': '#22c55e',
+      'emerald-500': '#10b981',
+      'teal-500': '#14b8a6',
+      'orange-500': '#f97316',
+      'violet-500': '#8b5cf6',
+      'rose-500': '#f43f5e',
+      'yellow-500': '#eab308'
+    };
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          className="text-center mb-14"
-        >
+    const fromColor = colorMap[fromClass] || '#7c3aed';
+    const toColor = colorMap[toClass] || '#ff0080';
+
+    return {
+      background: `linear-gradient(135deg, ${fromColor}, ${toColor})`
+    };
+  };
+
+  return (
+    <section id="journey" className="tnx-section-alt">
+      {/* Background blur blobs */}
+      <div className="journey-bg-blob journey-blob-1" />
+      <div className="journey-bg-blob journey-blob-2" />
+
+      <div className="tnx-container">
+        <div className="journey-layout">
+          
+          {/* Left Column: Zig-Zag Timeline */}
+          <div className="journey-timeline-wrapper">
+            {/* Dashed Timeline vertical line */}
+            <div className="journey-line" />
+
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
+              className="journey-timeline-items"
+            >
+              {recentMilestones.map((milestone, idx) => {
+                const IconComponent = milestone.icon;
+                
+                // Index 0: date left, card right
+                // Index 1: card left, date right
+                // Index 2: date left, card right
+                const isCardRight = idx % 2 === 0;
+
+                return (
+                  <motion.div
+                    key={idx}
+                    variants={itemVariants}
+                    className={`journey-milestone-row ${isCardRight ? 'align-right' : 'align-left'}`}
+                  >
+                    {/* Central Indicator Dot */}
+                    <div className={`journey-dot-wrapper ${milestone.status}`}>
+                      <div className="journey-dot" />
+                    </div>
+
+                    {/* Date Label on opposite side (Desktop only) */}
+                    <span className="journey-date-label">
+                      {milestone.date}
+                    </span>
+
+                    {/* Milestone Card */}
+                    <div className="journey-card">
+                      {/* Content */}
+                      <div className="journey-card-content" style={{ width: '100%' }}>
+                        <span className="journey-card-mobile-date">
+                          {milestone.date}
+                        </span>
+
+                        <div className="journey-card-header">
+                          <div className="journey-card-title-group">
+                            <div className="journey-card-icon-box" style={getGradientStyle(milestone.gradient)}>
+                              <IconComponent size={16} className="text-white" />
+                            </div>
+                            <h4 className="journey-card-title">{milestone.title}</h4>
+                          </div>
+                        </div>
+
+                        <p className="journey-card-description">
+                          {milestone.description}
+                        </p>
+
+                        <div className="flex items-center gap-3 mt-4">
+                          <span className={`journey-status-badge ${milestone.status}`}>
+                            {milestone.status === 'now' ? 'In Progress' : 'Completed'}
+                          </span>
+                          
+                          <div className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-purple-500/5 border border-purple-500/10 text-purple-600 text-[10px] font-semibold">
+                            <LucideIcons.Zap size={10} />
+                            <span>{milestone.impact}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </motion.div>
+
+            {/* Explore Button centered at bottom of timeline line */}
+            <div className="journey-cta-wrapper">
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => router.push('/journey')}
+                className="hero-btn-primary"
+              >
+                <span>Explore Full Timeline</span>
+                <LucideIcons.ArrowRight size={16} />
+              </motion.button>
+            </div>
+          </div>
+
+          {/* Right Column: Title and Storytelling Text */}
           <motion.div
-            variants={itemVariants}
-            className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-r from-purple-600 to-pink-600 mb-6 shadow-[0_0_20px_rgba(168,85,247,0.15)]"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="journey-info-col"
           >
-            <Award className="w-7 h-7 text-white" />
+            <span className="tnx-section-label">
+              OUR <span style={{ textTransform: 'none' }}>TechNeekX</span> JOURNEY
+            </span>
+            <h2 className="tnx-main-heading">
+              Our Journey
+            </h2>
+            <p className="tnx-body-text">
+              Consistently shipping, hacking, and building since August 2025. 
+              We track our growth through milestones of work—participating in national events, 
+              forming a robust builder network, and launching AI products.
+            </p>
           </motion.div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight heading-premium">
-            🚀 Our <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Journey</span>
-          </h2>
-          <p className="mt-4 text-slate-600 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-            Consistently shipping, hacking, and building since August 2025. Here is a snapshot of our latest milestones.
-          </p>
-        </motion.div>
-
-        {/* Compact Timeline Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          className="grid md:grid-cols-3 gap-6 mb-12"
-        >
-          {recentMilestones.map((milestone, idx) => (
-            <motion.div
-              key={milestone.title + idx}
-              variants={itemVariants}
-              whileHover={{ y: -6, scale: 1.02 }}
-              className="bg-white border border-slate-200/60 rounded-3xl p-6 hover:shadow-xl hover:border-slate-300 transition-all flex flex-col justify-between"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-purple-600 text-sm font-semibold">{milestone.date}</span>
-                  {milestone.status === 'now' ? (
-                    <span className="px-2 py-0.5 bg-cyan-500/10 text-cyan-600 text-[10px] font-bold rounded-full border border-cyan-500/20">NOW</span>
-                  ) : (
-                    <span className="px-2 py-0.5 bg-green-500/10 text-green-600 text-[10px] font-medium rounded-full border border-green-500/20">COMPLETED</span>
-                  )}
-                </div>
-
-                <h3 className="text-xl font-bold text-slate-950 mb-2">{milestone.title}</h3>
-                <p className="text-slate-600 text-sm leading-relaxed mb-4">{milestone.description}</p>
-              </div>
-
-              <div className="pt-2">
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-600">
-                  <Zap className="w-3.5 h-3.5 text-purple-600" />
-                  <span className="text-xs font-semibold">{milestone.impact}</span>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* View Full Journey CTA */}
-        <div className="text-center">
-          <motion.button
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-            onClick={() => router.push('/journey')}
-            className="btn-primary inline-flex items-center gap-2"
-          >
-            Explore Full Timeline
-            <ArrowRight size={18} />
-          </motion.button>
         </div>
       </div>
     </section>
   );
-}
+};
+
+export default JourneySummary;

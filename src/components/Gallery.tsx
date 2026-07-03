@@ -111,17 +111,28 @@ const Gallery = () => {
       <div className="gallery-container">
         <div className="gallery-grid">
           {/* Left Column: Heading and Info */}
-          <div className="gallery-left">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="gallery-left"
+          >
             <span className="gallery-subtitle">Our memorable moments</span>
-            <h2 className="gallery-title">Photo Gallery</h2>
-            <div className="gallery-title-line" />
+            <h2 className="gallery-title">Have a Peek</h2>
             <p className="gallery-description">
               A glimpse into our builder culture. Late-night sprints, intense hackathons, and community meetups where we build, deploy, and ship the future of AI.
             </p>
-          </div>
+          </motion.div>
 
           {/* Right Column: 3D Coverflow Carousel */}
-          <div className="gallery-right">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+            className="gallery-right"
+          >
             <motion.div
               className="gallery-carousel-wrapper"
               style={{
@@ -224,7 +235,7 @@ const Gallery = () => {
                 );
               })}
             </motion.div>
-          </div>
+          </motion.div>
         </div>
       </div>
 

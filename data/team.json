@@ -1,0 +1,64 @@
+{
+  "founder": {
+    "name": "Sarthak Singhaniya",
+    "role": "Founder & AI Engineer",
+    "tagline": "Building AI-driven products and leading TechNeekX as a next-gen builder ecosystem.",
+    "image": "/sarthak.jpeg",
+    "badge": "FOUNDER",
+    "skills": ["AI/ML Engineer", "Product Builder", "International Awardee"],
+    "contact": {
+      "email": "sarthaksinghaniya789@gmail.com",
+      "phone": "6387860126",
+      "linkedin": "https://www.linkedin.com/in/sarthak-singhaniya-a4ab9a323/",
+      "github": "https://github.com/sarthaksinghaniya",
+      "portfolio": "https://sarthaksinghaniya.netlify.app"
+    }
+  },
+  "members": [
+    {
+      "name": "Nikhil Yadav",
+      "role": "Chief Design Officer (CDO)",
+      "description": "Designing intuitive, high-impact UI/UX experiences that define the TechNeekX brand.",
+      "badge": "Core Team",
+      "image": "/nikhil.jpeg",
+      "gradient": "from-purple-500 to-pink-500",
+      "contact": {
+        "email": "seemayadav97950@gmail.com",
+        "phone": "7524884044",
+        "linkedin": "https://www.linkedin.com/in/nikhil-yadav-4b63212ba?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+        "github": "https://github.com/nikhil09790",
+        "portfolio": "#"
+      }
+    },
+    {
+      "name": "Anshuman Soni",
+      "role": "Chief Marketing Officer (CMO)",
+      "description": "Driving growth, reach, and strategic partnerships to scale TechNeekX globally.",
+      "badge": "Core Team",
+      "image": "/image.png",
+      "gradient": "from-green-500 to-teal-500",
+      "contact": {
+        "email": "anshuman70k@gmail.com",
+        "phone": "7007659042",
+        "linkedin": "https://www.linkedin.com/in/anshuman-soni-60277b268/",
+        "github": "https://github.com/Anshuman70k",
+        "portfolio": "#"
+      }
+    },
+    {
+      "name": "Hardik Talwar",
+      "role": "Chief Business Officer (CBO)",
+      "description": "Building business strategy, sponsorships, and high-value collaborations.",
+      "badge": "Core Team",
+      "image": "/hardik.jpeg",
+      "gradient": "from-blue-500 to-cyan-500",
+      "contact": {
+        "email": "hardiktalwar2006@gmail.com",
+        "phone": "7706859594",
+        "linkedin": "https://www.linkedin.com/in/hardiktalwar2006/",
+        "github": "https://github.com/hardiktalwar2006",
+        "portfolio": "#"
+      }
+    }
+  ]
+}

@@ -23,6 +23,7 @@ const CommunityPartnersWall = dynamic(() => import('@/components/CommunityPartne
 import JourneySummary from '@/components/JourneySummary';
 const TrustElements = dynamic(() => import('@/components/TrustElements'), { ssr: false });
 const Community = dynamic(() => import('@/components/Community'), { ssr: false });
+import FounderNote from '@/components/FounderNote';
 import FinalCTA from '@/components/FinalCTA';
 import Footer from '@/components/Footer';
 import Loader from '@/components/Loader';
@@ -50,8 +51,8 @@ const ScrollProgress = () => {
   }, []);
 
   return (
-    <div 
-      className="scroll-progress" 
+    <div
+      className="scroll-progress"
       style={{ width: `${scrollProgress}%` }}
     />
   );
@@ -59,7 +60,7 @@ const ScrollProgress = () => {
 
 export default function Home() {
   useSectionAnimation(); // Initialize section animations
-  
+
   return (
     <AnimatePresence mode="wait">
       <motion.main
@@ -68,70 +69,33 @@ export default function Home() {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -10 }}
         transition={{ duration: 0.35, ease: 'easeOut' }}
-        // style={{backgroundColor: "black"}}
         className="min-h-screen"
       >
         <ScrollProgress />
         <Loader />
         <Navbar />
-        {/* <StickyCTA /> */}
-        {/* <CommandPalette /> */}
+        
         <section id="hero" className="section-animate pt-18">
           <Hero />
         </section>
-        <About />
-        <FeaturedProjects />
-        <FeaturedEvents />
-        <section id="community" className="section-animate">
-          <Community />
-          <CommunityPartnersWall />
-        </section>
-        <section id="builder-movement" className="section-animate">
-          <MovementPositioning />
-        </section>
-        {/* <section id="social-proof" className="section-animate">
-          <SocialProof />
-        </section> */}
-        <section id="projects-showcase" className="section-animate">
-          <ProjectsSummary />
-        </section>
-        <section id="events" className="section-animate">
-          <EventsOrganized />
-        </section>
-        <section id="gallery" className="section-animate">
-          <Gallery />
-        {/* <section id="fomo" className="section-animate">
-          <FOMOLayer />
-        </section> */}
-        </section>
-        <TeamSection />
-        {/* <section id="hiring" className="section-animate">
-          <CoreTeamHiring />
-        </section> */}
-        {/* <section id="partners" className="section-animate">
-          <Partnership />
-        </section>
-        <section id="elite" className="section-animate">
-          <EliteClub />
-        </section> */}
-        {/* <section id="invite" className="section-animate">
-          <ViralLoop />
-        </section> */}
         
-        <section id="journey" className="section-animate">
-          <JourneySummary />
-        </section>
-        <section id="trust" className="section-animate">
-          <TrustElements />
-        </section>
-        <section id="suggested" className="section-animate">
-          <SuggestedForYou />
-        </section>
-        <section id="contact" className="section-animate">
-          <FinalCTA />
-        </section>
+        
+        <PartnersMarquee />
+        <About />
+        <JourneySummary />
+        <FeaturedEvents />
+
+        <Community />
+        
+        
+        <FeaturedProjects />
+        <FinalCTA/>
+        
+        
+        <FounderNote />
+        <Gallery />
+        
         <Footer />
-        {/* <LiveActivityFeed /> */}
       </motion.main>
     </AnimatePresence>
   );

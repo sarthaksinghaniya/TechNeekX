@@ -37,39 +37,36 @@
 .gallery-subtitle {
   font-size: 13px;
   font-weight: 700;
-  letter-spacing: 0.15em;
+  letter-spacing: 12px; /* Updated to 12px spacing */
   background: linear-gradient(135deg, #a855f7, #ec4899);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-transform: uppercase;
-  margin-bottom: 12px;
+  margin-bottom: 24px; /* Updated to 24px margin-bottom */
   display: inline-block;
 }
 
 .gallery-title {
-  font-size: 48px;
+  font-size: 56px; /* Updated to 56px main heading */
   font-weight: 800;
   color: #0f172a;
   line-height: 1.15;
   letter-spacing: -0.02em;
-  margin-bottom: 16px;
+  margin-bottom: 24px; /* Updated to 24px */
 }
 
 .gallery-title-line {
-  width: 72px;
-  height: 4.5px;
-  background: linear-gradient(90deg, #a855f7, #ec4899);
-  border-radius: 99px;
-  margin-bottom: 28px;
+  display: none; /* Removed for Apple-style simplicity */
 }
 
 .gallery-description {
-  font-size: 16.5px;
+  font-size: 18px; /* Updated to 18px body text */
   color: #475569;
-  line-height: 1.75;
+  line-height: 1.7;
+  max-width: 650px; /* Updated to 650px max width */
   margin-bottom: 32px;
-  text-align: justify;
+  text-align: left; /* Updated to left alignment */
 }
 
 /* Right Column (Coverflow Carousel) */
@@ -103,15 +100,15 @@
   position: absolute;
   width: 280px;
   height: 380px;
-  border-radius: 24px;
+  border-radius: 24px; /* Maintain 24px radius */
   overflow: hidden;
   background-color: #f1f5f9;
-  box-shadow: 0 15px 35px rgba(15, 23, 42, 0.15),
+  box-shadow: 0 15px 35px rgba(15, 23, 42, 0.04),
               0 0 0 1px rgba(15, 23, 42, 0.05);
   transform-style: preserve-3d;
   user-select: none;
   pointer-events: auto; /* enable click */
-  transition: box-shadow 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .gallery-carousel-card.active {
@@ -296,10 +293,11 @@
   }
   
   .gallery-title {
-    font-size: 38px;
+    font-size: 40px; /* Updated to 40px Tablet */
   }
   
   .gallery-description {
+    font-size: 16px; /* Updated to 16px */
     max-width: 650px;
     margin: 0 auto 16px auto;
     text-align: center;
@@ -317,7 +315,7 @@
 
 @media (max-width: 640px) {
   .gallery-section {
-    padding: 60px 0;
+    padding: 80px 0; /* Updated to 80px mobile padding */
   }
   
   .gallery-container {
@@ -325,7 +323,7 @@
   }
   
   .gallery-title {
-    font-size: 32px;
+    font-size: 32px; /* Updated to 32px Mobile */
   }
   
   .gallery-carousel-wrapper {

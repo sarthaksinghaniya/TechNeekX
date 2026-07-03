@@ -42,7 +42,6 @@ const FeaturedEvents = () => {
             <div className="events-content">
               <span className="events-subtitle-badge">MILESTONES</span>
               <h2 className="events-title">Featured Events</h2>
-              <div className="events-title-line" />
               <p className="events-description">
                 Bringing the developer community together through high-impact hackathons, workshops, and meetups.
               </p>
@@ -62,29 +61,14 @@ const FeaturedEvents = () => {
       <div className="events-container">
         <div className="events-layout">
           
-          {/* Left Side: Typographic Content */}
-          <div className="events-content">
-            <span className="events-subtitle-badge">MILESTONES</span>
-            <h2 className="events-title">Featured Events</h2>
-            <div className="events-title-line" />
-            <p className="events-description">
-              Bringing the developer community together through high-impact hackathons, workshops, and meetups.
-            </p>
-            <div className="events-cta-wrapper">
-              <motion.button
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                onClick={() => router.push('/events')}
-                className="events-cta"
-              >
-                Explore Events
-                <ArrowRight size={16} />
-              </motion.button>
-            </div>
-          </div>
-
-          {/* Right Side: Drag Carousel Deck */}
-          <div className="events-deck-wrapper">
+          {/* Left Side: Drag Carousel Deck */}
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="events-deck-wrapper"
+          >
             <div className="events-grid mobile-carousel-deck">
               {featuredEvents.map((event, index) => {
                 // Calculate relative index for stack animation
@@ -186,7 +170,33 @@ const FeaturedEvents = () => {
                 );
               })}
             </div>
-          </div>
+          </motion.div>
+
+          {/* Right Side: Typographic Content */}
+          <motion.div 
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+            className="events-content"
+          >
+            <span className="events-subtitle-badge">MILESTONES</span>
+            <h2 className="events-title">Featured Events</h2>
+            <p className="events-description">
+              Bringing the developer community together through high-impact hackathons, workshops, and meetups.
+            </p>
+            <div className="events-cta-wrapper">
+              <motion.button
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                onClick={() => router.push('/events')}
+                className="events-cta"
+              >
+                Explore Events
+                <ArrowRight size={16} />
+              </motion.button>
+            </div>
+          </motion.div>
 
         </div>
       </div>

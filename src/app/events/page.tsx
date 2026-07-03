@@ -1,0 +1,433 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { 
+  MapPin, 
+  Users, 
+  Calendar, 
+  ArrowRight, 
+  ExternalLink, 
+  Search, 
+  Palette, 
+  Zap, 
+  Code, 
+  Trophy, 
+  Cpu, 
+  Sparkles, 
+  Brain, 
+  Image as ImageIcon,
+  ChevronLeft
+} from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import eventsData from '../../../data/events.json';
+import '@/styles/EventsPage.css';
+
+interface Event {
+  id: string;
+  name: string;
+  type: string;
+  location: string;
+  registrations: string;
+  attendees: string;
+  image: string;
+  cardTheme: string;
+  isFeatured: boolean;
+  date?: string; // YYYY-MM-DD format
+  description?: string;
+  tagline?: string;
+  icon?: string;
+  gradient?: string;
+  cta?: {
+    text: string;
+    link: string;
+  };
+  registration?: string; // registration link
+}
+
+// Icon mapper for events
+const iconMap: Record<string, React.ComponentType<any>> = {
+  Palette,
+  Zap,
+  Code,
+  Trophy,
+  Cpu,
+  Sparkles,
+  Brain
+};
+
+const EventsPage = () => {
+  const router = useRouter();
+  const [activeTab, setActiveTab] = useState<'all' | 'current' | 'upcoming' | 'previous'>('all');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [isMounted, setIsMounted] = useState(false);
+  const [today, setToday] = useState('2026-07-03'); // User's local workspace date as baseline
+
+  useEffect(() => {
+    setIsMounted(true);
+    // Dynamically fetch today's date in local YYYY-MM-DD format to match system time
+    const d = new Date();
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    setToday(`${year}-${month}-${day}`);
+  }, []);
+
+  if (!isMounted) {
+    return (
+      <div className="events-page-container">
+        <div className="events-page-content-wrapper">
+          <div className="events-page-header">
+            <span className="events-page-badge">MILSTONES & CALENDAR</span>
+            <h1 className="events-page-title">TechNeekX Events</h1>
+            <p className="events-page-description">Loading events calendar...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Helper to normalize dates (handles formats like "2026-7-24" by padding single digits to "2026-07-24")
+  const normalizeDateStr = (str?: string) => {
+    if (!str) return '';
+    const parts = str.split('-');
+    if (parts.length === 3) {
+      const y = parts[0];
+      const m = parts[1].padStart(2, '0');
+      const d = parts[2].padStart(2, '0');
+      return `${y}-${m}-${d}`;
+    }
+    return str;
+  };
+
+  // Determine event status programmatically
+  const getEventStatus = (eventDateStr?: string) => {
+    if (!eventDateStr) return 'previous'; // Default fallback for old events without date
+    
+    const normDate = normalizeDateStr(eventDateStr);
+    if (normDate === today) {
+      return 'current';
+    } else if (normDate > today) {
+      return 'upcoming';
+    } else {
+      return 'previous';
+    }
+  };
+
+  const getStatusLabel = (status: 'current' | 'upcoming' | 'previous') => {
+    switch (status) {
+      case 'current':
+        return 'Active Now';
+      case 'upcoming':
+        return 'Upcoming';
+      case 'previous':
+        return 'Completed';
+    }
+  };
+
+  const getFormattedDate = (dateStr?: string) => {
+    if (!dateStr) return 'Date TBA';
+    const dateObj = new Date(dateStr);
+    return dateObj.toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric'
+    });
+  };
+
+  // Filter events based on active tab and search query
+  const filteredEvents = (eventsData as Event[]).filter((event) => {
+    const status = getEventStatus(event.date);
+    
+    // Tab filter
+    if (activeTab !== 'all' && status !== activeTab) {
+      return false;
+    }
+    
+    // Search query filter
+    if (searchQuery.trim() !== '') {
+      const query = searchQuery.toLowerCase();
+      const nameMatch = event.name.toLowerCase().includes(query);
+      const locationMatch = event.location.toLowerCase().includes(query);
+      const typeMatch = event.type.toLowerCase().includes(query);
+      const descMatch = event.description?.toLowerCase().includes(query) || false;
+      return nameMatch || locationMatch || typeMatch || descMatch;
+    }
+    
+    return true;
+  });
+
+  // Sort events so current/upcoming appear first
+  const sortedEvents = [...filteredEvents].sort((a, b) => {
+    const dateA = a.date || '0000-00-00';
+    const dateB = b.date || '0000-00-00';
+    
+    const normA = normalizeDateStr(dateA);
+    const normB = normalizeDateStr(dateB);
+    
+    // Deciding order: We want upcoming closest to today first, then current, then previous (most recent first)
+    if (normA > today && normB > today) {
+      return normA.localeCompare(normB); // Ascending for future (closest first)
+    }
+    return normB.localeCompare(normA); // Descending for past (newest first)
+  });
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.08
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: 'spring',
+        stiffness: 100,
+        damping: 15
+      }
+    }
+  };
+
+  const tabs = [
+    { id: 'all', label: 'All Events' },
+    { id: 'current', label: 'Active Now' },
+    { id: 'upcoming', label: 'Upcoming' },
+    { id: 'previous', label: 'Completed' }
+  ];
+
+  return (
+    <>
+      <Navbar />
+
+      <main className="events-page-container">
+        {/* Background blobs */}
+        <div className="events-page-bg-blob events-page-blob-1" />
+        <div className="events-page-bg-blob events-page-blob-2" />
+        <div className="events-page-bg-blob events-page-blob-3" />
+
+        <div className="events-page-content-wrapper">
+          {/* Back to Home Link */}
+          <motion.button 
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            onClick={() => router.push('/')}
+            className="flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-slate-900 transition-colors mb-8 bg-transparent border-none cursor-pointer"
+          >
+            <ChevronLeft size={16} />
+            Back to Home
+          </motion.button>
+
+          {/* Header */}
+          <div className="events-page-header">
+            <span className="events-page-badge">Milestones & Calendar</span>
+            <h1 className="events-page-title">Community Events</h1>
+            <p className="events-page-description">
+              Explore our journey of high-impact hackathons, development workshops, community meetups, and creative showcases.
+            </p>
+          </div>
+
+          {/* Search & Filters */}
+          <div className="flex flex-col md:flex-row gap-6 justify-between items-center mb-10">
+            {/* Tabs */}
+            <div className="events-tabs-container mb-0 w-auto">
+              <div className="events-tabs-list">
+                {tabs.map((tab) => (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id as any)}
+                    className={`events-tab-btn ${activeTab === tab.id ? 'active' : ''}`}
+                  >
+                    {tab.label}
+                    {activeTab === tab.id && (
+                      <motion.div
+                        layoutId="activeTabIndicator"
+                        className="events-tab-active-bg"
+                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Search Input */}
+            <div className="relative w-full md:w-80">
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+              <input
+                type="text"
+                placeholder="Search events, locations..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-10 pr-4 py-2.5 rounded-full border border-slate-200 bg-white/80 focus:bg-white focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-transparent text-sm transition-all shadow-sm"
+              />
+            </div>
+          </div>
+
+          {/* Events Grid */}
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="events-cards-grid"
+          >
+            <AnimatePresence mode="popLayout">
+              {sortedEvents.length > 0 ? (
+                sortedEvents.map((event) => {
+                  const status = getEventStatus(event.date);
+                  const IconComponent = event.icon ? iconMap[event.icon] : null;
+
+                  return (
+                    <motion.div
+                      layout
+                      key={event.id}
+                      variants={cardVariants}
+                      exit={{ opacity: 0, scale: 0.9 }}
+                      className={`event-page-card theme-${event.cardTheme}`}
+                    >
+                      {/* Image Header with Badge Overlay */}
+                      <div className="event-page-image-container">
+                        {event.image ? (
+                          <img 
+                            src={event.image} 
+                            alt={event.name} 
+                            className="event-page-image" 
+                          />
+                        ) : (
+                          <div className={`event-page-image-placeholder bg-gradient-to-br ${event.gradient || 'from-slate-800 to-slate-900'}`}>
+                            {IconComponent ? (
+                              <IconComponent size={40} className="text-white/40" />
+                            ) : (
+                              <ImageIcon size={40} />
+                            )}
+                          </div>
+                        )}
+                        
+                        {/* Overlay Badges */}
+                        <div className="event-page-overlay-badges">
+                          <span className="event-page-type-tag">{event.type}</span>
+                          <span className={`event-page-status-badge event-status-${status}`}>
+                            <span className="event-status-dot" />
+                            {getStatusLabel(status)}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Card Content */}
+                      <div className="event-page-card-body">
+                        <span className="event-page-card-date">
+                          {getFormattedDate(event.date)}
+                        </span>
+                        <h3 className="event-page-card-title">{event.name}</h3>
+                        
+                        {event.description && (
+                          <p className="event-page-card-desc">{event.description}</p>
+                        )}
+                        
+                        {event.tagline && !event.description && (
+                          <p className="event-page-card-desc italic text-slate-500 font-medium">
+                            "{event.tagline}"
+                          </p>
+                        )}
+
+                        {/* Location and registrations info */}
+                        <div className="event-page-metadata">
+                          <div className="event-page-meta-item">
+                            <MapPin size={15} />
+                            <span>{event.location}</span>
+                          </div>
+
+                          <div className="event-page-stats-pill-row">
+                            {event.registration ? (
+                              <a 
+                                href={event.registration} 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className="event-page-pill-badge registrations clickable"
+                                onClick={(e) => e.stopPropagation()}
+                              >
+                                <span>{event.registrations}</span> Registrations
+                              </a>
+                            ) : (
+                              <div className="event-page-pill-badge registrations">
+                                <span>{event.registrations}</span> Registrations
+                              </div>
+                            )}
+                            <div className="event-page-pill-badge">
+                              <Users size={12} />
+                              <span>{event.attendees}</span> Attendees
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Card CTA Actions */}
+                        {status !== 'previous' ? (
+                          <div className="event-page-card-actions">
+                            <button 
+                              onClick={() => {
+                                if (event.registration) {
+                                  window.open(event.registration, '_blank');
+                                } else if (event.cta?.link) {
+                                  window.open(event.cta.link, '_blank');
+                                } else {
+                                  // Default registration/learn more action
+                                  router.push('/join');
+                                }
+                              }}
+                              className="event-page-btn-action event-page-btn-gradient"
+                            >
+                              <span>{event.cta?.text || (status === 'current' ? 'Join Event' : 'Register Now')}</span>
+                              <ArrowRight size={14} />
+                            </button>
+                          </div>
+                        ) : (
+                          (event.registration || event.cta) && (
+                            <div className="event-page-card-actions">
+                              <button 
+                                onClick={() => window.open(event.registration || event.cta?.link, '_blank')}
+                                className="event-page-btn-action event-page-btn-outline"
+                              >
+                                <span>{event.cta?.text || 'View Projects'}</span>
+                                <ExternalLink size={14} />
+                              </button>
+                            </div>
+                          )
+                        )}
+                      </div>
+                    </motion.div>
+                  );
+                })
+              ) : (
+                <motion.div 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="col-span-full"
+                >
+                  <div className="events-empty-state">
+                    <Search className="mx-auto text-slate-300" size={48} />
+                    <h3 className="events-empty-title">No events found</h3>
+                    <p className="events-empty-desc">
+                      We couldn't find any events matching your search or filter criteria. Try adjusting your query or tab selection.
+                    </p>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
+        </div>
+      </main>
+
+      <Footer />
+    </>
+  );
+};
+
+export default EventsPage;

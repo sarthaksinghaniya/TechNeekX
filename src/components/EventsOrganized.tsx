@@ -2,6 +2,34 @@
 
 import { motion } from 'framer-motion';
 import { Calendar, Users, Trophy, ExternalLink, Star, TrendingUp, Award, Code, Palette, Zap } from 'lucide-react';
+import eventsData from '../../data/events.json';
+
+interface OrganizedEvent {
+  id: string;
+  name: string;
+  type: string;
+  location?: string;
+  description: string;
+  participants: string;
+  teams?: string;
+  tagline: string;
+  icon: string;
+  gradient: string;
+  featured: boolean;
+  cta?: {
+    text: string;
+    link: string;
+  };
+  showInOrganized?: boolean;
+  organizedOrder?: number;
+}
+
+const iconMap: Record<string, React.ComponentType<any>> = {
+  Palette,
+  Zap,
+  Code,
+  Trophy
+};
 
 const EventsOrganized = () => {
   const containerVariants = {
@@ -28,75 +56,9 @@ const EventsOrganized = () => {
     }
   };
 
-  const events = [
-    {
-      id: 'frame-by-frame',
-      name: 'Frame by Frame',
-      type: 'Media / Creative',
-      location: 'BBD University',
-      description: 'Hands-on media event focused on photography, reels, and content creation',
-      participants: '100+',
-      tagline: 'Creativity meets execution',
-      icon: Palette,
-      gradient: 'from-purple-500 to-pink-500',
-      featured: false
-    },
-    {
-      id: 'pitch-night-edition',
-      name: 'PITCH NIGHT EDITION',
-      type: 'Mini Event • Online',
-      description: 'Prompt engineering-focused online pitch night for 30 participants to showcase AI-driven ideas.',
-      participants: '30',
-      tagline: 'Prompt. Pitch. Propel.',
-      icon: Zap,
-      gradient: 'from-indigo-500 to-blue-500',
-      featured: false
-    },
-    {
-      id: 'innvedx-hackathon',
-      name: 'InnVedX Code Hackathon',
-      type: 'Hackathon',
-      description: 'Large-scale coding hackathon with real-world problem solving',
-      participants: '491',
-      teams: '100+',
-      tagline: 'Built at scale',
-      icon: Code,
-      gradient: 'from-blue-500 to-cyan-500',
-      featured: true,
-      cta: {
-        text: 'View Participant Projects',
-        link: 'https://github.com/topics/innvedxhackathon'
-      }
-    },
-    {
-      id: 'vibe-designing',
-      name: 'Vibe Designing',
-      type: 'Design Event',
-      description: 'UI/UX and creative design-focused competition',
-      participants: '100+',
-      teams: '50+',
-      tagline: 'Design. Build. Express.',
-      icon: Palette,
-      gradient: 'from-green-500 to-teal-500',
-      featured: false
-    },
-    {
-      id: 'kalpathon-2',
-      name: 'Kalpathon 2.0',
-      type: 'Hackathon',
-      description: '24-hour intensive coding competition with real challenges',
-      participants: '250+',
-      teams: '80+',
-      tagline: 'Code. Compete. Conquer.',
-      icon: Trophy,
-      gradient: 'from-orange-500 to-red-500',
-      featured: false,
-      cta: {
-        text: 'View Participant Projects',
-        link: 'https://github.com/topics/kalpathonhackathon'
-      }
-    }
-  ];
+  const events = (eventsData as OrganizedEvent[])
+    .filter((e) => e.showInOrganized)
+    .sort((a, b) => (a.organizedOrder || 0) - (b.organizedOrder || 0));
 
   return (
     <section className="px-4 sm:px-8 py-16 md:py-28 max-w-6xl mx-auto">
@@ -123,80 +85,83 @@ const EventsOrganized = () => {
         viewport={{ once: true }}
         className="grid grid-cols-1 sm:grid-cols-2 gap-6"
       >
-        {events.map((event, index) => (
-          <motion.div
-            key={event.id}
-            variants={itemVariants}
-            whileHover={{ 
-              y: -3,
-              boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)'
-            }}
-            className={`p-5 border border-gray-200 rounded-xl bg-white hover:shadow-lg transition-all duration-300 ${
-              event.featured ? 'ring-2 ring-blue-500 ring-offset-2' : ''
-            }`}
-          >
-            {/* Event Header */}
-            <div className="flex items-start justify-between mb-4">
-              <div className={`w-12 h-12 rounded-lg bg-gradient-to-r ${event.gradient} flex items-center justify-center`}>
-                <event.icon className="w-6 h-6 text-white" />
-              </div>
-              {event.featured && (
-                <div className="px-2 py-1 bg-blue-100 text-blue-700 text-xs font-medium rounded-full">
-                  Featured
+        {events.map((event) => {
+          const IconComponent = iconMap[event.icon] || Calendar;
+          return (
+            <motion.div
+              key={event.id}
+              variants={itemVariants}
+              whileHover={{ 
+                y: -3,
+                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)'
+              }}
+              className={`p-5 border border-gray-200 rounded-xl bg-white hover:shadow-lg transition-all duration-300 ${
+                event.featured ? 'ring-2 ring-blue-500 ring-offset-2' : ''
+              }`}
+            >
+              {/* Event Header */}
+              <div className="flex items-start justify-between mb-4">
+                <div className={`w-12 h-12 rounded-lg bg-gradient-to-r ${event.gradient} flex items-center justify-center`}>
+                  <IconComponent className="w-6 h-6 text-white" />
                 </div>
-              )}
-            </div>
-
-            {/* Event Content */}
-            <div className="flex flex-col gap-3">
-              <div>
-                <h3 className="text-base font-semibold text-slate-900 mb-1">
-                  {event.name}
-                </h3>
-                <p className="text-sm text-slate-600">
-                  {event.type}
-                </p>
-              </div>
-
-              <p className="text-sm text-slate-600">
-                {event.description}
-              </p>
-
-              {/* Event Stats */}
-              <div className="flex items-center gap-4 text-xs text-slate-500">
-                <div className="flex items-center gap-1">
-                  <Users className="w-3 h-3" />
-                  {event.participants}
-                </div>
-                {event.teams && (
-                  <div className="flex items-center gap-1">
-                    <Trophy className="w-3 h-3" />
-                    {event.teams} teams
+                {event.featured && (
+                  <div className="px-2 py-1 bg-blue-100 text-blue-700 text-xs font-medium rounded-full">
+                    Featured
                   </div>
                 )}
               </div>
 
-              {/* Tagline */}
-              <p className="text-xs font-medium text-slate-700 italic">
-                "{event.tagline}"
-              </p>
+              {/* Event Content */}
+              <div className="flex flex-col gap-3">
+                <div>
+                  <h3 className="text-base font-semibold text-slate-900 mb-1">
+                    {event.name}
+                  </h3>
+                  <p className="text-sm text-slate-600">
+                    {event.type}
+                  </p>
+                </div>
 
-              {/* CTA Button */}
-              {event.cta && (
-                <motion.a
-                  href={event.cta.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className={`px-4 py-2 bg-gradient-to-r ${event.gradient} text-white text-sm font-medium rounded-lg text-center w-full sm:w-auto shadow-sm hover:shadow-md transition-shadow`}
-                >
-                  {event.cta.text}
-                </motion.a>
-              )}
-            </div>
-          </motion.div>
-        ))}
+                <p className="text-sm text-slate-600">
+                  {event.description}
+                </p>
+
+                {/* Event Stats */}
+                <div className="flex items-center gap-4 text-xs text-slate-500">
+                  <div className="flex items-center gap-1">
+                    <Users className="w-3 h-3" />
+                    {event.participants}
+                  </div>
+                  {event.teams && (
+                    <div className="flex items-center gap-1">
+                      <Trophy className="w-3 h-3" />
+                      {event.teams} teams
+                    </div>
+                  )}
+                </div>
+
+                {/* Tagline */}
+                <p className="text-xs font-medium text-slate-700 italic">
+                  "{event.tagline}"
+                </p>
+
+                {/* CTA Button */}
+                {event.cta && (
+                  <motion.a
+                    href={event.cta.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className={`px-4 py-2 bg-gradient-to-r ${event.gradient} text-white text-sm font-medium rounded-lg text-center w-full sm:w-auto shadow-sm hover:shadow-md transition-shadow`}
+                  >
+                    {event.cta.text}
+                  </motion.a>
+                )}
+              </div>
+            </motion.div>
+          );
+        })}
       </motion.div>
     </section>
   );

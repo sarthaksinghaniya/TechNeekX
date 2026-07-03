@@ -500,3 +500,209 @@ a {
 .float-badge {
   animation: float-badge 4s ease-in-out infinite;
 }
+
+/* ==========================================================================
+   TechNeekX Unified Redesign Design System
+   ========================================================================== */
+
+:root {
+  /* Color system */
+  --tnx-blue: #0062ff;
+  --tnx-purple: #7c3aed;
+  --tnx-pink: #ff0080;
+  --tnx-bg-light: #ffffff;
+  --tnx-bg-slate: #f9fafb;
+  --tnx-text-dark: #0f172a;
+  --tnx-text-muted: #64748b;
+
+  /* Spacing Scale */
+  --sp-16: 16px;
+  --sp-24: 24px;
+  --sp-32: 32px;
+  --sp-48: 48px;
+  --sp-64: 64px;
+  --sp-96: 96px;
+  --sp-120: 120px;
+}
+
+/* Section Container & Spacing Layout */
+.tnx-section {
+  position: relative;
+  padding: 100px 0;
+  background-color: var(--tnx-bg-slate);
+  overflow: hidden;
+  font-family: var(--nav-font, 'Inter', sans-serif);
+  border-top: 1px solid #f1f5f9;
+  transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+.tnx-section-alt {
+  position: relative;
+  padding: 100px 0;
+  background-color: var(--tnx-bg-light);
+  overflow: hidden;
+  font-family: var(--nav-font, 'Inter', sans-serif);
+  border-top: 1px solid #f1f5f9;
+  transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+@media (max-width: 768px) {
+  .tnx-section,
+  .tnx-section-alt {
+    padding: 80px 0;
+  }
+}
+
+.tnx-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 480px) {
+  .tnx-container {
+    padding: 0 16px;
+  }
+}
+
+/* 2-Column Grid Layout (Template A) */
+.tnx-grid-layout {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.tnx-grid-layout-swapped {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 80px;
+  align-items: center;
+}
+
+@media (max-width: 1024px) {
+  .tnx-grid-layout,
+  .tnx-grid-layout-swapped {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
+
+/* Typography System */
+.tnx-section-label {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 12px;
+  background: linear-gradient(90deg, var(--tnx-blue) 0%, var(--tnx-purple) 50%, var(--tnx-pink) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 24px;
+  display: inline-block;
+  line-height: 1.2;
+}
+
+.tnx-main-heading {
+  font-size: 56px;
+  font-weight: 800;
+  color: var(--tnx-text-dark);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 1024px) {
+  .tnx-main-heading {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .tnx-main-heading {
+    font-size: 32px;
+  }
+}
+
+.tnx-body-text {
+  font-size: 18px;
+  color: var(--tnx-text-muted);
+  line-height: 1.7;
+  max-width: 650px;
+  margin-bottom: 48px;
+}
+
+@media (max-width: 768px) {
+  .tnx-body-text {
+    font-size: 16px;
+  }
+}
+
+/* Premium Card System */
+.tnx-premium-card {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: 0 15px 35px rgba(15, 23, 42, 0.04),
+              inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.tnx-premium-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(15, 23, 42, 0.15);
+  box-shadow: 0 25px 50px rgba(15, 23, 42, 0.1),
+              0 0 30px rgba(0, 98, 255, 0.05);
+}
+
+.tnx-premium-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg);
+  transition: none;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.tnx-premium-card:hover::after {
+  left: 150%;
+  transition: left 0.85s ease-in-out;
+}
+
+/* Statistics Style */
+.tnx-stat-number {
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1.1;
+  background: linear-gradient(135deg, var(--tnx-blue), var(--tnx-pink));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+}
+
+.tnx-stat-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--tnx-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+

@@ -6,8 +6,11 @@ import Image from 'next/image';
 import { stats } from '@/constants/stats';
 import AnimatedCounter from '@/components/AnimatedCounter';
 import { openTeamForm, FORM_CONFIG } from '@/config/teamForms';
+import teamData from '../../data/team.json';
 
 const CoreTeam = () => {
+  const { founder, members } = teamData;
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -32,77 +35,29 @@ const CoreTeam = () => {
     }
   };
 
-  const teamMembers = [
-    {
-      name: "Nikhil Yadav",
-      role: "Chief Design Officer (CDO)",
-      description: "Designing intuitive, high-impact UI/UX experiences that define the TechNeekX brand.",
-      badge: "Core Team",
-      image: "/nikhil.jpeg",
-      gradient: "from-purple-500 to-pink-500",
-      contact: {
-        email: "seemayadav97950@gmail.com",
-        phone: "7524884044",
-        linkedin: "https://www.linkedin.com/in/nikhil-yadav-4b63212ba?utm_source=share_via&utm_content=profile&utm_medium=member_android",
-        github: "https://github.com/nikhil09790",
-        portfolio: "#"
-      }
-    },
-    {
-      name: "Anshuman Soni",
-      role: "Chief Marketing Officer (CMO)",
-      description: "Driving growth, reach, and strategic partnerships to scale TechNeekX globally.",
-      badge: "Core Team",
-      image: "/image.png",
-      gradient: "from-green-500 to-teal-500",
-      contact: {
-        email: "anshuman70k@gmail.com",
-        phone: "7007659042",
-        linkedin: "https://www.linkedin.com/in/anshuman-soni-60277b268/",
-        github: "https://github.com/Anshuman70k",
-        portfolio: "#"
-      }
-    },
-    {
-      name: "Hardik Talwar",
-      role: "Chief Business Officer (CBO)",
-      description: "Building business strategy, sponsorships, and high-value collaborations.",
-      badge: "Core Team",
-      image: "/hardik.jpeg",
-      gradient: "from-blue-500 to-cyan-500",
-      contact: {
-        email: "hardiktalwar2006@gmail.com",
-        phone: "7706859594",
-        linkedin: "https://www.linkedin.com/in/hardiktalwar2006/",
-        github: "https://github.com/hardiktalwar2006",
-        portfolio: "#"
-      }
-    }
-  ];
-
   return (
     <section className="py-20 relative">
       <div className="absolute inset-0">
-        <motion.div 
+        <motion.div
           className="gradient-blob w-96 h-96 bg-gradient-to-r from-purple-500/15 to-blue-500/15 top-10 left-10"
-          animate={{ 
+          animate={{
             scale: [1, 1.2, 1],
             rotate: [0, 180, 360]
           }}
-          transition={{ 
-            duration: 20, 
+          transition={{
+            duration: 20,
             repeat: Infinity,
             ease: "linear"
           }}
         />
-        <motion.div 
+        <motion.div
           className="gradient-blob w-80 h-80 bg-gradient-to-r from-blue-500/15 to-purple-500/15 bottom-10 right-10"
-          animate={{ 
+          animate={{
             scale: [1.2, 1, 1.2],
             rotate: [360, 180, 0]
           }}
-          transition={{ 
-            duration: 25, 
+          transition={{
+            duration: 25,
             repeat: Infinity,
             ease: "linear"
           }}
@@ -117,7 +72,7 @@ const CoreTeam = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <motion.h2 
+          <motion.h2
             variants={itemVariants}
             className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 heading-premium"
           >
@@ -125,7 +80,7 @@ const CoreTeam = () => {
             <br />
             <span className="text-gradient">Behind TechNeekX</span>
           </motion.h2>
-          
+
           <motion.p
             variants={itemVariants}
             className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed subheading-premium"
@@ -143,59 +98,68 @@ const CoreTeam = () => {
             className="glass rounded-3xl p-8 border-2 border-orange-500/30 relative overflow-hidden card-hover"
           >
             <div className="absolute top-0 right-0 px-4 py-2 bg-gradient-to-r from-orange-500 to-pink-500 text-white text-sm font-semibold rounded-bl-2xl">
-              FOUNDER
+              {founder.badge}
             </div>
-            
+
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div className="relative">
                 <div className="relative w-48 h-48 mx-auto">
                   <motion.div
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.3 }}
-                    className="w-full h-full rounded-2xl overflow-hidden glow"
+                    className="w-full h-full rounded-2xl overflow-hidden glow relative"
                   >
                     <Image
-                      src="/sarthak.jpeg"
-                      alt="Sarthak Singhaniya"
+                      src={founder.image}
+                      alt={founder.name}
                       fill
                       className="object-cover"
+                      priority
                     />
                   </motion.div>
                 </div>
               </div>
-              
+
               <div>
-                <h3 className="text-3xl font-bold text-white mb-2">Sarthak Singhaniya</h3>
-                <p className="text-white/70 text-lg mb-4">Founder & AI Engineer</p>
+                <h3 className="text-3xl font-bold text-white mb-2">{founder.name}</h3>
+                <p className="text-white/70 text-lg mb-4">{founder.role}</p>
                 <p className="text-white/80 text-lg mb-6 italic">
-                  "Building AI-driven products and leading TechNeekX as a next-gen builder ecosystem."
+                  "{founder.tagline}"
                 </p>
                 <div className="flex flex-wrap gap-2 mb-6">
                   <span className="px-3 py-1 glass rounded-full text-white/70 text-xs">
                     <AnimatedCounter from={0} to={stats.hackathonsNumber} suffix="+ Hackathons" />
                   </span>
-                  <span className="px-3 py-1 glass rounded-full text-white/70 text-xs">AI/ML Engineer</span>
-                  <span className="px-3 py-1 glass rounded-full text-white/70 text-xs">Product Builder</span>
-                  <span className="px-3 py-1 glass rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 text-purple-400 text-xs font-semibold">International Awardee</span>
+                  {founder.skills.map((skill: string) => (
+                    <span
+                      key={skill}
+                      className={`px-3 py-1 glass rounded-full text-xs ${skill === 'International Awardee'
+                          ? 'bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 text-purple-400 font-semibold'
+                          : 'text-white/70'
+                        }`}
+                    >
+                      {skill}
+                    </span>
+                  ))}
                 </div>
-                
+
                 {/* Founder Contact Information */}
                 <div className="space-y-3 mb-6">
                   <div className="flex items-center gap-2">
                     <Mail className="w-4 h-4 text-white/60" />
-                    <a href="mailto:sarthaksinghaniya789@gmail.com" className="text-white/60 hover:text-white text-sm transition-colors">
-                      sarthaksinghaniya789@gmail.com
+                    <a href={`mailto:${founder.contact.email}`} className="text-white/60 hover:text-white text-sm transition-colors">
+                      {founder.contact.email}
                     </a>
                   </div>
                   <div className="flex items-center gap-2">
                     <Phone className="w-4 h-4 text-white/60" />
-                    <a href="tel:6387860126" className="text-white/60 hover:text-white text-sm transition-colors">
-                      6387860126
+                    <a href={`tel:${founder.contact.phone}`} className="text-white/60 hover:text-white text-sm transition-colors">
+                      {founder.contact.phone}
                     </a>
                   </div>
                   <div className="flex items-center gap-4">
                     <a
-                      href="https://www.linkedin.com/in/sarthak-singhaniya-a4ab9a323/"
+                      href={founder.contact.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-white/60 hover:text-white transition-colors"
@@ -203,7 +167,7 @@ const CoreTeam = () => {
                       <Linkedin className="w-4 h-4" />
                     </a>
                     <a
-                      href="https://github.com/sarthaksinghaniya"
+                      href={founder.contact.github}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-white/60 hover:text-white transition-colors"
@@ -211,7 +175,7 @@ const CoreTeam = () => {
                       <Github className="w-4 h-4" />
                     </a>
                     <a
-                      href="https://sarthaksinghaniya.netlify.app"
+                      href={founder.contact.portfolio}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-white/60 hover:text-white text-sm transition-colors"
@@ -222,7 +186,7 @@ const CoreTeam = () => {
                 </div>
                 <div className="flex gap-4">
                   <motion.a
-                    href="https://www.linkedin.com/in/sarthak-singhaniya-a4ab9a323/"
+                    href={founder.contact.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.05 }}
@@ -233,7 +197,7 @@ const CoreTeam = () => {
                     <ExternalLink size={16} />
                   </motion.a>
                   <motion.a
-                    href="https://sarthaksinghaniya.netlify.app"
+                    href={founder.contact.portfolio}
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.05 }}
@@ -256,14 +220,13 @@ const CoreTeam = () => {
             viewport={{ once: true }}
             className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 mt-6"
           >
-            {teamMembers.map((member) => (
+            {members.map((member) => (
               <motion.div
                 key={member.name}
                 variants={itemVariants}
                 whileHover={{ y: -6, scale: member.role.includes('Chief') ? 1.05 : 1.02 }}
-                className={`w-full p-5 rounded-2xl bg-white/70 backdrop-blur-md shadow-md flex flex-col items-center text-center space-y-2 border ${
-                  member.role.includes('Chief') ? 'border-pink-200' : 'border-white/60'
-                }`}
+                className={`w-full p-5 rounded-2xl bg-white/70 backdrop-blur-md shadow-md flex flex-col items-center text-center space-y-2 border ${member.role.includes('Chief') ? 'border-pink-200' : 'border-white/60'
+                  }`}
               >
                 <div className="relative w-20 h-20 mb-3">
                   <Image
@@ -319,7 +282,7 @@ const CoreTeam = () => {
 
           {/* Final CTA */}
           <motion.div
-          variants={itemVariants}
+            variants={itemVariants}
             className="text-center mt-12"
           >
             <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">Join the Core Team</h3>
@@ -339,9 +302,9 @@ const CoreTeam = () => {
                 onClick={() => {
                   const founderSection = document.getElementById('founder-details');
                   if (founderSection) {
-                    founderSection.scrollIntoView({ 
-                      behavior: 'smooth', 
-                      block: 'center' 
+                    founderSection.scrollIntoView({
+                      behavior: 'smooth',
+                      block: 'center'
                     });
                   }
                 }}

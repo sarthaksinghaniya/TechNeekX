@@ -82,7 +82,6 @@ const FeaturedProjects = () => {
             <div className="featured-projects-content">
               <span className="featured-projects-subtitle-badge">PORTFOLIO</span>
               <h2 className="featured-projects-title">Featured Projects</h2>
-              <div className="featured-projects-title-line" />
               <p className="featured-projects-subtitle">
                 A handpicked collection of our most impactful production-ready applications, solving real-world challenges with AI and modern software engineering.
               </p>
@@ -103,7 +102,13 @@ const FeaturedProjects = () => {
         <div className="featured-projects-layout">
           
           {/* Left Side: Drag Carousel Deck */}
-          <div className="featured-projects-deck-wrapper">
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="featured-projects-deck-wrapper"
+          >
             <div className="featured-projects-grid mobile-carousel-deck">
               {featuredProjects.map((project, index) => {
                 const IconComponent = (LucideIcons as any)[project.icon || 'Cpu'] || LucideIcons.Cpu;
@@ -232,13 +237,18 @@ const FeaturedProjects = () => {
                 );
               })}
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Side: Typographic Content */}
-          <div className="featured-projects-content">
+          <motion.div 
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+            className="featured-projects-content"
+          >
             <span className="featured-projects-subtitle-badge">PORTFOLIO</span>
             <h2 className="featured-projects-title">Featured Projects</h2>
-            <div className="featured-projects-title-line" />
             <p className="featured-projects-subtitle">
               A handpicked collection of our most impactful production-ready applications, solving real-world challenges with AI and modern software engineering.
             </p>
@@ -253,7 +263,7 @@ const FeaturedProjects = () => {
                 <LucideIcons.ArrowRight size={16} />
               </motion.button>
             </div>
-          </div>
+          </motion.div>
 
         </div>
       </div>

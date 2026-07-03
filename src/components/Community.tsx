@@ -1,129 +1,153 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Rocket, Users, Lightbulb, Target, ArrowRight } from 'lucide-react';
-import { FORM_CONFIG } from '@/config/teamForms';
+import * as LucideIcons from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import '../styles/Community.css';
 
 const Community = () => {
   const router = useRouter();
-  const values = [
+
+  const cards = [
     {
-      icon: Lightbulb,
-      title: "Innovation First",
-      description: "We believe in pushing boundaries and creating solutions that matter."
+      icon: LucideIcons.Cpu,
+      title: "Build",
+      description: "Transforming raw ideas into production-ready software, AI products, and real-world tools that scale.",
+      bgImage: "/gallery/IMG_0683.JPG.jpeg",
+      color: "linear-gradient(135deg, #0062ff, #7c3aed)"
     },
     {
-      icon: Users,
-      title: "Community Driven",
-      description: "Our strength lies in our diverse community of creators and builders."
+      icon: LucideIcons.BookOpen,
+      title: "Learn",
+      description: "Mastering advanced AI stacks, cloud infrastructure, and product engineering through hands-on development.",
+      bgImage: "/gallery/gal5.jpeg",
+      color: "linear-gradient(135deg, #7c3aed, #ff0080)"
     },
     {
-      icon: Target,
-      title: "Impact Focused",
-      description: "Every project we undertake aims to make a meaningful difference."
+      icon: LucideIcons.Users,
+      title: "Collaborate",
+      description: "Syncing with high-caliber designers and engineers to hack on ambitious projects and learn together.",
+      bgImage: "/gallery/WhatsApp Image 2026-04-09 at 8.20.03 PM.jpeg",
+      color: "linear-gradient(135deg, #0062ff, #7c3aed)"
     },
     {
-      icon: Rocket,
-      title: "Future Ready",
-      description: "We're building tomorrow's solutions with today's cutting-edge technology."
+      icon: LucideIcons.Rocket,
+      title: "Ship",
+      description: "Deploying code regularly, presenting live demos, competing in hackathons, and launching real products.",
+      bgImage: "/gallery/IMG-2.jpg.jpeg",
+      color: "linear-gradient(135deg, #ff0080, #7c3aed)"
     }
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.7,
+        ease: [0.22, 1, 0.36, 1]
+      }
+    }
+  };
+
   return (
-    <section id="community" className="py-16 md:py-28 pb-10 md:pb-14 relative">
-      {/* Background decoration */}
-      <div className="absolute inset-0">
-        <div className="gradient-blob w-96 h-96 bg-gradient-to-r from-purple-500/10 to-pink-500/10 top-10 left-10" style={{ animationDelay: '1s' }}></div>
-        <div className="gradient-blob w-80 h-80 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 bottom-10 right-10" style={{ animationDelay: '3s' }}></div>
-      </div>
+    <section id="community" className="tnx-section">
+      {/* Background blobs */}
+      <div className="community-bg-blob community-blob-1" />
+      <div className="community-bg-blob community-blob-2" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
-            We Are Not Just A
-            <span className="text-gradient"> Community</span>
-          </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mb-8 rounded-full"></div>
-          <p className="text-2xl sm:text-3xl text-white/90 font-medium max-w-4xl mx-auto leading-relaxed mb-8">
-            We are builders of the next tech generation.
-          </p>
-          <p className="text-xl text-white/70 max-w-3xl mx-auto leading-relaxed">
-            Together, we're shaping the future of technology through collaboration, 
-            innovation, and a shared passion for creating solutions that transform lives.
-          </p>
-        </motion.div>
-
-        {/* Values Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          {values.map((value, index) => (
-            <motion.div
-              key={value.title}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -8, scale: 1.05 }}
-              className="card-hover rounded-2xl p-6 text-center group"
-            >
-              {/* Icon */}
-              <motion.div
-                whileHover={{ scale: 1.1, rotate: 5 }}
-                className="w-14 h-14 mx-auto mb-4 rounded-xl bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center glow"
+      <div className="tnx-container">
+        <div className="tnx-grid-layout">
+          
+          {/* Left Column: Heading and Info */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="community-info-col"
+          >
+            <span className="tnx-section-label">
+              OUR <span style={{ textTransform: 'none' }}>TechNeekX</span> COMMUNITY
+            </span>
+            <h2 className="tnx-main-heading">
+              A High-Octane Builder Ecosystem
+            </h2>
+            <p className="tnx-body-text">
+              We are not just a community. We are builders of the next tech generation. 
+              Together, we shape the future of technology through intense collaboration, 
+              constant shipping, and a shared passion for creating digital experiences.
+            </p>
+            
+            <div className="community-cta-wrapper">
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={() => router.push('/join')}
+                className="hero-btn-primary"
               >
-                <value.icon className="w-7 h-7 text-white" />
-              </motion.div>
-              
-              {/* Title */}
-              <h3 className="text-lg font-bold text-white mb-3 group-hover:text-gradient transition-all duration-300">
-                {value.title}
-              </h3>
-              
-              {/* Description */}
-              <p className="text-white/60 text-sm leading-relaxed">
-                {value.description}
-              </p>
-            </motion.div>
-          ))}
-        </div>
+                <span>Join TechNeekX</span>
+                <LucideIcons.ArrowRight size={16} />
+              </motion.button>
+            </div>
+          </motion.div>
 
-        {/* Community Stats */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="glass rounded-3xl p-8 mb-16"
-        >
-          <div className="grid md:grid-cols-3 gap-8 text-center">
-            <div>
-              <div className="text-3xl font-bold text-gradient mb-2">50+</div>
-              <div className="text-white/70">Active Members</div>
+          {/* Right Column: 2x2 Grid of Premium Cards */}
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            className="community-grid-col"
+          >
+            <div className="community-cards-grid">
+              {cards.map((card, index) => {
+                const IconComponent = card.icon;
+                return (
+                  <motion.div
+                    key={index}
+                    variants={itemVariants}
+                    className="tnx-premium-card community-card"
+                  >
+                    {/* Event Photography low-opacity background */}
+                    <div 
+                      className="community-card-bg-image" 
+                      style={{ backgroundImage: `url(${card.bgImage})` }}
+                    />
+                    <div className="community-card-overlay" />
+
+                    {/* Card Content */}
+                    <div className="community-card-content">
+                      <div className="flex-header mb-6">
+                        <h3 className="community-card-title">{card.title}</h3>
+                        <div className="community-card-icon-wrapper" style={{ background: card.color }}>
+                          <IconComponent size={20} className="text-white" />
+                        </div>
+                      </div>
+
+                      <p className="community-card-description">
+                        {card.description}
+                      </p>
+                    </div>
+                  </motion.div>
+                );
+              })}
             </div>
-            <div>
-              <div className="text-3xl font-bold text-gradient mb-2">15+</div>
-              <div className="text-white/70">Projects Completed</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-gradient mb-2">20+</div>
-              <div className="text-white/70">Hackathon Finalist</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-gradient mb-2">50+</div>
-              <div className="text-white/70">Hackathon Experience</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-gradient mb-2">5+</div>
-              <div className="text-white/70">Event Experience</div>
-            </div>
-          </div>
-        </motion.div>
+          </motion.div>
+
+        </div>
       </div>
     </section>
   );

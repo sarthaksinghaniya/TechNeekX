@@ -63,9 +63,9 @@ const Navbar = () => {
 
   const navItems = [
     { name: 'Projects', href: '#projects-showcase' },
-    { name: 'Events', href: '#events' },
+    { name: 'Events', href: '/events' },
     { name: 'Community', href: '#community' },
-    { name: 'Team', href: '#about' },
+    { name: 'Team', href: '/team' },
   ];
 
   const socialLinks = [
@@ -77,6 +77,13 @@ const Navbar = () => {
 
   // Smooth scroll handler
   const handleNavClick = (href: string) => {
+    if (href.startsWith('/')) {
+      router.push(href);
+      if (isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+      }
+      return;
+    }
     if (pathname !== '/') {
       router.push('/' + href);
       if (isMobileMenuOpen) {
