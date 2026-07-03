@@ -8,6 +8,11 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "TechNeekX - Youth, Innovation, Unity",
   description: "Modern portfolio website for the TechNeekX team - balancing professionalism with youthful energy",
+  icons: {
+    icon: "/file_0000000067647206a22ff5daad754190.png",
+    shortcut: "/file_0000000067647206a22ff5daad754190.png",
+    apple: "/file_0000000067647206a22ff5daad754190.png",
+  },
 };
 
 export default function RootLayout({

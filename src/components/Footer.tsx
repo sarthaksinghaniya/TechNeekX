@@ -18,8 +18,8 @@ const Footer = () => {
       links: [
         { name: "About Us", href: "#about" },
         { name: "What We Do", href: "#what-we-do" },
-        { name: "Projects", href: "#projects" },
-        { name: "Community", href: "#community" },
+        { name: "Projects", href: "/projects" },
+        { name: "Partners", href: "/partners" },
       ]
     },
     {
@@ -56,7 +56,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="relative border-t border-white/10">
+    <footer className="relative bg-[#090b11] border-t border-slate-800 text-slate-400">
       {/* Gradient top border */}
       <div className="h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
       
@@ -85,7 +85,7 @@ const Footer = () => {
               </div>
               
               {/* Description */}
-              <p className="text-white/70 mb-6 leading-relaxed max-w-sm">
+              <p className="text-slate-400 mb-6 leading-relaxed max-w-sm">
                 Building the future of student innovation. A next-generation tech community 
                 empowering builders, innovators, and AI creators.
               </p>
@@ -98,7 +98,7 @@ const Footer = () => {
                     href={social.href}
                     whileHover={{ scale: 1.1, rotate: 5 }}
                     whileTap={{ scale: 0.9 }}
-                    className="w-10 h-10 rounded-xl glass flex items-center justify-center text-white/60 hover:text-white transition-colors duration-200"
+                    className="w-10 h-10 rounded-xl glass-dark border border-slate-800 flex items-center justify-center text-slate-400 hover:text-slate-200 transition-colors duration-200"
                     aria-label={social.label}
                   >
                     <social.icon size={18} />
@@ -117,13 +117,13 @@ const Footer = () => {
               transition={{ duration: 0.6, delay: sectionIndex * 0.1 }}
               viewport={{ once: true }}
             >
-              <h4 className="text-white font-semibold mb-4">{section.title}</h4>
+              <h4 className="text-slate-200 font-semibold mb-4">{section.title}</h4>
               <ul className="space-y-2">
                 {section.links.map((link) => (
                   <li key={link.name}>
                     <a
                       href={link.href}
-                      className="text-white/60 hover:text-white transition-colors duration-200 text-sm"
+                      className="text-slate-400 hover:text-slate-200 transition-colors duration-200 text-sm"
                     >
                       {link.name}
                     </a>
@@ -140,10 +140,10 @@ const Footer = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
-          className="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center"
+          className="mt-12 pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center"
         >
           {/* Copyright */}
-          <div className="text-white/60 text-sm mb-4 md:mb-0 flex items-center">
+          <div className="text-slate-400 text-sm mb-4 md:mb-0 flex items-center">
             © 2025 TechNeekX. Made with 
             <Heart className="w-4 h-4 mx-1 text-red-400" fill="currentColor" />
             by our community.
@@ -154,7 +154,7 @@ const Footer = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={scrollToTop}
-            className="glass px-4 py-2 rounded-xl text-white/80 hover:text-white transition-colors duration-200 flex items-center gap-2 text-sm"
+            className="glass-dark border border-slate-800 px-4 py-2 rounded-xl text-slate-300 hover:text-slate-100 transition-colors duration-200 flex items-center gap-2 text-sm"
           >
             Back to top
             <ArrowUp size={16} />

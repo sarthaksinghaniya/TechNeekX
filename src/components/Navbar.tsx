@@ -62,9 +62,9 @@ const Navbar = () => {
   }, [isMobileMenuOpen]);
 
   const navItems = [
-    { name: 'Projects', href: '#projects-showcase' },
+    { name: 'Projects', href: '/projects' },
     { name: 'Events', href: '/events' },
-    { name: 'Community', href: '#community' },
+    { name: 'Partners', href: '/partners' },
     { name: 'Team', href: '/team' },
   ];
 

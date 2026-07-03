@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { ArrowRight, Github, Linkedin, Instagram, Mail } from 'lucide-react';
+import { FaWhatsapp } from 'react-icons/fa';
 import { useRouter } from 'next/navigation';
 import data from '../constants/data.json';
 import '../styles/Hero.css';
@@ -10,7 +11,8 @@ const iconMap: { [key: string]: any } = {
   Github: Github,
   Linkedin: Linkedin,
   Instagram: Instagram,
-  Mail: Mail
+  Mail: Mail,
+  Whatsapp: FaWhatsapp
 };
 
 const Hero = () => {

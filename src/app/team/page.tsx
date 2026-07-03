@@ -43,7 +43,7 @@ export default function TeamPage() {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -10 }}
         transition={{ duration: 0.35, ease: 'easeOut' }}
-        className="min-h-screen bg-[#030508] dark"
+        className="min-h-screen bg-gradient-to-b from-white to-slate-50"
       >
         <ScrollProgress />
         <Loader />
