@@ -31,6 +31,8 @@
 
 /* Paper Card styling */
 .founder-note-paper {
+  position: relative;
+  overflow: hidden;
   background: #ffffff;
   width: 100%;
   max-width: 800px;
@@ -58,6 +60,8 @@
 
 /* Headings */
 .founder-note-heading {
+  position: relative;
+  z-index: 2;
   font-size: 40px;
   font-weight: 800;
   color: #0f172a;
@@ -86,6 +90,8 @@
 
 /* Body Text formatting */
 .founder-note-body {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -118,6 +124,8 @@
 
 /* Signature & Avatar */
 .founder-note-signature {
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
   gap: 16px;
@@ -159,4 +167,42 @@
   color: #64748b;
   margin: 0;
   line-height: 1.2;
+}
+
+/* Background Watermark styling */
+.founder-note-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.6); /* Center and scale down */
+  width: 90%;
+  max-width: 700px;
+  opacity: 0.8; /* Subtle watermark opacity to match the light theme paper background and wings image opacity */
+  pointer-events: none;
+  z-index: 1;
+  user-select: none;
+}
+
+.founder-note-watermark img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .founder-note-watermark {
+    transform: translate(-50%, -50%) scale(0.8);
+    width: 85%;
+    max-width: 380px;
+    opacity: 0.85;
+  }
+}
+
+@media (max-width: 480px) {
+  .founder-note-watermark {
+    transform: translate(-50%, -50%) scale(0.9);
+    width: 90%;
+    max-width: 280px;
+    opacity: 0.85;
+  }
 }

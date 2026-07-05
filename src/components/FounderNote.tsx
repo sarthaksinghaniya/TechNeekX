@@ -32,6 +32,8 @@ const FounderNote = () => {
             duration: 0.8 
           }}
         >
+          
+
           {/* Note Title */}
           <h2 className="founder-note-heading">Dear Future Innovator,</h2>
           
@@ -55,6 +57,11 @@ const FounderNote = () => {
             <p>
               Welcome to TechNeekX. Let's build the future we want to live in.
             </p>
+          </div>
+
+          {/* Background Watermark */}
+          <div className="founder-note-watermark">
+            <img src="/about/tnx-wings.png" alt="Watermark" />
           </div>
 
           {/* Signature & Avatar */}

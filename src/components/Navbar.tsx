@@ -27,19 +27,6 @@ const Navbar = () => {
       setIsScrolled(scrolled);
       
       // Update active section based on scroll position
-      const sections = ['hero', 'social-proof', 'what-we-do', 'projects', 'community'];
-      const currentSection = sections.find(section => {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          return rect.top <= 100 && rect.bottom >= 100;
-        }
-        return false;
-      });
-      
-      if (currentSection) {
-        setActiveSection(currentSection);
-      }
     };
     
     // Set initial state

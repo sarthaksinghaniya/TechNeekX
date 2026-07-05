@@ -1,0 +1,428 @@
+/* src/styles/TeamPage.css */
+
+.team-page-container {
+  position: relative;
+  min-height: 100vh;
+  padding: 100px 0 0 0; /* Clear nav spacing */
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  font-family: var(--nav-font), sans-serif;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Background animated decorative blobs */
+.team-page-bg-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(140px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.65;
+}
+
+.team-page-blob-1 {
+  width: 500px;
+  height: 500px;
+  background: rgba(139, 92, 246, 0.08); /* Violet */
+  top: -100px;
+  left: -100px;
+  animation: team-float-blob-1 25s ease-in-out infinite;
+}
+
+.team-page-blob-2 {
+  width: 450px;
+  height: 450px;
+  background: rgba(59, 130, 246, 0.08); /* Blue */
+  bottom: 10%;
+  right: -50px;
+  animation: team-float-blob-2 20s ease-in-out infinite;
+}
+
+@keyframes team-float-blob-1 {
+  0% { transform: translate(0px, 0px) scale(1); }
+  50% { transform: translate(60px, -40px) scale(1.1); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+
+@keyframes team-float-blob-2 {
+  0% { transform: translate(0px, 0px) scale(1) rotate(0deg); }
+  50% { transform: translate(-50px, 60px) scale(1.05) rotate(180deg); }
+  100% { transform: translate(0px, 0px) scale(1) rotate(360deg); }
+}
+
+/* Page content layout */
+.team-page-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Breadcrumb styling */
+.team-breadcrumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin-bottom: 32px;
+  transition: color 0.2s ease;
+}
+
+.team-breadcrumb:hover {
+  color: #0f172a;
+}
+
+/* Header Section */
+.team-page-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.team-page-badge {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 6px;
+  background: linear-gradient(135deg, #ff0080, #0062ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 16px;
+  display: inline-block;
+  text-transform: uppercase;
+}
+
+.team-page-title {
+  font-size: 54px;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+
+.team-page-description {
+  font-size: 18px;
+  color: #475569;
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Section Title */
+.team-section-heading {
+  font-size: 28px;
+  font-weight: 750;
+  color: #0f172a;
+  letter-spacing: -0.01em;
+  margin-bottom: 32px;
+  position: relative;
+  display: inline-block;
+}
+
+.team-section-heading::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background: linear-gradient(90deg, #ff0080, #0062ff);
+  border-radius: 99px;
+}
+
+/* Grid Layout & Flex Scroll */
+.team-members-grid {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  padding: 16px 4px 32px 4px;
+  justify-content: flex-start;
+  scrollbar-width: thin;
+  scrollbar-color:  #0062ff37 transparent;
+  -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
+  margin-top: 16px;
+}
+
+.team-members-grid::-webkit-scrollbar {
+  height: 6px;
+}
+
+.team-members-grid::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.team-members-grid::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #0062ff, #ff0080);
+  border-radius: 99px;
+}
+
+@media (min-width: 1200px) {
+  .team-members-grid {
+    justify-content: center; /* Center on desktop if it fits */
+  }
+}
+
+/* 3D Flip Card System */
+.team-card-wrapper {
+  perspective: 1500px;
+  flex: 0 0 260px; /* Width is 260px, doesn't shrink */
+  height: 385px; /* Reduced height to make card a little smaller */
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.team-card-wrapper:hover {
+  transform: translateY(-8px); /* Floating float-up hover effect */
+}
+
+.team-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.65s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.team-card-wrapper.flipped .team-card-inner {
+  transform: rotateY(180deg);
+}
+
+.team-card-front,
+.team-card-back {
+  position: absolute;
+  max-height: 350px;
+  inset: 0;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08),
+              0 5px 15px rgba(0, 0, 0, 0.04);
+  background: linear-gradient(135deg, #0b0f19 0%, #1e293b 100%); /* Set dark gradient background */
+  /* border: 1px solid rgba(255, 255, 255, 0.05); */
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+
+/* Glowing blue gradient hover overlay (same hover effect as partner page card) */
+.team-card-hover-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0;
+  background: radial-gradient(circle at bottom left, rgba(0, 17, 255, 0.873), transparent 60%);
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.team-card-wrapper:hover .team-card-hover-bg {
+  opacity: 1;
+}
+
+/* Front Face */
+.team-card-front {
+  display: flex;
+  flex-direction: column;
+  padding: 14px; /* Slightly reduced padding to match smaller height */
+}
+
+.team-image-container {
+  position: relative;
+  width: 100%;
+  height: 200px; /* Reduced height from 220px */
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: #0b0f19; /* Blends image edges seamlessly */
+  margin-bottom: 12px;
+  z-index: 1;
+}
+
+.team-member-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Fill container properly */
+  object-position: center 15%; /* Keep faces and heads centered and visible */
+}
+
+.team-details-front {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.team-name-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 3px;
+}
+
+.team-name {
+  font-size: 18px; /* Slightly smaller name size */
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+}
+
+.team-check-badge {
+  color: #10b981; /* Green verification badge */
+  flex-shrink: 0;
+}
+
+.team-role {
+  font-size: 13px; /* Slightly smaller role size */
+  font-weight: 500;
+  color: #94a3b8; /* Faint grey text */
+  margin-bottom: 8px;
+}
+
+/* Action buttons at card bottom */
+.team-actions-row {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.team-social-links {
+  display: flex;
+  gap: 8px; /* Reduced gap */
+}
+
+.team-social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px; /* Smaller icon size */
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: #94a3b8;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.team-social-icon:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.team-portfolio-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #ffffff; /* Solid white background as in image */
+  color: #0f172a;
+  border: none;
+  font-size: 12.5px; /* Slightly smaller text size */
+  font-weight: 700;
+  border-radius: 99px;
+  padding: 7px 14px; /* Reduced button padding */
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.team-portfolio-btn:hover {
+  opacity: 0.95;
+  transform: translateY(-1.5px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
+}
+
+/* Back Face */
+.team-card-back {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 16px; /* Reduced padding to fit smaller height */
+  transform: rotateY(180deg); /* Restores 3D flip rotation boundary overlay hiding */
+}
+
+.team-details-back {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 5px;
+  position: relative;
+  z-index: 1;
+}
+
+.team-name-back {
+  font-size: 19px; /* Reduced size */
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+.team-role-back {
+  font-size: 12px; /* Reduced size */
+  font-weight: 600;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+
+.team-divider-back {
+  width: 50px;
+  height: 2px;
+  background: linear-gradient(90deg, #ff0080, #0062ff);
+  margin-bottom: 16px;
+}
+
+.team-desc-back {
+  font-size: 13.5px; /* Reduced size */
+  color: #cbd5e1;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.team-flip-prompt-back {
+  margin-top: auto;
+  font-size: 12px;
+  color: #64748b;
+  font-style: italic;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive Overrides */
+@media (max-width: 768px) {
+  .team-page-container {
+    padding: 100px 0 0 0; /* Add bottom margin on tablets */
+  }
+
+  .team-page-title {
+    font-size: 38px;
+  }
+
+  .team-page-description {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .team-page-title {
+    font-size: 32px;
+  }
+  
+  .team-page-badge {
+    letter-spacing: 4px;
+  }
+}
