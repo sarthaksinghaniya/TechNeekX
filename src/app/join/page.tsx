@@ -7,9 +7,7 @@ import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Loader from '@/components/Loader';
-import LiveActivityFeed from '@/components/LiveActivityFeed';
-import StickyCTA from '@/components/StickyCTA';
-import CommandPalette from '@/components/CommandPalette';
+import '@/styles/JoinPage.css';
 
 // Scroll Progress Component
 const ScrollProgress = () => {
@@ -100,106 +98,110 @@ export default function JoinPage() {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -10 }}
         transition={{ duration: 0.35, ease: 'easeOut' }}
-        className="min-h-screen bg-[#f9fafb] flex flex-col"
+        className="join-page-container"
       >
         <ScrollProgress />
         <Loader />
         <Navbar />
-        <StickyCTA />
-        <CommandPalette />
 
-        <main className="flex-grow pt-32 pb-20 relative px-4 sm:px-6 lg:px-8">
-          {/* Background decoration blobs */}
-          <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <div className="absolute top-1/4 left-1/10 w-96 h-96 bg-gradient-to-tr from-blue-200/20 to-purple-200/20 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-1/4 right-1/10 w-80 h-80 bg-gradient-to-tr from-purple-200/20 to-pink-200/20 rounded-full blur-3xl"></div>
-          </div>
+        {/* Background animated decorative blobs */}
+        <div className="join-page-bg-blob join-page-blob-1" />
+        <div className="join-page-bg-blob join-page-blob-2" />
 
-          <div className="max-w-3xl mx-auto relative z-10">
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-              className="glass p-8 sm:p-12 border border-slate-200/50 shadow-xl rounded-3xl"
+        <div className="join-page-content-wrapper">
+          {/* Back to Home Link */}
+          <motion.button 
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            onClick={() => window.location.href = '/'}
+            className="flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-slate-900 transition-colors mb-8 bg-transparent border-none cursor-pointer"
+          >
+            <ArrowLeft size={16} />
+            Back to Home
+          </motion.button>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="glass p-8 pb-12 sm:p-12 sm:pb-16 border border-slate-200/50 shadow-xl rounded-3xl"
+          >
+            {/* Announcement Badge */}
+            <motion.div 
+              variants={itemVariants}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-200/30 text-blue-600 rounded-full text-xs font-semibold mb-8 float-badge"
             >
-              {/* Announcement Badge */}
-              <motion.div 
-                variants={itemVariants}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-200/30 text-blue-600 rounded-full text-xs font-semibold mb-8 float-badge"
-              >
-                <span className="flex h-2 w-2 relative">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-                </span>
-                Registrations Starting Soon
-              </motion.div>
-
-              {/* Title & Description */}
-              <motion.h1 
-                variants={itemVariants}
-                className="text-4xl sm:text-5xl font-bold text-slate-900 mb-4 tracking-tight"
-              >
-                Become a Part of <span className="text-gradient">TechNeekX</span>
-              </motion.h1>
-              
-              <motion.p 
-                variants={itemVariants}
-                className="text-lg text-slate-600 mb-10 leading-relaxed"
-              >
-                We're setting up the builder ecosystem for the next generation of engineers, designers, and AI developers.
-                While we prepare for the onboarding phase, here's what you can expect as a member of TechNeekX:
-              </motion.p>
-
-              {/* Benefits Checklist */}
-              <motion.div 
-                variants={itemVariants}
-                className="space-y-6 mb-12"
-              >
-                <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">Membership Benefits</h3>
-                <div className="grid gap-6">
-                  {benefits.map((benefit, idx) => (
-                    <motion.div 
-                      key={idx}
-                      variants={itemVariants}
-                      whileHover={{ x: 4 }}
-                      className="flex gap-4 p-4 rounded-2xl hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all duration-200"
-                    >
-                      <div className={`w-12 h-12 rounded-xl ${benefit.bgColor} flex items-center justify-center flex-shrink-0`}>
-                        <benefit.icon className={`w-6 h-6 ${benefit.color}`} />
-                      </div>
-                      <div>
-                        <h4 className="font-bold text-slate-800 text-lg flex items-center gap-2">
-                          {benefit.title}
-                          <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0" />
-                        </h4>
-                        <p className="text-slate-600 text-sm mt-1 leading-relaxed">
-                          {benefit.description}
-                        </p>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-
-              {/* Navigation Back */}
-              <motion.div 
-                variants={itemVariants}
-                className="border-t border-slate-100 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4"
-              >
-                <div className="text-sm text-slate-500">
-                  Join 50+ builders already in the network.
-                </div>
-                <Link href="/" className="btn-primary inline-flex items-center gap-2 text-white">
-                  <ArrowLeft size={16} style={{ color: '#ffffff' }} />
-                  Back to Home
-                </Link>
-              </motion.div>
+              <span className="flex h-2 w-2 relative">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+              </span>
+              Coming Soon
             </motion.div>
-          </div>
-        </main>
+
+            {/* Title & Description */}
+            <motion.h1 
+              variants={itemVariants}
+              className="text-4xl sm:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight"
+            >
+              Become a Part of <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 font-extrabold">TechNeekX</span>
+            </motion.h1>
+            
+            <motion.p 
+              variants={itemVariants}
+              className="text-lg text-slate-600 mb-10 leading-relaxed"
+            >
+              We're setting up the builder ecosystem for the next generation of engineers, designers, and AI developers.
+              While we prepare for the onboarding phase, here's what you can expect as a member of TechNeekX:
+            </motion.p>
+
+            {/* Benefits Checklist */}
+            <motion.div 
+              variants={itemVariants}
+              className="space-y-6 mb-12"
+            >
+              <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">Membership Benefits</h3>
+              <div className="grid gap-6">
+                {benefits.map((benefit, idx) => (
+                  <motion.div 
+                    key={idx}
+                    variants={itemVariants}
+                    whileHover={{ x: 4 }}
+                    className="flex gap-4 p-4 rounded-2xl hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all duration-200"
+                  >
+                    <div className={`w-12 h-12 rounded-xl ${benefit.bgColor} flex items-center justify-center flex-shrink-0`}>
+                      <benefit.icon className={`w-6 h-6 ${benefit.color}`} />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-slate-800 text-lg flex items-center gap-2">
+                        {benefit.title}
+                        <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0" />
+                      </h4>
+                      <p className="text-slate-600 text-sm mt-1 leading-relaxed">
+                        {benefit.description}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Navigation Back */}
+            <motion.div 
+              variants={itemVariants}
+              className="border-t border-slate-100 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4"
+            >
+              <div className="text-sm text-slate-500">
+                Join 100+ builders already in the network.
+              </div>
+              <Link href="/" className="join-btn-primary inline-flex items-center gap-2 text-white no-underline">
+                <ArrowLeft size={16} style={{ color: '#ffffff' }} />
+                Back to Home
+              </Link>
+            </motion.div>
+          </motion.div>
+        </div>
 
         <Footer />
-        <LiveActivityFeed />
       </motion.main>
     </AnimatePresence>
   );

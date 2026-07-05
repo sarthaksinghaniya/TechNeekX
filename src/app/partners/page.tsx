@@ -133,50 +133,18 @@ const PartnersPage = () => {
           </motion.button>
 
           {/* Header */}
-          <div className="partners-page-header">
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+            className="partners-page-header"
+          >
             <span className="partners-page-badge">Ecosystem</span>
             <h1 className="partners-page-title">Community Partners</h1>
             <p className="partners-page-description">
               Collaborating with outstanding student forums, technology leaders, and innovation hubs to fuel growth and create impact.
             </p>
-          </div>
-
-          {/* Search & Tabs Row */}
-          <div className="flex flex-col md:flex-row gap-6 justify-between items-center mb-12">
-            {/* Tabs */}
-            <div className="partners-tabs-container mb-0 w-auto">
-              <div className="partners-tabs-list">
-                {tabs.map((tab) => (
-                  <button
-                    key={tab.id}
-                    onClick={() => setActiveTab(tab.id as any)}
-                    className={`partners-tab-btn ${activeTab === tab.id ? 'active' : ''}`}
-                  >
-                    {tab.label}
-                    {activeTab === tab.id && (
-                      <motion.div
-                        layoutId="activeTabIndicator"
-                        className="partners-tab-active-bg"
-                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                      />
-                    )}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Search input */}
-            <div className="relative w-full md:w-80">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-              <input
-                type="text"
-                placeholder="Search partners, expertise..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 rounded-full border border-slate-200 bg-white/80 focus:bg-white focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-transparent text-sm transition-all shadow-sm"
-              />
-            </div>
-          </div>
+          </motion.div>
 
           {/* Grid Layout */}
           <motion.div
@@ -191,13 +159,21 @@ const PartnersPage = () => {
                   layout
                   key={partner.name}
                   variants={cardVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.15 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   className="partner-page-card"
                 >
+                  {/* Floating Corner Tag Badge */}
+                  <span className="partner-page-badge">
+                    {partner.badge || 'Community Partner'}
+                  </span>
+
                   {/* Hover background gradient */}
                   <div className={`partner-page-card-hover-bg bg-gradient-to-br ${partner.gradient}`} />
                   
-                  {/* Avatar */}
+                  {/* Avatar/Logo container with centered object-fit */}
                   <div className="partner-page-avatar-container">
                     <div className="partner-page-avatar">
                       {partner.avatar ? (
@@ -215,37 +191,24 @@ const PartnersPage = () => {
                     <h3 className="partner-page-name">{partner.name}</h3>
                     <span className="partner-page-role">{partner.role}</span>
                     
-                    <span className="partner-page-badge">
-                      {partner.badge || 'Community Partner'}
-                    </span>
-
                     {partner.description && (
                       <p className="partner-page-desc">{partner.description}</p>
                     )}
 
-                    {/* Expertise Tags */}
-                    {partner.expertise && partner.expertise.length > 0 && (
-                      <div className="partner-page-expertise-row">
-                        {partner.expertise.map((tag) => (
-                          <span key={tag} className="partner-page-expertise-tag">
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-
-                    {/* External Link */}
-                    {partner.link && (
-                      <a 
-                        href={partner.link} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="partner-page-link-btn"
-                      >
-                        <span>Learn More</span>
-                        <ExternalLink size={13} />
-                      </a>
-                    )}
+                    {/* Universal CTA Action Button */}
+                    <button 
+                      onClick={() => {
+                        if (partner.link) {
+                          window.open(partner.link, '_blank');
+                        } else {
+                          openTeamForm('partner');
+                        }
+                      }}
+                      className="partner-page-link-btn"
+                    >
+                      <span>{partner.link ? 'Learn More' : 'Collaborate'}</span>
+                      <ExternalLink size={13} />
+                    </button>
                   </div>
                 </motion.div>
               ))}
@@ -255,8 +218,12 @@ const PartnersPage = () => {
                 <motion.div
                   layout
                   variants={cardVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.15 }}
                   className="partner-page-card partner-cta-card"
                 >
+                  <span className="partner-page-badge">Join Us</span>
                   <div className="partner-cta-icon-wrapper">
                     <Handshake size={32} />
                   </div>

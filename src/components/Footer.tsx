@@ -2,14 +2,15 @@
 
 import { motion } from 'framer-motion';
 import { Github, Instagram, Linkedin, Mail, Twitter, ArrowUp, Heart } from 'lucide-react';
+import { FaWhatsapp } from 'react-icons/fa';
 
 const Footer = () => {
   const socialLinks = [
     { icon: Github, href: 'https://github.com/teamtechneekx', label: 'GitHub' },
     { icon: Linkedin, href: 'https://www.linkedin.com/company/techneekx/', label: 'LinkedIn' },
     { icon: Instagram, href: 'https://www.instagram.com/thetechneekx?igsh=MXZ6Yjgyd3VnN250NA==', label: 'Instagram' },
-    { icon: Twitter, href: 'https://twitter.com/techneekx', label: 'Twitter' },
     { icon: Mail, href: 'mailto:teamtechneekx@gmail.com', label: 'Email' },
+    { icon: FaWhatsapp, href: 'https://wa.me/916387860126', label: 'WhatsApp' },
   ];
 
   const footerLinks = [
@@ -71,17 +72,22 @@ const Footer = () => {
               viewport={{ once: true }}
             >
               {/* Logo */}
-              <div className="flex items-center space-x-3 mb-4">
-                <div className="w-10 h-10 overflow-hidden rounded-lg">
+              <div className="flex items-center gap-1 mb-4">
+                <div className="w-10 h-10 relative rounded-full overflow-hidden flex-shrink-0">
                   <img 
                     src="/file_0000000067647206a22ff5daad754190.png" 
                     alt="TechNeekX Logo" 
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <h3 className="text-2xl font-bold text-gradient">
-                  TechNeekX
-                </h3>
+                <div className="flex flex-col items-start justify-center">
+                  <span className="text-[18px] font-bold text-white/100 tracking-[0.04em] leading-[1.1]">
+                    TechNeek<span className="font-extrabold bg-clip-text text-transparent bg-gradient-to-br from-[#ec4899] to-[#3b82f6] ml-[1px]">X</span>
+                  </span>
+                  <span className="text-[7.5px] font-semibold text-slate-400 tracking-[0.12em] mt-[1px] leading-[1]">
+                    BUILD • INNOVATE • INSPIRE
+                  </span>
+                </div>
               </div>
               
               {/* Description */}
@@ -98,7 +104,7 @@ const Footer = () => {
                     href={social.href}
                     whileHover={{ scale: 1.1, rotate: 5 }}
                     whileTap={{ scale: 0.9 }}
-                    className="w-10 h-10 rounded-xl glass-dark border border-slate-800 flex items-center justify-center text-slate-400 hover:text-slate-200 transition-colors duration-200"
+                    className="w-10 h-10 rounded-full glass-dark border border-slate-800 flex items-center justify-center text-slate-400 hover:text-slate-200 transition-colors duration-200"
                     aria-label={social.label}
                   >
                     <social.icon size={18} />
@@ -144,7 +150,7 @@ const Footer = () => {
         >
           {/* Copyright */}
           <div className="text-slate-400 text-sm mb-4 md:mb-0 flex items-center">
-            © 2025 TechNeekX. Made with 
+            © 2026 TechNeekX. Made with 
             <Heart className="w-4 h-4 mx-1 text-red-400" fill="currentColor" />
             by our community.
           </div>
@@ -154,10 +160,10 @@ const Footer = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={scrollToTop}
-            className="glass-dark border border-slate-800 px-4 py-2 rounded-xl text-slate-300 hover:text-slate-100 transition-colors duration-200 flex items-center gap-2 text-sm"
+            className="glass-dark border border-white-500 px-4 py-2 rounded-xl text-slate-400  hover: transition-colors duration-200 flex items-center gap-2 text-sm cursor-pointer"
           >
             Back to top
-            <ArrowUp size={16} />
+            <ArrowUp size={16} className="text-slate-400" />
           </motion.button>
         </motion.div>
       </div>

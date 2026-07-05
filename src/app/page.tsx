@@ -75,9 +75,9 @@ export default function Home() {
         <Loader />
         <Navbar />
         
-        <section id="hero" className="section-animate pt-18">
+        {/* <section id="hero" className="section-animate pt-18"> */}
           <Hero />
-        </section>
+        {/* </section> */}
         
         
         <PartnersMarquee />

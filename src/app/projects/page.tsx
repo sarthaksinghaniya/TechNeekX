@@ -20,7 +20,8 @@ import {
   Check, 
   Github, 
   ExternalLink, 
-  Image as ImageIcon 
+  Image as ImageIcon,
+  X
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import Navbar from '@/components/Navbar';
@@ -113,6 +114,7 @@ const ProjectsPage = () => {
   const [activeTab, setActiveTab] = useState<'all' | 'ai-advanced' | 'healthcare' | 'platforms-tools'>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [isMounted, setIsMounted] = useState(false);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   useEffect(() => {
     setIsMounted(true);
@@ -177,13 +179,13 @@ const ProjectsPage = () => {
   };
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 35 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
         type: 'spring',
-        stiffness: 100,
+        stiffness: 90,
         damping: 15
       }
     }
@@ -219,50 +221,20 @@ const ProjectsPage = () => {
           </motion.button>
 
           {/* Header */}
-          <div className="projects-page-header">
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+            className="projects-page-header"
+          >
             <span className="projects-page-badge">Portfolio</span>
             <h1 className="projects-page-title">Featured Creations</h1>
             <p className="projects-page-description">
               A comprehensive showcase of production-ready web applications, intelligent AI products, healthcare utilities, and creative toolkits built by our community.
             </p>
-          </div>
+          </motion.div>
 
-          {/* Search & Filters */}
-          <div className="flex flex-col md:flex-row gap-6 justify-between items-center mb-10">
-            {/* Tabs */}
-            <div className="projects-tabs-container mb-0 w-auto">
-              <div className="projects-tabs-list">
-                {tabs.map((tab) => (
-                  <button
-                    key={tab.id}
-                    onClick={() => setActiveTab(tab.id as any)}
-                    className={`projects-tab-btn ${activeTab === tab.id ? 'active' : ''}`}
-                  >
-                    {tab.label}
-                    {activeTab === tab.id && (
-                      <motion.div
-                        layoutId="activeTabIndicator"
-                        className="projects-tab-active-bg"
-                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                      />
-                    )}
-                  </button>
-                ))}
-              </div>
-            </div>
 
-            {/* Search Input */}
-            <div className="relative w-full md:w-80">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-              <input
-                type="text"
-                placeholder="Search by title, tech stack..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2.5 rounded-full border border-slate-200 bg-white/80 focus:bg-white focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-transparent text-sm transition-all shadow-sm"
-              />
-            </div>
-          </div>
 
           {/* Projects Grid */}
           <motion.div
@@ -278,16 +250,25 @@ const ProjectsPage = () => {
                   const colorClass = getColorClass(project.color);
                   const gradientStyle = getGradientStyle(project.color);
                   const statusClass = project.status.toLowerCase().replace(' ', '-');
+                  const isLongDescription = project.description.length > 100;
+                  const shortDescription = isLongDescription 
+                    ? `${project.description.slice(0, 100)}...` 
+                    : project.description;
 
                   return (
                     <motion.div
                       layout
                       key={project.id}
                       variants={cardVariants}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true, amount: 0.15 }}
                       exit={{ opacity: 0, scale: 0.9 }}
                       className={`project-page-card ${colorClass}`}
+                      onClick={() => setSelectedProject(project)}
+                      style={{ cursor: 'pointer' }}
                     >
-                      {/* Image Header with Badge Overlay */}
+                      {/* Image Header with Category Overlay */}
                       <div className="project-page-image-container">
                         {project.image ? (
                           <img 
@@ -304,76 +285,70 @@ const ProjectsPage = () => {
                         {/* Overlay Badges */}
                         <div className="project-page-overlay-badges">
                           <span className="project-page-category-tag">{project.category}</span>
-                          <span className={`project-page-status-badge project-status-${statusClass}`}>
-                            <span className="project-status-dot" />
-                            {project.status}
-                          </span>
                         </div>
                       </div>
 
                       {/* Card Body */}
                       <div className="project-page-card-body">
-                        {/* Icon and Featured tag */}
-                        <div className="project-page-icon-row">
-                          <div className="project-page-app-icon-wrapper" style={gradientStyle}>
-                            <IconComponent />
-                          </div>
-                          {project.isFeatured && (
-                            <span className="project-page-featured-tag">Featured</span>
-                          )}
+                        {/* Title and status row opposite to each other */}
+                        <div className="project-page-title-row">
+                          <h3 className="project-page-card-title">{project.title}</h3>
+                          <span className={`project-page-status-badge project-status-${statusClass}`}>
+                            <span className="project-status-dot" />
+                            {project.status}
+                          </span>
                         </div>
 
-                        {/* Title & Tagline */}
-                        <h3 className="project-page-card-title">{project.title}</h3>
+                        {/* Tagline */}
                         {project.tagline && (
                           <span className="project-page-card-tagline">{project.tagline}</span>
                         )}
 
                         {/* Description */}
-                        <p className="project-page-card-desc">{project.description}</p>
-
-                        {/* Features list */}
-                        {project.features && project.features.length > 0 && (
-                          <ul className="project-page-features-list">
-                            {project.features.map((feature, i) => (
-                              <li key={i} className="project-page-feature-item">
-                                <Check size={14} />
-                                <span>{feature}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
+                        <p className="project-page-card-desc">
+                          {shortDescription}
+                          {isLongDescription && (
+                            <span className="project-page-read-more"> Read More</span>
+                          )}
+                        </p>
 
                         {/* Tech Stack Tags */}
-                        <div className="project-page-tech-stack">
-                          {project.techStack.map((tech) => (
+                        {/* <div className="project-page-tech-stack mt-auto">
+                          {project.techStack.slice(0, 3).map((tech) => (
                             <span key={tech} className="project-page-tech-tag">
                               {tech}
                             </span>
                           ))}
-                        </div>
+                          {project.techStack.length > 3 && (
+                            <span className="project-page-tech-tag font-bold text-slate-400">
+                              +{project.techStack.length - 3}
+                            </span>
+                          )}
+                        </div> */}
 
-                        {/* Action buttons */}
+                        {/* Action buttons (stopPropagation to avoid modal launch) */}
                         <div className="project-page-card-actions">
-                          <a
-                            href={project.link || '#'}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={`project-page-btn-action project-page-btn-primary ${!project.link ? 'disabled' : ''}`}
-                            onClick={(e) => !project.link && e.preventDefault()}
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              if (project.link) window.open(project.link, '_blank');
+                            }}
+                            className={`project-page-btn-action project-page-btn-hero ${!project.link ? 'disabled' : ''}`}
+                            disabled={!project.link}
                           >
-                            <span>Visit Site</span>
+                            <span>Demo</span>
                             <ExternalLink size={14} />
-                          </a>
-                          <a
-                            href={project.github}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                          </button>
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              window.open(project.github, '_blank');
+                            }}
                             className="project-page-btn-action project-page-btn-outline"
                           >
                             <Github size={14} />
-                            <span>Source Code</span>
-                          </a>
+                            <span>Source</span>
+                          </button>
                         </div>
                       </div>
                     </motion.div>
@@ -397,6 +372,140 @@ const ProjectsPage = () => {
             </AnimatePresence>
           </motion.div>
         </div>
+
+        {/* Project Details Modal Popup */}
+        <AnimatePresence>
+          {selectedProject && (
+            <div className="project-modal-overlay-wrapper">
+              {/* Backdrop blur overlay */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setSelectedProject(null)}
+                className="project-modal-backdrop"
+              />
+
+              {/* Modal panel container */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.92, y: 25 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.92, y: 25 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+                className="project-modal-content"
+              >
+                {/* Close Button */}
+                <button
+                  onClick={() => setSelectedProject(null)}
+                  className="project-modal-close-btn"
+                  aria-label="Close modal"
+                >
+                  <X size={20} />
+                </button>
+
+                {/* Modal Image Header */}
+                <div className="project-modal-image-container">
+                  {selectedProject.image ? (
+                    <img 
+                      src={selectedProject.image} 
+                      alt={selectedProject.title} 
+                      className="project-modal-image" 
+                    />
+                  ) : (
+                    (() => {
+                      const ModalIcon = selectedProject.icon && iconMap[selectedProject.icon] ? iconMap[selectedProject.icon] : Cpu;
+                      return (
+                        <div className="project-modal-image-placeholder" style={getGradientStyle(selectedProject.color)}>
+                          <ModalIcon size={56} />
+                        </div>
+                      );
+                    })()
+                  )}
+
+                  {/* Overlays */}
+                  <div className="project-modal-overlay-badges">
+                    <span className="project-page-category-tag">{selectedProject.category}</span>
+                    <span className={`project-page-status-badge project-status-${selectedProject.status.toLowerCase().replace(' ', '-')}`}>
+                      <span className="project-status-dot" />
+                      {selectedProject.status}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Modal Info Content */}
+                <div className="project-modal-body">
+                  <h2 className="project-modal-title">{selectedProject.title}</h2>
+                  
+                  {selectedProject.tagline && (
+                    <p className="project-modal-tagline">
+                      {selectedProject.tagline}
+                    </p>
+                  )}
+
+                  <p className="project-modal-description">
+                    {selectedProject.description}
+                  </p>
+
+                  {/* Key Features */}
+                  {selectedProject.features && selectedProject.features.length > 0 && (
+                    <div className="project-modal-section">
+                      <h4 className="project-modal-section-title">Key Features</h4>
+                      <ul className="project-modal-features-list">
+                        {selectedProject.features.map((feature, i) => (
+                          <li key={i} className="project-modal-feature-item">
+                            <Check size={16} />
+                            <span>{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* Impact */}
+                  {selectedProject.impact && (
+                    <div className="project-modal-section">
+                      <h4 className="project-modal-section-title">Impact & Outcomes</h4>
+                      <p className="project-modal-impact-text">{selectedProject.impact}</p>
+                    </div>
+                  )}
+
+                  {/* Tech Stack */}
+                  <div className="project-modal-section">
+                    <h4 className="project-modal-section-title">Tech Stack</h4>
+                    <div className="project-modal-tech-stack">
+                      {selectedProject.techStack.map((tech) => (
+                        <span key={tech} className="project-modal-tech-tag">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Modal CTA Buttons */}
+                  <div className="project-modal-actions">
+                    <button
+                      onClick={() => {
+                        if (selectedProject.link) window.open(selectedProject.link, '_blank');
+                      }}
+                      className={`project-page-btn-action project-page-btn-hero ${!selectedProject.link ? 'disabled' : ''}`}
+                      disabled={!selectedProject.link}
+                    >
+                      <span>Visit Live Demo</span>
+                      <ExternalLink size={16} />
+                    </button>
+                    <button
+                      onClick={() => window.open(selectedProject.github, '_blank')}
+                      className="project-page-btn-action project-page-btn-outline"
+                    >
+                      <Github size={16} />
+                      <span>Source Code</span>
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>
       </main>
 
       <Footer />

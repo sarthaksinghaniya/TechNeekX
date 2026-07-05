@@ -328,6 +328,7 @@
   
   .gallery-carousel-wrapper {
     height: 360px;
+    padding: 0 1rem;
   }
   
   .gallery-carousel-card {
@@ -337,5 +338,66 @@
   
   .gallery-caption {
     font-size: 13px;
+  }
+}
+
+/* Redesigned Gallery CTA button matching Featured Projects CTA */
+.gallery-cta {
+  background: linear-gradient(90deg, #ff0080, #0062ff, #ff0080);
+  background-size: 200% auto;
+  color: #ffffff;
+  padding: 12px 28px;
+  border-radius: 35px;
+  font-size: 14.5px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 15px rgba(255, 0, 128, 0.18), 0 4px 15px rgba(0, 98, 255, 0.18);
+  animation: gallery-gradient-shift 8s ease infinite;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  margin-top: 16px;
+}
+
+.gallery-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.25),
+    transparent
+  );
+  transition: left 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.gallery-cta:hover::before {
+  left: 100%;
+}
+
+.gallery-cta:hover {
+  transform: translateY(-2px);
+  color: #ffffff;
+  opacity: 1;
+}
+
+@keyframes gallery-gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }

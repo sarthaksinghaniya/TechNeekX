@@ -1,10 +1,20 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import '../styles/FounderNote.css';
 
 const FounderNote = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <section id="founder-note" className="founder-note-section">
       <div className="founder-note-container">
@@ -13,7 +23,7 @@ const FounderNote = () => {
         <motion.div 
           className="founder-note-paper"
           initial={{ opacity: 0, y: 40, rotate: 0 }}
-          whileInView={{ opacity: 1, y: 0, rotate: -2 }}
+          whileInView={{ opacity: 1, y: 0, rotate: isMobile ? 0 : -2 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ 
             type: "spring", 

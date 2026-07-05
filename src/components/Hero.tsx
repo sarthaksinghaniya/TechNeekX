@@ -90,7 +90,7 @@ const Hero = () => {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               onClick={() => {
-                const target = document.getElementById('projects-showcase');
+                const target = document.getElementById('partners-marquee');
                 if (target) {
                   target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }

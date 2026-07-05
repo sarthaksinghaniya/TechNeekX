@@ -18,7 +18,11 @@
     "featured": false,
     "showInOrganized": true,
     "organizedOrder": 1,
-    "date": "2026-02-15"
+    "date": "2026-02-15",
+    "cta": {
+      "text": "See Details",
+      "link": ""
+    }
   },
   {
     "id": "pitch-night-edition",
@@ -38,7 +42,11 @@
     "featured": false,
     "showInOrganized": true,
     "organizedOrder": 2,
-    "date": "2026-03-10"
+    "date": "2026-03-10",
+    "cta": {
+      "text": "See Details",
+      "link": ""
+    }
   },
   {
     "id": "innvedx-hackathon",
@@ -63,8 +71,7 @@
     },
     "showInOrganized": true,
     "organizedOrder": 3,
-    "date": "2026-04-18",
-    "registration": "https://github.com/topics/innvedxhackathon"
+    "date": "2026-04-18"
   },
   {
     "id": "vibe-designing",
@@ -85,7 +92,11 @@
     "featured": false,
     "showInOrganized": true,
     "organizedOrder": 4,
-    "date": "2026-05-12"
+    "date": "2026-05-12",
+    "cta": {
+      "text": "See Details",
+      "link": ""
+    }
   },
   {
     "id": "kalpathon-2",
@@ -110,8 +121,7 @@
     },
     "showInOrganized": true,
     "organizedOrder": 5,
-    "date": "2026-06-20",
-    "registration": "https://github.com/topics/kalpathonhackathon"
+    "date": "2026-06-20"
   },
   {
     "id": "TechNeekX-Codeathon",
@@ -130,6 +140,9 @@
     "date": "2026-07-24",
     "featured": true,
     "showInOrganized": false,
-    "registration": "https://unstop.com/o/KN4YzSF?lb=dxH5duCA&utm_medium=Share&utm_source=online_coding_challenge&utm_campaign=Sarthsin39721"
+    "cta": {
+      "text": "Register Now",
+      "link": "https://unstop.com/o/KN4YzSF?lb=dxH5duCA&utm_medium=Share&utm_source=online_coding_challenge&utm_campaign=Sarthsin39721"
+    }
   }
 ]

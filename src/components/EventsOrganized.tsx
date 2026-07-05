@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Calendar, Users, Trophy, ExternalLink, Star, TrendingUp, Award, Code, Palette, Zap } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import eventsData from '../../data/events.json';
 
 interface OrganizedEvent {
@@ -32,6 +33,8 @@ const iconMap: Record<string, React.ComponentType<any>> = {
 };
 
 const EventsOrganized = () => {
+  const router = useRouter();
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -147,16 +150,20 @@ const EventsOrganized = () => {
 
                 {/* CTA Button */}
                 {event.cta && (
-                  <motion.a
-                    href={event.cta.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <motion.button
+                    onClick={() => {
+                      if (event.cta?.text.toLowerCase().includes('detail') || !event.cta?.link) {
+                        router.push('/events');
+                      } else {
+                        window.open(event.cta.link, '_blank');
+                      }
+                    }}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className={`px-4 py-2 bg-gradient-to-r ${event.gradient} text-white text-sm font-medium rounded-lg text-center w-full sm:w-auto shadow-sm hover:shadow-md transition-shadow`}
+                    className={`px-4 py-2 bg-gradient-to-r ${event.gradient} text-white text-sm font-medium rounded-lg text-center w-full sm:w-auto border-none cursor-pointer shadow-sm hover:shadow-md transition-shadow`}
                   >
                     {event.cta.text}
-                  </motion.a>
+                  </motion.button>
                 )}
               </div>
             </motion.div>

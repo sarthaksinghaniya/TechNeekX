@@ -48,15 +48,15 @@ export default function JourneyPage() {
         <ScrollProgress />
         <Loader />
         <Navbar />
-        <StickyCTA />
-        <CommandPalette />
+        {/* <StickyCTA /> */}
+        {/* <CommandPalette /> */}
 
         <main className="pt-20">
           <RealJourney />
         </main>
 
         <Footer />
-        <LiveActivityFeed />
+        {/* <LiveActivityFeed /> */}
       </motion.main>
     </AnimatePresence>
   );

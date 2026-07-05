@@ -41,12 +41,11 @@ const FinalCTA = () => {
   };
 
   const socialLinksWithWhatsapp = [
-    ...data.socialLinks,
-    { icon: 'Whatsapp', href: 'https://wa.me/916387860126', label: 'WhatsApp' }
+    ...data.socialLinks
   ];
 
   return (
-    <section className="w-full h-[45dvh] min-h-[320px] bg-[#030508] dark relative overflow-hidden flex items-center z-10">
+    <section className="w-full h-auto py-12 md:py-0 md:h-[45dvh] min-h-[320px] bg-[#030508] dark relative overflow-hidden flex items-center z-10">
       {/* Moving Blue & Pink Gradient Background */}
       <motion.div 
         className="absolute inset-0  mix-blend-screen pointer-events-none"
@@ -71,7 +70,7 @@ const FinalCTA = () => {
 
       {/* Decorative background glows with back-and-forth linear moving animation */}
       <motion.div 
-        className="absolute w-[500px] h-[500px] rounded-full blur-[130px] bg-[#0062ff]/10 pointer-events-none"
+        className="absolute w-[500px] h-[500px] rounded-full blur-[130px] bg-[#0062ff]/40 pointer-events-none"
         animate={{
           x: [-120, 120, -120],
           y: [-40, 40, -40],
@@ -84,7 +83,7 @@ const FinalCTA = () => {
         style={{ top: '-10%', left: '5%' }}
       />
       <motion.div 
-        className="absolute w-[450px] h-[450px] rounded-full blur-[130px] bg-[#ff0080]/10 pointer-events-none"
+        className="absolute w-[450px] h-[450px] rounded-full blur-[130px] bg-[#ff0080]/40 pointer-events-none"
         animate={{
           x: [120, -120, 120],
           y: [40, -40, 40],

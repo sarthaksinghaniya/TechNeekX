@@ -91,17 +91,7 @@ const Community = () => {
               constant shipping, and a shared passion for creating digital experiences.
             </p>
             
-            <div className="community-cta-wrapper">
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={() => router.push('/join')}
-                className="hero-btn-primary"
-              >
-                <span>Join TechNeekX</span>
-                <LucideIcons.ArrowRight size={16} />
-              </motion.button>
-            </div>
+           
           </motion.div>
 
           {/* Right Column: 2x2 Grid of Premium Cards */}

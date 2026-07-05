@@ -17,7 +17,8 @@ import {
   Sparkles, 
   Brain, 
   Image as ImageIcon,
-  ChevronLeft
+  ChevronLeft,
+  X
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import Navbar from '@/components/Navbar';
@@ -64,6 +65,7 @@ const EventsPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isMounted, setIsMounted] = useState(false);
   const [today, setToday] = useState('2026-07-03'); // User's local workspace date as baseline
+  const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
 
   useEffect(() => {
     setIsMounted(true);
@@ -185,13 +187,13 @@ const EventsPage = () => {
   };
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 35 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
         type: 'spring',
-        stiffness: 100,
+        stiffness: 90,
         damping: 15
       }
     }
@@ -227,13 +229,18 @@ const EventsPage = () => {
           </motion.button>
 
           {/* Header */}
-          <div className="events-page-header">
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+            className="events-page-header"
+          >
             <span className="events-page-badge">Milestones & Calendar</span>
             <h1 className="events-page-title">Community Events</h1>
             <p className="events-page-description">
               Explore our journey of high-impact hackathons, development workshops, community meetups, and creative showcases.
             </p>
-          </div>
+          </motion.div>
 
           {/* Search & Filters */}
           <div className="flex flex-col md:flex-row gap-6 justify-between items-center mb-10">
@@ -290,8 +297,13 @@ const EventsPage = () => {
                       layout
                       key={event.id}
                       variants={cardVariants}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true, amount: 0.15 }}
                       exit={{ opacity: 0, scale: 0.9 }}
-                      className={`event-page-card theme-${event.cardTheme}`}
+                      className="event-page-card"
+                      onClick={() => setSelectedEvent(event)}
+                      style={{ cursor: 'pointer' }}
                     >
                       {/* Image Header with Badge Overlay */}
                       <div className="event-page-image-container">
@@ -306,7 +318,7 @@ const EventsPage = () => {
                             {IconComponent ? (
                               <IconComponent size={40} className="text-white/40" />
                             ) : (
-                              <ImageIcon size={40} />
+                              <ImageIcon size={40} className="text-white/40" />
                             )}
                           </div>
                         )}
@@ -327,79 +339,42 @@ const EventsPage = () => {
                           {getFormattedDate(event.date)}
                         </span>
                         <h3 className="event-page-card-title">{event.name}</h3>
-                        
-                        {event.description && (
-                          <p className="event-page-card-desc">{event.description}</p>
-                        )}
-                        
-                        {event.tagline && !event.description && (
-                          <p className="event-page-card-desc italic text-slate-500 font-medium">
-                            "{event.tagline}"
-                          </p>
-                        )}
 
-                        {/* Location and registrations info */}
-                        <div className="event-page-metadata">
-                          <div className="event-page-meta-item">
-                            <MapPin size={15} />
-                            <span>{event.location}</span>
+                        {/* Location and Venue info */}
+                        <div className="event-page-meta-item mb-4">
+                          <MapPin size={15} />
+                          <span>{event.location}</span>
+                        </div>
+
+                        {/* Stats Badges */}
+                        <div className="event-page-stats-pill-row mt-auto">
+                          <div className="event-page-pill-badge registrations">
+                            <span>{event.registrations}</span> Registrations
                           </div>
-
-                          <div className="event-page-stats-pill-row">
-                            {event.registration ? (
-                              <a 
-                                href={event.registration} 
-                                target="_blank" 
-                                rel="noopener noreferrer" 
-                                className="event-page-pill-badge registrations clickable"
-                                onClick={(e) => e.stopPropagation()}
-                              >
-                                <span>{event.registrations}</span> Registrations
-                              </a>
-                            ) : (
-                              <div className="event-page-pill-badge registrations">
-                                <span>{event.registrations}</span> Registrations
-                              </div>
-                            )}
-                            <div className="event-page-pill-badge">
-                              <Users size={12} />
-                              <span>{event.attendees}</span> Attendees
-                            </div>
+                          <div className="event-page-pill-badge">
+                            <Users size={12} />
+                            <span>{event.attendees}</span> Attendees
                           </div>
                         </div>
 
                         {/* Card CTA Actions */}
-                        {status !== 'previous' ? (
+                        {event.cta && (
                           <div className="event-page-card-actions">
                             <button 
-                              onClick={() => {
-                                if (event.registration) {
-                                  window.open(event.registration, '_blank');
+                              onClick={(e) => {
+                                e.stopPropagation(); // prevent modal opening duplicate
+                                if (event.cta?.text.toLowerCase().includes('detail')) {
+                                  setSelectedEvent(event);
                                 } else if (event.cta?.link) {
                                   window.open(event.cta.link, '_blank');
-                                } else {
-                                  // Default registration/learn more action
-                                  router.push('/join');
                                 }
                               }}
-                              className="event-page-btn-action event-page-btn-gradient"
+                              className="event-page-btn-action event-page-btn-hero"
                             >
-                              <span>{event.cta?.text || (status === 'current' ? 'Join Event' : 'Register Now')}</span>
+                              <span>{event.cta.text}</span>
                               <ArrowRight size={14} />
                             </button>
                           </div>
-                        ) : (
-                          (event.registration || event.cta) && (
-                            <div className="event-page-card-actions">
-                              <button 
-                                onClick={() => window.open(event.registration || event.cta?.link, '_blank')}
-                                className="event-page-btn-action event-page-btn-outline"
-                              >
-                                <span>{event.cta?.text || 'View Projects'}</span>
-                                <ExternalLink size={14} />
-                              </button>
-                            </div>
-                          )
                         )}
                       </div>
                     </motion.div>
@@ -423,6 +398,126 @@ const EventsPage = () => {
             </AnimatePresence>
           </motion.div>
         </div>
+
+        {/* Details Modal Pop-up */}
+        <AnimatePresence>
+          {selectedEvent && (
+            <div className="event-modal-overlay-wrapper">
+              {/* Backdrop blur overlay */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setSelectedEvent(null)}
+                className="event-modal-backdrop"
+              />
+
+              {/* Modal panel container */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.92, y: 25 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.92, y: 25 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+                className="event-modal-content"
+              >
+                {/* Close button icon */}
+                <button
+                  onClick={() => setSelectedEvent(null)}
+                  className="event-modal-close-btn"
+                  aria-label="Close modal"
+                >
+                  <X size={20} />
+                </button>
+
+                {/* Modal image panel */}
+                <div className="event-modal-image-container">
+                  {selectedEvent.image ? (
+                    <img 
+                      src={selectedEvent.image} 
+                      alt={selectedEvent.name} 
+                      className="event-modal-image" 
+                    />
+                  ) : (
+                    <div className={`event-modal-image-placeholder bg-gradient-to-br ${selectedEvent.gradient || 'from-slate-800 to-slate-900'}`}>
+                      {selectedEvent.icon && iconMap[selectedEvent.icon] ? (
+                        (() => {
+                          const ModalIcon = iconMap[selectedEvent.icon];
+                          return <ModalIcon size={56} className="text-white/40" />;
+                        })()
+                      ) : (
+                        <ImageIcon size={56} className="text-white/40" />
+                      )}
+                    </div>
+                  )}
+
+                  {/* Overlay Badges */}
+                  <div className="event-modal-overlay-badges">
+                    <span className="event-page-type-tag">{selectedEvent.type}</span>
+                    <span className={`event-page-status-badge event-status-${getEventStatus(selectedEvent.date)}`}>
+                      <span className="event-status-dot" />
+                      {getStatusLabel(getEventStatus(selectedEvent.date))}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Modal information content */}
+                <div className="event-modal-body">
+                  <span className="event-modal-date">
+                    {getFormattedDate(selectedEvent.date)}
+                  </span>
+                  
+                  <h2 className="event-modal-title">
+                    {selectedEvent.name}
+                  </h2>
+
+                  {/* Tagline */}
+                  {selectedEvent.tagline && (
+                    <p className="event-modal-tagline">
+                      "{selectedEvent.tagline}"
+                    </p>
+                  )}
+
+                  {/* Description */}
+                  {selectedEvent.description && (
+                    <p className="event-modal-description">
+                      {selectedEvent.description}
+                    </p>
+                  )}
+
+                  {/* Location/Venue */}
+                  <div className="event-modal-meta-item">
+                    <MapPin size={18} />
+                    <span>Venue: {selectedEvent.location}</span>
+                  </div>
+
+                  {/* Registration/Attendees Stats badges */}
+                  <div className="event-modal-stats-row">
+                    <div className="event-modal-stat-badge registrations">
+                      Registrations: <span>{selectedEvent.registrations}</span>
+                    </div>
+                    <div className="event-modal-stat-badge attendees">
+                      <Users size={14} />
+                      Attendees: <span>{selectedEvent.attendees}</span>
+                    </div>
+                  </div>
+
+                  {/* CTA Button */}
+                  {selectedEvent.cta && !selectedEvent.cta.text.toLowerCase().includes('detail') && selectedEvent.cta.link && (
+                    <div className="event-modal-actions">
+                      <button 
+                        onClick={() => window.open(selectedEvent.cta!.link, '_blank')}
+                        className="event-page-btn-action event-page-btn-hero"
+                      >
+                        <span>{selectedEvent.cta.text}</span>
+                        <ArrowRight size={16} />
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>
       </main>
 
       <Footer />

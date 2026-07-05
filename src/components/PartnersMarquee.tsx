@@ -35,6 +35,7 @@ const PartnersMarquee = () => {
 
   return (
     <motion.section 
+      id='partners-marquee'
       className="partners-marquee-section"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}

@@ -1,9 +1,10 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useScroll, useVelocity, useSpring, useTransform } from 'framer-motion';
-import { X } from 'lucide-react';
+import { X, ArrowRight } from 'lucide-react';
 import '../styles/Gallery.css';
 
 type GalleryImage = {
@@ -43,7 +44,6 @@ const galleryImages: GalleryImage[] = [
 
 const Gallery = () => {
   const [active, setActive] = useState(0);
-  const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -83,9 +83,7 @@ const Gallery = () => {
 
   const handleCardClick = (index: number) => {
     const offset = getRelativeOffset(index);
-    if (offset === 0) {
-      setSelectedImage(galleryImages[index]);
-    } else {
+    if (offset !== 0) {
       setActive(index);
     }
   };
@@ -123,6 +121,13 @@ const Gallery = () => {
             <p className="gallery-description">
               A glimpse into our builder culture. Late-night sprints, intense hackathons, and community meetups where we build, deploy, and ship the future of AI.
             </p>
+            <Link 
+              href="/gallery" 
+              className="gallery-cta"
+            >
+              <span>View Gallery</span>
+              <ArrowRight size={16} />
+            </Link>
           </motion.div>
 
           {/* Right Column: 3D Coverflow Carousel */}
@@ -239,44 +244,6 @@ const Gallery = () => {
         </div>
       </div>
 
-      {/* Lightbox Modal */}
-      <AnimatePresence>
-        {selectedImage && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="lightbox-overlay"
-            onClick={() => setSelectedImage(null)}
-          >
-            <motion.div
-              initial={{ scale: 0.95, y: 20 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.95, y: 20 }}
-              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-              className="lightbox-content"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button 
-                className="lightbox-close" 
-                onClick={() => setSelectedImage(null)}
-              >
-                <X className="w-5 h-5 inline mr-1" /> Close
-              </button>
-              <div className="lightbox-img-wrapper">
-                <Image
-                  src={selectedImage.src}
-                  alt={selectedImage.caption}
-                  fill
-                  style={{ objectFit: 'contain' }}
-                  sizes="80vw"
-                />
-              </div>
-              <p className="lightbox-caption">{selectedImage.caption}</p>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
   );
 };

@@ -1,27 +1,86 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useRef, useState, useEffect } from 'react';
+import { motion, useScroll, useSpring } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 import * as LucideIcons from 'lucide-react';
 import { journey } from '@/constants/journey';
 import '../styles/RealJourney.css';
 
 const RealJourney = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
+  const router = useRouter();
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Screen size detection for responsive animations
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Track scroll progress of the timeline container
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start 75%', 'end 65%']
+  });
+
+  // Smooth out the scroll progress
+  const scaleY = useSpring(scrollYProgress, {
+    stiffness: 80,
+    damping: 25,
+    restDelta: 0.001
+  });
+
+  const rowVariants = {
+    hidden: {},
     visible: {
-      opacity: 1,
       transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.1
+        staggerChildren: 0.15,
+        delayChildren: 0.05
       }
     }
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+  const dotVariants = {
+    hidden: { opacity: 0, scale: 0 },
     visible: {
       opacity: 1,
-      y: 0,
+      scale: 1,
+      transition: {
+        type: 'spring',
+        stiffness: 200,
+        damping: 15
+      }
+    }
+  };
+
+  const dateVariants = {
+    hidden: (isCardRight: boolean) => ({
+      opacity: 0,
+      x: isCardRight ? -40 : 40
+    }),
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.6,
+        ease: 'easeOut'
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: ({ isCardRight, isMobile }: { isCardRight: boolean; isMobile: boolean }) => ({
+      opacity: 0,
+      x: (isMobile || isCardRight) ? 100 : -100
+    }),
+    visible: {
+      opacity: 1,
+      x: 0,
       transition: {
         duration: 0.7,
         ease: [0.22, 1, 0.36, 1]
@@ -69,7 +128,17 @@ const RealJourney = () => {
       </div>
 
       <div className="real-journey-container">
-        
+        {/* Back to Home Link */}
+        <motion.button 
+          initial={{ opacity: 0, x: -10 }}
+          animate={{ opacity: 1, x: 0 }}
+          onClick={() => router.push('/')}
+          className="flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-slate-900 transition-colors mb-8 bg-transparent border-none cursor-pointer"
+        >
+          <LucideIcons.ChevronLeft size={16} />
+          Back to Home
+        </motion.button>
+
         {/* Premium Header matching Homepage Design System */}
         <div className="text-center mb-16">
           <span className="tnx-section-label">
@@ -85,17 +154,16 @@ const RealJourney = () => {
         </div>
 
         {/* Centered Timeline Wrapper */}
-        <div className="real-timeline-wrapper">
-          {/* Dashed Timeline vertical line */}
-          <div className="real-timeline-line" />
+        <div className="real-timeline-wrapper" ref={containerRef}>
+          {/* Dashed Timeline vertical line (track and progress fill) */}
+          <div className="real-timeline-line">
+            <motion.div
+              className="real-timeline-line-progress"
+              style={{ scaleY, originY: 0 }}
+            />
+          </div>
 
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.05 }}
-            className="real-timeline-items"
-          >
+          <div className="real-timeline-items">
             {journey.map((milestone, idx) => {
               const IconComponent = milestone.icon;
               
@@ -106,21 +174,35 @@ const RealJourney = () => {
               return (
                 <motion.div
                   key={idx}
-                  variants={itemVariants}
+                  variants={rowVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: isMobile ? 0.15 : 0.3 }}
                   className={`real-milestone-row ${isCardRight ? 'align-right' : 'align-left'}`}
                 >
                   {/* Central Indicator Dot */}
-                  <div className={`real-dot-wrapper ${milestone.status}`}>
+                  <motion.div 
+                    variants={dotVariants}
+                    className={`real-dot-wrapper ${milestone.status}`}
+                  >
                     <div className="real-dot" />
-                  </div>
+                  </motion.div>
 
                   {/* Date Label on opposite side (Desktop only) */}
-                  <span className="real-date-label">
+                  <motion.span 
+                    variants={dateVariants}
+                    custom={isCardRight}
+                    className="real-date-label"
+                  >
                     {milestone.date}
-                  </span>
+                  </motion.span>
 
                   {/* Milestone Card */}
-                  <div className="real-card">
+                  <motion.div 
+                    variants={cardVariants}
+                    custom={{ isCardRight, isMobile }}
+                    className="real-card"
+                  >
                     {/* Content */}
                     <div className="real-card-content">
                       <span className="real-card-mobile-date">
@@ -151,11 +233,11 @@ const RealJourney = () => {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 </motion.div>
               );
             })}
-          </motion.div>
+          </div>
         </div>
 
         {/* Final Message */}
