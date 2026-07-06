@@ -28,7 +28,7 @@ const Projects = () => {
 
   const projects: Project[] = [
     {
-      title: "ReviveLab",
+      title: "Revibe-Lab",
       oneLiner: "AI-powered E-waste management solution",
       problem: "E-waste management is inefficient, with poor sorting and recycling recommendations leading to environmental harm.",
       solution: "Built an AI platform that uses computer vision to identify e-waste types, provides recycling recommendations, and tracks environmental impact.",
@@ -44,8 +44,8 @@ const Projects = () => {
       category: "AI Product"
     },
     {
-      title: "HanuBot",
-      oneLiner: "Intelligent AI chatbot assistant",
+      title: "Revibe-AI",
+      oneLiner: "E-Waste management AI assistant",
       problem: "Businesses struggle with customer support efficiency and personalization, leading to poor user experiences.",
       solution: "Developed a sophisticated conversational AI that understands context, learns from interactions, and provides personalized responses.",
       impact: "Reduced response time by 60%, improved customer satisfaction by 45%, and automated 80% of routine inquiries.",
