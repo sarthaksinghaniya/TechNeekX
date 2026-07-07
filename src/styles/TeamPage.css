@@ -3,7 +3,8 @@
 .team-page-container {
   position: relative;
   min-height: 100vh;
-  padding: 100px 0 0 0; /* Clear nav spacing */
+  padding: 100px 0 0 0;
+  /* Clear nav spacing */
   background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
   font-family: var(--nav-font), sans-serif;
   overflow: hidden;
@@ -24,7 +25,8 @@
 .team-page-blob-1 {
   width: 500px;
   height: 500px;
-  background: rgba(139, 92, 246, 0.08); /* Violet */
+  background: rgba(139, 92, 246, 0.08);
+  /* Violet */
   top: -100px;
   left: -100px;
   animation: team-float-blob-1 25s ease-in-out infinite;
@@ -33,22 +35,39 @@
 .team-page-blob-2 {
   width: 450px;
   height: 450px;
-  background: rgba(59, 130, 246, 0.08); /* Blue */
+  background: rgba(59, 130, 246, 0.08);
+  /* Blue */
   bottom: 10%;
   right: -50px;
   animation: team-float-blob-2 20s ease-in-out infinite;
 }
 
 @keyframes team-float-blob-1 {
-  0% { transform: translate(0px, 0px) scale(1); }
-  50% { transform: translate(60px, -40px) scale(1.1); }
-  100% { transform: translate(0px, 0px) scale(1); }
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+
+  50% {
+    transform: translate(60px, -40px) scale(1.1);
+  }
+
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
 }
 
 @keyframes team-float-blob-2 {
-  0% { transform: translate(0px, 0px) scale(1) rotate(0deg); }
-  50% { transform: translate(-50px, 60px) scale(1.05) rotate(180deg); }
-  100% { transform: translate(0px, 0px) scale(1) rotate(360deg); }
+  0% {
+    transform: translate(0px, 0px) scale(1) rotate(0deg);
+  }
+
+  50% {
+    transform: translate(-50px, 60px) scale(1.05) rotate(180deg);
+  }
+
+  100% {
+    transform: translate(0px, 0px) scale(1) rotate(360deg);
+  }
 }
 
 /* Page content layout */
@@ -147,8 +166,9 @@
   padding: 16px 4px 32px 4px;
   justify-content: flex-start;
   scrollbar-width: thin;
-  scrollbar-color:  #0062ff37 transparent;
-  -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
+  scrollbar-color: #0062ff37 transparent;
+  -webkit-overflow-scrolling: touch;
+  /* Smooth scroll on iOS */
   margin-top: 16px;
 }
 
@@ -165,23 +185,32 @@
   border-radius: 99px;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 880px) {
   .team-members-grid {
-    justify-content: center; /* Center on desktop if it fits */
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    overflow-x: visible;
+  }
+
+  .team-members-grid::-webkit-scrollbar {
+    display: none;
   }
 }
 
 /* 3D Flip Card System */
 .team-card-wrapper {
   perspective: 1500px;
-  flex: 0 0 260px; /* Width is 260px, doesn't shrink */
-  height: 385px; /* Reduced height to make card a little smaller */
+  flex: 0 0 260px;
+  /* Width is 260px, doesn't shrink */
+  height: 385px;
+  /* Reduced height to make card a little smaller */
   cursor: pointer;
   transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .team-card-wrapper:hover {
-  transform: translateY(-8px); /* Floating float-up hover effect */
+  transform: translateY(-8px);
+  /* Floating float-up hover effect */
 }
 
 .team-card-inner {
@@ -206,8 +235,9 @@
   border-radius: 28px;
   overflow: hidden;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08),
-              0 5px 15px rgba(0, 0, 0, 0.04);
-  background: linear-gradient(135deg, #0b0f19 0%, #1e293b 100%); /* Set dark gradient background */
+    0 5px 15px rgba(0, 0, 0, 0.04);
+  background: linear-gradient(135deg, #0b0f19 0%, #1e293b 100%);
+  /* Set dark gradient background */
   /* border: 1px solid rgba(255, 255, 255, 0.05); */
   transition: border-color 0.4s ease, box-shadow 0.4s ease;
 }
@@ -232,16 +262,19 @@
 .team-card-front {
   display: flex;
   flex-direction: column;
-  padding: 14px; /* Slightly reduced padding to match smaller height */
+  padding: 14px 14px 0px 14px;
+  /* Slightly reduced padding to match smaller height */
 }
 
 .team-image-container {
   position: relative;
   width: 100%;
-  height: 200px; /* Reduced height from 220px */
+  height: 200px;
+  /* Reduced height from 220px */
   border-radius: 20px;
   overflow: hidden;
-  background-color: #0b0f19; /* Blends image edges seamlessly */
+  background-color: #0b0f19;
+  /* Blends image edges seamlessly */
   margin-bottom: 12px;
   z-index: 1;
 }
@@ -249,8 +282,10 @@
 .team-member-img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Fill container properly */
-  object-position: center 15%; /* Keep faces and heads centered and visible */
+  object-fit: cover;
+  /* Fill container properly */
+  object-position: center 15%;
+  /* Keep faces and heads centered and visible */
 }
 
 .team-details-front {
@@ -270,21 +305,25 @@
 }
 
 .team-name {
-  font-size: 18px; /* Slightly smaller name size */
+  font-size: 18px;
+  /* Slightly smaller name size */
   font-weight: 700;
   color: #ffffff;
   letter-spacing: -0.01em;
 }
 
 .team-check-badge {
-  color: #10b981; /* Green verification badge */
+  color: #10b981;
+  /* Green verification badge */
   flex-shrink: 0;
 }
 
 .team-role {
-  font-size: 13px; /* Slightly smaller role size */
+  font-size: 13px;
+  /* Slightly smaller role size */
   font-weight: 500;
-  color: #94a3b8; /* Faint grey text */
+  color: #94a3b8;
+  /* Faint grey text */
   margin-bottom: 8px;
 }
 
@@ -301,14 +340,16 @@
 
 .team-social-links {
   display: flex;
-  gap: 8px; /* Reduced gap */
+  gap: 8px;
+  /* Reduced gap */
 }
 
 .team-social-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px; /* Smaller icon size */
+  width: 32px;
+  /* Smaller icon size */
   height: 32px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.04);
@@ -328,13 +369,16 @@
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  background: #ffffff; /* Solid white background as in image */
+  background: #ffffff;
+  /* Solid white background as in image */
   color: #0f172a;
   border: none;
-  font-size: 12.5px; /* Slightly smaller text size */
+  font-size: 12.5px;
+  /* Slightly smaller text size */
   font-weight: 700;
   border-radius: 99px;
-  padding: 7px 14px; /* Reduced button padding */
+  padding: 7px 14px;
+  /* Reduced button padding */
   cursor: pointer;
   transition: all 0.2s ease;
   text-decoration: none;
@@ -350,8 +394,10 @@
 .team-card-back {
   display: flex;
   flex-direction: column;
-  padding: 20px 16px; /* Reduced padding to fit smaller height */
-  transform: rotateY(180deg); /* Restores 3D flip rotation boundary overlay hiding */
+  padding: 20px 16px;
+  /* Reduced padding to fit smaller height */
+  transform: rotateY(180deg);
+  /* Restores 3D flip rotation boundary overlay hiding */
 }
 
 .team-details-back {
@@ -365,14 +411,16 @@
 }
 
 .team-name-back {
-  font-size: 19px; /* Reduced size */
+  font-size: 19px;
+  /* Reduced size */
   font-weight: 800;
   color: #ffffff;
   margin-bottom: 4px;
 }
 
 .team-role-back {
-  font-size: 12px; /* Reduced size */
+  font-size: 12px;
+  /* Reduced size */
   font-weight: 600;
   color: #94a3b8;
   text-transform: uppercase;
@@ -388,7 +436,8 @@
 }
 
 .team-desc-back {
-  font-size: 13.5px; /* Reduced size */
+  font-size: 13.5px;
+  /* Reduced size */
   color: #cbd5e1;
   line-height: 1.6;
   text-align: center;
@@ -402,10 +451,47 @@
   letter-spacing: 0.5px;
 }
 
+/* View Bio Link Styling */
+.team-view-bio-link {
+  font-size: 10px;
+  font-weight: 500;
+  color: #ffffff;
+  opacity: 0.5;
+  text-align: center;
+  -webkit-background-clip: text;
+  /* -webkit-text-fill-color: transparent; */
+  background-clip: text;
+  margin-top: 4px;
+  padding: 6px;
+  display: inline-block;
+  position: relative;
+  transition: opacity 0.2s ease;
+  cursor: pointer;
+}
+/* 
+.team-view-bio-link::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background: linear-gradient(90deg, #0062ff, #ff0080);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.team-card-wrapper:hover .team-view-bio-link::after {
+  transform: scaleX(1);
+} */
+
+
 /* Responsive Overrides */
 @media (max-width: 768px) {
   .team-page-container {
-    padding: 100px 0 0 0; /* Add bottom margin on tablets */
+    padding: 100px 0 0 0;
+    /* Add bottom margin on tablets */
   }
 
   .team-page-title {
@@ -421,7 +507,7 @@
   .team-page-title {
     font-size: 32px;
   }
-  
+
   .team-page-badge {
     letter-spacing: 4px;
   }

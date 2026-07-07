@@ -28,8 +28,8 @@ const ScrollProgress = () => {
   }, []);
 
   return (
-    <div 
-      className="scroll-progress" 
+    <div
+      className="scroll-progress"
       style={{ width: `${scrollProgress}%` }}
     />
   );
@@ -41,6 +41,10 @@ export default function TeamPage() {
   const toggleFlip = (cardKey: string) => {
     setActiveFlippedCard(prev => (prev === cardKey ? null : cardKey));
   };
+
+  // Robustly extract categories from restructured team.json
+  const data = Array.isArray(teamData) ? teamData[0] : teamData;
+  const { officialTeam = [], coreTeam = [], members = [] } = data || {};
 
   return (
     <AnimatePresence mode="wait">
@@ -62,7 +66,7 @@ export default function TeamPage() {
 
         <div className="team-page-content">
           {/* Breadcrumb Back to Home */}
-          <motion.button 
+          <motion.button
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
             onClick={() => window.location.href = '/'}
@@ -82,24 +86,54 @@ export default function TeamPage() {
           </header>
 
           {/* Members grid section */}
-          <section>
-            <h2 className="team-section-heading">Official Members</h2>
-            
-            <div className="team-members-grid">
-              {teamData.map((member, idx) => (
-                <TeamPageCard
-                  key={`official-${idx}`}
-                  member={member}
-                  isFlipped={activeFlippedCard === `official-${idx}`}
-                  onFlip={() => toggleFlip(`official-${idx}`)}
-                />
-              ))}
-            </div>
+          <section style={{ paddingBottom: '60px' }}>
+            {officialTeam.length > 0 && (
+              <>
+                <h2 className="team-section-heading">Official Team</h2>
+                <div className="team-members-grid">
+                  {officialTeam.map((member: any, idx: number) => (
+                    <TeamPageCard
+                      key={`official-${idx}`}
+                      member={member}
+                      isFlipped={activeFlippedCard === `official-${idx}`}
+                      onFlip={() => toggleFlip(`official-${idx}`)}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
 
-            <h2 className="team-section-heading">Core Members</h2>
-            <div className="team-members-grid">
-              <h3 className="">Coming Soon</h3>
-            </div> 
+            {coreTeam.length > 0 && (
+              <>
+                <h2 className="team-section-heading" style={{ marginTop: '48px' }}>Core Team</h2>
+                <div className="team-members-grid">
+                  {coreTeam.map((member: any, idx: number) => (
+                    <TeamPageCard
+                      key={`core-${idx}`}
+                      member={member}
+                      isFlipped={activeFlippedCard === `core-${idx}`}
+                      onFlip={() => toggleFlip(`core-${idx}`)}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+
+            {members.length > 0 && (
+              <>
+                <h2 className="team-section-heading" style={{ marginTop: '48px' }}>Members</h2>
+                <div className="team-members-grid">
+                  {members.map((member: any, idx: number) => (
+                    <TeamPageCard
+                      key={`member-${idx}`}
+                      member={member}
+                      isFlipped={activeFlippedCard === `member-${idx}`}
+                      onFlip={() => toggleFlip(`member-${idx}`)}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
           </section>
         </div>
 

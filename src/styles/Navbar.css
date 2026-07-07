@@ -45,9 +45,9 @@
 
 .tx-navbar.tx-scrolled {
   box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
-  background-color: rgba(249, 250, 251, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background-color:rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   border-bottom: 1px solid rgba(226, 232, 240, 0.8);
 }
 

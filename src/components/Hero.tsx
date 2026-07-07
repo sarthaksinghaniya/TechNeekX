@@ -6,6 +6,7 @@ import { FaWhatsapp } from 'react-icons/fa';
 import { useRouter } from 'next/navigation';
 import data from '../constants/data.json';
 import '../styles/Hero.css';
+import { openTeamForm, FORM_CONFIG } from '@/config/teamForms';
 
 const iconMap: { [key: string]: any } = {
   Github: Github,
@@ -89,15 +90,10 @@ const Hero = () => {
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              onClick={() => {
-                const target = document.getElementById('partners-marquee');
-                if (target) {
-                  target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-              }}
+              onClick={() => openTeamForm('partner')}
               className="hero-btn-secondary"
             >
-              Explore Our Work
+              PARTNER WITH US
             </motion.button>
           </motion.div>
 

@@ -368,10 +368,10 @@
 }
 
 .partner-page-link-btn:hover {
-  background: linear-gradient(90deg, #ff0080, #0062ff);
-  color: #ffffff;
+  /* background: linear-gradient(90deg, #ff0080, #0062ff); */
+  /* color: #ffffff; */
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(255, 0, 128, 0.25), 0 8px 20px rgba(0, 98, 255, 0.25);
+  /* box-shadow: 0 8px 20px rgba(255, 0, 128, 0.337), 0 8px 20px  rgba(0, 17, 255, 0.873); */
 }
 
 .partner-page-link-btn:active {

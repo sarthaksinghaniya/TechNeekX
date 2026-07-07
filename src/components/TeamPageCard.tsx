@@ -24,7 +24,7 @@ interface TeamPageCardProps {
 
 const TeamPageCard: React.FC<TeamPageCardProps> = ({ member, isFlipped, onFlip }) => {
   return (
-    <div 
+    <div
       className={`team-card-wrapper ${isFlipped ? 'flipped' : ''}`}
       onClick={onFlip}
     >
@@ -33,14 +33,14 @@ const TeamPageCard: React.FC<TeamPageCardProps> = ({ member, isFlipped, onFlip }
         <div className="team-card-front">
           <div className="team-card-hover-bg" />
           <div className="team-image-container">
-            <img 
-              src={member.image} 
-              alt={member.name} 
+            <img
+              src={member.image}
+              alt={member.name}
               className="team-member-img"
               loading="lazy"
             />
           </div>
-          
+
           <div className="team-details-front">
             <div className="team-name-wrapper">
               <h3 className="team-name">{member.name}</h3>
@@ -52,9 +52,9 @@ const TeamPageCard: React.FC<TeamPageCardProps> = ({ member, isFlipped, onFlip }
           <div className="team-actions-row">
             <div className="team-social-links">
               {member.socials.linkedin && (
-                <a 
-                  href={member.socials.linkedin} 
-                  target="_blank" 
+                <a
+                  href={member.socials.linkedin}
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="team-social-icon"
                   onClick={(e) => e.stopPropagation()}
@@ -63,9 +63,9 @@ const TeamPageCard: React.FC<TeamPageCardProps> = ({ member, isFlipped, onFlip }
                 </a>
               )}
               {member.socials.github && (
-                <a 
-                  href={member.socials.github} 
-                  target="_blank" 
+                <a
+                  href={member.socials.github}
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="team-social-icon"
                   onClick={(e) => e.stopPropagation()}
@@ -74,7 +74,7 @@ const TeamPageCard: React.FC<TeamPageCardProps> = ({ member, isFlipped, onFlip }
                 </a>
               )}
               {member.socials.email && (
-                <a 
+                <a
                   href={`mailto:${member.socials.email}`}
                   className="team-social-icon"
                   onClick={(e) => e.stopPropagation()}
@@ -85,9 +85,9 @@ const TeamPageCard: React.FC<TeamPageCardProps> = ({ member, isFlipped, onFlip }
             </div>
 
             {member.cta && member.cta !== '#' && (
-              <a 
-                href={member.cta} 
-                target="_blank" 
+              <a
+                href={member.cta}
+                target="_blank"
                 rel="noopener noreferrer"
                 className="team-portfolio-btn"
                 onClick={(e) => e.stopPropagation()}
@@ -97,6 +97,7 @@ const TeamPageCard: React.FC<TeamPageCardProps> = ({ member, isFlipped, onFlip }
               </a>
             )}
           </div>
+          <span className="team-view-bio-link">Tap to view details</span>
         </div>
 
         {/* Card Back face */}

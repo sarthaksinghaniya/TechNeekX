@@ -1,50 +1,130 @@
 [
   {
-    "name": "Sarthak Singhaniya",
-    "image": "/sarthak.jpeg",
-    "designation": "Founder & AI Engineer",
-    "socials": {
-      "linkedin": "https://www.linkedin.com/in/sarthak-singhaniya-a4ab9a323/",
-      "github": "https://github.com/sarthaksinghaniya",
-      "email": "sarthaksinghaniya789@gmail.com"
-    },
-    "cta": "https://sarthaksinghaniya.netlify.app",
-    "description": "Building AI-driven products and leading TechNeekX as a next-gen builder ecosystem. Focused on AI/ML Engineering and Product development."
-  },
-  {
-    "name": "Nikhil Yadav",
-    "image": "/nikhil.jpeg",
-    "designation": "Chief Design Officer (CDO)",
-    "socials": {
-      "linkedin": "https://www.linkedin.com/in/nikhil-yadav-4b63212ba?utm_source=share_via&utm_content=profile&utm_medium=member_android",
-      "github": "https://github.com/nikhil09790",
-      "email": "seemayadav97950@gmail.com"
-    },
-    "cta": "https://nikhilyadav.netlify.app",
-    "description": "Designing intuitive, high-impact UI/UX experiences that define the TechNeekX brand."
-  },
-  {
-    "name": "Anshuman Soni",
-    "image": "/image.png",
-    "designation": "Chief Marketing Officer (CMO)",
-    "socials": {
-      "linkedin": "https://www.linkedin.com/in/anshuman-soni-60277b268/",
-      "github": "https://github.com/Anshuman70k",
-      "email": "anshuman70k@gmail.com"
-    },
-    "cta": "https://suy4sh.netlify.app",
-    "description": "Driving growth, reach, and strategic partnerships to scale TechNeekX globally."
-  },
-  {
-    "name": "Hardik Talwar",
-    "image": "/hardik.jpeg",
-    "designation": "Chief Business Officer (CBO)",
-    "socials": {
-      "linkedin": "https://www.linkedin.com/in/hardiktalwar2006/",
-      "github": "https://github.com/hardiktalwar2006",
-      "email": "hardiktalwar2006@gmail.com"
-    },
-    "cta": "https://hardik-db.netlify.app",
-    "description": "Building business strategy, sponsorships, and high-value collaborations."
+    "officialTeam": [
+      {
+        "name": "Sarthak Singhaniya",
+        "image": "/sarthak.jpeg",
+        "designation": "Founder & AI Engineer",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/sarthak-singhaniya-a4ab9a323/",
+          "github": "https://github.com/sarthaksinghaniya",
+          "email": "sarthaksinghaniya789@gmail.com"
+        },
+        "cta": "https://sarthaksinghaniya.netlify.app",
+        "description": "Building AI-driven products and leading TechNeekX as a next-gen builder ecosystem. Focused on AI/ML Engineering and Product development."
+      },
+      {
+        "name": "Nikhil Yadav",
+        "image": "/nikhil.jpeg",
+        "designation": "Chief Design Officer (CDO)",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/nikhil-yadav-4b63212ba?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+          "github": "https://github.com/nikhil09790",
+          "email": "seemayadav97950@gmail.com"
+        },
+        "cta": "https://nikhilyadav.netlify.app",
+        "description": "Designing intuitive, high-impact UI/UX experiences that define the TechNeekX brand."
+      },
+      {
+        "name": "Anshuman Soni",
+        "image": "/image.png",
+        "designation": "Chief Marketing Officer (CMO)",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/anshuman-soni-60277b268/",
+          "github": "https://github.com/Anshuman70k",
+          "email": "anshuman70k@gmail.com"
+        },
+        "cta": "https://suy4sh.netlify.app",
+        "description": "Driving growth, reach, and strategic partnerships to scale TechNeekX globally."
+      },
+      {
+        "name": "Hardik Talwar",
+        "image": "/hardik.jpeg",
+        "designation": "Chief Business Officer (CBO)",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/hardiktalwar2006/",
+          "github": "https://github.com/hardiktalwar2006",
+          "email": "hardiktalwar2006@gmail.com"
+        },
+        "cta": "https://hardik-db.netlify.app",
+        "description": "Building business strategy, sponsorships, and high-value collaborations."
+      }
+    ],
+    "coreTeam": [
+      {
+        "name": "Arpita Sharma",
+        "image": "/team/arpita.jpg",
+        "designation": "Director of Core Operations",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/arpita-sharma-899bba381?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+          "github": "https://github.com/sharmaarpita307-ai/Hello-Python",
+          "email": "sharmaarpita307@gmail.com"
+        },
+        "cta": "https://arpiii-dev.netlify.app",
+        "description": "Passionate Director of Core Operations skilled in operations management, ORM (Outreach & Relationship Management), team coordination, community engagement, and executing organizational initiatives with efficiency and leadership."
+      },
+      {
+        "name": "Sneha Yadav",
+        "image": "/team/sneha.jpg",
+        "designation": "Design Lead",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/sneha-yadav-4b2351237?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+          "github": "https://github.com/mailmesneha2005-hub",
+          "email": "mailmesneha2005@gmail.com"
+        },
+        "cta": "",
+        "description": "I'm a second-year B.Tech student with a keen interest in technology, problem-solving, and creativity. I'm currently strengthening my skills in Java, DSA, Git & GitHub, Full Stack Development, and Canva. I'm always eager to learn, collaborate, and take on new challenges that help me grow both personally and professionally."
+      },
+      {
+        "name": "Arshi",
+        "image": "/team/arshi.jpg",
+        "designation": "Media Lead",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/arshi-ahmad-973173369?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+          "github": "https://github.com/thearshi02",
+          "email": "arshiidrisi0202@gmail.com"
+        },
+        "cta": "https://arshi-aura-cosmos.lovable.app",
+        "description": "I'm a Computer Science student and a passionate video editor who loves combining creativity with technology. I enjoy solving problems through coding, exploring data science, and creating visually engaging content through video editing."
+      },
+      {
+        "name": "Anubhav Saxena",
+        "image": "/team/anubhav.jpg",
+        "designation": "Full Stack Lead",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/anubhav-saxena-7b0b142a7",
+          "github": "https://github.com/Anubhavsaxena2004",
+          "email": "anubhavsaxenavibhu@gmail.com"
+        },
+        "cta": "https://anubhav-portfoliio.netlify.app/",
+        "description": "Full Stack Software Developer who turns backend architecture into products people actually use."
+      },
+      {
+        "name": "Kriti Jain",
+        "image": "/team/kriti.jpg",
+        "designation": "AI/ML Lead",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/connect-with-kriti",
+          "github": "https://github.com/kriti-on-git",
+          "email": "er.jainkriti@gmail.com"
+        },
+        "cta": "https://kriti-web.netlify.app",
+        "description": "I'm Kriti Jain, pursuing BTech in CSE at AKTU. My primary interests are backend engineering, AI and ML."
+      },
+      
+      {
+        "name": "Akshara Dixit",
+        "image": "/team/akshara.jpg",
+        "designation": "AI-ML Lead",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/akshara-dixit-04b378385",
+          "github": "https://github.com/dixitakshara96",
+          "email": "dixitakshara96@gmail.com"
+        },
+        "cta": "https://drive.google.com/file/d/1aooryqS10MfnccMQA3H_KWgnKo41DJ43/view?usp=drivesdk",
+        "description": "I Akshara Dixit am designated as AIML Core in TechNeekX. I want to be a Data Scientist and this community is helping me to improve my personality and to innovate some new things with others."
+      }
+    ],
+    "members": []
   }
 ]

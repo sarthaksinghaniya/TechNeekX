@@ -18,9 +18,9 @@ const Footer = () => {
       title: "Company",
       links: [
         { name: "About Us", href: "#about" },
-        { name: "What We Do", href: "#what-we-do" },
+        { name: "Events", href: "/events" },
         { name: "Projects", href: "/projects" },
-        { name: "Partners", href: "/partners" },
+        { name: "Partners with us", href: "https://docs.google.com/forms/d/e/1FAIpQLSfFvcsPMtG-lAi7b31q-TMg-M3hZo0m_IYQecbRDbjFjzm3BA/viewform" },
       ]
     },
     {
@@ -31,25 +31,7 @@ const Footer = () => {
         { name: "LinkedIn", href: "https://www.linkedin.com/company/techneekx/" },
         { name: "Instagram", href: "https://www.instagram.com/thetechneekx?igsh=MXZ6Yjgyd3VnN250NA==" },
       ]
-    },
-    {
-      title: "Resources",
-      links: [
-        { name: "Blog", href: "#" },
-        { name: "Documentation", href: "#" },
-        { name: "Open Source", href: "#" },
-        { name: "Careers", href: "#" },
-      ]
-    },
-    // {
-    //   title: "Legal",
-    //   links: [
-    //     { name: "Privacy Policy", href: "#" },
-    //     { name: "Terms of Service", href: "#" },
-    //     { name: "Cookie Policy", href: "#" },
-    //     { name: "Code of Conduct", href: "#" },
-    //   ]
-    // }
+    }
   ];
 
   const scrollToTop = () => {
@@ -62,7 +44,7 @@ const Footer = () => {
       <div className="h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand Section */}
           <div className="lg:col-span-2">
             <motion.div
