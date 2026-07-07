@@ -166,7 +166,7 @@ export default function GalleryPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-6 space-y-6 py-6 pb-12"
+            className="columns-2 md:columns-3 lg:columns-4 gap-3 sm:gap-6 space-y-3 sm:space-y-6 py-6 pb-12"
           >
             {galleryImages.map((image, index) => (
               <div 
