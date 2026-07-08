@@ -67,28 +67,6 @@
     "image": "/ChatGPT Image Sep 7, 2025, 10_16_50 AM.png"
   },
   {
-    "id": "aeville-vision",
-    "title": "AEVILLE VISION",
-    "status": "Live",
-    "category": "Computer Vision / Smart City",
-    "categories": ["advanced", "ai", "platform"],
-    "icon": "Globe",
-    "color": "from-blue-500 to-indigo-500",
-    "description": "AI-powered urban planning and infrastructure visualization platform.",
-    "features": [
-      "Simulates urban expansion using computer vision",
-      "Real-time object detection and density estimation",
-      "Immersive 3D/2D mapping dashboard"
-    ],
-    "techStack": ["React", "FastAPI", "Three.js", "Computer Vision"],
-    "link": "https://aeville.netlify.app",
-    "github": "https://github.com/teamtechneekx",
-    "impact": "Urban Planning",
-    "aiPowered": true,
-    "isFeatured": true,
-    "image": "/file_0000000067647206a22ff5daad754190.png"
-  },
-  {
     "id": "hospital-pulse",
     "title": "HOSPITAL PULSE AI",
     "status": "Live",
