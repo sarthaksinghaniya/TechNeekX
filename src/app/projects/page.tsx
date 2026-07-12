@@ -136,6 +136,9 @@ const ProjectsPage = () => {
 
   // Filter projects based on active tab and search query
   const filteredProjects = (projectsData as Project[]).filter((project) => {
+    // Filter out projects with null links
+    if (project.link === null) return false;
+
     // Tab filter
     if (activeTab === 'ai-advanced') {
       const isAI = project.categories.includes('ai') || project.categories.includes('advanced') || project.aiPowered;

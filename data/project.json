@@ -67,49 +67,6 @@
     "image": "/ChatGPT Image Sep 7, 2025, 10_16_50 AM.png"
   },
   {
-    "id": "aeville-vision",
-    "title": "AEVILLE VISION",
-    "status": "Live",
-    "category": "Computer Vision / Smart City",
-    "categories": ["advanced", "ai", "platform"],
-    "icon": "Globe",
-    "color": "from-blue-500 to-indigo-500",
-    "description": "AI-powered urban planning and infrastructure visualization platform.",
-    "features": [
-      "Simulates urban expansion using computer vision",
-      "Real-time object detection and density estimation",
-      "Immersive 3D/2D mapping dashboard"
-    ],
-    "techStack": ["React", "FastAPI", "Three.js", "Computer Vision"],
-    "link": "https://aeville.netlify.app",
-    "github": "https://github.com/teamtechneekx",
-    "impact": "Urban Planning",
-    "aiPowered": true,
-    "isFeatured": true,
-    "image": "/file_0000000067647206a22ff5daad754190.png"
-  },
-  {
-    "id": "hospital-pulse",
-    "title": "HOSPITAL PULSE AI",
-    "status": "Live",
-    "category": "Healthcare AI",
-    "categories": ["healthcare", "ai"],
-    "icon": "TrendingUp",
-    "color": "from-blue-500 to-cyan-500",
-    "description": "Predicts emergency department surges, ICU demand, and patient load",
-    "features": [
-      "Enables proactive hospital resource allocation",
-      "Focused on interpretable AI for real-world adoption",
-      "Predictive analytics for healthcare"
-    ],
-    "techStack": ["Python", "ML Models", "React", "Data Analytics"],
-    "link": "https://hopx.netlify.app",
-    "github": "https://github.com/teamtechneekx",
-    "impact": "Healthcare Analytics",
-    "isFeatured": false,
-    "image": "/hopex4.jpg"
-  },
-  {
     "id": "investment-copilot",
     "title": "INVESTMENT AI COPILOT",
     "status": "In Development",
@@ -171,27 +128,6 @@
     "impact": "Sustainability",
     "isFeatured": false,
     "image": "/f3efe143-3bd0-4dc5-8f55-e5fa6c051f61.png"
-  },
-  {
-    "id": "hanu-planner",
-    "title": "HANU PLANNER",
-    "status": "Live",
-    "category": "Productivity",
-    "categories": ["productivity", "ai"],
-    "icon": "Calendar",
-    "color": "from-orange-500 to-red-500",
-    "description": "AI-based timetable generator for students and institutions",
-    "features": [
-      "Generates optimized schedules dynamically",
-      "Designed to solve real academic planning problems",
-      "Student-focused productivity tool"
-    ],
-    "techStack": ["JavaScript", "AI Logic", "Web App"],
-    "link": "https://hanuplanner.netlify.app",
-    "github": "https://github.com/teamtechneekx",
-    "impact": "Education Technology",
-    "isFeatured": false,
-    "image": "/ChatGPT Image Sep 7, 2025, 10_41_17 AM.png"
   },
   {
     "id": "hanu-youth",

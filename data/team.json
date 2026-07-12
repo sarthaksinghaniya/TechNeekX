@@ -4,7 +4,7 @@
       {
         "name": "Sarthak Singhaniya",
         "image": "/sarthak.jpeg",
-        "designation": "Founder & AI Engineer",
+        "designation": "Founder & CEO",
         "socials": {
           "linkedin": "https://www.linkedin.com/in/sarthak-singhaniya-a4ab9a323/",
           "github": "https://github.com/sarthaksinghaniya",
@@ -16,7 +16,7 @@
       {
         "name": "Nikhil Yadav",
         "image": "/nikhil.jpeg",
-        "designation": "Chief Design Officer (CDO)",
+        "designation": "Chairman",
         "socials": {
           "linkedin": "https://www.linkedin.com/in/nikhil-yadav-4b63212ba?utm_source=share_via&utm_content=profile&utm_medium=member_android",
           "github": "https://github.com/nikhil09790",
@@ -28,7 +28,7 @@
       {
         "name": "Anshuman Soni",
         "image": "/image.png",
-        "designation": "Chief Marketing Officer (CMO)",
+        "designation": "President",
         "socials": {
           "linkedin": "https://www.linkedin.com/in/anshuman-soni-60277b268/",
           "github": "https://github.com/Anshuman70k",
@@ -40,7 +40,7 @@
       {
         "name": "Hardik Talwar",
         "image": "/hardik.jpeg",
-        "designation": "Chief Business Officer (CBO)",
+        "designation": "Managing Director",
         "socials": {
           "linkedin": "https://www.linkedin.com/in/hardiktalwar2006/",
           "github": "https://github.com/hardiktalwar2006",
@@ -48,6 +48,18 @@
         },
         "cta": "https://hardik-db.netlify.app",
         "description": "Building business strategy, sponsorships, and high-value collaborations."
+      },
+      {
+        "name": "Anubhav Saxena",
+        "image": "/team/anubhav.jpg",
+        "designation": "Chief Technology Officer",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/anubhav-saxena-7b0b142a7",
+          "github": "https://github.com/Anubhavsaxena2004",
+          "email": "anubhavsaxenavibhu@gmail.com"
+        },
+        "cta": "https://anubhav-portfoliio.netlify.app/",
+        "description": "Full Stack Software Developer who turns backend architecture into products people actually use."
       }
     ],
     "coreTeam": [
@@ -88,15 +100,15 @@
         "description": "I'm a Computer Science student and a passionate video editor who loves combining creativity with technology. I enjoy solving problems through coding, exploring data science, and creating visually engaging content through video editing."
       },
       {
-        "name": "Anubhav Saxena",
-        "image": "/team/anubhav.jpg",
-        "designation": "Full Stack Lead",
+        "name": "Junaid Khan",
+        "image": "/team/junaid.jpeg",
+        "designation": "Frontend Lead",
         "socials": {
           "linkedin": "https://www.linkedin.com/in/anubhav-saxena-7b0b142a7",
           "github": "https://github.com/Anubhavsaxena2004",
-          "email": "anubhavsaxenavibhu@gmail.com"
+          "email": "junaid.k0004@gmail.com"
         },
-        "cta": "https://anubhav-portfoliio.netlify.app/",
+        "cta": "https://junaidk007.github.io/MyProtfolio/",
         "description": "Full Stack Software Developer who turns backend architecture into products people actually use."
       },
       {

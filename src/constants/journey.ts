@@ -84,7 +84,7 @@ export const journey: ReadonlyArray<Milestone> = [
     impact: "System building phase"
   },
   {
-    date: "April 2026",
+    date: "Current Phase",
     title: "Growth Phase",
     description: "Scaling operations, expanding reach, onboarding builders, and increasing impact",
     icon: Star,

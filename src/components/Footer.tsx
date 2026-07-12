@@ -132,9 +132,7 @@ const Footer = () => {
         >
           {/* Copyright */}
           <div className="text-slate-400 text-sm mb-4 md:mb-0 flex items-center">
-            © 2026 TechNeekX. Made with 
-            <Heart className="w-4 h-4 mx-1 text-red-400" fill="currentColor" />
-            by our community.
+            Copyright © 2026 TechNeekX Inc. All rights reserved.
           </div>
           
           {/* Back to Top Button */}

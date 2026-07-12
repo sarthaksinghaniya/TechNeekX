@@ -144,5 +144,74 @@
       "text": "Register Now",
       "link": "https://unstop.com/o/KN4YzSF?lb=dxH5duCA&utm_medium=Share&utm_source=online_coding_challenge&utm_campaign=Sarthsin39721"
     }
+  },
+  {
+    "id": "Internal-Hackathon",
+    "name": "Internal Hackathon",
+    "type": "Mini events",
+    "location": "Online",
+    "registrations": "Members only",
+    "attendees": "0",
+    "image": "/internalHack.png",
+    "cardTheme": "green",
+    "isFeatured": false,
+    "description": "A 24-hour hackathon focused on building agentic AI, LLM applications, and cognitive workflows.",
+    "tagline": "Code. Compete. Conquer.",
+    "icon": "Brain",
+    "gradient": "from-green-500 to-emerald-500",
+    "date": "2026-07-10",
+    "featured": false,
+    "showInOrganized": true,
+    "organizedOrder": 6,
+    "cta": {
+      "text": "See Details",
+      "link": ""
+    }
+  },
+  {
+    "id": "Impromptu-competition",
+    "name": "Impromptu Competition",
+    "type": "Mini events",
+    "location": "Online",
+    "registrations": "Members only",
+    "attendees": "20+",
+    "image": "/impromptu.jpeg",
+    "cardTheme": "green",
+    "isFeatured": false,
+    "description": "An engaging online event where participants deliver impromptu speeches on given topics.",
+    "tagline": "Think fast. Speak smart. Leave an impact",
+    "icon": "Mic",
+    "gradient": "from-green-500 to-emerald-500",
+    "date": "2026-07-03",
+    "featured": false,
+    "showInOrganized": true,
+    "organizedOrder": 6,
+    "cta": {
+      "text": "See Details",
+      "link": ""
+    }
+  },
+  {
+    "id": "Extempore-competition",
+    "name": "Extempore Competition",
+    "type": "Mini events",
+    "location": "Online",
+    "registrations": "Members only",
+    "attendees": "20+",
+    "image": "/extempore.jpeg",
+    "cardTheme": "green",
+    "isFeatured": false,
+    "description": "An engaging online event where participants deliver impromptu speeches on given topics.",
+    "tagline": "Think fast. Speak smart. Leave an impact",
+    "icon": "Mic",
+    "gradient": "from-green-500 to-emerald-500",
+    "date": "2026-07-03",
+    "featured": false,
+    "showInOrganized": true,
+    "organizedOrder": 6,
+    "cta": {
+      "text": "See Details",
+      "link": ""
+    }
   }
 ]

@@ -70,7 +70,7 @@ const Community = () => {
 
       <div className="tnx-container">
         <div className="tnx-grid-layout">
-          
+
           {/* Left Column: Heading and Info */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -86,12 +86,12 @@ const Community = () => {
               A High-Octane Builder Ecosystem
             </h2>
             <p className="tnx-body-text">
-              We are not just a community. We are builders of the next tech generation. 
-              Together, we shape the future of technology through intense collaboration, 
+              We are not just a community. We are builders of the next tech generation.
+              Together, we shape the future of technology through intense collaboration,
               constant shipping, and a shared passion for creating digital experiences.
             </p>
-            
-           
+
+
           </motion.div>
 
           {/* Right Column: 2x2 Grid of Premium Cards */}
@@ -112,8 +112,8 @@ const Community = () => {
                     className="tnx-premium-card community-card"
                   >
                     {/* Event Photography low-opacity background */}
-                    <div 
-                      className="community-card-bg-image" 
+                    <div
+                      className="community-card-bg-image"
                       style={{ backgroundImage: `url(${card.bgImage})` }}
                     />
                     <div className="community-card-overlay" />
