@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft } from 'lucide-react';
+import { ChevronLeft, Sparkle } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -183,6 +183,28 @@ export default function TeamPage() {
               </motion.div>
             </div>
           )}
+
+          {/* Sparkle Banner Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="team-sparkle-banner-container"
+          >
+            <div className="team-sparkle-banner">
+              {/* Wings Watermark Image placed behind the text */}
+              <img 
+                src="/about/tnx-wings.png" 
+                alt="TechNeekX Wings Watermark" 
+                className="team-sparkle-watermark"
+              />
+              <div className="team-sparkle-text">
+                <p className="team-sparkle-lead">Great teams build great communities.</p>
+                <p className="team-sparkle-sub designation-gradient">Together, we build the future.</p>
+              </div>
+            </div>
+          </motion.div>
         </div>
 
         <Footer />
