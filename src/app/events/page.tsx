@@ -25,6 +25,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import eventsData from '../../../data/events.json';
 import '@/styles/EventsPage.css';
+import Loader from '@/components/Loader';
 
 interface Event {
   id: string;
@@ -208,6 +209,7 @@ const EventsPage = () => {
 
   return (
     <>
+      <Loader/>
       <Navbar />
 
       <main className="events-page-container">
@@ -283,7 +285,8 @@ const EventsPage = () => {
           <motion.div
             variants={containerVariants}
             initial="hidden"
-            animate="visible"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.05 }}
             className="events-cards-grid"
           >
             <AnimatePresence mode="popLayout">

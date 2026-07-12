@@ -404,6 +404,7 @@
 /* Stats Pill Badges Row */
 .event-page-stats-pill-row {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
   margin-top: auto;
   padding-top: 10px;
@@ -523,6 +524,10 @@
   .events-cards-grid {
     grid-template-columns: 1fr;
     gap: 20px;
+  }
+  .event-page-card {
+    height: auto;
+    max-height: none;
   }
 }
 

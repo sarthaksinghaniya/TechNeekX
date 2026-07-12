@@ -104,12 +104,12 @@
         "image": "/team/junaid.jpeg",
         "designation": "Frontend Lead",
         "socials": {
-          "linkedin": "https://www.linkedin.com/in/anubhav-saxena-7b0b142a7",
-          "github": "https://github.com/Anubhavsaxena2004",
+          "linkedin": "https://www.linkedin.com/in/junaidkhan0007",
+          "github": "https://github.com/Junaidk007",
           "email": "junaid.k0004@gmail.com"
         },
         "cta": "https://junaidk007.github.io/MyProtfolio/",
-        "description": "Full Stack Software Developer who turns backend architecture into products people actually use."
+        "description": "Full Stack Software Developer passionate about building modern, scalable web applications with clean architecture, intuitive interfaces, and thoughtfully crafted digital experiences."
       },
       {
         "name": "Kriti Jain",
@@ -123,7 +123,6 @@
         "cta": "https://kriti-web.netlify.app",
         "description": "I'm Kriti Jain, pursuing BTech in CSE at AKTU. My primary interests are backend engineering, AI and ML."
       },
-      
       {
         "name": "Akshara Dixit",
         "image": "/team/akshara.jpg",

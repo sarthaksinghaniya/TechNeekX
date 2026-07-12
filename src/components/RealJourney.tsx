@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useState, useEffect } from 'react';
-import { motion, useScroll, useSpring } from 'framer-motion';
+import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import * as LucideIcons from 'lucide-react';
 import { journey } from '@/constants/journey';
@@ -29,11 +29,14 @@ const RealJourney = () => {
   });
 
   // Smooth out the scroll progress
-  const scaleY = useSpring(scrollYProgress, {
+  const smoothProgress = useSpring(scrollYProgress, {
     stiffness: 80,
     damping: 25,
     restDelta: 0.001
   });
+
+  // Reveal the dashed progress line downwards without stretching
+  const clipPath = useTransform(smoothProgress, [0, 1], ["inset(0 0 100% 0)", "inset(0 0 0% 0)"]);
 
   const rowVariants = {
     hidden: {},
@@ -148,7 +151,7 @@ const RealJourney = () => {
             Our Journey
           </h1>
           <p className="tnx-body-text mx-auto text-center">
-            Consistently shipping, hacking, and building since August 2025. 
+            Consistently shipping, hacking, and building since 28th August 2025. 
             Every milestone in our path is backed by execution, learning, and collaboration.
           </p>
         </div>
@@ -159,7 +162,7 @@ const RealJourney = () => {
           <div className="real-timeline-line">
             <motion.div
               className="real-timeline-line-progress"
-              style={{ scaleY, originY: 0 }}
+              style={{ clipPath }}
             />
           </div>
 

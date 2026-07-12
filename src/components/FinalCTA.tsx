@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Instagram, Mail } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
@@ -15,6 +16,7 @@ const iconMap: { [key: string]: any } = {
 };
 
 const FinalCTA = () => {
+  const [clickRotation, setClickRotation] = useState(0);
   const containerVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -169,11 +171,19 @@ const FinalCTA = () => {
               {/* Inner glowing background */}
               <div className="absolute inset-3 rounded-full bg-slate-950/40 backdrop-blur-sm border border-white/5 shadow-[inset_0_0_20px_rgba(255,255,255,0.05)] flex items-center justify-center" />
 
-              {/* Logo container with floating animation */}
+              {/* Logo container with floating animation and click/hover spin */}
               <motion.div
-                className="relative w-28 h-28 md:w-34 md:h-34 z-10"
-                animate={{ y: [0, -6, 0] }}
-                transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }}
+                className="relative w-28 h-28 md:w-34 md:h-34 z-10 cursor-pointer"
+                animate={{ 
+                  y: [0, -6, 0],
+                  rotate: clickRotation
+                }}
+                whileHover={{ rotate: clickRotation + 1800 }}
+                onClick={() => setClickRotation(prev => prev + 1800)}
+                transition={{
+                  y: { repeat: Infinity, duration: 4, ease: 'easeInOut' },
+                  rotate: { duration: 0.8, ease: 'easeInOut' }
+                }}
               >
                 <Image
                   src="/file_0000000067647206a22ff5daad754190.png"

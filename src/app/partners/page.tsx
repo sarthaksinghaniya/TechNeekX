@@ -3,12 +3,8 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Search, 
   ChevronLeft, 
-  ExternalLink, 
-  Plus, 
-  Handshake,
-  Image as ImageIcon 
+  Handshake 
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import Navbar from '@/components/Navbar';
@@ -16,6 +12,7 @@ import Footer from '@/components/Footer';
 import partnersData from '../../../data/community_partners.json';
 import { openTeamForm, FORM_CONFIG } from '@/config/teamForms';
 import '@/styles/PartnersPage.css';
+import Loader from '@/components/Loader';
 
 interface Partner {
   name: string;
@@ -30,8 +27,6 @@ interface Partner {
 
 const PartnersPage = () => {
   const router = useRouter();
-  const [activeTab, setActiveTab] = useState<'all' | 'collaboration' | 'technology'>('all');
-  const [searchQuery, setSearchQuery] = useState('');
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -43,8 +38,8 @@ const PartnersPage = () => {
       <div className="partners-page-container">
         <div className="partners-page-content-wrapper">
           <div className="partners-page-header">
-            <span className="partners-page-badge">COMMUNITY</span>
-            <h1 className="partners-page-title">Our Partners</h1>
+            <span className="partners-page-badge">Ecosystem</span>
+            <h1 className="partners-page-title">Community Partners</h1>
             <p className="partners-page-description">Loading community partners...</p>
           </div>
         </div>
@@ -55,31 +50,6 @@ const PartnersPage = () => {
   const getInitials = (name: string) => {
     return name.split(' ').map(word => word[0]).join('').toUpperCase().slice(0, 2);
   };
-
-  // Filter partners based on active tab and search query
-  const filteredPartners = (partnersData as Partner[]).filter((partner) => {
-    // Determine effective badge (fall back to "Community Partner" if not explicitly specified)
-    const effectiveBadge = partner.badge || 'Community Partner';
-
-    // Tab filter
-    if (activeTab === 'collaboration') {
-      if (effectiveBadge !== 'Collaboration Partner') return false;
-    } else if (activeTab === 'technology') {
-      if (effectiveBadge !== 'Technology Partner') return false;
-    }
-
-    // Search query filter
-    if (searchQuery.trim() !== '') {
-      const query = searchQuery.toLowerCase();
-      const nameMatch = partner.name.toLowerCase().includes(query);
-      const roleMatch = partner.role.toLowerCase().includes(query);
-      const descMatch = partner.description?.toLowerCase().includes(query) || false;
-      const expMatch = partner.expertise.some(exp => exp.toLowerCase().includes(query));
-      return nameMatch || roleMatch || descMatch || expMatch;
-    }
-
-    return true;
-  });
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -104,14 +74,9 @@ const PartnersPage = () => {
     }
   };
 
-  const tabs = [
-    { id: 'all', label: 'All Partners' },
-    { id: 'collaboration', label: 'Collaboration' },
-    { id: 'technology', label: 'Technology' }
-  ];
-
   return (
     <>
+      <Loader/>
       <Navbar />
 
       <main className="partners-page-container">
@@ -150,11 +115,12 @@ const PartnersPage = () => {
           <motion.div
             variants={containerVariants}
             initial="hidden"
-            animate="visible"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.05 }}
             className="partners-cards-grid"
           >
             <AnimatePresence mode="popLayout">
-              {filteredPartners.map((partner) => (
+              {(partnersData as Partner[]).map((partner) => (
                 <motion.div
                   layout
                   key={partner.name}
@@ -165,37 +131,36 @@ const PartnersPage = () => {
                   exit={{ opacity: 0, scale: 0.9 }}
                   className="partner-page-card"
                 >
-                  {/* Floating Corner Tag Badge */}
-                  <span className="partner-page-badge">
-                    {partner.badge || 'Community Partner'}
-                  </span>
-
-                  {/* Hover background gradient */}
-                  <div className={`partner-page-card-hover-bg bg-gradient-to-br ${partner.gradient}`} />
-                  
-                  {/* Avatar/Logo container with centered object-fit */}
-                  <div className="partner-page-avatar-container">
-                    <div className="partner-page-avatar">
+                  {/* Top Row: Logo (left) and Badge (right) */}
+                  <div className="partner-card-top-row">
+                    <div className="partner-logo-container">
                       {partner.avatar ? (
-                        <img src={partner.avatar} alt={partner.name} />
+                        <img src={partner.avatar} alt={partner.name} className="partner-logo-img" />
                       ) : (
-                        <div className={`partner-page-initials-fallback bg-gradient-to-r ${partner.gradient}`}>
+                        <div className={`partner-logo-fallback bg-gradient-to-r ${partner.gradient}`}>
                           {getInitials(partner.name)}
                         </div>
                       )}
                     </div>
+                    
+                    <span className="partner-badge-tag">
+                      {partner.badge || 'Community Partner'}
+                    </span>
                   </div>
 
-                  {/* Card Content Details */}
-                  <div className="partner-page-card-details">
-                    <h3 className="partner-page-name">{partner.name}</h3>
-                    <span className="partner-page-role">{partner.role}</span>
-                    
-                    {partner.description && (
-                      <p className="partner-page-desc">{partner.description}</p>
-                    )}
+                  {/* Below Logo: Title (Partner Name) */}
+                  <h3 className="partner-card-title">{partner.name}</h3>
 
-                    {/* Universal CTA Action Button */}
+                  {/* Subheading (Partner Role) */}
+                  <p className="partner-card-subheading designation-gradient">{partner.role}</p>
+
+                  {/* Description */}
+                  {partner.description && (
+                    <p className="partner-card-description">{partner.description}</p>
+                  )}
+
+                  {/* Divider and Bottom Area (Full Width CTA) */}
+                  <div className="partner-card-bottom-row">
                     <button 
                       onClick={() => {
                         if (partner.link) {
@@ -204,46 +169,55 @@ const PartnersPage = () => {
                           openTeamForm('partner');
                         }
                       }}
-                      className="partner-page-link-btn"
+                      className="partner-cta-action-btn"
                     >
                       <span>{partner.link ? 'Learn More' : 'Collaborate'}</span>
-                      <ExternalLink size={13} />
                     </button>
                   </div>
                 </motion.div>
               ))}
 
-              {/* Become a Partner CTA Card (only show if not searching or filtering heavily) */}
-              {searchQuery.trim() === '' && activeTab === 'all' && (
-                <motion.div
-                  layout
-                  variants={cardVariants}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.15 }}
-                  className="partner-page-card partner-cta-card"
-                >
-                  <span className="partner-page-badge">Join Us</span>
-                  <div className="partner-cta-icon-wrapper">
-                    <Handshake size={32} />
+              {/* Become a Partner CTA Card */}
+              <motion.div
+                layout
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.15 }}
+                className="partner-page-card partner-cta-card"
+              >
+                {/* Top Row: Icon (left) and Badge (right) */}
+                <div className="partner-card-top-row">
+                  <div className="partner-logo-container partner-cta-icon-container">
+                    <Handshake size={24} className="partner-cta-icon" />
                   </div>
-                  <h3 className="partner-cta-title">Collaborate with Us</h3>
-                  <p className="partner-cta-desc">
-                    Partner with TechNeekX to host hackathons, share technical content, or support developer growth.
-                  </p>
                   
+                  <span className="partner-badge-tag partner-cta-badge-tag">
+                    Join Us
+                  </span>
+                </div>
+
+                {/* Below Icon: Title */}
+                <h3 className="partner-card-title">Collaborate with Us</h3>
+
+                {/* Subheading: Time Estimate */}
+                <p className="partner-card-subheading designation-gradient">Est. Time: {FORM_CONFIG.partner.timeEstimate}</p>
+
+                {/* Description */}
+                <p className="partner-card-description">
+                  Partner with TechNeekX to host hackathons, share technical content, or support developer growth.
+                </p>
+
+                {/* Divider and Bottom Area (Full Width CTA) */}
+                <div className="partner-card-bottom-row">
                   <button 
                     onClick={() => openTeamForm('partner')}
-                    className="partner-cta-btn"
+                    className="partner-cta-action-btn"
                   >
-                    Become a Partner
+                    <span>Become a Partner</span>
                   </button>
-                  
-                  <span className="partner-cta-estimate">
-                    {FORM_CONFIG.partner.timeEstimate}
-                  </span>
-                </motion.div>
-              )}
+                </div>
+              </motion.div>
             </AnimatePresence>
           </motion.div>
         </div>

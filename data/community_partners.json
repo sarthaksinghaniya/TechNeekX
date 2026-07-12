@@ -29,7 +29,7 @@
   {
     "name": "Gemini",
     "role": "AI Innovation Partner",
-    "avatar": "/download.png",
+    "avatar": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
     "description": "Leveraging cutting-edge AI technology to drive innovation and intelligent solutions.",
     "badge": "Technology Partner",
     "expertise": [
@@ -37,28 +37,33 @@
       "Generative AI",
       "Smart Solutions"
     ],
-    "gradient": "from-blue-500 to-cyan-400"
+    "gradient": "from-blue-500 to-cyan-400",
+    "link": "https://www.linkedin.com/company/google-gemini-ai/"
   },
   {
     "name": "UnStop",
-    "role": "Collaboration Partner",
+    "role": "Engagement Partner",
     "avatar": "/unstop-logo.svg",
     "expertise": [
       "Your Expertise",
       "Your Impact",
       "Your Growth"
     ],
-    "gradient": "from-gray-500 to-gray-700"
+    "description": "The largest community engagement platform built to help talent be unstoppable.",
+    "gradient": "from-gray-500 to-gray-700",
+    "link": "https://www.linkedin.com/company/unstop/posts/?feedView=all"
   },
   {
     "name": "AI4Tomorrow",
     "role": "AI Partner",
     "avatar": "/AI4Tomorrow logo.png",
+    "description": "Leading the Way to Tomorrow with AI",
     "expertise": [
       "Your Expertise",
       "Your Impact",
       "Your Growth"
     ],
-    "gradient": "from-gray-500 to-gray-700"
+    "gradient": "from-gray-500 to-gray-700",
+    "link": "https://www.linkedin.com/company/ai-4-tomorrow/"
   }
 ]
