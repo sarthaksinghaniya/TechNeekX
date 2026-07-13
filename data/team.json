@@ -134,6 +134,18 @@
         },
         "cta": "https://drive.google.com/file/d/1aooryqS10MfnccMQA3H_KWgnKo41DJ43/view?usp=drivesdk",
         "description": "I Akshara Dixit am designated as AIML Core in TechNeekX. I want to be a Data Scientist and this community is helping me to improve my personality and to innovate some new things with others."
+      },
+      {
+        "name": "Anurag Pal",
+        "image": "/team/anurag.jpeg",
+        "designation": "ORM LEAD",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/anurag-pal-231b81382",
+          "github": "https://github.com/anuragpal06",
+          "email": "palanurag615@gmail.com"
+        },
+        "cta": "https://www.linkedin.com/in/anurag-pal-231b81382",
+        "description": "Passionate Computer Science student and Core Team Member at TechNeekX. Interested in AI, Full Stack Development, and community building. Focused on solving real-world problems through technology while continuously learning and contributing to impactful projects."
       }
     ],
     "members": []
