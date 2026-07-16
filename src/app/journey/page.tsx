@@ -6,9 +6,6 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import RealJourney from '@/components/RealJourney';
 import Loader from '@/components/Loader';
-import LiveActivityFeed from '@/components/LiveActivityFeed';
-import StickyCTA from '@/components/StickyCTA';
-import CommandPalette from '@/components/CommandPalette';
 
 // Scroll Progress Component
 const ScrollProgress = () => {
@@ -48,15 +45,12 @@ export default function JourneyPage() {
         <ScrollProgress />
         <Loader />
         <Navbar />
-        {/* <StickyCTA /> */}
-        {/* <CommandPalette /> */}
 
         <main className="pt-20">
           <RealJourney />
         </main>
 
         <Footer />
-        {/* <LiveActivityFeed /> */}
       </motion.main>
     </AnimatePresence>
   );

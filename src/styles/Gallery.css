@@ -108,7 +108,7 @@
   transform-style: preserve-3d;
   user-select: none;
   pointer-events: auto; /* enable click */
-  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: border-color 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .gallery-carousel-card.active {
@@ -168,6 +168,8 @@
   filter: blur(120px);
   pointer-events: none;
   z-index: 0;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
 }
 
 .gallery-blob-1 {
@@ -186,7 +188,7 @@
   left: -100px;
 }
 
-/* Lightbox Modal */
+/* Lightbox Modal - UNUSED
 .lightbox-overlay {
   position: fixed;
   inset: 0;
@@ -242,6 +244,7 @@
 .lightbox-close:hover {
   background: rgba(255, 255, 255, 0.25);
 }
+*/
 
 /* Dots Navigation */
 .gallery-carousel-dots {

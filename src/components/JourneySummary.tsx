@@ -41,7 +41,7 @@ const JourneySummary = () => {
     const parts = gradientString.split(' ');
     const fromClass = parts.find(p => p.startsWith('from-'))?.replace('from-', '') || 'purple-500';
     const toClass = parts.find(p => p.startsWith('to-'))?.replace('to-', '') || 'pink-500';
-    
+
     const colorMap: Record<string, string> = {
       'indigo-500': '#6366f1',
       'purple-500': '#7c3aed',
@@ -74,7 +74,7 @@ const JourneySummary = () => {
 
       <div className="tnx-container">
         <div className="journey-layout">
-          
+
           {/* Left Column: Zig-Zag Timeline */}
           <div className="journey-timeline-wrapper">
             {/* Dashed Timeline vertical line */}
@@ -89,7 +89,7 @@ const JourneySummary = () => {
             >
               {recentMilestones.map((milestone, idx) => {
                 const IconComponent = milestone.icon;
-                
+
                 // Index 0: date left, card right
                 // Index 1: card left, date right
                 // Index 2: date left, card right
@@ -136,7 +136,7 @@ const JourneySummary = () => {
                           <span className={`journey-status-badge ${milestone.status}`}>
                             {milestone.status === 'now' ? 'In Progress' : 'Completed'}
                           </span>
-                          
+
                           <div className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-purple-500/5 border border-purple-500/10 text-purple-600 text-[10px] font-semibold">
                             <LucideIcons.Zap size={10} />
                             <span>{milestone.impact}</span>
@@ -178,8 +178,8 @@ const JourneySummary = () => {
               Our Journey
             </h2>
             <p className="tnx-body-text">
-              Consistently shipping, hacking, and building since August 2025. 
-              We track our growth through milestones of work—participating in national events, 
+              Consistently shipping, hacking, and building since August 2025.
+              We track our growth through milestones of work—participating in national events,
               forming a robust builder network, and launching AI products.
             </p>
           </motion.div>

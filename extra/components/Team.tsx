@@ -4,21 +4,22 @@ import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail, ExternalLink } from 'lucide-react';
 import { FORM_CONFIG } from '@/config/teamForms';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 const Team = () => {
   const router = useRouter();
   const teamMembers = [
-   {
+    {
       name: "Sarthak Singhaniya",
       role: "CO-FOUNDER, CIO, System Architect, AI/ML Engineer",
       bio: "Oversees system design, team dynamics, and AI/ML strategy. Ensures technical excellence and team growth.",
       strengths: ["System Architecture", "Team Building", "AI/ML Strategy"],
       image: "/WhatsApp Image 2025-12-24 at 1.46.07 PM.jpeg",
-      links: { 
-        github: "https://github.com/sarthaksinghaniya", 
-        linkedin: "https://www.linkedin.com/in/sarthak-singhaniya-a4ab9a323/", 
+      links: {
+        github: "https://github.com/sarthaksinghaniya",
+        linkedin: "https://www.linkedin.com/in/sarthak-singhaniya-a4ab9a323/",
         email: "sarthaksinghaniya789@gmail.com",
-        portfolio: "sarthaksinghaniya.netlify.app" 
+        portfolio: "sarthaksinghaniya.netlify.app"
       },
       gradient: "from-blue-500 to-cyan-500"
     },
@@ -28,11 +29,11 @@ const Team = () => {
       bio: "Connects backend and frontend with clean, maintainable code and a problem‑solving mindset.",
       strengths: ["Creativity + Frontend", "Designing", "Smooth UI"],
       image: "/image.png",
-      links: { 
-        github: "https://github.com/nikhil09790", 
-        linkedin: "https://www.linkedin.com/in/nikhil-yadav-4b63212ba?utm_source=share_via&utm_content=profile&utm_medium=member_android", 
-        email: "seemayadav97950@gmail.com", 
-        portfolio: "#" 
+      links: {
+        github: "https://github.com/nikhil09790",
+        linkedin: "https://www.linkedin.com/in/nikhil-yadav-4b63212ba?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+        email: "seemayadav97950@gmail.com",
+        portfolio: "#"
       },
       gradient: "from-purple-500 to-indigo-500"
     },
@@ -42,11 +43,11 @@ const Team = () => {
       bio: "Strategic marketing visionary driving brand growth and media partnerships.",
       strengths: ["Marketing Strategy", "Media Relations", "Brand Development"],
       image: "/image.png",
-      links: { 
-        github: "https://github.com/hardik112006", 
-        linkedin: "https://www.linkedin.com/in/hardik-talwar-66b362335?utm_source=share_via&utm_content=profile&utm_medium=member_android", 
-        email: "anshuman70k@gmail.com", 
-        portfolio: "#" 
+      links: {
+        github: "https://github.com/hardik112006",
+        linkedin: "https://www.linkedin.com/in/hardik-talwar-66b362335?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+        email: "anshuman70k@gmail.com",
+        portfolio: "#"
       },
       gradient: "from-green-500 to-teal-500"
     },
@@ -56,11 +57,11 @@ const Team = () => {
       bio: "Business strategy expert and frontend developer bridging technical and commercial success.",
       strengths: ["Business Strategy", "Frontend Development", "Client Relations"],
       image: "/hardik.jpeg",
-      links: { 
-        github: "https://github.com/sarthaksinghaniya", 
-        linkedin: "https://www.linkedin.com/in/sarthak-singhaniya-a4ab9a323/", 
-        email: "hardiktalwar2006@gmail.com", 
-        portfolio: "#" 
+      links: {
+        github: "https://github.com/sarthaksinghaniya",
+        linkedin: "https://www.linkedin.com/in/sarthak-singhaniya-a4ab9a323/",
+        email: "hardiktalwar2006@gmail.com",
+        portfolio: "#"
       },
       gradient: "from-blue-500 to-cyan-500"
     }
@@ -81,7 +82,7 @@ const Team = () => {
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-pink-600 mx-auto mb-8 rounded-full"></div>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            The brilliant minds behind TechNeekX. Each member brings unique expertise and 
+            The brilliant minds behind TechNeekX. Each member brings unique expertise and
             passion to create extraordinary digital experiences.
           </p>
         </motion.div>
@@ -100,15 +101,17 @@ const Team = () => {
             >
               {/* Glow Effect */}
               <div className={`absolute inset-0 bg-gradient-to-r ${member.gradient} rounded-3xl opacity-0 group-hover:opacity-5 transition-opacity duration-300 -z-10 blur-md`}></div>
-              
+
               {/* Profile Image */}
               <div className="relative mb-8">
                 <div className="w-28 h-28 mx-auto rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 p-0.5 overflow-hidden">
                   <div className="w-full h-full rounded-full overflow-hidden">
                     <div className={`w-full h-full transform ${member.name === 'Sarthak Singhaniya' ? 'scale-110 -translate-y-1' : ''}`}>
-                      <img
+                      <Image
                         src={member.image}
                         alt={member.name}
+                        width={112}
+                        height={112}
                         className={`w-full h-full object-cover ${member.name === 'Sarthak Singhaniya' ? 'object-top' : 'object-center'}`}
                         style={member.name === 'Sarthak Singhaniya' ? { objectPosition: '60% 15%' } : {}}
                       />
@@ -198,7 +201,7 @@ const Team = () => {
           <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-3xl p-8 border border-gray-100">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">Want to Join Our Team?</h3>
             <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-              We're always looking for talented individuals who share our passion for innovation 
+              We're always looking for talented individuals who share our passion for innovation
               and excellence. Let's build something amazing together.
             </p>
             <motion.button

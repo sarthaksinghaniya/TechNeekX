@@ -6,7 +6,7 @@ import { FaWhatsapp } from 'react-icons/fa';
 import { useRouter } from 'next/navigation';
 import data from '../constants/data.json';
 import '../styles/Hero.css';
-import { openTeamForm, FORM_CONFIG } from '@/config/teamForms';
+import { openTeamForm } from '@/config/teamForms';
 
 const iconMap: { [key: string]: any } = {
   Github: Github,
@@ -53,9 +53,10 @@ const Hero = () => {
         muted
         playsInline
         poster="/hero/main.jpeg"
+        preload="metadata"
       />
       <div className="hero-overlay" />
-      
+
       <motion.div
         className="hero-content"
         variants={containerVariants}

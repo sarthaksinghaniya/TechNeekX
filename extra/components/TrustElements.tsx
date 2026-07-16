@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Award, Users, Code, Star, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 const TrustElements = () => {
   const router = useRouter();
@@ -69,26 +70,26 @@ const TrustElements = () => {
     <section id="trust" className="py-16 md:py-28 relative">
       {/* Background decoration */}
       <div className="absolute inset-0">
-        <motion.div 
+        <motion.div
           className="gradient-blob w-96 h-96 bg-gradient-to-r from-purple-500/10 to-pink-500/10 top-10 left-10"
-          animate={{ 
+          animate={{
             scale: [1, 1.2, 1],
             rotate: [0, 180, 360]
           }}
-          transition={{ 
-            duration: 20, 
+          transition={{
+            duration: 20,
             repeat: Infinity,
             ease: "linear"
           }}
         ></motion.div>
-        <motion.div 
+        <motion.div
           className="gradient-blob w-80 h-80 bg-gradient-to-r from-blue-500/10 to-green-500/10 bottom-10 right-10"
-          animate={{ 
+          animate={{
             scale: [1.2, 1, 1.2],
             rotate: [360, 180, 0]
           }}
-          transition={{ 
-            duration: 25, 
+          transition={{
+            duration: 25,
             repeat: Infinity,
             ease: "linear"
           }}
@@ -117,20 +118,22 @@ const TrustElements = () => {
                 whileHover={{ scale: 1.05 }}
                 className="w-24 h-24 rounded-full overflow-hidden mb-4 border-2 border-white/20"
               >
-                <img
+                <Image
                   src="/sarthak.jpeg"
                   alt="Founder"
+                  width={96}
+                  height={96}
                   className="w-full h-full object-cover"
                 />
               </motion.div>
-              
+
               <motion.div
                 variants={itemVariants}
                 className="text-center"
               >
                 <h3 className="text-2xl font-bold text-white mb-2">Sarthak Singhaniya</h3>
                 <p className="text-white/70 mb-2">Founder & CEO, TechNeekX</p>
-                
+
                 {/* Credibility Highlights */}
                 <div className="flex flex-wrap justify-center gap-2 mb-4">
                   <span className="px-3 py-1 glass rounded-full text-white/70 text-xs">Hackathon Winner</span>
@@ -147,15 +150,15 @@ const TrustElements = () => {
                 </div>
               </motion.div>
             </motion.div>
-            
+
             <motion.p
               variants={itemVariants}
               className="text-white/80 text-center max-w-2xl mx-auto mb-6"
             >
-              "We're not just another tech community. We're builders who understand the challenges 
+              "We're not just another tech community. We're builders who understand the challenges
               and opportunities in the AI ecosystem because we've lived them."
             </motion.p>
-            
+
             <motion.div
               variants={itemVariants}
               className="inline-flex items-center gap-2 px-4 py-2 glass rounded-full mb-4"
@@ -178,8 +181,8 @@ const TrustElements = () => {
             <motion.div
               key={point.title}
               variants={itemVariants}
-              whileHover={{ 
-                y: -12, 
+              whileHover={{
+                y: -12,
                 scale: 1.02,
                 transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] }
               }}
@@ -188,17 +191,17 @@ const TrustElements = () => {
               className="card-hover card-tilt rounded-2xl p-6 text-center group relative"
             >
               {/* Animated gradient background on hover */}
-              <motion.div 
+              <motion.div
                 className={`absolute inset-0 bg-gradient-to-br ${point.gradient} opacity-0`}
-                animate={{ 
-                  opacity: hoveredCard === index ? 0.1 : 0 
+                animate={{
+                  opacity: hoveredCard === index ? 0.1 : 0
                 }}
                 transition={{ duration: 0.3 }}
               ></motion.div>
-              
+
               {/* Icon */}
               <motion.div
-                whileHover={{ 
+                whileHover={{
                   rotate: 360,
                   scale: 1.1,
                   transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
@@ -207,23 +210,23 @@ const TrustElements = () => {
               >
                 <point.icon className="w-7 h-7 text-white" />
               </motion.div>
-              
+
               {/* Title */}
-              <motion.h3 
+              <motion.h3
                 className="text-xl font-bold text-white mb-3 group-hover:text-gradient transition-all duration-300 relative z-10"
-                animate={{ 
-                  scale: hoveredCard === index ? 1.05 : 1 
+                animate={{
+                  scale: hoveredCard === index ? 1.05 : 1
                 }}
                 transition={{ duration: 0.3 }}
               >
                 {point.title}
               </motion.h3>
-              
+
               {/* Description */}
-              <motion.p 
+              <motion.p
                 className="text-white/70 text-sm leading-relaxed relative z-10"
-                animate={{ 
-                  y: hoveredCard === index ? -2 : 0 
+                animate={{
+                  y: hoveredCard === index ? -2 : 0
                 }}
                 transition={{ duration: 0.3 }}
               >
@@ -231,10 +234,10 @@ const TrustElements = () => {
               </motion.p>
 
               {/* Hover effect decoration */}
-              <motion.div 
+              <motion.div
                 className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${point.gradient} opacity-0`}
-                animate={{ 
-                  opacity: hoveredCard === index ? 0.2 : 0 
+                animate={{
+                  opacity: hoveredCard === index ? 0.2 : 0
                 }}
                 transition={{ duration: 0.3 }}
               ></motion.div>

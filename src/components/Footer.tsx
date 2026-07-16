@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { Github, Instagram, Linkedin, Mail, Twitter, ArrowUp, Heart } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
+import Image from 'next/image';
 
 const Footer = () => {
   const socialLinks = [
@@ -42,7 +43,7 @@ const Footer = () => {
     <footer className="relative bg-[#090b11] border-t border-slate-800 text-slate-400">
       {/* Gradient top border */}
       <div className="h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
-      
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand Section */}
@@ -56,9 +57,11 @@ const Footer = () => {
               {/* Logo */}
               <div className="flex items-center gap-1 mb-4">
                 <div className="w-10 h-10 relative rounded-full overflow-hidden flex-shrink-0">
-                  <img 
-                    src="/file_0000000067647206a22ff5daad754190.png" 
-                    alt="TechNeekX Logo" 
+                  <Image
+                    src="/file_0000000067647206a22ff5daad754190.png"
+                    alt="TechNeekX Logo"
+                    width={40}
+                    height={40}
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -71,13 +74,13 @@ const Footer = () => {
                   </span>
                 </div>
               </div>
-              
+
               {/* Description */}
               <p className="text-slate-400 mb-6 leading-relaxed max-w-sm">
-                Building the future of student innovation. A next-generation tech community 
+                Building the future of student innovation. A next-generation tech community
                 empowering builders, innovators, and AI creators.
               </p>
-              
+
               {/* Social Links */}
               <div className="flex space-x-4">
                 {socialLinks.map((social) => (
@@ -134,7 +137,7 @@ const Footer = () => {
           <div className="text-slate-400 text-sm mb-4 md:mb-0 flex items-center">
             Copyright © 2026 TechNeekX Inc. All rights reserved.
           </div>
-          
+
           {/* Back to Top Button */}
           <motion.button
             whileHover={{ scale: 1.05 }}

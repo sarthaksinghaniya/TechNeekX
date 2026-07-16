@@ -8,7 +8,7 @@
   font-family: var(--nav-font);
 }
 
-/* Background video */
+/* Background video - UNUSED
 .featured-projects-bg-video {
   position: absolute;
   top: 0;
@@ -16,10 +16,10 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* Subtle premium visibility */
   pointer-events: none;
   z-index: 0;
 }
+*/
 
 /* Background gradient blobs */
 .featured-projects-blob {
@@ -29,6 +29,7 @@
   pointer-events: none;
   z-index: 0;
   will-change: transform;
+  transform: translate3d(0, 0, 0);
 }
 
 .featured-projects-blob-1 {
@@ -180,9 +181,11 @@
   text-align: left;
 }
 
+/* UNUSED
 .featured-projects-title-line {
-  display: none; /* Removed for Apple-style editorial simplicity */
+  display: none;
 }
+*/
 
 .featured-projects-subtitle {
   font-size: 18px; /* Updated to 18px body text */
@@ -214,7 +217,7 @@
   max-height: 400px; /* Safe minimum height */
   box-shadow: 0 15px 35px rgba(15, 23, 42, 0.04),
               inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: border-color 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   position: relative;
   overflow: hidden; /* For clipping reflection shimmer */
   scroll-snap-align: start;
@@ -252,16 +255,13 @@
   transition: left 0.85s ease-in-out;
 }
 
-/* Card Header elements */
-
-
+/* Card Header elements - UNUSED
 .featured-card-badges {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
 }
 
-/* Project Badge styling */
 .project-badge {
   display: inline-flex;
   align-items: center;
@@ -300,6 +300,7 @@
 .badge-icon-purple {
   color: #a855f7;
 }
+*/
 
 /* App Icon style */
 .featured-card-app-icon-wrapper {

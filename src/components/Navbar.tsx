@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll } from 'framer-motion';
 import { Github, Instagram, Linkedin, Mail, Menu, X, ArrowRight } from 'lucide-react';
 import { useRouter, usePathname } from 'next/navigation';
 import '../styles/Navbar.css';
@@ -100,12 +100,14 @@ const Navbar = () => {
     return activeSection === targetId;
   };
 
+  const { scrollYProgress } = useScroll();
+
   return (
     <>
       {/* Scroll Progress Indicator */}
       <motion.div 
         className="scroll-progress"
-        style={{ scaleX: useScrollProgress() }}
+        style={{ scaleX: scrollYProgress }}
       />
       
       <motion.nav
@@ -310,25 +312,6 @@ const Navbar = () => {
   );
 };
 
-// Helper hook for scroll progress
-function useScrollProgress() {
-  const [progress, setProgress] = useState(0);
-  
-  useEffect(() => {
-    const updateProgress = () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollPercent = (scrollTop / docHeight) * 100;
-      setProgress(scrollPercent / 100);
-    };
-    
-    window.addEventListener('scroll', updateProgress);
-    updateProgress();
-    
-    return () => window.removeEventListener('scroll', updateProgress);
-  }, []);
-  
-  return progress;
-}
+
 
 export default Navbar;

@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Bot, Send, X, MessageCircle, Smile, Image as ImageIcon, File, Paperclip, ExternalLink } from 'lucide-react';
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
 
 // Dynamically import emoji picker to avoid SSR issues
 const EmojiPicker = dynamic(
@@ -100,7 +101,7 @@ const Chatbot = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const emojiPickerRef = useRef<HTMLDivElement>(null);
-  
+
   // State
   const [isOpen, setIsOpen] = useState(false);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
@@ -124,7 +125,7 @@ const Chatbot = () => {
   const handleFiles = (files: File[]) => {
     const validFiles: File[] = [];
     const newPreviewUrls: Record<string, string> = {};
-    
+
     Array.from(files).forEach(file => {
       // Check file type
       const validTypes = [
@@ -136,28 +137,28 @@ const Chatbot = () => {
         'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
         'text/plain'
       ];
-      
+
       // Check file size (5MB limit)
       const maxSize = 5 * 1024 * 1024; // 5MB
-      
+
       if (!validTypes.includes(file.type)) {
         alert(`File type not supported: ${file.name}`);
         return;
       }
-      
+
       if (file.size > maxSize) {
         alert(`File too large (max 5MB): ${file.name}`);
         return;
       }
-      
+
       validFiles.push(file);
-      
+
       // Create preview for images
       if (file.type.startsWith('image/')) {
         newPreviewUrls[file.name] = URL.createObjectURL(file);
       }
     });
-    
+
     setSelectedFiles(prev => [...prev, ...validFiles]);
     setPreviewUrls(prev => ({ ...prev, ...newPreviewUrls }));
   };
@@ -171,10 +172,10 @@ const Chatbot = () => {
       delete newPreviewUrls[file.name];
       setPreviewUrls(newPreviewUrls);
     }
-    
+
     setSelectedFiles(prev => prev.filter((_, i) => i !== index));
   };
-  
+
   // Clear all selected files
   const clearAllFiles = () => {
     // Clean up object URLs
@@ -182,7 +183,7 @@ const Chatbot = () => {
     setPreviewUrls({});
     setSelectedFiles([]);
   };
-  
+
   // Handle file selection via input
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -191,21 +192,21 @@ const Chatbot = () => {
       if (e.target) e.target.value = '';
     }
   };
-  
+
   // Handle drag over
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
     e.stopPropagation();
     setIsDragging(true);
   };
-  
+
   // Handle drag leave
   const handleDragLeave = (e: React.DragEvent) => {
     e.preventDefault();
     e.stopPropagation();
     setIsDragging(false);
   };
-  
+
   // Handle drop
   const handleDrop = (e: React.DragEvent) => {
     e.preventDefault();
@@ -264,9 +265,9 @@ const Chatbot = () => {
   // Get appropriate response based on user input
   const getBotResponse = (userInput: string): { text: string; action?: () => void } => {
     const input = userInput.toLowerCase().trim();
-    const randomResponse = (responses: string[]) => 
+    const randomResponse = (responses: string[]) =>
       responses[Math.floor(Math.random() * responses.length)];
-    
+
     // Check for team member queries
     const teamMemberMatch = input.match(/(sarthak|nikhil|hardik|anshuman)/i);
     if (teamMemberMatch) {
@@ -279,12 +280,12 @@ const Chatbot = () => {
         };
       }
     }
-    
+
     // Check for greetings
     if (/^(hi|hello|hey|greetings?|yo)/i.test(input)) {
       return { text: randomResponse(TECHNEEKX_KNOWLEDGE.greetings) };
     }
-    
+
     // Check for about queries
     if (/(what.*techneekx|who.*techneekx|about.*techneekx|techneekx.*about)/i.test(input)) {
       return {
@@ -292,7 +293,7 @@ const Chatbot = () => {
         action: () => scrollToSection('about')
       };
     }
-    
+
     // Check for AI/ML specific queries
     if (/(ai|ml|artificial intelligence|machine learning|tensorflow|python)/i.test(input)) {
       return {
@@ -300,7 +301,7 @@ const Chatbot = () => {
         action: () => scrollToSection('projects')
       };
     }
-    
+
     // Check for services queries
     if (/(service|what.*do|offer|provide|can you|help with)/i.test(input)) {
       return {
@@ -308,17 +309,17 @@ const Chatbot = () => {
         action: () => scrollToSection('services')
       };
     }
-    
+
     // Check for team queries
     if (/(team|who.*work|developer|designer|staff|member|colleague)/i.test(input)) {
       // If asking about a specific role
       const roleMatch = input.match(/(developer|designer|manager|marketer|frontend|backend|full stack)/i);
       if (roleMatch) {
         const role = roleMatch[0].toLowerCase();
-        const members = Object.values(TECHNEEKX_KNOWLEDGE.teamMembers).filter(member => 
+        const members = Object.values(TECHNEEKX_KNOWLEDGE.teamMembers).filter(member =>
           member.role.toLowerCase().includes(role)
         );
-        
+
         if (members.length > 0) {
           const memberList = members.map(m => `• ${m.name} - ${m.role}`).join('\n');
           return {
@@ -327,13 +328,13 @@ const Chatbot = () => {
           };
         }
       }
-      
+
       return {
         text: randomResponse(TECHNEEKX_KNOWLEDGE.team),
         action: () => scrollToSection('team')
       };
     }
-    
+
     // Check for contact queries
     if (/(contact|email|phone|number|reach|get in touch)/i.test(input)) {
       return {
@@ -341,7 +342,7 @@ const Chatbot = () => {
         action: () => scrollToSection('contact')
       };
     }
-    
+
     // Check for Hospital Pulse AI specific queries
     if (/(hospital pulse|healthcare ai|medical ai|hospital management)/i.test(input)) {
       return {
@@ -349,7 +350,7 @@ const Chatbot = () => {
         action: () => scrollToSection('projects')
       };
     }
-    
+
     // Check for projects/portfolio queries
     if (/(project|portfolio|work|showcase|example|case study)/i.test(input)) {
       return {
@@ -357,7 +358,7 @@ const Chatbot = () => {
         action: () => scrollToSection('projects')
       };
     }
-    
+
     // Default response
     return {
       text: TECHNEEKX_KNOWLEDGE.default[
@@ -372,7 +373,7 @@ const Chatbot = () => {
 
     const userMessage = inputMessage.trim();
     const newMessages: Message[] = [];
-    
+
     // Add user's text message if exists
     if (userMessage) {
       newMessages.push({
@@ -382,7 +383,7 @@ const Chatbot = () => {
         timestamp: new Date(),
         status: 'sent'
       });
-      
+
       // Clear input after sending
       setInputMessage('');
     }
@@ -405,7 +406,7 @@ const Chatbot = () => {
           }
         });
       });
-      
+
       // Clear files after sending
       setSelectedFiles([]);
       setPreviewUrls({});
@@ -418,11 +419,11 @@ const Chatbot = () => {
     // Only show typing indicator for text messages
     if (userMessage) {
       setIsTyping(true);
-      
+
       // Simulate typing delay
       setTimeout(() => {
         const botResponse = getBotResponse(userMessage);
-        
+
         setMessages(prev => [
           ...prev,
           {
@@ -433,13 +434,13 @@ const Chatbot = () => {
             status: 'read'
           }
         ]);
-        
+
         // Execute any associated action (like scrolling)
         if (botResponse.action) {
           // Small delay before scrolling to ensure message is rendered
           setTimeout(() => botResponse.action!(), 100);
         }
-        
+
         setIsTyping(false);
       }, 1000);
     }
@@ -456,18 +457,18 @@ const Chatbot = () => {
   // Format message with proper line breaks, links, and emojis
   const formatMessage = (text: string) => {
     if (!text) return '';
-    
+
     // Convert URLs to clickable links
     const urlRegex = /(https?:\/\/[^\s]+)/g;
     const parts = text.split(urlRegex);
-    
+
     return parts.map((part, i) => {
       if (part.match(urlRegex)) {
         return (
-          <a 
-            key={i} 
-            href={part} 
-            target="_blank" 
+          <a
+            key={i}
+            href={part}
+            target="_blank"
             rel="noopener noreferrer"
             className="text-blue-500 hover:underline"
           >
@@ -489,7 +490,7 @@ const Chatbot = () => {
     return () => {
       // Clean up preview URLs
       Object.values(previewUrls).forEach(url => URL.revokeObjectURL(url));
-      
+
       // Clean up any message media URLs
       messages.forEach(msg => {
         if (msg.media && msg.media.url.startsWith('blob:')) {
@@ -547,7 +548,7 @@ const Chatbot = () => {
                 <Bot size={20} />
                 <h3 className="font-semibold">TechNeekX Assistant</h3>
               </div>
-              <button 
+              <button
                 onClick={() => setIsOpen(false)}
                 className="text-white hover:text-gray-200 focus:outline-none"
               >
@@ -556,7 +557,7 @@ const Chatbot = () => {
             </div>
 
             {/* Messages Container */}
-            <div 
+            <div
               className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50"
               onDragOver={handleDragOver}
               onDragLeave={handleDragLeave}
@@ -568,19 +569,21 @@ const Chatbot = () => {
                   className={`flex ${message.isBot ? 'justify-start' : 'justify-end'}`}
                 >
                   <div
-                    className={`max-w-xs lg:max-w-md rounded-2xl px-4 py-2 ${
-                      message.isBot
+                    className={`max-w-xs lg:max-w-md rounded-2xl px-4 py-2 ${message.isBot
                         ? 'bg-white text-gray-800 rounded-tl-none shadow-sm'
                         : 'bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-tr-none'
-                    }`}
+                      }`}
                   >
                     {message.media && (
                       <div className="mb-2 rounded-lg overflow-hidden">
                         {message.media.type === 'image' ? (
-                          <img
+                          <Image
                             src={message.media.url}
                             alt={message.media.name}
+                            width={500}
+                            height={300}
                             className="max-w-full h-auto rounded-lg"
+                            unoptimized
                           />
                         ) : (
                           <a
@@ -646,10 +649,13 @@ const Chatbot = () => {
                       >
                         <div className="flex items-center space-x-2 flex-1 min-w-0">
                           {file.type.startsWith('image/') ? (
-                            <img
+                            <Image
                               src={previewUrls[file.name]}
                               alt={file.name}
+                              width={32}
+                              height={32}
                               className="w-8 h-8 object-cover rounded"
+                              unoptimized
                             />
                           ) : (
                             <div className="w-8 h-8 flex items-center justify-center bg-gray-100 rounded">
@@ -694,7 +700,7 @@ const Chatbot = () => {
                     </div>
                   )}
                 </div>
-                
+
                 <div className="flex items-center space-x-1">
                   <button
                     type="button"
@@ -710,7 +716,7 @@ const Chatbot = () => {
                       multiple
                     />
                   </button>
-                  
+
                   <div className="relative" ref={emojiPickerRef}>
                     <button
                       type="button"
@@ -719,7 +725,7 @@ const Chatbot = () => {
                     >
                       <Smile size={20} />
                     </button>
-                    
+
                     {showEmojiPicker && (
                       <div className="absolute bottom-12 right-0">
                         <EmojiPicker
@@ -733,7 +739,7 @@ const Chatbot = () => {
                       </div>
                     )}
                   </div>
-                  
+
                   <button
                     type="button"
                     onClick={handleSendMessage}

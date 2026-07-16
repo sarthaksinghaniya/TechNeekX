@@ -151,3 +151,10 @@ config/local.json
 
 # Team joining documentation with sensitive info
 teamjoining.md
+
+# next-video
+videos/*
+!videos/*.json
+!videos/*.js
+!videos/*.ts
+public/_next-video

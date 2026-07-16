@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Loader from '@/components/Loader';
+import Image from 'next/image';
 import { FounderCard, OfficialCard, CoreCard } from '@/components/TeamPageCard';
 import teamData from '../../../data/team.json';
 import '@/styles/TeamPage.css';
@@ -56,7 +57,7 @@ export default function TeamPage() {
   };
 
   return (
-    <AnimatePresence mode="wait">
+    // <AnimatePresence mode="wait">
       <motion.main
         key="team-page"
         initial={{ opacity: 0 }}
@@ -194,9 +195,11 @@ export default function TeamPage() {
           >
             <div className="team-sparkle-banner">
               {/* Wings Watermark Image placed behind the text */}
-              <img 
-                src="/about/tnx-wings.png" 
-                alt="TechNeekX Wings Watermark" 
+              <Image
+                src="/about/tnx-wings.png"
+                alt="TechNeekX Wings Watermark"
+                width={200}
+                height={200}
                 className="team-sparkle-watermark"
               />
               <div className="team-sparkle-text">
@@ -209,6 +212,6 @@ export default function TeamPage() {
 
         <Footer />
       </motion.main>
-    </AnimatePresence>
+    // </AnimatePresence>
   );
 }

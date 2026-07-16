@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Loader from '@/components/Loader';
+import Image from 'next/image';
 import '@/styles/GalleryPage.css';
 
 type GalleryImage = {
@@ -61,8 +62,8 @@ const ScrollProgress = () => {
   }, []);
 
   return (
-    <div 
-      className="scroll-progress" 
+    <div
+      className="scroll-progress"
       style={{ width: `${scrollProgress}%` }}
     />
   );
@@ -137,7 +138,7 @@ export default function GalleryPage() {
 
         <div className="gallery-page-content-wrapper">
           {/* Back to Home Link */}
-          <motion.button 
+          <motion.button
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
             onClick={() => router.push('/')}
@@ -148,7 +149,7 @@ export default function GalleryPage() {
           </motion.button>
 
           {/* Header */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
@@ -162,25 +163,26 @@ export default function GalleryPage() {
           </motion.div>
 
           {/* Collage (Masonry Style columns) */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="columns-2 md:columns-3 lg:columns-4 gap-3 sm:gap-6 space-y-3 sm:space-y-6 py-6 pb-12"
           >
             {galleryImages.map((image, index) => (
-              <div 
+              <div
                 key={index}
                 onClick={() => setSelectedImageIndex(index)}
                 className="break-inside-avoid relative overflow-hidden rounded-2xl group cursor-pointer shadow-sm hover:shadow-lg transition-all duration-300 border border-slate-100/60 bg-white"
               >
-                <img 
-                  src={image.src} 
+                <Image
+                  src={image.src}
                   alt={image.caption}
+                  width={400}
+                  height={300}
                   className="w-full h-auto object-cover rounded-2xl transition-transform duration-500 group-hover:scale-[1.03]"
-                  loading="lazy"
                 />
-                
+
                 {/* Overlay Caption on Hover */}
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 rounded-2xl">
                   <p className="text-white text-xs font-semibold transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
@@ -205,7 +207,7 @@ export default function GalleryPage() {
               onClick={() => setSelectedImageIndex(null)}
             >
               {/* Close Button */}
-              <button 
+              <button
                 className="gallery-lightbox-close-btn"
                 onClick={() => setSelectedImageIndex(null)}
               >
@@ -214,7 +216,7 @@ export default function GalleryPage() {
               </button>
 
               {/* Navigation Left */}
-              <button 
+              <button
                 className="gallery-lightbox-nav-btn left"
                 onClick={(e) => {
                   e.stopPropagation();
@@ -225,19 +227,20 @@ export default function GalleryPage() {
               </button>
 
               {/* Image Container */}
-              <div 
+              <div
                 className="gallery-lightbox-img-container"
                 onClick={(e) => e.stopPropagation()}
               >
-                <img 
-                  src={galleryImages[selectedImageIndex].src} 
+                <Image
+                  src={galleryImages[selectedImageIndex].src}
                   alt={galleryImages[selectedImageIndex].caption}
-                  className="gallery-lightbox-img"
+                  fill
+                  className="gallery-lightbox-img object-contain"
                 />
               </div>
 
               {/* Navigation Right */}
-              <button 
+              <button
                 className="gallery-lightbox-nav-btn right"
                 onClick={(e) => {
                   e.stopPropagation();
@@ -248,7 +251,7 @@ export default function GalleryPage() {
               </button>
 
               {/* Caption & Counter */}
-              <div 
+              <div
                 className="flex flex-col items-center"
                 onClick={(e) => e.stopPropagation()}
               >

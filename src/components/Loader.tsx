@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 const Loader = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -10,7 +11,7 @@ const Loader = () => {
     // Simulate loading time
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 400);
+    }, 300);
 
     return () => clearTimeout(timer);
   }, []);
@@ -75,9 +76,11 @@ const Loader = () => {
                   ease: [0.22, 1, 0.36, 1],
                 }}
               >
-                <img
+                <Image
                   src="/file_0000000067647206a22ff5daad754190.png"
                   alt="TechNeekX Logo"
+                  width={64}
+                  height={64}
                   className="w-full h-full object-cover"
                 />
               </motion.div>

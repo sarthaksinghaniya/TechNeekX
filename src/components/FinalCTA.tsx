@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { Github, Linkedin, Instagram, Mail } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
 import Image from 'next/image';
@@ -17,6 +17,8 @@ const iconMap: { [key: string]: any } = {
 
 const FinalCTA = () => {
   const [clickRotation, setClickRotation] = useState(0);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(sectionRef, { once: false, amount: 0.1 });
   const containerVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -47,55 +49,67 @@ const FinalCTA = () => {
   ];
 
   return (
-    <section className="w-full h-auto py-12 md:py-0 md:h-[45dvh] min-h-[320px] bg-[#030508] dark relative overflow-hidden flex items-center z-10">
+    <section ref={sectionRef} className="w-full h-auto py-12 md:py-0 md:h-[45dvh] min-h-[320px] bg-[#030508] dark relative overflow-hidden flex items-center z-10">
       {/* Moving Blue & Pink Gradient Background */}
-      <motion.div 
-        className="absolute inset-0  mix-blend-screen pointer-events-none"
-        animate={{
-          backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-        }}
-        transition={{
-          repeat: Infinity,
-          duration: 15,
-          ease: 'easeInOut'
-        }}
-        style={{
-          background: 'linear-gradient(135deg, #0062ff 0%, #ff0080 50%, #0062ff 100%)',
-          backgroundSize: '400% 400%',
-        }}
-      />
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+        <motion.div 
+          className="absolute w-[200%] h-[200%] top-[-50%] left-[-50%] mix-blend-screen"
+          animate={isInView ? {
+            rotate: [0, 360],
+          } : {}}
+          transition={{
+            repeat: Infinity,
+            duration: 25,
+            ease: 'linear'
+          }}
+          style={{
+            background: 'linear-gradient(135deg, #0062ff 0%, #ff0080 50%, #0062ff 100%)',
+            willChange: 'transform',
+          }}
+        />
+      </div>
       
       {/* Radial overlay to make it dark and minimal */}
-      <div className="absolute inset-0 bg-slate-950/75 mix-blend-multiply pointer-events-none" />
-      <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-transparent to-slate-950 pointer-events-none" />
-      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950 pointer-events-none" />
+      <div className="absolute inset-0 bg-slate-950/75 mix-blend-multiply pointer-events-none z-0" />
+      <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-transparent to-slate-950 pointer-events-none z-0" />
+      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950 pointer-events-none z-0" />
 
       {/* Decorative background glows with back-and-forth linear moving animation */}
       <motion.div 
-        className="absolute w-[500px] h-[500px] rounded-full blur-[130px] bg-[#0062ff]/40 pointer-events-none"
-        animate={{
+        className="absolute w-[500px] h-[500px] rounded-full blur-[130px] bg-[#0062ff]/40 pointer-events-none z-0"
+        animate={isInView ? {
           x: [-120, 120, -120],
           y: [-40, 40, -40],
-        }}
+        } : {}}
         transition={{
           repeat: Infinity,
           duration: 14,
           ease: 'easeInOut'
         }}
-        style={{ top: '-10%', left: '5%' }}
+        style={{ 
+          top: '-10%', 
+          left: '5%',
+          willChange: 'transform',
+          transform: 'translate3d(0, 0, 0)'
+        }}
       />
       <motion.div 
-        className="absolute w-[450px] h-[450px] rounded-full blur-[130px] bg-[#ff0080]/40 pointer-events-none"
-        animate={{
+        className="absolute w-[450px] h-[450px] rounded-full blur-[130px] bg-[#ff0080]/40 pointer-events-none z-0"
+        animate={isInView ? {
           x: [120, -120, 120],
           y: [40, -40, 40],
-        }}
+        } : {}}
         transition={{
           repeat: Infinity,
           duration: 16,
           ease: 'easeInOut'
         }}
-        style={{ bottom: '-10%', right: '5%' }}
+        style={{ 
+          bottom: '-10%', 
+          right: '5%',
+          willChange: 'transform',
+          transform: 'translate3d(0, 0, 0)'
+        }}
       />
 
       <div className="w-full max-w-6xl mx-auto px-6 md:px-12 relative z-10">
@@ -164,7 +178,7 @@ const FinalCTA = () => {
               {/* Outer pulsing ring */}
               <motion.div
                 className="absolute inset-0 rounded-full border border-blue-500/20 shadow-[0_0_30px_rgba(0,98,255,0.1)] pointer-events-none"
-                animate={{ scale: [1, 1.05, 1], opacity: [0.5, 0.8, 0.5] }}
+                animate={isInView ? { scale: [1, 1.05, 1], opacity: [0.5, 0.8, 0.5] } : { scale: 1, opacity: 0.5 }}
                 transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }}
               />
               
@@ -174,8 +188,11 @@ const FinalCTA = () => {
               {/* Logo container with floating animation and click/hover spin */}
               <motion.div
                 className="relative w-28 h-28 md:w-34 md:h-34 z-10 cursor-pointer"
-                animate={{ 
+                animate={isInView ? { 
                   y: [0, -6, 0],
+                  rotate: clickRotation
+                } : {
+                  y: 0,
                   rotate: clickRotation
                 }}
                 whileHover={{ rotate: clickRotation + 1800 }}

@@ -2,20 +2,20 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  MapPin, 
-  Users, 
-  Calendar, 
-  ArrowRight, 
-  ExternalLink, 
-  Search, 
-  Palette, 
-  Zap, 
-  Code, 
-  Trophy, 
-  Cpu, 
-  Sparkles, 
-  Brain, 
+import {
+  MapPin,
+  Users,
+  Calendar,
+  ArrowRight,
+  ExternalLink,
+  Search,
+  Palette,
+  Zap,
+  Code,
+  Trophy,
+  Cpu,
+  Sparkles,
+  Brain,
   Image as ImageIcon,
   ChevronLeft,
   X
@@ -23,6 +23,7 @@ import {
 import { useRouter } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import Image from 'next/image';
 import eventsData from '../../../data/events.json';
 import '@/styles/EventsPage.css';
 import Loader from '@/components/Loader';
@@ -108,7 +109,7 @@ const EventsPage = () => {
   // Determine event status programmatically
   const getEventStatus = (eventDateStr?: string) => {
     if (!eventDateStr) return 'previous'; // Default fallback for old events without date
-    
+
     const normDate = normalizeDateStr(eventDateStr);
     if (normDate === today) {
       return 'current';
@@ -143,12 +144,12 @@ const EventsPage = () => {
   // Filter events based on active tab and search query
   const filteredEvents = (eventsData as Event[]).filter((event) => {
     const status = getEventStatus(event.date);
-    
+
     // Tab filter
     if (activeTab !== 'all' && status !== activeTab) {
       return false;
     }
-    
+
     // Search query filter
     if (searchQuery.trim() !== '') {
       const query = searchQuery.toLowerCase();
@@ -158,7 +159,7 @@ const EventsPage = () => {
       const descMatch = event.description?.toLowerCase().includes(query) || false;
       return nameMatch || locationMatch || typeMatch || descMatch;
     }
-    
+
     return true;
   });
 
@@ -166,10 +167,10 @@ const EventsPage = () => {
   const sortedEvents = [...filteredEvents].sort((a, b) => {
     const dateA = a.date || '0000-00-00';
     const dateB = b.date || '0000-00-00';
-    
+
     const normA = normalizeDateStr(dateA);
     const normB = normalizeDateStr(dateB);
-    
+
     // Deciding order: We want upcoming closest to today first, then current, then previous (most recent first)
     if (normA > today && normB > today) {
       return normA.localeCompare(normB); // Ascending for future (closest first)
@@ -209,7 +210,7 @@ const EventsPage = () => {
 
   return (
     <>
-      <Loader/>
+      <Loader />
       <Navbar />
 
       <main className="events-page-container">
@@ -220,7 +221,7 @@ const EventsPage = () => {
 
         <div className="events-page-content-wrapper">
           {/* Back to Home Link */}
-          <motion.button 
+          <motion.button
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
             onClick={() => router.push('/')}
@@ -231,7 +232,7 @@ const EventsPage = () => {
           </motion.button>
 
           {/* Header */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
@@ -311,10 +312,11 @@ const EventsPage = () => {
                       {/* Image Header with Badge Overlay */}
                       <div className="event-page-image-container">
                         {event.image ? (
-                          <img 
-                            src={event.image} 
-                            alt={event.name} 
-                            className="event-page-image" 
+                          <Image
+                            src={event.image}
+                            alt={event.name}
+                            fill
+                            className="event-page-image object-cover"
                           />
                         ) : (
                           <div className={`event-page-image-placeholder bg-gradient-to-br ${event.gradient || 'from-slate-800 to-slate-900'}`}>
@@ -325,7 +327,7 @@ const EventsPage = () => {
                             )}
                           </div>
                         )}
-                        
+
                         {/* Overlay Badges */}
                         <div className="event-page-overlay-badges">
                           <span className="event-page-type-tag">{event.type}</span>
@@ -363,7 +365,7 @@ const EventsPage = () => {
                         {/* Card CTA Actions */}
                         {event.cta && (
                           <div className="event-page-card-actions">
-                            <button 
+                            <button
                               onClick={(e) => {
                                 e.stopPropagation(); // prevent modal opening duplicate
                                 if (event.cta?.text.toLowerCase().includes('detail')) {
@@ -384,7 +386,7 @@ const EventsPage = () => {
                   );
                 })
               ) : (
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   className="col-span-full"
@@ -435,10 +437,11 @@ const EventsPage = () => {
                 {/* Modal image panel */}
                 <div className="event-modal-image-container">
                   {selectedEvent.image ? (
-                    <img 
-                      src={selectedEvent.image} 
-                      alt={selectedEvent.name} 
-                      className="event-modal-image" 
+                    <Image
+                      src={selectedEvent.image}
+                      alt={selectedEvent.name}
+                      fill
+                      className="event-modal-image object-cover"
                     />
                   ) : (
                     <div className={`event-modal-image-placeholder bg-gradient-to-br ${selectedEvent.gradient || 'from-slate-800 to-slate-900'}`}>
@@ -468,7 +471,7 @@ const EventsPage = () => {
                   <span className="event-modal-date">
                     {getFormattedDate(selectedEvent.date)}
                   </span>
-                  
+
                   <h2 className="event-modal-title">
                     {selectedEvent.name}
                   </h2>
@@ -507,7 +510,7 @@ const EventsPage = () => {
                   {/* CTA Button */}
                   {selectedEvent.cta && !selectedEvent.cta.text.toLowerCase().includes('detail') && selectedEvent.cta.link && (
                     <div className="event-modal-actions">
-                      <button 
+                      <button
                         onClick={() => window.open(selectedEvent.cta!.link, '_blank')}
                         className="event-page-btn-action event-page-btn-hero"
                       >

@@ -3,6 +3,9 @@
 import { motion } from 'framer-motion';
 import { ExternalLink, Github, ArrowRight, Sparkles, Scale, Cpu } from 'lucide-react';
 import { useState } from 'react';
+import Image from 'next/image';
+
+const MotionImage = motion(Image);
 
 const Projects = () => {
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
@@ -317,9 +320,11 @@ const Projects = () => {
 
               {/* Project Image */}
               <div className="relative mx-6 mb-6 rounded-xl overflow-hidden z-10">
-                <motion.img
+                <MotionImage
                   src={project.image}
                   alt={project.title}
+                  width={400}
+                  height={192}
                   className="w-full h-48 object-cover"
                   animate={{ 
                     scale: hoveredProject === index ? 1.05 : 1 

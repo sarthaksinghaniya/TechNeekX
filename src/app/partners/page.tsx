@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  ChevronLeft, 
-  Handshake 
+import {
+  ChevronLeft,
+  Handshake
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import Navbar from '@/components/Navbar';
@@ -13,6 +13,7 @@ import partnersData from '../../../data/community_partners.json';
 import { openTeamForm, FORM_CONFIG } from '@/config/teamForms';
 import '@/styles/PartnersPage.css';
 import Loader from '@/components/Loader';
+import Image from 'next/image';
 
 interface Partner {
   name: string;
@@ -76,7 +77,7 @@ const PartnersPage = () => {
 
   return (
     <>
-      <Loader/>
+      <Loader />
       <Navbar />
 
       <main className="partners-page-container">
@@ -87,7 +88,7 @@ const PartnersPage = () => {
 
         <div className="partners-page-content-wrapper">
           {/* Back to Home Button */}
-          <motion.button 
+          <motion.button
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
             onClick={() => router.push('/')}
@@ -98,7 +99,7 @@ const PartnersPage = () => {
           </motion.button>
 
           {/* Header */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
@@ -135,14 +136,14 @@ const PartnersPage = () => {
                   <div className="partner-card-top-row">
                     <div className="partner-logo-container">
                       {partner.avatar ? (
-                        <img src={partner.avatar} alt={partner.name} className="partner-logo-img" />
+                        <Image src={partner.avatar} alt={partner.name} width={60} height={60} className="partner-logo-img" unoptimized />
                       ) : (
                         <div className={`partner-logo-fallback bg-gradient-to-r ${partner.gradient}`}>
                           {getInitials(partner.name)}
                         </div>
                       )}
                     </div>
-                    
+
                     <span className="partner-badge-tag">
                       {partner.badge || 'Community Partner'}
                     </span>
@@ -161,7 +162,7 @@ const PartnersPage = () => {
 
                   {/* Divider and Bottom Area (Full Width CTA) */}
                   <div className="partner-card-bottom-row">
-                    <button 
+                    <button
                       onClick={() => {
                         if (partner.link) {
                           window.open(partner.link, '_blank');
@@ -191,7 +192,7 @@ const PartnersPage = () => {
                   <div className="partner-logo-container partner-cta-icon-container">
                     <Handshake size={24} className="partner-cta-icon" />
                   </div>
-                  
+
                   <span className="partner-badge-tag partner-cta-badge-tag">
                     Join Us
                   </span>
@@ -210,7 +211,7 @@ const PartnersPage = () => {
 
                 {/* Divider and Bottom Area (Full Width CTA) */}
                 <div className="partner-card-bottom-row">
-                  <button 
+                  <button
                     onClick={() => openTeamForm('partner')}
                     className="partner-cta-action-btn"
                   >

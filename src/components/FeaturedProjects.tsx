@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import * as LucideIcons from 'lucide-react';
 import { useRouter } from 'next/navigation';
@@ -61,6 +61,7 @@ const FeaturedProjects = () => {
   const router = useRouter();
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMounted, setIsMounted] = useState(false);
+  const [isInitial, setIsInitial] = useState(true);
 
   // Filter projects to only show featured ones
   const featuredProjects = (projectsData as Project[]).filter(
@@ -69,6 +70,10 @@ const FeaturedProjects = () => {
 
   useEffect(() => {
     setIsMounted(true);
+    const timer = setTimeout(() => {
+      setIsInitial(false);
+    }, 50);
+    return () => clearTimeout(timer);
   }, []);
 
   // Prevent layout shifts during initial SSR hydration
@@ -157,19 +162,22 @@ const FeaturedProjects = () => {
                   <motion.div
                     key={project.id}
                     className="featured-project-card"
-                    style={{ pointerEvents }}
+                    style={{ pointerEvents, zIndex }}
                     animate={{
                       x: xOffset,
                       scale: scale,
                       rotate: rotate,
                       opacity: opacity,
-                      zIndex: zIndex,
                     }}
-                    transition={{
-                      type: "spring",
-                      stiffness: 260,
-                      damping: 26
-                    }}
+                    transition={
+                      isInitial
+                        ? { duration: 0 }
+                        : {
+                            type: 'spring',
+                            stiffness: 260,
+                            damping: 26,
+                          }
+                    }
                     drag={relativeIndex === 0 ? "x" : false}
                     dragConstraints={{ left: 0, right: 0 }}
                     dragElastic={0.7}

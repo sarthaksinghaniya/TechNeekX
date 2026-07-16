@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Linkedin, Github, Mail, ArrowRight } from 'lucide-react';
+import Image from 'next/image';
 
 interface TeamMember {
   name: string;
@@ -23,7 +24,7 @@ export const FounderCard: React.FC<{ member: TeamMember }> = ({ member }) => {
     <div className="founder-card-container">
       <div className="founder-card-left">
         <div className="founder-image-wrapper">
-          <img src={member.image} alt={member.name} className="founder-card-img" />
+          <Image src={member.image} alt={member.name} width={200} height={200} className="founder-card-img" />
         </div>
       </div>
       <div className="founder-card-right">
@@ -31,7 +32,7 @@ export const FounderCard: React.FC<{ member: TeamMember }> = ({ member }) => {
         <h2 className="founder-card-name">{member.name}</h2>
         <p className="founder-card-role designation-gradient">{member.designation}</p>
         <p className="founder-card-desc">{member.description}</p>
-        
+
         <div className="founder-card-footer">
           {/* Social Links */}
           <div className="founder-socials">
@@ -93,7 +94,7 @@ export const OfficialCard: React.FC<{ member: TeamMember }> = ({ member }) => {
       {/* Profile Photo */}
       <div className="official-techy-avatar-container">
         <div className="official-techy-avatar">
-          <img src={member.image} alt={member.name} className="official-techy-img" />
+          <Image src={member.image} alt={member.name} width={110} height={110} className="official-techy-img" />
         </div>
       </div>
 
@@ -140,15 +141,15 @@ export const CoreCard: React.FC<{ member: TeamMember }> = ({ member }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const maxLen = 110;
   const needsTruncation = member.description && member.description.length > maxLen;
-  const displayDescription = isExpanded 
-    ? member.description 
+  const displayDescription = isExpanded
+    ? member.description
     : (needsTruncation ? member.description.slice(0, maxLen).trim() + '...' : member.description);
 
   return (
     <div className="core-left-card">
       {/* Profile Photo (aligned left) */}
       <div className="core-left-avatar-container">
-        <img src={member.image} alt={member.name} className="core-left-img" />
+        <Image src={member.image} alt={member.name} width={84} height={84} className="core-left-img" />
       </div>
 
       {/* Content (left-aligned) */}
@@ -158,8 +159,8 @@ export const CoreCard: React.FC<{ member: TeamMember }> = ({ member }) => {
         <p className="core-left-desc">
           {displayDescription}
           {needsTruncation && (
-            <button 
-              onClick={() => setIsExpanded(!isExpanded)} 
+            <button
+              onClick={() => setIsExpanded(!isExpanded)}
               className="read-more-toggle-btn"
             >
               {isExpanded ? ' Read Less' : ' Read More'}

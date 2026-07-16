@@ -1,10 +1,11 @@
 'use client';
 
-import { useRef, useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, ArrowRight } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import eventsData from '../../data/events.json';
+import Image from 'next/image';
 import '../styles/FeaturedEvents.css';
 
 interface Event {
@@ -23,12 +24,17 @@ const FeaturedEvents = () => {
   const router = useRouter();
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMounted, setIsMounted] = useState(false);
+  const isInitialRef = useRef(true);
 
   // Only display featured events
   const featuredEvents = (eventsData as Event[]).filter((e) => e.isFeatured);
 
   useEffect(() => {
     setIsMounted(true);
+    const timer = setTimeout(() => {
+      isInitialRef.current = false;
+    }, 50);
+    return () => clearTimeout(timer);
   }, []);
 
   // Prevent layout shifts during initial SSR hydration
@@ -60,9 +66,9 @@ const FeaturedEvents = () => {
 
       <div className="events-container">
         <div className="events-layout">
-          
+
           {/* Left Side: Drag Carousel Deck */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -115,19 +121,22 @@ const FeaturedEvents = () => {
                   <motion.div
                     key={event.id}
                     className={`event-card theme-${event.cardTheme}`}
-                    style={{ pointerEvents }}
+                    style={{ pointerEvents, zIndex }}
                     animate={{
                       x: xOffset,
                       scale: scale,
                       rotate: rotate,
                       opacity: opacity,
-                      zIndex: zIndex,
                     }}
-                    transition={{
-                      type: 'spring',
-                      stiffness: 260,
-                      damping: 26,
-                    }}
+                    transition={
+                      isInitialRef.current
+                        ? { duration: 0 }
+                        : {
+                            type: 'spring',
+                            stiffness: 260,
+                            damping: 26,
+                          }
+                    }
                     drag={relativeIndex === 0 ? 'x' : false}
                     dragConstraints={{ left: 0, right: 0 }}
                     dragElastic={0.7}
@@ -146,7 +155,13 @@ const FeaturedEvents = () => {
 
                     {/* Event Image & Overlay Badges */}
                     <div className="event-image-container">
-                      <img src={event.image} alt={event.name} className="event-image" />
+                      <Image 
+                        src={event.image || '/placeholder-event.png'} 
+                        alt={event.name} 
+                        fill 
+                        className="event-image object-cover" 
+                        priority={relativeIndex === 0}
+                      />
                       <div className="event-badges-overlay">
                         <div className="event-stat-badge">
                           <span className="badge-value">{event.registrations}</span>
@@ -173,7 +188,7 @@ const FeaturedEvents = () => {
           </motion.div>
 
           {/* Right Side: Typographic Content */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}

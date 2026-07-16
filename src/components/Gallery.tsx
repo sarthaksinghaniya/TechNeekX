@@ -46,6 +46,7 @@ const Gallery = () => {
   const [active, setActive] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
+  const [isInitial, setIsInitial] = useState(true);
 
   // Screen size detection
   useEffect(() => {
@@ -53,6 +54,13 @@ const Gallery = () => {
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsInitial(false);
+    }, 50);
+    return () => clearTimeout(timer);
   }, []);
 
   // Autoplay functionality
@@ -214,11 +222,15 @@ const Gallery = () => {
                       rotateY: rotateYValue,
                       scale: scaleValue,
                     }}
-                    transition={{
-                      type: 'spring',
-                      stiffness: 300,
-                      damping: 28,
-                    }}
+                    transition={
+                      isInitial
+                        ? { duration: 0 }
+                        : {
+                            type: 'spring',
+                            stiffness: 300,
+                            damping: 28,
+                          }
+                    }
                   >
                     <div className="gallery-image-container">
                       <Image

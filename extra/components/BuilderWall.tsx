@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { Users, Star, TrendingUp, Award, Code, Rocket } from 'lucide-react';
 import { useState } from 'react';
+import Image from 'next/image';
 import { stats } from '@/constants/stats';
 import AnimatedCounter from '@/components/AnimatedCounter';
 
@@ -16,8 +17,8 @@ const BuilderWall = () => {
       avatar: "/sarthak.jpeg",
       joined: "Started TechNeekX",
       achievements: [
-        <AnimatedCounter key="hackathons" from={0} to={stats.hackathonsNumber} suffix="+ Hackathons" />, 
-        "AI Products", 
+        <AnimatedCounter key="hackathons" from={0} to={stats.hackathonsNumber} suffix="+ Hackathons" />,
+        "AI Products",
         "Tech Leadership",
         "International Awardee"
       ],
@@ -243,26 +244,26 @@ const BuilderWall = () => {
     <section className="py-20 relative">
       {/* Background decoration */}
       <div className="absolute inset-0">
-        <motion.div 
+        <motion.div
           className="gradient-blob w-96 h-96 bg-gradient-to-r from-purple-500/15 to-blue-500/15 top-10 right-10"
-          animate={{ 
+          animate={{
             scale: [1, 1.2, 1],
             rotate: [0, 180, 360]
           }}
-          transition={{ 
-            duration: 20, 
+          transition={{
+            duration: 20,
             repeat: Infinity,
             ease: "linear"
           }}
         ></motion.div>
-        <motion.div 
+        <motion.div
           className="gradient-blob w-80 h-80 bg-gradient-to-r from-blue-500/15 to-green-500/15 bottom-10 left-10"
-          animate={{ 
+          animate={{
             scale: [1.2, 1, 1.2],
             rotate: [360, 180, 0]
           }}
-          transition={{ 
-            duration: 25, 
+          transition={{
+            duration: 25,
             repeat: Infinity,
             ease: "linear"
           }}
@@ -286,7 +287,7 @@ const BuilderWall = () => {
           </motion.div>
 
           {/* Main Headline */}
-          <motion.h2 
+          <motion.h2
             variants={itemVariants}
             className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 heading-premium"
           >
@@ -294,7 +295,7 @@ const BuilderWall = () => {
             <br />
             <span className="text-gradient">TechNeekX</span>
           </motion.h2>
-          
+
           {/* Subheading */}
           <motion.p
             variants={itemVariants}
@@ -335,8 +336,8 @@ const BuilderWall = () => {
             <motion.div
               key={builder.name}
               variants={itemVariants}
-              whileHover={{ 
-                y: -12, 
+              whileHover={{
+                y: -12,
                 scale: 1.05,
                 transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] }
               }}
@@ -346,10 +347,9 @@ const BuilderWall = () => {
             >
               {/* Status Indicator */}
               <motion.div
-                className={`absolute top-3 right-3 w-2 h-2 rounded-full ${
-                  builder.status === 'active' ? 'bg-green-400' : 'bg-orange-400'
-                }`}
-                animate={{ 
+                className={`absolute top-3 right-3 w-2 h-2 rounded-full ${builder.status === 'active' ? 'bg-green-400' : 'bg-orange-400'
+                  }`}
+                animate={{
                   scale: hoveredBuilder === index ? 1.5 : 1,
                   opacity: hoveredBuilder === index ? 1 : 0.7
                 }}
@@ -358,7 +358,7 @@ const BuilderWall = () => {
 
               {/* Avatar */}
               <motion.div
-                whileHover={{ 
+                whileHover={{
                   rotate: 360,
                   scale: 1.1,
                   transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
@@ -366,32 +366,34 @@ const BuilderWall = () => {
                 className={`w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r ${builder.gradient} flex items-center justify-center glow relative z-10`}
               >
                 {builder.avatar ? (
-                  <img
+                  <Image
                     src={builder.avatar}
                     alt={builder.name}
+                    width={64}
+                    height={64}
                     className="w-full h-full rounded-full object-cover"
                   />
                 ) : (
                   <Users className="w-8 h-8 text-white" />
                 )}
               </motion.div>
-              
+
               {/* Name */}
-              <motion.h3 
+              <motion.h3
                 className="text-lg font-bold text-white mb-1 relative z-10"
-                animate={{ 
-                  scale: hoveredBuilder === index ? 1.05 : 1 
+                animate={{
+                  scale: hoveredBuilder === index ? 1.05 : 1
                 }}
                 transition={{ duration: 0.3 }}
               >
                 {builder.name}
               </motion.h3>
-              
+
               {/* Role */}
-              <motion.p 
+              <motion.p
                 className="text-white/60 text-sm mb-2 relative z-10"
-                animate={{ 
-                  y: hoveredBuilder === index ? -2 : 0 
+                animate={{
+                  y: hoveredBuilder === index ? -2 : 0
                 }}
                 transition={{ duration: 0.3 }}
               >
@@ -399,7 +401,7 @@ const BuilderWall = () => {
               </motion.p>
 
               {/* Joined */}
-              <motion.p 
+              <motion.p
                 className="text-white/40 text-xs mb-3 relative z-10"
               >
                 {builder.joined}
@@ -411,7 +413,7 @@ const BuilderWall = () => {
                   <motion.div
                     key={idx}
                     className="text-white/60 text-xs"
-                    animate={{ 
+                    animate={{
                       x: hoveredBuilder === index ? 2 : 0,
                       transition: { delay: idx * 0.05 }
                     }}
@@ -423,10 +425,10 @@ const BuilderWall = () => {
               </div>
 
               {/* Hover effect decoration */}
-              <motion.div 
+              <motion.div
                 className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${builder.gradient} opacity-0`}
-                animate={{ 
-                  opacity: hoveredBuilder === index ? 0.1 : 0 
+                animate={{
+                  opacity: hoveredBuilder === index ? 0.1 : 0
                 }}
                 transition={{ duration: 0.3 }}
               ></motion.div>
@@ -435,14 +437,14 @@ const BuilderWall = () => {
               {builder.name === "You?" && (
                 <motion.div
                   className="absolute inset-0 flex items-center justify-center bg-gradient-to-r from-gray-500/20 to-gray-700/20 rounded-2xl"
-                  animate={{ 
-                    opacity: hoveredBuilder === index ? 1 : 0.8 
+                  animate={{
+                    opacity: hoveredBuilder === index ? 1 : 0.8
                   }}
                   transition={{ duration: 0.3 }}
                 >
                   <motion.div
-                    animate={{ 
-                      scale: hoveredBuilder === index ? 1.1 : 1 
+                    animate={{
+                      scale: hoveredBuilder === index ? 1.1 : 1
                     }}
                     transition={{ duration: 0.3 }}
                     className="text-center"

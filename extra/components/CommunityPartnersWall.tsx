@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { ExternalLink, Plus } from 'lucide-react';
 import { useState } from 'react';
+import Image from 'next/image';
 import { openTeamForm, FORM_CONFIG } from '@/config/teamForms';
 
 import partnersData from '../../data/community_partners.json';
@@ -56,26 +57,26 @@ const CommunityPartnersWall = () => {
   return (
     <section className="py-20 relative">
       <div className="absolute inset-0">
-        <motion.div 
+        <motion.div
           className="gradient-blob w-96 h-96 bg-gradient-to-r from-purple-500/15 to-blue-500/15 top-10 left-10"
-          animate={{ 
+          animate={{
             scale: [1, 1.2, 1],
             rotate: [0, 180, 360]
           }}
-          transition={{ 
-            duration: 20, 
+          transition={{
+            duration: 20,
             repeat: Infinity,
             ease: "linear"
           }}
         ></motion.div>
-        <motion.div 
+        <motion.div
           className="gradient-blob w-80 h-80 bg-gradient-to-r from-blue-500/15 to-purple-500/15 bottom-10 right-10"
-          animate={{ 
+          animate={{
             scale: [1.2, 1, 1.2],
             rotate: [360, 180, 0]
           }}
-          transition={{ 
-            duration: 25, 
+          transition={{
+            duration: 25,
             repeat: Infinity,
             ease: "linear"
           }}
@@ -90,19 +91,19 @@ const CommunityPartnersWall = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <motion.h2 
+          <motion.h2
             variants={itemVariants}
             className="text-4xl sm:text-5xl font-bold text-white mb-6 heading-premium"
           >
             Our Community
             <span className="text-gradient"> Partners</span>
           </motion.h2>
-          
-          <motion.div 
+
+          <motion.div
             variants={itemVariants}
             className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mb-8 rounded-full"
           ></motion.div>
-          
+
           <motion.p
             variants={itemVariants}
             className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed subheading-premium"
@@ -122,42 +123,43 @@ const CommunityPartnersWall = () => {
             <motion.div
               key={partner.name}
               variants={itemVariants}
-              whileHover={{ 
-                y: -8, 
+              whileHover={{
+                y: -8,
                 scale: 1.02,
                 transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] }
               }}
               onHoverStart={() => setHoveredPartner(index)}
               onHoverEnd={() => setHoveredPartner(null)}
-              className={`glass rounded-2xl p-6 text-center card-hover relative overflow-hidden ${
-                partner.isCTA ? 'border-2 border-dashed border-white/30' : ''
-              }`}
+              className={`glass rounded-2xl p-6 text-center card-hover relative overflow-hidden ${partner.isCTA ? 'border-2 border-dashed border-white/30' : ''
+                }`}
             >
               {/* Gradient background on hover */}
-              <motion.div 
+              <motion.div
                 className={`absolute inset-0 bg-gradient-to-br ${partner.gradient} opacity-0`}
-                animate={{ 
-                  opacity: hoveredPartner === index ? 0.1 : 0 
+                animate={{
+                  opacity: hoveredPartner === index ? 0.1 : 0
                 }}
                 transition={{ duration: 0.3 }}
               ></motion.div>
-              
+
               {/* Avatar */}
               <div className="relative mb-4">
                 {partner.avatar ? (
                   <div className="w-16 h-16 mx-auto rounded-2xl overflow-hidden border-2 border-white/20">
-                    <img
+                    <Image
                       src={partner.avatar}
                       alt={partner.name}
+                      width={64}
+                      height={64}
                       className="w-full h-full object-cover"
+                      unoptimized
                     />
                   </div>
                 ) : partner.isCTA ? (
                   <motion.div
                     whileHover={{ scale: 1.1 }}
-                    className={`w-16 h-16 mx-auto rounded-2xl flex items-center justify-center ${
-                      partner.isCTA ? 'bg-gradient-to-r from-gray-500 to-gray-700' : 'bg-gradient-to-r from-purple-500 to-blue-500'
-                    }`}
+                    className={`w-16 h-16 mx-auto rounded-2xl flex items-center justify-center ${partner.isCTA ? 'bg-gradient-to-r from-gray-500 to-gray-700' : 'bg-gradient-to-r from-purple-500 to-blue-500'
+                      }`}
                   >
                     <Plus className="w-8 h-8 text-white" />
                   </motion.div>
@@ -169,22 +171,22 @@ const CommunityPartnersWall = () => {
                   </div>
                 )}
               </div>
-              
+
               {/* Content */}
               <div className="relative z-10">
-                <motion.h3 
-                  animate={{ 
-                    scale: hoveredPartner === index ? 1.05 : 1 
+                <motion.h3
+                  animate={{
+                    scale: hoveredPartner === index ? 1.05 : 1
                   }}
                   className="text-lg font-bold text-white mb-2"
                 >
                   {partner.name}
                 </motion.h3>
-                
-                <motion.p 
+
+                <motion.p
                   className="text-white/60 text-sm mb-4"
-                  animate={{ 
-                    y: hoveredPartner === index ? -2 : 0 
+                  animate={{
+                    y: hoveredPartner === index ? -2 : 0
                   }}
                 >
                   {partner.role}
@@ -201,7 +203,7 @@ const CommunityPartnersWall = () => {
                     {partner.description}
                   </p>
                 ) : null}
-                
+
                 {/* Expertise Tags */}
                 {!partner.isCTA && (
                   <div className="flex flex-wrap justify-center gap-1">
@@ -210,7 +212,7 @@ const CommunityPartnersWall = () => {
                         key={skillIndex}
                         whileHover={{ scale: 1.1 }}
                         className="px-2 py-1 glass rounded-full text-white/70 text-xs"
-                        animate={{ 
+                        animate={{
                           y: hoveredPartner === index ? -1 : 0,
                           transition: { delay: skillIndex * 0.05 }
                         }}
@@ -235,7 +237,7 @@ const CommunityPartnersWall = () => {
                   </motion.a>
                 ) : null}
               </div>
-              
+
               {/* CTA Button for Join Card */}
               {partner.isCTA && (
                 <motion.div

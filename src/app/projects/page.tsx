@@ -2,24 +2,24 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Cpu, 
-  Brain, 
-  Heart, 
-  Globe, 
-  TrendingUp, 
-  DollarSign, 
-  Music, 
-  Recycle, 
-  Calendar, 
-  BookOpen, 
-  Bot, 
-  Scale, 
-  Search, 
-  ChevronLeft, 
-  Check, 
-  Github, 
-  ExternalLink, 
+import {
+  Cpu,
+  Brain,
+  Heart,
+  Globe,
+  TrendingUp,
+  DollarSign,
+  Music,
+  Recycle,
+  Calendar,
+  BookOpen,
+  Bot,
+  Scale,
+  Search,
+  ChevronLeft,
+  Check,
+  Github,
+  ExternalLink,
   Image as ImageIcon,
   X
 } from 'lucide-react';
@@ -29,6 +29,7 @@ import Footer from '@/components/Footer';
 import projectsData from '../../../data/project.json';
 import '@/styles/ProjectsPage.css';
 import Loader from '@/components/Loader';
+import Image from 'next/image';
 
 interface Project {
   id: string;
@@ -72,7 +73,7 @@ const getGradientStyle = (colorString: string) => {
   const parts = colorString.split(' ');
   const fromClass = parts.find(p => p.startsWith('from-'))?.replace('from-', '') || 'indigo-500';
   const toClass = parts.find(p => p.startsWith('to-'))?.replace('to-', '') || 'purple-500';
-  
+
   const colorMap: Record<string, string> = {
     'indigo-500': '#6366f1',
     'purple-500': '#a855f7',
@@ -204,7 +205,7 @@ const ProjectsPage = () => {
 
   return (
     <>
-      <Loader/>
+      <Loader />
       <Navbar />
 
       <main className="projects-page-container">
@@ -215,7 +216,7 @@ const ProjectsPage = () => {
 
         <div className="projects-page-content-wrapper">
           {/* Back to Home Link */}
-          <motion.button 
+          <motion.button
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
             onClick={() => router.push('/')}
@@ -226,7 +227,7 @@ const ProjectsPage = () => {
           </motion.button>
 
           {/* Header */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
@@ -257,8 +258,8 @@ const ProjectsPage = () => {
                   const gradientStyle = getGradientStyle(project.color);
                   const statusClass = project.status.toLowerCase().replace(' ', '-');
                   const isLongDescription = project.description.length > 100;
-                  const shortDescription = isLongDescription 
-                    ? `${project.description.slice(0, 100)}...` 
+                  const shortDescription = isLongDescription
+                    ? `${project.description.slice(0, 100)}...`
                     : project.description;
 
                   return (
@@ -277,17 +278,18 @@ const ProjectsPage = () => {
                       {/* Image Header with Category Overlay */}
                       <div className="project-page-image-container">
                         {project.image ? (
-                          <img 
-                            src={project.image} 
-                            alt={project.title} 
-                            className="project-page-image" 
+                          <Image
+                            src={project.image}
+                            alt={project.title}
+                            fill
+                            className="project-page-image object-cover"
                           />
                         ) : (
                           <div className="project-page-image-placeholder" style={gradientStyle}>
                             <IconComponent size={48} />
                           </div>
                         )}
-                        
+
                         {/* Overlay Badges */}
                         <div className="project-page-overlay-badges">
                           <span className="project-page-category-tag">{project.category}</span>
@@ -361,7 +363,7 @@ const ProjectsPage = () => {
                   );
                 })
               ) : (
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   className="col-span-full"
@@ -412,10 +414,11 @@ const ProjectsPage = () => {
                 {/* Modal Image Header */}
                 <div className="project-modal-image-container">
                   {selectedProject.image ? (
-                    <img 
-                      src={selectedProject.image} 
-                      alt={selectedProject.title} 
-                      className="project-modal-image" 
+                    <Image
+                      src={selectedProject.image}
+                      alt={selectedProject.title}
+                      fill
+                      className="project-modal-image object-cover"
                     />
                   ) : (
                     (() => {
@@ -441,7 +444,7 @@ const ProjectsPage = () => {
                 {/* Modal Info Content */}
                 <div className="project-modal-body">
                   <h2 className="project-modal-title">{selectedProject.title}</h2>
-                  
+
                   {selectedProject.tagline && (
                     <p className="project-modal-tagline">
                       {selectedProject.tagline}
