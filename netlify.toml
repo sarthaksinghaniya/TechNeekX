@@ -1,9 +1,10 @@
 [build]
+  base = ""
   command = "npm run build"
   publish = "out"
-  functions = "out_functions"
 
 [build.environment]
+  NODE_VERSION = "20"
   NEXT_TELEMETRY_DISABLED = "1"
   NETLIFY_NEXT_PLUGIN_SKIP = "true"
 

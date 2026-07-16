@@ -153,7 +153,7 @@ We welcome contributions from the community! To contribute:
 We're always excited to hear about new opportunities and collaborations. Reach out to us through:
 
 - **Email**: [teamtechneekx@gmail.com](mailto:teamtechneekx@gmail.com)
-- **Website**: [techneekx.com](https://techneekx.com) (coming soon!)
+- **Website**: [techneekx.in](https://techneekx.in)
 - **Social Media**: [LinkedIn](https://www.linkedin.com/in/techneekx) | [GitHub](https://github.com/teamtechneekx)
 
 ---
