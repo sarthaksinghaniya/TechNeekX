@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { Calendar, Users, Trophy, ExternalLink, Star, TrendingUp, Award, Code, Palette, Zap } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import eventsData from '../../data/events.json';
+import eventsData from '../../../data/events.json';
 
 interface OrganizedEvent {
   id: string;
@@ -66,13 +66,13 @@ const EventsOrganized = () => {
   return (
     <section className="px-4 sm:px-8 py-16 md:py-28 max-w-6xl mx-auto">
       <div className="text-left mb-12">
-        <motion.h2 
+        <motion.h2
           variants={itemVariants}
           className="text-3xl md:text-4xl font-bold text-slate-900 leading-tight mb-4"
         >
           Events We've Organized
         </motion.h2>
-        <motion.p 
+        <motion.p
           variants={itemVariants}
           className="text-base text-slate-600 max-w-2xl"
         >
@@ -94,13 +94,12 @@ const EventsOrganized = () => {
             <motion.div
               key={event.id}
               variants={itemVariants}
-              whileHover={{ 
+              whileHover={{
                 y: -3,
                 boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)'
               }}
-              className={`p-5 border border-gray-200 rounded-xl bg-white hover:shadow-lg transition-all duration-300 ${
-                event.featured ? 'ring-2 ring-blue-500 ring-offset-2' : ''
-              }`}
+              className={`p-5 border border-gray-200 rounded-xl bg-white hover:shadow-lg transition-all duration-300 ${event.featured ? 'ring-2 ring-blue-500 ring-offset-2' : ''
+                }`}
             >
               {/* Event Header */}
               <div className="flex items-start justify-between mb-4">

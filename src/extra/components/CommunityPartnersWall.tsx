@@ -6,7 +6,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { openTeamForm, FORM_CONFIG } from '@/config/teamForms';
 
-import partnersData from '../../data/community_partners.json';
+import partnersData from '../../../data/community_partners.json';
 
 const CommunityPartnersWall = () => {
   const [hoveredPartner, setHoveredPartner] = useState<number | null>(null);

@@ -22,6 +22,7 @@ const Footer = () => {
         { name: "Events", href: "/events" },
         { name: "Projects", href: "/projects" },
         { name: "Partners with us", href: "https://docs.google.com/forms/d/e/1FAIpQLSfFvcsPMtG-lAi7b31q-TMg-M3hZo0m_IYQecbRDbjFjzm3BA/viewform" },
+        { name: "Join WhatsApp Community", href: "https://chat.whatsapp.com/KOlhO8eb4aHHD5iJkJneV0" },
       ]
     },
     {

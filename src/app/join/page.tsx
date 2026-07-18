@@ -109,6 +109,7 @@ export default function JoinPage() {
         <div className="join-page-bg-blob join-page-blob-2" />
 
         <div className="join-page-content-wrapper">
+          
           {/* Back to Home Link */}
           <motion.button 
             initial={{ opacity: 0, x: -10 }}
@@ -193,13 +194,14 @@ export default function JoinPage() {
               <div className="text-sm text-slate-500">
                 Join 100+ builders already in the network.
               </div>
-              <Link href="/" className="join-btn-primary inline-flex items-center gap-2 text-white no-underline">
-                <ArrowLeft size={16} style={{ color: '#ffffff' }} />
-                Back to Home
+              <Link href="https://chat.whatsapp.com/KOlhO8eb4aHHD5iJkJneV0" className="join-btn-primary inline-flex items-center gap-2 text-white no-underline">
+                Be the Unofficial Member
               </Link>
             </motion.div>
           </motion.div>
         </div>
+
+      
 
         <Footer />
       </motion.main>
