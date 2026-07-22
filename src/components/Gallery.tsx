@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { X, ArrowRight } from 'lucide-react';
 import '../styles/Gallery.css';
 
@@ -96,8 +96,6 @@ const Gallery = () => {
     }
   };
 
-
-
   return (
     <section id="gallery" className="gallery-section">
       {/* Background decoration blur blobs */}
@@ -107,11 +105,11 @@ const Gallery = () => {
       <div className="gallery-container">
         <div className="gallery-grid">
           {/* Left Column: Heading and Info */}
-          <motion.div 
+          <m.div 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="gallery-left"
           >
             <span className="gallery-subtitle">Our memorable moments</span>
@@ -126,17 +124,17 @@ const Gallery = () => {
               <span>View Gallery</span>
               <ArrowRight size={16} />
             </Link>
-          </motion.div>
+          </m.div>
 
           {/* Right Column: 3D Coverflow Carousel */}
-          <motion.div 
+          <m.div 
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
             className="gallery-right"
           >
-            <motion.div
+            <m.div
               className="gallery-carousel-wrapper"
               drag="x"
               dragConstraints={{ left: 0, right: 0 }}
@@ -194,7 +192,7 @@ const Gallery = () => {
                 }
 
                 return (
-                  <motion.div
+                  <m.div
                     key={index}
                     className={`gallery-carousel-card ${offset === 0 ? 'active' : ''}`}
                     onClick={() => handleCardClick(index)}
@@ -212,9 +210,8 @@ const Gallery = () => {
                       isInitial
                         ? { duration: 0 }
                         : {
-                            type: 'spring',
-                            stiffness: 300,
-                            damping: 28,
+                            duration: 0.35,
+                            ease: [0.22, 1, 0.36, 1],
                           }
                     }
                   >
@@ -223,7 +220,7 @@ const Gallery = () => {
                         src={image.src}
                         alt={image.caption}
                         fill
-                        sizes="(max-width: 640px) 200px, 300px"
+                        sizes="(max-width: 640px) 200px, 280px"
                         className="gallery-img"
                         priority={absOffset === 0}
                       />
@@ -234,11 +231,11 @@ const Gallery = () => {
                         <p className="gallery-caption">{image.caption}</p>
                       </div>
                     )}
-                  </motion.div>
+                  </m.div>
                 );
               })}
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         </div>
       </div>
 

@@ -1,13 +1,13 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { motion as motionImport, AnimatePresence as AnimatePresenceImport } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 // Let's use clean imports
 import data from '../constants/data.json';
 import Image from 'next/image';
 import '../styles/About.css';
 
-const MotionImage = motionImport.create(Image);
+const MotionImage = m.create(Image);
 
 // Reusable animated count component using IntersectionObserver
 interface StatCounterProps {
@@ -166,7 +166,7 @@ const AboutMosaic = ({ images }: { images: typeof data.carouselImages }) => {
   }, [isInView, images.length]);
 
   return (
-    <motionImport.div
+    <m.div
       ref={wrapperRef}
       variants={containerVariants}
       initial="hidden"
@@ -176,11 +176,11 @@ const AboutMosaic = ({ images }: { images: typeof data.carouselImages }) => {
     >
       <div className="about-photo-layout">
         {/* Photo 1: Left/Middle */}
-        <motionImport.div
+        <m.div
           variants={cardVariants}
           className="about-photo-card about-photo-card-1"
         >
-          <AnimatePresenceImport mode="wait">
+          <AnimatePresence mode="wait">
             <MotionImage
               key={activeIndices[0]}
               src={images[activeIndices[0]].src}
@@ -192,15 +192,15 @@ const AboutMosaic = ({ images }: { images: typeof data.carouselImages }) => {
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               className="about-photo-img object-cover"
             />
-          </AnimatePresenceImport>
-        </motionImport.div>
+          </AnimatePresence>
+        </m.div>
 
         {/* Photo 2: Top Right */}
-        <motionImport.div
+        <m.div
           variants={cardVariants}
           className="about-photo-card about-photo-card-2"
         >
-          <AnimatePresenceImport mode="wait">
+          <AnimatePresence mode="wait">
             <MotionImage
               key={activeIndices[1]}
               src={images[activeIndices[1]].src}
@@ -212,15 +212,15 @@ const AboutMosaic = ({ images }: { images: typeof data.carouselImages }) => {
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               className="about-photo-img object-cover"
             />
-          </AnimatePresenceImport>
-        </motionImport.div>
+          </AnimatePresence>
+        </m.div>
 
         {/* Photo 3: Bottom Center */}
-        <motionImport.div
+        <m.div
           variants={cardVariants}
           className="about-photo-card about-photo-card-3"
         >
-          <AnimatePresenceImport mode="wait">
+          <AnimatePresence mode="wait">
             <MotionImage
               key={activeIndices[2]}
               src={images[activeIndices[2]].src}
@@ -232,15 +232,15 @@ const AboutMosaic = ({ images }: { images: typeof data.carouselImages }) => {
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               className="about-photo-img object-cover"
             />
-          </AnimatePresenceImport>
-        </motionImport.div>
+          </AnimatePresence>
+        </m.div>
 
         {/* Photo 4: Small Middle-Right */}
-        <motionImport.div
+        <m.div
           variants={cardVariants}
           className="about-photo-card about-photo-card-4"
         >
-          <AnimatePresenceImport mode="wait">
+          <AnimatePresence mode="wait">
             <MotionImage
               key={activeIndices[3]}
               src={images[activeIndices[3]].src}
@@ -252,10 +252,10 @@ const AboutMosaic = ({ images }: { images: typeof data.carouselImages }) => {
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               className="about-photo-img object-cover"
             />
-          </AnimatePresenceImport>
-        </motionImport.div>
+          </AnimatePresence>
+        </m.div>
       </div>
-    </motionImport.div>
+    </m.div>
   );
 };
 
@@ -275,7 +275,7 @@ const About = () => {
           <AboutMosaic images={images} />
 
           {/* Right Column: Intro & Stats */}
-          <motionImport.div
+          <m.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -306,7 +306,7 @@ const About = () => {
                 </div>
               ))}
             </div>
-          </motionImport.div>
+          </m.div>
         </div>
       </div>
     </section>

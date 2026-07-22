@@ -108,6 +108,8 @@
   transform-style: preserve-3d;
   user-select: none;
   pointer-events: auto; /* enable click */
+  will-change: transform;
+  backface-visibility: hidden;
   transition: border-color 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -165,17 +167,14 @@
 .gallery-bg-blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(120px);
   pointer-events: none;
   z-index: 0;
-  will-change: transform;
-  transform: translate3d(0, 0, 0);
 }
 
 .gallery-blob-1 {
   width: 500px;
   height: 500px;
-  background: rgba(168, 85, 247, 0.08);
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.1) 0%, rgba(168, 85, 247, 0) 70%);
   top: -100px;
   right: -100px;
 }
@@ -183,7 +182,7 @@
 .gallery-blob-2 {
   width: 400px;
   height: 400px;
-  background: rgba(236, 72, 153, 0.06);
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.08) 0%, rgba(236, 72, 153, 0) 70%);
   bottom: -100px;
   left: -100px;
 }

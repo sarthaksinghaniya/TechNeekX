@@ -12,17 +12,14 @@
 .events-bg-blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(120px);
   pointer-events: none;
   z-index: 0;
-  will-change: transform;
-  transform: translate3d(0, 0, 0);
 }
 
 .events-blob-1 {
   width: 450px;
   height: 450px;
-  background: rgba(59, 130, 246, 0.08); /* light blue */
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, rgba(59, 130, 246, 0) 70%);
   top: -100px;
   right: -50px;
 }
@@ -30,7 +27,7 @@
 .events-blob-2 {
   width: 400px;
   height: 400px;
-  background: rgba(236, 72, 153, 0.08); /* light pink */
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.12) 0%, rgba(236, 72, 153, 0) 70%);
   bottom: -50px;
   left: -50px;
 }
@@ -144,6 +141,9 @@
   flex-direction: column;
   transition: border-color 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   overflow: hidden;
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25),
               inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }

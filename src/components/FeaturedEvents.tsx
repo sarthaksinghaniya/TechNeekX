@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { MapPin, ArrowRight } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import eventsData from '../../data/events.json';
@@ -68,11 +68,11 @@ const FeaturedEvents = () => {
         <div className="events-layout">
 
           {/* Left Side: Drag Carousel Deck */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="events-deck-wrapper"
           >
             <div className="events-grid mobile-carousel-deck">
@@ -117,11 +117,13 @@ const FeaturedEvents = () => {
                   pointerEvents = 'none';
                 }
 
+                const isCardVisible = relativeIndex <= 2;
+
                 return (
-                  <motion.div
+                  <m.div
                     key={event.id}
                     className={`event-card theme-${event.cardTheme}`}
-                    style={{ pointerEvents, zIndex }}
+                    style={{ pointerEvents, zIndex, display: opacity === 0 ? 'none' : 'flex' }}
                     animate={{
                       x: xOffset,
                       scale: scale,
@@ -132,18 +134,17 @@ const FeaturedEvents = () => {
                       isInitialRef.current
                         ? { duration: 0 }
                         : {
-                            type: 'spring',
-                            stiffness: 260,
-                            damping: 26,
+                            duration: 0.35,
+                            ease: [0.22, 1, 0.36, 1],
                           }
                     }
                     drag={relativeIndex === 0 ? 'x' : false}
                     dragConstraints={{ left: 0, right: 0 }}
-                    dragElastic={0.7}
+                    dragElastic={0.5}
                     onDragEnd={(e, info) => {
-                      if (info.offset.x < -100) {
+                      if (info.offset.x < -80) {
                         setActiveIndex((prev) => (prev + 1) % featuredEvents.length);
-                      } else if (info.offset.x > 100) {
+                      } else if (info.offset.x > 80) {
                         setActiveIndex((prev) => (prev - 1 + featuredEvents.length) % featuredEvents.length);
                       }
                     }}
@@ -155,13 +156,16 @@ const FeaturedEvents = () => {
 
                     {/* Event Image & Overlay Badges */}
                     <div className="event-image-container">
-                      <Image 
-                        src={event.image || '/placeholder-event.png'} 
-                        alt={event.name} 
-                        fill 
-                        className="event-image object-cover" 
-                        priority={relativeIndex === 0}
-                      />
+                      {isCardVisible && (
+                        <Image 
+                          src={event.image || '/placeholder-event.png'} 
+                          alt={event.name} 
+                          fill 
+                          sizes="(max-width: 768px) 90vw, 380px"
+                          className="event-image object-cover" 
+                          priority={relativeIndex === 0}
+                        />
+                      )}
                       <div className="event-badges-overlay">
                         <div className="event-stat-badge">
                           <span className="badge-value">{event.registrations}</span>
@@ -181,18 +185,18 @@ const FeaturedEvents = () => {
                         <span className="location-text">{event.location}</span>
                       </div>
                     </div>
-                  </motion.div>
+                  </m.div>
                 );
               })}
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Right Side: Typographic Content */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
             className="events-content"
           >
             <span className="events-subtitle-badge">MILESTONES</span>
@@ -201,7 +205,7 @@ const FeaturedEvents = () => {
               Bringing the developer community together through high-impact hackathons, workshops, and meetups.
             </p>
             <div className="events-cta-wrapper">
-              <motion.button
+              <m.button
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 onClick={() => router.push('/events')}
@@ -209,9 +213,9 @@ const FeaturedEvents = () => {
               >
                 Explore Events
                 <ArrowRight size={16} />
-              </motion.button>
+              </m.button>
             </div>
-          </motion.div>
+          </m.div>
 
         </div>
       </div>

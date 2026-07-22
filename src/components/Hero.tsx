@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { ArrowRight, Github, Linkedin, Instagram, Mail } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
 import { useRouter } from 'next/navigation';
@@ -57,28 +57,28 @@ const Hero = () => {
       />
       <div className="hero-overlay" />
 
-      <motion.div
+      <m.div
         className="hero-content"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
         <div className="hero-text-col">
-          <motion.div className="hero-subtitle" variants={itemVariants}>
+          <m.div className="hero-subtitle" variants={itemVariants}>
             We build the future
-          </motion.div>
+          </m.div>
 
-          <motion.h2 className="hero-heading" variants={itemVariants}>
+          <m.h2 className="hero-heading" variants={itemVariants}>
             Empowering Innovators.<br />
             Building <span className="hero-text-gradient">Tomorrow.</span>
-          </motion.h2>
+          </m.h2>
 
-          <motion.p className="hero-description" variants={itemVariants}>
+          <m.p className="hero-description" variants={itemVariants}>
             TechNeekX is a student-driven community where curious minds come together to learn, build, and create impact through technology.
-          </motion.p>
+          </m.p>
 
-          <motion.div className="hero-buttons" variants={itemVariants}>
-            <motion.button
+          <m.div className="hero-buttons" variants={itemVariants}>
+            <m.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               onClick={() => router.push('/join')}
@@ -86,23 +86,23 @@ const Hero = () => {
             >
               <span>Join TechNeekX</span>
               <ArrowRight size={16} />
-            </motion.button>
+            </m.button>
 
-            <motion.button
+            <m.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               onClick={() => openTeamForm('partner')}
               className="hero-btn-secondary"
             >
               PARTNER WITH US
-            </motion.button>
-          </motion.div>
+            </m.button>
+          </m.div>
 
-          <motion.div className="hero-socials" variants={itemVariants}>
+          <m.div className="hero-socials" variants={itemVariants}>
             {data.socialLinks.map((social, idx) => {
               const IconComponent = iconMap[social.icon];
               return (
-                <motion.a
+                <m.a
                   key={idx}
                   href={social.href}
                   target="_blank"
@@ -113,19 +113,19 @@ const Hero = () => {
                   whileTap={{ scale: 0.95 }}
                 >
                   {IconComponent && <IconComponent size={20} />}
-                </motion.a>
+                </m.a>
               );
             })}
-          </motion.div>
+          </m.div>
 
-          <motion.div className="hero-scroll-indicator" variants={itemVariants}>
+          <m.div className="hero-scroll-indicator" variants={itemVariants}>
             <div className="hero-mouse">
               <div className="hero-mouse-wheel" />
             </div>
             <span>SCROLL DOWN</span>
-          </motion.div>
+          </m.div>
         </div>
-      </motion.div>
+      </m.div>
     </div>
   );
 };
