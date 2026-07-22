@@ -13,28 +13,28 @@ const Community = () => {
       icon: LucideIcons.Cpu,
       title: "Build",
       description: "Transforming raw ideas into production-ready software, AI products, and real-world tools that scale.",
-      bgImage: "/gallery/IMG_0683.JPG.jpeg",
+      bgImage: "/gallery/IMG_0683.JPG.webp",
       color: "linear-gradient(135deg, #0062ff, #7c3aed)"
     },
     {
       icon: LucideIcons.BookOpen,
       title: "Learn",
       description: "Mastering advanced AI stacks, cloud infrastructure, and product engineering through hands-on development.",
-      bgImage: "/gallery/gal5.jpeg",
+      bgImage: "/gallery/gal5.webp",
       color: "linear-gradient(135deg, #7c3aed, #ff0080)"
     },
     {
       icon: LucideIcons.Users,
       title: "Collaborate",
       description: "Syncing with high-caliber designers and engineers to hack on ambitious projects and learn together.",
-      bgImage: "/gallery/WhatsApp Image 2026-04-09 at 8.20.03 PM.jpeg",
+      bgImage: "/gallery/WhatsApp Image 2026-04-09 at 8.20.03 PM.webp",
       color: "linear-gradient(135deg, #0062ff, #7c3aed)"
     },
     {
       icon: LucideIcons.Rocket,
       title: "Ship",
       description: "Deploying code regularly, presenting live demos, competing in hackathons, and launching real products.",
-      bgImage: "/gallery/IMG-2.jpg.jpeg",
+      bgImage: "/gallery/IMG-2.jpg.webp",
       color: "linear-gradient(135deg, #ff0080, #7c3aed)"
     }
   ];

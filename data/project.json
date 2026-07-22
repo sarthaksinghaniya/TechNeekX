@@ -22,7 +22,7 @@
     "impact": "AI Innovation",
     "aiPowered": true,
     "isFeatured": true,
-    "image": "/f3efe143-3bd0-4dc5-8f55-e5fa6c051f61.png"
+    "image": "/f3efe143-3bd0-4dc5-8f55-e5fa6c051f61.webp"
   },
   {
     "id": "flowx",
@@ -64,7 +64,7 @@
     "github": "https://github.com/teamtechneekx",
     "impact": "Healthcare Innovation",
     "isFeatured": true,
-    "image": "/ChatGPT Image Sep 7, 2025, 10_16_50 AM.png"
+    "image": "/ChatGPT Image Sep 7, 2025, 10_16_50 AM.webp"
   },
   {
     "id": "investment-copilot",
@@ -127,7 +127,7 @@
     "github": "https://github.com/teamtechneekx",
     "impact": "Sustainability",
     "isFeatured": false,
-    "image": "/f3efe143-3bd0-4dc5-8f55-e5fa6c051f61.png"
+    "image": "/f3efe143-3bd0-4dc5-8f55-e5fa6c051f61.webp"
   },
   {
     "id": "hanu-youth",
@@ -192,6 +192,6 @@
     "impact": "LegalTech Automation",
     "aiPowered": true,
     "isFeatured": false,
-    "image": "/lxnode.png"
+    "image": "/lxnode.webp"
   }
 ]

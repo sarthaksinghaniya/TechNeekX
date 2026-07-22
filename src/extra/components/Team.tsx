@@ -28,7 +28,7 @@ const Team = () => {
       role: "CCO, Design Lead, UIUX Specialist",
       bio: "Connects backend and frontend with clean, maintainable code and a problem‑solving mindset.",
       strengths: ["Creativity + Frontend", "Designing", "Smooth UI"],
-      image: "/image.png",
+      image: "/image.webp",
       links: {
         github: "https://github.com/nikhil09790",
         linkedin: "https://www.linkedin.com/in/nikhil-yadav-4b63212ba?utm_source=share_via&utm_content=profile&utm_medium=member_android",
@@ -42,7 +42,7 @@ const Team = () => {
       role: "Chief Marketing Officer, Media Lead",
       bio: "Strategic marketing visionary driving brand growth and media partnerships.",
       strengths: ["Marketing Strategy", "Media Relations", "Brand Development"],
-      image: "/image.png",
+      image: "/image.webp",
       links: {
         github: "https://github.com/hardik112006",
         linkedin: "https://www.linkedin.com/in/hardik-talwar-66b362335?utm_source=share_via&utm_content=profile&utm_medium=member_android",
@@ -56,7 +56,7 @@ const Team = () => {
       role: "Chief Business Officer, Frontend Developer",
       bio: "Business strategy expert and frontend developer bridging technical and commercial success.",
       strengths: ["Business Strategy", "Frontend Development", "Client Relations"],
-      image: "/hardik.jpeg",
+      image: "/hardik.webp",
       links: {
         github: "https://github.com/sarthaksinghaniya",
         linkedin: "https://www.linkedin.com/in/sarthak-singhaniya-a4ab9a323/",

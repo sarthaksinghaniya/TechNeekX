@@ -2,18 +2,19 @@
 
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
-import About from '@/components/About';
-import FeaturedProjects from '@/components/FeaturedProjects';
-import FeaturedEvents from '@/components/FeaturedEvents';
-import PartnersMarquee from '@/components/PartnersMarquee';
-import dynamic from 'next/dynamic';
-const Gallery = dynamic(() => import('@/components/Gallery'), { ssr: false });
-import JourneySummary from '@/components/JourneySummary';
-const Community = dynamic(() => import('@/components/Community'), { ssr: false });
-import FounderNote from '@/components/FounderNote';
-import FinalCTA from '@/components/FinalCTA';
-import Footer from '@/components/Footer';
 import Loader from '@/components/Loader';
+import dynamic from 'next/dynamic';
+
+const About = dynamic(() => import('@/components/About'));
+const FeaturedProjects = dynamic(() => import('@/components/FeaturedProjects'));
+const FeaturedEvents = dynamic(() => import('@/components/FeaturedEvents'));
+const PartnersMarquee = dynamic(() => import('@/components/PartnersMarquee'));
+const JourneySummary = dynamic(() => import('@/components/JourneySummary'));
+const FounderNote = dynamic(() => import('@/components/FounderNote'));
+const FinalCTA = dynamic(() => import('@/components/FinalCTA'));
+const Footer = dynamic(() => import('@/components/Footer'));
+const Gallery = dynamic(() => import('@/components/Gallery'), { ssr: false });
+const Community = dynamic(() => import('@/components/Community'), { ssr: false });
 import useSectionAnimation from '@/hooks/useSectionAnimation';
 import { AnimatePresence, motion } from 'framer-motion';
 

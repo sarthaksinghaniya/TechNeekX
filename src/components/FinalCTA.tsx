@@ -203,7 +203,7 @@ const FinalCTA = () => {
                 }}
               >
                 <Image
-                  src="/file_0000000067647206a22ff5daad754190.png"
+                  src="/logo.webp"
                   alt="TechNeekX Crest"
                   fill
                   sizes="(max-width: 768px) 112px, 136px"

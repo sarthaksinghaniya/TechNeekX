@@ -59,7 +59,7 @@ const Footer = () => {
               <div className="flex items-center gap-1 mb-4">
                 <div className="w-10 h-10 relative rounded-full overflow-hidden flex-shrink-0">
                   <Image
-                    src="/file_0000000067647206a22ff5daad754190.png"
+                    src="/logo.webp"
                     alt="TechNeekX Logo"
                     width={40}
                     height={40}

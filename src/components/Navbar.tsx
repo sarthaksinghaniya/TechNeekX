@@ -126,7 +126,7 @@ const Navbar = () => {
           >
             <div className="tx-logo-img-container">
               <Image 
-                src="/file_0000000067647206a22ff5daad754190.png" 
+                src="/logo.webp" 
                 alt="TechNeekX Logo" 
                 fill
                 sizes="40px"
@@ -236,7 +236,7 @@ const Navbar = () => {
                   <div className="tx-drawer-logo">
                     <div className="tx-logo-img-container">
                       <Image
-                        src="/file_0000000067647206a22ff5daad754190.png"
+                        src="/logo.webp"
                         alt="TechNeekX Logo"
                         fill
                         sizes="40px"

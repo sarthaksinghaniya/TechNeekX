@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence, useScroll, useVelocity, useSpring, useTransform } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { X, ArrowRight } from 'lucide-react';
 import '../styles/Gallery.css';
 
@@ -14,32 +14,32 @@ type GalleryImage = {
 };
 
 const galleryImages: GalleryImage[] = [
-  { src: '/gallery/main.png', caption: 'Highlights from TechNeekX', featured: true },
-  { src: '/gallery/IMG_0150.JPG.jpeg', caption: 'Late-night building energy', featured: true },
-  { src: '/gallery/IMG_0143.JPG.jpeg', caption: 'First hackathon smiles' },
-  { src: '/gallery/IMG_0144.JPG.jpeg', caption: 'Live debugging on stage' },
-  { src: '/gallery/image1.png', caption: 'Community deep-dives' },
-  { src: '/gallery/image2.png', caption: 'Product design sketches' },
-  { src: '/gallery/gal5.jpeg', caption: 'Brainstorm wall' },
-  { src: '/gallery/IMG-2.jpg.jpeg', caption: 'Celebrating the ship', featured: true },
-  { src: '/gallery/judge.jpeg', caption: 'Judging the finalist demos' },
-  { src: '/gallery/WhatsApp Image 2026-04-06 at 3.43.28 PM.jpeg', caption: 'Core team sync before stage' },
-  { src: '/gallery/WhatsApp Image 2026-04-06 at 3.43.29 PM.jpeg', caption: 'Backstage checklist' },
-  { src: '/gallery/WhatsApp Image 2026-04-06 at 6.42.51 PM.jpeg', caption: 'Crowd settling in' },
-  { src: '/gallery/WhatsApp Image 2026-04-06 at 6.42.52 PM.jpeg', caption: 'Session kick-off energy' },
-  { src: '/gallery/WhatsApp Image 2026-04-06 at 6.42.55 PM (1).jpeg', caption: 'Mentors on the floor' },
-  { src: '/gallery/WhatsApp Image 2026-04-06 at 6.42.55 PM.jpeg', caption: 'Builders presenting' },
-  { src: '/gallery/WhatsApp Image 2026-04-06 at 6.42.56 PM (1).jpeg', caption: 'Live feedback moments' },
-  { src: '/gallery/WhatsApp Image 2026-04-06 at 6.42.56 PM.jpeg', caption: 'Evening wrap-up applause' },
-  { src: '/gallery/IMG_0683.JPG.jpeg', caption: 'Team collaboration moment' },
-  { src: '/gallery/IMG_0697.JPG.jpeg', caption: 'Award ceremony highlights', featured: true },
-  { src: '/gallery/WhatsApp Image 2026-04-06 at 8.37.27 PM.jpeg', caption: 'Evening setup preparation' },
-  { src: '/gallery/WhatsApp Image 2026-04-09 at 8.19.57 PM.jpeg', caption: 'Community gathering' },
-  { src: '/gallery/WhatsApp Image 2026-04-09 at 8.20.03 PM.jpeg', caption: 'Team celebration' },
-  { src: '/gallery/WhatsApp Image 2026-04-09 at 8.20.07 PM.jpeg', caption: 'Presentation in progress' },
-  { src: '/gallery/WhatsApp Image 2026-04-09 at 8.20.09 PM.jpeg', caption: 'Audience engagement' },
-  { src: '/gallery/WhatsApp Image 2026-04-09 at 8.43.18 PM.jpeg', caption: 'Networking session' },
-  { src: '/gallery/WhatsApp Image 2026-04-09 at 8.43.50 PM.jpeg', caption: 'Event wrap-up moments' },
+  { src: '/gallery/main.webp', caption: 'Highlights from TechNeekX', featured: true },
+  { src: '/gallery/IMG_0150.JPG.webp', caption: 'Late-night building energy', featured: true },
+  { src: '/gallery/IMG_0143.JPG.webp', caption: 'First hackathon smiles' },
+  { src: '/gallery/IMG_0144.JPG.webp', caption: 'Live debugging on stage' },
+  { src: '/gallery/image1.webp', caption: 'Community deep-dives' },
+  { src: '/gallery/image2.webp', caption: 'Product design sketches' },
+  { src: '/gallery/gal5.webp', caption: 'Brainstorm wall' },
+  { src: '/gallery/IMG-2.jpg.webp', caption: 'Celebrating the ship', featured: true },
+  { src: '/gallery/judge.webp', caption: 'Judging the finalist demos' },
+  { src: '/gallery/WhatsApp Image 2026-04-06 at 3.43.28 PM.webp', caption: 'Core team sync before stage' },
+  { src: '/gallery/WhatsApp Image 2026-04-06 at 3.43.29 PM.webp', caption: 'Backstage checklist' },
+  { src: '/gallery/WhatsApp Image 2026-04-06 at 6.42.51 PM.webp', caption: 'Crowd settling in' },
+  { src: '/gallery/WhatsApp Image 2026-04-06 at 6.42.52 PM.webp', caption: 'Session kick-off energy' },
+  { src: '/gallery/WhatsApp Image 2026-04-06 at 6.42.55 PM (1).webp', caption: 'Mentors on the floor' },
+  { src: '/gallery/WhatsApp Image 2026-04-06 at 6.42.55 PM.webp', caption: 'Builders presenting' },
+  { src: '/gallery/WhatsApp Image 2026-04-06 at 6.42.56 PM (1).webp', caption: 'Live feedback moments' },
+  { src: '/gallery/WhatsApp Image 2026-04-06 at 6.42.56 PM.webp', caption: 'Evening wrap-up applause' },
+  { src: '/gallery/IMG_0683.JPG.webp', caption: 'Team collaboration moment' },
+  { src: '/gallery/IMG_0697.JPG.webp', caption: 'Award ceremony highlights', featured: true },
+  { src: '/gallery/WhatsApp Image 2026-04-06 at 8.37.27 PM.webp', caption: 'Evening setup preparation' },
+  { src: '/gallery/WhatsApp Image 2026-04-09 at 8.19.57 PM.webp', caption: 'Community gathering' },
+  { src: '/gallery/WhatsApp Image 2026-04-09 at 8.20.03 PM.webp', caption: 'Team celebration' },
+  { src: '/gallery/WhatsApp Image 2026-04-09 at 8.20.07 PM.webp', caption: 'Presentation in progress' },
+  { src: '/gallery/WhatsApp Image 2026-04-09 at 8.20.09 PM.webp', caption: 'Audience engagement' },
+  { src: '/gallery/WhatsApp Image 2026-04-09 at 8.43.18 PM.webp', caption: 'Networking session' },
+  { src: '/gallery/WhatsApp Image 2026-04-09 at 8.43.50 PM.webp', caption: 'Event wrap-up moments' },
 ];
 
 const Gallery = () => {
@@ -96,17 +96,7 @@ const Gallery = () => {
     }
   };
 
-  // Track page scroll to tilt the entire 3D carousel plane slightly
-  const { scrollY } = useScroll();
-  const scrollVelocity = useVelocity(scrollY);
-  const smoothVelocity = useSpring(scrollVelocity, {
-    damping: 50,
-    stiffness: 300,
-    mass: 0.5
-  });
 
-  const scrollTilt = useTransform(smoothVelocity, [-3000, 3000], [-10, 10]);
-  const scrollTranslateZ = useTransform(smoothVelocity, [-3000, 3000], [-30, 30]);
 
   return (
     <section id="gallery" className="gallery-section">
@@ -148,10 +138,6 @@ const Gallery = () => {
           >
             <motion.div
               className="gallery-carousel-wrapper"
-              style={{
-                rotateY: scrollTilt,
-                z: scrollTranslateZ,
-              }}
               drag="x"
               dragConstraints={{ left: 0, right: 0 }}
               dragElastic={0.2}

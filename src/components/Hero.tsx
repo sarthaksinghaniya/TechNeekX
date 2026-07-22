@@ -47,12 +47,12 @@ const Hero = () => {
     <div className="hero-frame">
       <video
         className="hero-video"
-        src="/hero/WhatsApp Video 2026-06-30 at 10.59.36.mp4"
+        src="/hero/hero-loop.mp4"
         autoPlay
         loop
         muted
         playsInline
-        poster="/hero/main.jpeg"
+        poster="/hero/main.webp"
         preload="metadata"
       />
       <div className="hero-overlay" />

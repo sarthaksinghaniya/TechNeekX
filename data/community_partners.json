@@ -2,7 +2,7 @@
   {
     "name": "Innosphere",
     "role": "Community Partner",
-    "avatar": "/innosphere.jpg",
+    "avatar": "/innosphere.webp",
     "description": "Empowering students through collaboration, tech events, and skill-building initiatives.",
     "badge": "Collaboration Partner",
     "expertise": [
@@ -16,7 +16,7 @@
   {
     "name": "ByteQuest",
     "role": "Hackathon Organiser",
-    "avatar": "/byte quest hack.png",
+    "avatar": "/byte quest hack.webp",
     "description": "Powering high-impact hackathons that turn ideas into real-world solutions.",
     "badge": "Collaboration Partner",
     "expertise": [
@@ -56,7 +56,7 @@
   {
     "name": "AI4Tomorrow",
     "role": "AI Partner",
-    "avatar": "/AI4Tomorrow logo.png",
+    "avatar": "/AI4Tomorrow logo.webp",
     "description": "Leading the Way to Tomorrow with AI",
     "expertise": [
       "Your Expertise",

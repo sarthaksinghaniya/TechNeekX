@@ -20,7 +20,7 @@ const TEAM: TeamMember[] = [
     name: 'Sarthak Singhaniya',
     role: 'Founder · System Architect · AI/ML',
     tagline: 'Owns system design and technical direction.',
-    imageSrc: '/sarthak.jpeg',
+    imageSrc: '/sarthak.webp',
     links: {
       github: 'https://github.com/sarthaksinghaniya',
       linkedin: 'https://www.linkedin.com/in/sarthak-singhaniya-a4ab9a323/',
@@ -31,7 +31,7 @@ const TEAM: TeamMember[] = [
     name: 'Nikhil Yadav',
     role: 'Design Lead · UI/UX',
     tagline: 'Designs clean, high-impact product experiences.',
-    imageSrc: '/nikhil.jpeg',
+    imageSrc: '/nikhil.webp',
     links: {
       github: 'https://github.com/nikhil09790',
       linkedin:
@@ -43,7 +43,7 @@ const TEAM: TeamMember[] = [
     name: 'Hardik Talwar',
     role: 'Business · Frontend',
     tagline: 'Bridges product goals with execution and delivery.',
-    imageSrc: '/hardik.jpeg',
+    imageSrc: '/hardik.webp',
     links: {
       github: 'https://github.com/hardiktalwar2006',
       linkedin: 'https://www.linkedin.com/in/hardiktalwar2006/',
@@ -54,7 +54,7 @@ const TEAM: TeamMember[] = [
     name: 'Anshuman Soni',
     role: 'Marketing · Media',
     tagline: 'Leads growth, media, and community reach.',
-    imageSrc: '/image.png',
+    imageSrc: '/image.webp',
     links: {
       github: 'https://github.com/Anshuman70k',
       linkedin: 'https://www.linkedin.com/in/anshuman-soni-60277b268/',

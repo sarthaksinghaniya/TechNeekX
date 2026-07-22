@@ -3,7 +3,7 @@
     "officialTeam": [
       {
         "name": "Sarthak Singhaniya",
-        "image": "/sarthak.jpeg",
+        "image": "/sarthak.webp",
         "designation": "Founder & CEO",
         "socials": {
           "linkedin": "https://www.linkedin.com/in/sarthak-singhaniya-a4ab9a323/",
@@ -15,7 +15,7 @@
       },
       {
         "name": "Nikhil Yadav",
-        "image": "/nikhil.jpeg",
+        "image": "/nikhil.webp",
         "designation": "Chairman",
         "socials": {
           "linkedin": "https://www.linkedin.com/in/nikhil-yadav-4b63212ba?utm_source=share_via&utm_content=profile&utm_medium=member_android",
@@ -27,7 +27,7 @@
       },
       {
         "name": "Anshuman Soni",
-        "image": "/image.png",
+        "image": "/image.webp",
         "designation": "President",
         "socials": {
           "linkedin": "https://www.linkedin.com/in/anshuman-soni-60277b268/",
@@ -39,7 +39,7 @@
       },
       {
         "name": "Hardik Talwar",
-        "image": "/hardik.jpeg",
+        "image": "/hardik.webp",
         "designation": "Managing Director",
         "socials": {
           "linkedin": "https://www.linkedin.com/in/hardiktalwar2006/",
@@ -51,7 +51,7 @@
       },
       {
         "name": "Anubhav Saxena",
-        "image": "/team/anubhav.jpg",
+        "image": "/team/anubhav.webp",
         "designation": "Chief Technology Officer",
         "socials": {
           "linkedin": "https://www.linkedin.com/in/anubhav-saxena-7b0b142a7",
@@ -65,7 +65,7 @@
     "coreTeam": [
       {
         "name": "Arpita Sharma",
-        "image": "/team/arpita.jpg",
+        "image": "/team/arpita.webp",
         "designation": "Director of Core Operations",
         "socials": {
           "linkedin": "https://www.linkedin.com/in/arpita-sharma-899bba381?utm_source=share_via&utm_content=profile&utm_medium=member_android",
@@ -77,7 +77,7 @@
       },
       {
         "name": "Sneha Yadav",
-        "image": "/team/sneha.jpg",
+        "image": "/team/sneha.webp",
         "designation": "Design Lead",
         "socials": {
           "linkedin": "https://www.linkedin.com/in/sneha-yadav-4b2351237?utm_source=share_via&utm_content=profile&utm_medium=member_android",
@@ -89,7 +89,7 @@
       },
       {
         "name": "Arshi",
-        "image": "/team/arshi.jpg",
+        "image": "/team/arshi.webp",
         "designation": "Media Lead",
         "socials": {
           "linkedin": "https://www.linkedin.com/in/arshi-ahmad-973173369?utm_source=share_via&utm_content=profile&utm_medium=member_android",
@@ -101,7 +101,7 @@
       },
       {
         "name": "Junaid Khan",
-        "image": "/team/junaid.jpeg",
+        "image": "/team/junaid.webp",
         "designation": "Frontend Lead",
         "socials": {
           "linkedin": "https://www.linkedin.com/in/junaidkhan0007",
@@ -113,7 +113,7 @@
       },
       {
         "name": "Kriti Jain",
-        "image": "/team/kriti.jpg",
+        "image": "/team/kriti.webp",
         "designation": "AI/ML Lead",
         "socials": {
           "linkedin": "https://www.linkedin.com/in/connect-with-kriti",
@@ -125,7 +125,7 @@
       },
       {
         "name": "Akshara Dixit",
-        "image": "/team/akshara.jpg",
+        "image": "/team/akshara.webp",
         "designation": "AI-ML Lead",
         "socials": {
           "linkedin": "https://www.linkedin.com/in/akshara-dixit-04b378385",
@@ -137,7 +137,7 @@
       },
       {
         "name": "Anurag Pal",
-        "image": "/team/anurag.jpeg",
+        "image": "/team/anurag.webp",
         "designation": "ORM LEAD",
         "socials": {
           "linkedin": "https://www.linkedin.com/in/anurag-pal-231b81382",

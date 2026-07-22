@@ -7,6 +7,9 @@ const nextConfig = {
   },
   // Optional: Add a trailing slash to all paths
   trailingSlash: true,
+  experimental: {
+    optimizePackageImports: ['react-icons', 'lucide-react', 'framer-motion'],
+  },
 };
 
 export default nextConfig;

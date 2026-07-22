@@ -61,7 +61,7 @@ const FounderNote = () => {
 
           {/* Background Watermark */}
           <div className="founder-note-watermark">
-            <Image src="/about/tnx-wings.png" alt="Watermark" width={500} height={500} />
+            <Image src="/about/tnx-wings.webp" alt="Watermark" width={500} height={500} />
           </div>
 
           {/* Signature & Avatar */}
@@ -69,7 +69,7 @@ const FounderNote = () => {
             <div className="founder-avatar-wrapper">
               <div className="relative w-12 h-12 rounded-full overflow-hidden border border-slate-200/80 shadow-[0_4px_12px_rgba(15,23,42,0.06)]">
                 <Image
-                  src="/sarthak.jpeg"
+                  src="/sarthak.webp"
                   alt="Sarthak Singhaniya"
                   fill
                   sizes="48px"

@@ -14,7 +14,7 @@ const BuilderWall = () => {
     {
       name: "Sarthak Singhaniya",
       role: "Founder & CEO",
-      avatar: "/sarthak.jpeg",
+      avatar: "/sarthak.webp",
       joined: "Started TechNeekX",
       achievements: [
         <AnimatedCounter key="hackathons" from={0} to={stats.hackathonsNumber} suffix="+ Hackathons" />,
@@ -28,7 +28,7 @@ const BuilderWall = () => {
     {
       name: "Nikhil Yadav",
       role: "CCO & UIUX Designer",
-      avatar: "/nikhil.jpeg",
+      avatar: "/nikhil.webp",
       joined: "1 Year ago",
       achievements: ["Canva Expert", "UI/UX", "Creative Mind"],
       status: "active",
@@ -37,7 +37,7 @@ const BuilderWall = () => {
     {
       name: "Anshuman Soni",
       role: "CMO & Media Lead",
-      avatar: "/image.png",
+      avatar: "/image.webp",
       joined: "4 Months ago",
       achievements: [],
       status: "active",
@@ -46,7 +46,7 @@ const BuilderWall = () => {
     {
       name: "Hardik Talwar",
       role: "CBO & Frontend Developer",
-      avatar: "/hardik.jpeg",
+      avatar: "/hardik.webp",
       joined: "1 Year ago",
       achievements: ["React Expert", "UI/UX", "Creative Mind"],
       status: "active",

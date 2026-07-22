@@ -7,7 +7,7 @@ import data from '../constants/data.json';
 import Image from 'next/image';
 import '../styles/About.css';
 
-const MotionImage = motionImport(Image);
+const MotionImage = motionImport.create(Image);
 
 // Reusable animated count component using IntersectionObserver
 interface StatCounterProps {
@@ -283,7 +283,7 @@ const About = () => {
             className="about-content"
           >
             <div className="about-watermark">
-              <Image src="/about/tnx-wings.png" alt="Watermark" width={500} height={500} />
+              <Image src="/about/tnx-wings.webp" alt="Watermark" width={500} height={500} />
             </div>
 
             <span className="tnx-section-label">

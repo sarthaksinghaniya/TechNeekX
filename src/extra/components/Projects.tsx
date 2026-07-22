@@ -36,7 +36,7 @@ const Projects = () => {
       problem: "E-waste management is inefficient, with poor sorting and recycling recommendations leading to environmental harm.",
       solution: "Built an AI platform that uses computer vision to identify e-waste types, provides recycling recommendations, and tracks environmental impact.",
       impact: "Improved recycling efficiency by 40%, reduced environmental impact, and created a scalable solution for smart cities.",
-      image: "/f3efe143-3bd0-4dc5-8f55-e5fa6c051f61.png",
+      image: "/f3efe143-3bd0-4dc5-8f55-e5fa6c051f61.webp",
       tags: ["AI", "SaaS", "Sustainability"],
       gradient: "from-green-500 to-teal-500",
       links: {
@@ -52,7 +52,7 @@ const Projects = () => {
       problem: "Businesses struggle with customer support efficiency and personalization, leading to poor user experiences.",
       solution: "Developed a sophisticated conversational AI that understands context, learns from interactions, and provides personalized responses.",
       impact: "Reduced response time by 60%, improved customer satisfaction by 45%, and automated 80% of routine inquiries.",
-      image: "/f3efe143-3bd0-4dc5-8f55-e5fa6c051f61.png",
+      image: "/f3efe143-3bd0-4dc5-8f55-e5fa6c051f61.webp",
       tags: ["AI", "Chatbot", "NLP"],
       gradient: "from-purple-500 to-pink-500",
       links: {
@@ -68,7 +68,7 @@ const Projects = () => {
       problem: "Teams struggle with inefficient time management and poor project planning, leading to missed deadlines and burnout.",
       solution: "Created an AI-powered scheduling assistant that optimizes time allocation, predicts bottlenecks, and provides intelligent planning recommendations.",
       impact: "Increased team productivity by 35%, reduced project delays by 50%, and improved work-life balance for users.",
-      image: "/ChatGPT Image Sep 7, 2025, 10_41_17 AM.png",
+      image: "/ChatGPT Image Sep 7, 2025, 10_41_17 AM.webp",
       tags: ["AI", "Productivity", "SaaS"],
       gradient: "from-blue-500 to-cyan-500",
       links: {
@@ -84,7 +84,7 @@ const Projects = () => {
       problem: "Hospitals face operational overload with no early warning system, leading to emergency department crowding and staff burnout.",
       solution: "Built a predictive analytics system using time series analysis and machine learning to forecast operational stress 6 hours in advance.",
       impact: "Achieved 92% accuracy in predicting ED surges, reduced ER crowding by 35%, and prevented staff burnout through proactive resource allocation.",
-      image: "/ChatGPT Image Jan 7, 2026, 10_51_37 AM.png",
+      image: "/ChatGPT Image Jan 7, 2026, 10_51_37 AM.webp",
       tags: ["Healthcare", "AI", "Analytics"],
       gradient: "from-red-500 to-orange-500",
       links: {
@@ -100,7 +100,7 @@ const Projects = () => {
       problem: "Students and professionals lack clear career guidance and struggle to track their skill development progress effectively.",
       solution: "Developed a comprehensive platform that integrates with LinkedIn and Unstop, providing personalized career roadmaps and skill tracking.",
       impact: "Helped 500+ users identify career paths, improved skill acquisition by 40%, and increased job placement rates by 25%.",
-      image: "/d4009897-c04d-4fe5-859d-f145042c645a.png",
+      image: "/d4009897-c04d-4fe5-859d-f145042c645a.webp",
       tags: ["Career", "SaaS", "Analytics"],
       gradient: "from-indigo-500 to-purple-600",
       links: {

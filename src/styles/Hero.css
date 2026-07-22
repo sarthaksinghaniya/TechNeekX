@@ -8,7 +8,7 @@
   /* border: 1px solid rgba(255, 255, 255, 0.08); */
   overflow: hidden;
   background-color: #030508;
-  /* background-image: url('/hero/main.jpeg'); */
+  /* background-image: url('/hero/main.webp'); */
   /* background-size: cover;
   background-position: center center; */
   display: flex;
@@ -272,7 +272,7 @@
     /* height: auto; */
     /* min-height: 48vh; */
     /* margin: 86px 0px 0px 0px; */
-    /* background-image: url('/hero/heroImg.png'); */
+    /* background-image: url('/hero/heroImg.webp'); */
     background-position: center;
   }
 
@@ -300,7 +300,7 @@
 @media (max-width: 768px) {
 
   .hero-frame {
-    /* background-image: url('/hero/WhatsApp Image 2026-06-28 at 13.29.07 copy.jpeg'); */
+    /* background-image: url('/hero/WhatsApp Image 2026-06-28 at 13.29.07 copy.webp'); */
     height: 100dvh;
     /* background-position: center; */
     margin: 0px;

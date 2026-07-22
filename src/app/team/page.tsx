@@ -196,7 +196,7 @@ export default function TeamPage() {
             <div className="team-sparkle-banner">
               {/* Wings Watermark Image placed behind the text */}
               <Image
-                src="/about/tnx-wings.png"
+                src="/about/tnx-wings.webp"
                 alt="TechNeekX Wings Watermark"
                 width={200}
                 height={200}

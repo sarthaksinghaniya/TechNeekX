@@ -23,7 +23,7 @@ const Loader = () => {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-blue-900 via-purple-900 to-pink-900"
+          className="dark fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-blue-900 via-purple-900 to-pink-900"
         >
           <div className="relative">
             {/* Animated gradient blobs */}
@@ -77,11 +77,12 @@ const Loader = () => {
                 }}
               >
                 <Image
-                  src="/file_0000000067647206a22ff5daad754190.png"
+                  src="/logo.webp"
                   alt="TechNeekX Logo"
                   width={64}
                   height={64}
                   className="w-full h-full object-cover"
+                  priority
                 />
               </motion.div>
 
