@@ -65,5 +65,18 @@
     ],
     "gradient": "from-gray-500 to-gray-700",
     "link": "https://www.linkedin.com/company/ai-4-tomorrow/"
+  },
+  {
+    "name": "Nerds Room",
+    "role": "Community partner",
+    "avatar": "/nerdsRoom.png",
+    "description": "A student-driven technology community creating real-world learning opportunities through hackathons, tech events, and hands-on initiatives.",
+    "expertise": [
+      "Student Collaboration",
+      "Hackathons",
+      "Tech Events"
+    ],
+    "gradient": "from-gray-500 to-gray-700",
+    "link": "https://www.nerdsroom.xyz/"
   }
 ]
