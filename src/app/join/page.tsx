@@ -130,13 +130,13 @@ export default function JoinPage() {
             {/* Announcement Badge */}
             <motion.div 
               variants={itemVariants}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-200/30 text-blue-600 rounded-full text-xs font-semibold mb-8 float-badge"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-green-500/10 to-green-500/10 border border-green-200/30 text-green-600 rounded-full text-xs font-semibold mb-8 float-badge"
             >
               <span className="flex h-2 w-2 relative">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
               </span>
-              Coming Soon
+              Recruitment is Live. 
             </motion.div>
 
             {/* Title & Description */}
@@ -194,8 +194,8 @@ export default function JoinPage() {
               <div className="text-sm text-slate-500">
                 Join 100+ builders already in the network.
               </div>
-              <Link href="https://chat.whatsapp.com/KOlhO8eb4aHHD5iJkJneV0" className="join-btn-primary inline-flex items-center gap-2 text-white no-underline">
-                Be the Unofficial Member
+              <Link href=" https://forms.gle/3RVngAv93Cj5oBVd7" className="join-btn-primary inline-flex items-center gap-2 text-white no-underline">
+                Join TechNeekX
               </Link>
             </motion.div>
           </motion.div>

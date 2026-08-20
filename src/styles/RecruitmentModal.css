@@ -1,0 +1,294 @@
+/* Recruitment Modal Stylesheet */
+
+.recruitment-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9990;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(3, 5, 8, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.recruitment-modal-container {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  background: rgba(10, 15, 29, 0.94);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-radius: 28px;
+  padding: 36px 32px 32px 32px;
+  box-shadow: 
+    0 25px 60px -15px rgba(0, 0, 0, 0.7),
+    0 0 40px -10px rgba(0, 98, 255, 0.3),
+    0 0 50px -10px rgba(255, 0, 128, 0.25);
+  color: #ffffff;
+  overflow: hidden;
+  font-family: var(--nav-font, 'Inter', -apple-system, BlinkMacSystemFont, sans-serif);
+}
+
+/* Gradient animated border wrapper */
+.recruitment-modal-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 28px;
+  padding: 1.5px;
+  background: linear-gradient(135deg, #0062ff, #7c3aed, #ff0080, #0062ff);
+  background-size: 300% 300%;
+  animation: modal-border-glow 6s ease infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+@keyframes modal-border-glow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Ambient glow blobs behind the modal content */
+.recruitment-modal-glow-1 {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, rgba(255, 0, 128, 0.25) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(25px);
+}
+
+.recruitment-modal-glow-2 {
+  position: absolute;
+  bottom: -30px;
+  left: -30px;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(0, 98, 255, 0.3) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(30px);
+}
+
+/* Close Button */
+.recruitment-modal-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 10;
+}
+
+.recruitment-modal-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  transform: rotate(90deg) scale(1.05);
+}
+
+/* Live Badge Pill */
+.recruitment-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #34d399;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.recruitment-pulse-dot {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #10b981;
+}
+
+.recruitment-pulse-ring {
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background-color: #10b981;
+  opacity: 0.75;
+  animation: pulse-ring 1.8s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+/* Modal Heading & Content */
+.recruitment-modal-title {
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  margin-bottom: 12px;
+  color: #ffffff;
+}
+
+.recruitment-title-gradient {
+  background: linear-gradient(90deg, #ff0080, #7c3aed, #0062ff);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 6s ease infinite;
+}
+
+.recruitment-modal-desc {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: #94a3b8;
+  margin-bottom: 22px;
+}
+
+/* Feature/Perks List */
+.recruitment-perks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 26px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  padding: 14px 16px;
+}
+
+.recruitment-perk-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #e2e8f0;
+}
+
+.recruitment-perk-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, rgba(0, 98, 255, 0.2), rgba(255, 0, 128, 0.2));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #38bdf8;
+  flex-shrink: 0;
+}
+
+/* Action Buttons */
+.recruitment-modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.recruitment-cta-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 14px 24px;
+  background: linear-gradient(90deg, #ff0080, #7c3aed, #0062ff);
+  background-size: 200% auto;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 
+    0 10px 25px rgba(255, 0, 128, 0.3),
+    0 10px 25px rgba(0, 98, 255, 0.25);
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  animation: gradient-shift 6s ease infinite;
+}
+
+.recruitment-cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 15px 35px rgba(255, 0, 128, 0.45),
+    0 15px 35px rgba(0, 98, 255, 0.4);
+}
+
+.recruitment-cta-btn:active {
+  transform: translateY(0);
+}
+
+.recruitment-dismiss-btn {
+  background: transparent;
+  border: none;
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 6px;
+  transition: color 0.2s ease;
+  text-align: center;
+}
+
+.recruitment-dismiss-btn:hover {
+  color: #cbd5e1;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 640px) {
+  .recruitment-modal-container {
+    padding: 28px 20px 24px 20px;
+    border-radius: 22px;
+  }
+
+  .recruitment-modal-title {
+    font-size: 22px;
+  }
+
+  .recruitment-modal-desc {
+    font-size: 13.5px;
+  }
+
+  .recruitment-cta-btn {
+    padding: 13px 20px;
+    font-size: 14px;
+  }
+}

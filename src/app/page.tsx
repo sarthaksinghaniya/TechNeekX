@@ -3,6 +3,7 @@
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import Loader from '@/components/Loader';
+import RecruitmentModal from '@/components/RecruitmentModal';
 import About from '@/components/About';
 import FeaturedProjects from '@/components/FeaturedProjects';
 import FeaturedEvents from '@/components/FeaturedEvents';
@@ -30,6 +31,7 @@ export default function Home() {
         className="min-h-screen"
       >
         <Loader />
+        <RecruitmentModal />
         <Navbar />
         <Hero />
         
