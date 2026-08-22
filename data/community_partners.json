@@ -1,19 +1,5 @@
 [
   {
-    "name": "Innosphere",
-    "role": "Community Partner",
-    "avatar": "/innosphere.webp",
-    "description": "Empowering students through collaboration, tech events, and skill-building initiatives.",
-    "badge": "Collaboration Partner",
-    "expertise": [
-      "Student Collaboration",
-      "Tech Events",
-      "Skill Development"
-    ],
-    "gradient": "from-indigo-500 to-cyan-500",
-    "link": "https://www.linkedin.com/company/innosphere-student-forum/posts/?feedView=all"
-  },
-  {
     "name": "ByteQuest",
     "role": "Hackathon Organiser",
     "avatar": "/byte quest hack.webp",
