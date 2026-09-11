@@ -1,11 +1,53 @@
 [
   {
+    "id": "sih-ignite",
+    "title": "SIH IGNITE",
+    "status": "Live",
+    "category": "Hackathon Discovery Platform",
+    "tagline": "Find. Shortlist. Build.",
+    "categories": [
+      "hackathon",
+      "sih",
+      "platform"
+    ],
+    "icon": "Rocket",
+    "color": "from-orange-500 to-red-500",
+    "description": "SIH IGNITE is a community-built platform designed to make exploring Smart India Hackathon 2026 problem statements faster and easier. It brings all 226 problem statements into one searchable and filterable interface, helping participants discover challenges based on category, theme, organization, and their interests. With dedicated browsing, fast search, theme and organization discovery, and a shortlist system, SIH IGNITE helps teams move from hundreds of possibilities to the problems they actually want to build for.",
+    "features": [
+      "Browse all 226 SIH 2026 problem statements",
+      "Fast search and instant filtering",
+      "Separate software and hardware problem discovery",
+      "Explore problems by themes and domains",
+      "Browse problem statements by participating organization",
+      "Shortlist problems for later evaluation",
+      "Problem statement insights and database metrics",
+      "Community-maintained SIH 2026 archive"
+    ],
+    "techStack": [
+      "Web Platform",
+      "Search & Filtering",
+      "Responsive UI",
+      "SIH 2026 Dataset"
+    ],
+    "link": "https://sihignite.netlify.app",
+    "linkLabel": "Explore SIH Ignite",
+    "github": "https://github.com/sarthaksinghaniya/sihignite",
+    "impact": "Hackathon Discovery",
+    "aiPowered": false,
+    "isFeatured": true,
+    "image": "/sih-ignite-homepage-hero.webp"
+  },
+  {
     "id": "revibe-hub",
     "title": "REVIBE HUB",
     "status": "Live",
     "category": "Advanced AI System",
     "tagline": "Real-World AI Innovation",
-    "categories": ["advanced", "ai", "platform"],
+    "categories": [
+      "advanced",
+      "ai",
+      "platform"
+    ],
     "icon": "Cpu",
     "color": "from-indigo-500 to-purple-500",
     "description": "Revibe Hub is an AI-powered platform focused on real-world innovation, helping users transform ideas into practical, impactful solutions. It provides guided workflows, smart suggestions, and resources to build projects efficiently.",
@@ -15,7 +57,12 @@
       "Resource and learning integration",
       "Real-world problem solving focus"
     ],
-    "techStack": ["Next.js", "TypeScript", "Framer Motion", "AI Workflows"],
+    "techStack": [
+      "Next.js",
+      "TypeScript",
+      "Framer Motion",
+      "AI Workflows"
+    ],
     "link": "https://revibe-hub.netlify.app",
     "linkLabel": "Visit Project",
     "github": "https://github.com/teamtechneekx",
@@ -29,7 +76,11 @@
     "title": "FLOWX",
     "status": "In Progress",
     "category": "Advanced AI System",
-    "categories": ["advanced", "ai", "platform"],
+    "categories": [
+      "advanced",
+      "ai",
+      "platform"
+    ],
     "icon": "Brain",
     "color": "from-purple-500 to-pink-500",
     "description": "Building a next-gen intelligent system focused on scalable AI workflows and automation",
@@ -38,7 +89,13 @@
       "Real-time processing capabilities",
       "Production-grade deployment"
     ],
-    "techStack": ["Python", "FastAPI", "Node.js", "AI/ML", "System Design"],
+    "techStack": [
+      "Python",
+      "FastAPI",
+      "Node.js",
+      "AI/ML",
+      "System Design"
+    ],
     "link": null,
     "github": "https://github.com/teamtechneekx",
     "impact": "Platform Engineering",
@@ -50,7 +107,10 @@
     "title": "FRACTURE VISION AI",
     "status": "Live",
     "category": "Healthcare AI",
-    "categories": ["healthcare", "ai"],
+    "categories": [
+      "healthcare",
+      "ai"
+    ],
     "icon": "Heart",
     "color": "from-red-500 to-pink-500",
     "description": "AI-powered fracture detection system using medical imaging",
@@ -59,7 +119,12 @@
       "High accuracy detection",
       "Reduces diagnosis time and improves clinical decision-making"
     ],
-    "techStack": ["Python", "OpenCV", "Deep Learning", "Streamlit"],
+    "techStack": [
+      "Python",
+      "OpenCV",
+      "Deep Learning",
+      "Streamlit"
+    ],
     "link": "https://fracturevision-ai.streamlit.app/",
     "github": "https://github.com/teamtechneekx",
     "impact": "Healthcare Innovation",
@@ -71,7 +136,10 @@
     "title": "INVESTMENT AI COPILOT",
     "status": "In Development",
     "category": "FinTech AI",
-    "categories": ["fintech", "ai"],
+    "categories": [
+      "fintech",
+      "ai"
+    ],
     "icon": "DollarSign",
     "color": "from-green-500 to-emerald-500",
     "description": "AI-driven financial assistant for investment analysis and decision support",
@@ -80,7 +148,12 @@
       "Risk evaluation capabilities",
       "Designed as a co-pilot for smarter investing"
     ],
-    "techStack": ["Python", "AI/ML", "APIs", "Data Visualization"],
+    "techStack": [
+      "Python",
+      "AI/ML",
+      "APIs",
+      "Data Visualization"
+    ],
     "link": null,
     "github": "https://github.com/teamtechneekx",
     "impact": "Financial Technology",
@@ -92,7 +165,10 @@
     "title": "REVIBER",
     "status": "Live",
     "category": "Music Platform",
-    "categories": ["music", "platform"],
+    "categories": [
+      "music",
+      "platform"
+    ],
     "icon": "Music",
     "color": "from-purple-500 to-indigo-500",
     "description": "Interactive platform for music-based engagement and user experience",
@@ -101,7 +177,11 @@
       "Music engagement platform",
       "User experience focused design"
     ],
-    "techStack": ["React", "JavaScript", "UI/UX Design"],
+    "techStack": [
+      "React",
+      "JavaScript",
+      "UI/UX Design"
+    ],
     "link": "https://reviber.netlify.app",
     "github": "https://github.com/teamtechneekx",
     "impact": "Digital Experience",
@@ -113,7 +193,10 @@
     "title": "REVIVE LAB",
     "status": "Live",
     "category": "Sustainability",
-    "categories": ["sustainability", "ai"],
+    "categories": [
+      "sustainability",
+      "ai"
+    ],
     "icon": "Recycle",
     "color": "from-green-500 to-teal-500",
     "description": "AI-powered platform for e-waste innovation and repurposing ideas",
@@ -122,7 +205,11 @@
       "Encourages sustainable tech practices",
       "E-waste innovation platform"
     ],
-    "techStack": ["Python", "AI", "Web Development"],
+    "techStack": [
+      "Python",
+      "AI",
+      "Web Development"
+    ],
     "link": "https://revibe-lab.netlify.app",
     "github": "https://github.com/teamtechneekx",
     "impact": "Sustainability",
@@ -134,7 +221,10 @@
     "title": "HANU YOUTH",
     "status": "Live",
     "category": "EdTech",
-    "categories": ["edtech", "community"],
+    "categories": [
+      "edtech",
+      "community"
+    ],
     "icon": "BookOpen",
     "color": "from-blue-500 to-purple-500",
     "description": "Gamified learning platform for hackathons, AI/ML, and coding",
@@ -143,7 +233,11 @@
       "Gamified learning experience",
       "Hackathon and coding focus"
     ],
-    "techStack": ["React", "Node.js", "Gamification Logic"],
+    "techStack": [
+      "React",
+      "Node.js",
+      "Gamification Logic"
+    ],
     "link": "https://hanuyouthapp.netlify.app/",
     "github": "https://github.com/teamtechneekx",
     "impact": "Community Education",
@@ -155,7 +249,10 @@
     "title": "HANU BAI",
     "status": "In Progress",
     "category": "AI Assistant",
-    "categories": ["assistant", "ai"],
+    "categories": [
+      "assistant",
+      "ai"
+    ],
     "icon": "Bot",
     "color": "from-cyan-500 to-blue-500",
     "description": "Personal AI assistant focused on automation and interaction",
@@ -164,7 +261,11 @@
       "Single intelligent system",
       "Automation and interaction focus"
     ],
-    "techStack": ["NLP", "Python", "AI Systems"],
+    "techStack": [
+      "NLP",
+      "Python",
+      "AI Systems"
+    ],
     "link": null,
     "github": "https://github.com/teamtechneekx",
     "impact": "AI Innovation",
@@ -176,7 +277,11 @@
     "title": "LXNode – AI Legal Assistant",
     "status": "Live",
     "category": "AI Assistant",
-    "categories": ["assistant", "ai", "platform"],
+    "categories": [
+      "assistant",
+      "ai",
+      "platform"
+    ],
     "icon": "Scale",
     "color": "from-violet-500 to-fuchsia-500",
     "description": "AI-powered legal assistant that simplifies legal processes with intelligent document analysis, legal query resolution, and automated insights.",
@@ -186,7 +291,14 @@
       "Smart contract/document insights",
       "Context-aware legal suggestions"
     ],
-    "techStack": ["Next.js", "React", "Node.js", "AI APIs (NLP/LLM)", "Tailwind CSS", "Netlify"],
+    "techStack": [
+      "Next.js",
+      "React",
+      "Node.js",
+      "AI APIs (NLP/LLM)",
+      "Tailwind CSS",
+      "Netlify"
+    ],
     "link": "https://lxnode.netlify.app/",
     "github": "https://github.com/sarthaksinghaniya/lxnode-AI",
     "impact": "LegalTech Automation",
