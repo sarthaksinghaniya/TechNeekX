@@ -129,8 +129,8 @@
     "type": "Hackathon",
     "location": "SRMCEM, LUCKNOW",
     "registrations": "200+",
-    "attendees": "0",
-    "image": "/CoDathon (4).webp",
+    "attendees": "148",
+    "image": "/IMG_1150.webp",
     "cardTheme": "green",
     "isFeatured": true,
     "description": "A 8-hour hackathon focused on building agentic AI, LLM applications, and cognitive workflows.",
@@ -139,10 +139,10 @@
     "gradient": "from-green-500 to-emerald-500",
     "date": "2026-09-16",
     "featured": true,
-    "showInOrganized": false,
+    "showInOrganized": true,
     "cta": {
       "text": "See Our Participants",
-      "link": "https://tnx-codathon.vercel.app/"
+      "link": "https://drive.google.com/drive/folders/1n8cjOp9T_Wv_LxwEcPkhttsjcdmDurBA"
     }
   },
   {

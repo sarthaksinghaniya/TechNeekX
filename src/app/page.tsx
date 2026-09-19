@@ -31,7 +31,7 @@ export default function Home() {
         className="min-h-screen"
       >
         <Loader />
-        <RecruitmentModal />
+        {/* <RecruitmentModal /> */}
         <Navbar />
         <Hero />
         
