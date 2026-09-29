@@ -130,13 +130,13 @@ export default function JoinPage() {
             {/* Announcement Badge */}
             <motion.div 
               variants={itemVariants}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-green-500/10 to-green-500/10 border border-green-200/30 text-green-600 rounded-full text-xs font-semibold mb-8 float-badge"
-            >
+              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-red-500/10 to-red-500/10 border border-red-200/30 text-red-600 rounded-full text-xs font-semibold mb-8 float-badge"
+            > 
               <span className="flex h-2 w-2 relative">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
               </span>
-              Recruitment is Live. 
+              Recruitment is Closed. 
             </motion.div>
 
             {/* Title & Description */}
@@ -194,9 +194,13 @@ export default function JoinPage() {
               <div className="text-sm text-slate-500">
                 Join 100+ builders already in the network.
               </div>
-              <Link href=" https://forms.gle/3RVngAv93Cj5oBVd7" className="join-btn-primary inline-flex items-center gap-2 text-white no-underline">
+              {/* <Link  href=" https://forms.gle/3RVngAv93Cj5oBVd7" className="join-btn-primary inline-flex items-center gap-2 text-white no-underline">
                 Join TechNeekX
-              </Link>
+              </Link> */}
+
+              <button disabled className="join-btn-primary inline-flex items-center gap-2 text-white no-underline">
+                  Join TechNeekX
+              </button>
             </motion.div>
           </motion.div>
         </div>
