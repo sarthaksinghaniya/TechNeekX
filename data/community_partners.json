@@ -64,5 +64,44 @@
     ],
     "gradient": "from-gray-500 to-gray-700",
     "link": "https://www.nerdsroom.xyz/"
+  },
+  {
+    "name": "Hacknfinity",
+    "role": "Community partner",
+    "avatar": "/partners/hacknfinity-logo.png",
+    "description": "We promote meaningful collaboration, accessible technical learning and real event exposure for students who want to build, contribute and lead.",
+    "expertise": [
+      "Student Collaboration",
+      "Hackathons",
+      "Tech Events"
+    ],
+    "gradient": "from-gray-500 to-gray-700",
+    "link": "https://hacknfinity-chi.vercel.app/"
+  },
+  {
+    "name": "HackGyanVerse",
+    "role": "Community partner",
+    "avatar": "/partners/hackgyanverse logo.png",
+    "description": "HackGyanVerse is a fast-growing student and mentor-led tech community created to bridge the gap between learning and real-world execution.",
+    "expertise": [
+      "Student Collaboration",
+      "Hackathons",
+      "Tech Events"
+    ],
+    "gradient": "from-gray-500 to-gray-700",
+    "link": "https://www.linkedin.com/company/hackgyanverse/"
+  },
+  {
+    "name": "DevSphereIndia",
+    "role": "Community partner",
+    "avatar": "/partners/devsphereindia.svg",
+    "description": "DevSphereIndia is one of India's fastest-growing student-led tech communities, uniting over 700 developers, designers, and innovators nationwide.",
+    "expertise": [
+      "Student Collaboration",
+      "Hackathons",
+      "Tech Events"
+    ],
+    "gradient": "from-gray-500 to-gray-700",
+    "link": "https://www.linkedin.com/company/devsphereindia-community/about/"
   }
 ]
