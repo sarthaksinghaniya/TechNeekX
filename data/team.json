@@ -146,6 +146,30 @@
         },
         "cta": "https://www.linkedin.com/in/anurag-pal-231b81382",
         "description": "Passionate Computer Science student and Core Team Member at TechNeekX. Interested in AI, Full Stack Development, and community building. Focused on solving real-world problems through technology while continuously learning and contributing to impactful projects."
+      },
+      {
+        "name": "HARSHITA AGNIHOTRI",
+        "image": "/team/Harshita Agnihotri.jpg",
+        "designation": "Research and Analysis lead , AIML mentor",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/harshita-agnihotri-5811012a1?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+          "github": "",
+          "email": "agnihotriharshita@yahoo.com"
+        },
+        "cta": "https://www.linkedin.com/in/harshita-agnihotri-5811012a1?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+        "description": "Hi, I’m Harshita Agnihotri, a 4th-year B.Tech CSE-AI student at Babu Banarasi Das University! "
+      },
+      {
+        "name": "Ankit Vishwakarma",
+        "image": "/team/Sukhadev Vishwakarma.webp",
+        "designation": "Robotics Mentor",
+        "socials": {
+          "linkedin": "https://www.linkedin.com/in/ankit-vishwakarma-a6649129a?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+          "github": "https://github.com/AnkitVishwa11",
+          "email": "ankit26548vishwakarma@gmail.com"
+        },
+        "cta": "https://www.linkedin.com/in/ankit-vishwakarma-a6649129a?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+        "description": "B.Tech CSE-ITB student specializing in IoT and Blockchain, with hands-on experience in IoT, Robotics, Embedded Systems, Blockchain, Web Development, Cloud Computing, and Software Development. Skilled in C, C++, Java, Python, JavaScript, SQL, Flask, Arduino, ESP32, Hyperledger, Docker, Kubernetes, and Cloud technologies. Passionate about building innovative real-world solutions by combining hardware, software, and emerging technologies."
       }
     ],
     "members": []
