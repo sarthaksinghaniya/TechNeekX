@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+                            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  <!-- Homepage -->
+  <url>
+    <loc>https://teamtechneekx.netlify.app/</loc>
+    <lastmod>2026-10-16T12:00:00+05:30</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://teamtechneekx.netlify.app/heroImg.webp</image:loc>
+      <image:title>TechNeekX (TNX) - AI Product Studio &amp; Innovation Community</image:title>
+      <image:caption>TechNeekX Youth Innovation and Builder Ecosystem</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Team & Coding Profiles -->
+  <url>
+    <loc>https://teamtechneekx.netlify.app/team/</loc>
+    <lastmod>2026-10-16T12:00:00+05:30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://teamtechneekx.netlify.app/sarthak.webp</image:loc>
+      <image:title>Sarthak Singhaniya - Founder &amp; CEO of TechNeekX</image:title>
+    </image:image>
+  </url>
+
+  <!-- Projects & Code Repositories -->
+  <url>
+    <loc>https://teamtechneekx.netlify.app/projects/</loc>
+    <lastmod>2026-10-16T12:00:00+05:30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- Join TechNeekX -->
+  <url>
+    <loc>https://teamtechneekx.netlify.app/join/</loc>
+    <lastmod>2026-10-16T12:00:00+05:30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <!-- Hackathons & Events -->
+  <url>
+    <loc>https://teamtechneekx.netlify.app/events/</loc>
+    <lastmod>2026-10-16T12:00:00+05:30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Journey -->
+  <url>
+    <loc>https://teamtechneekx.netlify.app/journey/</loc>
+    <lastmod>2026-10-16T12:00:00+05:30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Partners & Collaborations -->
+  <url>
+    <loc>https://teamtechneekx.netlify.app/partners/</loc>
+    <lastmod>2026-10-16T12:00:00+05:30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- Gallery -->
+  <url>
+    <loc>https://teamtechneekx.netlify.app/gallery/</loc>
+    <lastmod>2026-10-16T12:00:00+05:30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+</urlset>

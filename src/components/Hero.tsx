@@ -68,10 +68,10 @@ const Hero = () => {
             We build the future
           </m.div>
 
-          <m.h2 className="hero-heading" variants={itemVariants}>
+          <m.h1 className="hero-heading" variants={itemVariants}>
             Empowering Innovators.<br />
             Building <span className="hero-text-gradient">Tomorrow.</span>
-          </m.h2>
+          </m.h1>
 
           <m.p className="hero-description" variants={itemVariants}>
             TechNeekX is a student-driven community where curious minds come together to learn, build, and create impact through technology.

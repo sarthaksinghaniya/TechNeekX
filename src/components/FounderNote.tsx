@@ -78,10 +78,17 @@ const FounderNote = () => {
               </div>
             </div>
             <div className="founder-meta">
-              <h4 className="founder-name bg-gradient-to-r from-[#0062ff] to-[#ff0080] bg-clip-text text-transparent !text-transparent">
-                Sarthak Singhaniya
-              </h4>
-              <span className="founder-role">Founder & CEO, TechNeekX</span>
+              <a
+                href="https://sarthaksinghaniya.netlify.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="View Sarthak Singhaniya Portfolio"
+              >
+                <h4 className="founder-name bg-gradient-to-r from-[#0062ff] to-[#ff0080] bg-clip-text text-transparent !text-transparent hover:opacity-90 transition-opacity">
+                  Sarthak Singhaniya
+                </h4>
+              </a>
+              <span className="founder-role">Founder &amp; CEO, TechNeekX (TNX)</span>
             </div>
           </div>
 

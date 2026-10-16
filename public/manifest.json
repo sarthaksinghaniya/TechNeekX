@@ -1,0 +1,45 @@
+{
+  "name": "TechNeekX (TNX) - AI Product Studio & Developer Ecosystem",
+  "short_name": "TechNeekX",
+  "description": "TechNeekX (TNX / TechNX / GIT / techneek) is a student-driven tech innovation ecosystem and AI product studio founded by Sarthak Singhaniya.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0f",
+  "theme_color": "#0a0a0f",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/logo.webp",
+      "sizes": "192x192",
+      "type": "image/webp",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo.webp",
+      "sizes": "512x512",
+      "type": "image/webp",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "developer tools", "technology"],
+  "shortcuts": [
+    {
+      "name": "Explore Projects",
+      "short_name": "Projects",
+      "description": "View open source projects and AI builds by TechNeekX",
+      "url": "/projects"
+    },
+    {
+      "name": "Meet the Team",
+      "short_name": "Team",
+      "description": "Meet Sarthak Singhaniya and the TechNeekX engineering team",
+      "url": "/team"
+    },
+    {
+      "name": "Join TechNeekX",
+      "short_name": "Join",
+      "description": "Join our community of developers and innovators",
+      "url": "/join"
+    }
+  ]
+}

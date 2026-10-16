@@ -1,0 +1,61 @@
+# Robots.txt for TechNeekX (TNX / TechNX / GIT)
+# Domain: https://teamtechneekx.netlify.app
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /private/
+
+# Google Search & Google Gemini AI
+User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Applebot & Siri (Critical for Apple Intelligence & Siri Knowledge Retrieval)
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# OpenAI / ChatGPT
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic / Claude
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Perplexity AI Search
+User-agent: PerplexityBot
+Allow: /
+
+# Microsoft Bing & Copilot
+User-agent: Bingbot
+Allow: /
+
+# Social Media Preview Crawlers
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+# Sitemap and Host Location
+Sitemap: https://teamtechneekx.netlify.app/sitemap.xml
+Host: https://teamtechneekx.netlify.app

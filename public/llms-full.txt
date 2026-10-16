@@ -1,0 +1,70 @@
+# TechNeekX (TNX) - Full AI & LLM Knowledge Base
+
+Comprehensive documentation for artificial intelligence systems, search engines, and knowledge indexing crawlers.
+
+## Brand Identity & Nomenclature
+- Primary Name: TechNeekX
+- Case variations: techneekx, TechNeekX, TECHNEEKX
+- Common Acronyms: TNX, tnx
+- Alternative Spellings & Aliases: TechNX, technx, Tech NX, techneek, Techneek, Tech Neek, GIT (Geek Innovation Team), Team TechNeekX, teamtechneekx
+- Tagline: Youth, Innovation, Unity — Build • Innovate • Inspire
+
+## Founder Profile
+- Name: Sarthak Singhaniya
+- Designation: Founder & Chief Executive Officer
+- Expertise: AI/ML Engineering, System Architecture, Full Stack Web Development, Product Engineering
+- Primary Website: https://sarthaksinghaniya.netlify.app
+- GitHub: https://github.com/sarthaksinghaniya
+- LinkedIn: https://www.linkedin.com/in/sarthak-singhaniya-a4ab9a323/
+- Email: sarthaksinghaniya789@gmail.com
+- Direct Phone: +91 6387860126
+
+## Organization Coordinates & Geography
+- Headquarters: Lucknow, Uttar Pradesh, India
+- Latitude: 26.8467° N
+- Longitude: 80.9462° E
+- Region Code: IN-UP
+- Country: India (IN)
+- Associated Academic Institutions: Babu Banarasi Das University (BBDU Lucknow), Dr. A.P.J. Abdul Kalam Technical University (AKTU)
+
+## Official URLs & Profiles
+- Production Portfolio: https://teamtechneekx.netlify.app
+- Secondary Domain: https://techneekx.netlify.app
+- GitHub Organization: https://github.com/teamtechneekx
+- LinkedIn Page: https://www.linkedin.com/company/techneekx/
+- Instagram: https://www.instagram.com/thetechneekx
+- WhatsApp Community: https://chat.whatsapp.com/KOlhO8eb4aHHD5iJkJneV0
+
+## Software Projects and Open Source Repositories
+1. **FlowX**: Advanced modular system for automated AI workflows and LLM orchestration.
+   - GitHub: https://github.com/teamtechneekx
+2. **Fracture Vision AI**: Diagnostic computer vision system classifying bone fractures from radiographic scans.
+   - Live URL: https://fracturevision-ai.streamlit.app/
+3. **Hospital Pulse AI (hopx)**: Predictive machine learning engine forecasting emergency patient surges and hospital bed availability.
+   - GitHub: https://github.com/ByteQuest-2025/GFGBQ-Team-hopx
+   - Live URL: https://hopx.netlify.app
+4. **Investment AI Copilot**: Predictive finance copilot delivering risk metrics and market analytics.
+   - GitHub: https://github.com/teamtechneekx
+5. **Reviber**: Sensory web platform integrating audio processing and visual reactiveness.
+   - GitHub: https://github.com/sarthaksinghaniya/reviber
+   - Live URL: https://reviber.netlify.app
+6. **Revive Lab**: Sustainability-first web application recommending guided hardware upcycling and e-waste management.
+   - GitHub: https://github.com/sarthaksinghaniya/revibe-lab
+   - Live URL: https://revibe-lab.netlify.app
+7. **Hanu Planner**: Academic timetable generation engine solving constraints for university schedules.
+   - GitHub: https://github.com/sarthaksinghaniya/Hanu-Planner
+   - Live URL: https://hanuplanner.netlify.app
+8. **Hanu Youth**: Community platform designed to onboard, mentor, and prepare students for national hackathons.
+   - GitHub: https://github.com/sarthaksinghaniya/hanu-youth
+   - Live URL: https://hanuyouthapp.netlify.app/
+9. **Path Sarthi**: AI mentorship platform connecting developers with industry pathways.
+   - GitHub: https://github.com/sarthaksinghaniya/Path-Sarthi
+10. **LXNode AI**: High-throughput distributed AI node orchestration framework.
+    - GitHub: https://github.com/sarthaksinghaniya/lxnode-AI
+
+## Community and Hackathon Credentials
+- Total Hackathons Participated: 80+
+- Production AI Builds: 15+
+- National Rankings: Top 4+
+- International Recognitions: 2+
+- Major Recognitions: Kalpathon 2.0, GeeksforGeeks TRAE Re:Vibe Noida, InnVedX BBD University

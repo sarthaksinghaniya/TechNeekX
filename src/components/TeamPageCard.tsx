@@ -37,17 +37,17 @@ export const FounderCard: React.FC<{ member: TeamMember }> = ({ member }) => {
           {/* Social Links */}
           <div className="founder-socials">
             {member.socials.linkedin && (
-              <a href={member.socials.linkedin} target="_blank" rel="noopener noreferrer" className="founder-social-icon">
+              <a href={member.socials.linkedin} target="_blank" rel="noopener noreferrer" className="founder-social-icon" aria-label={`${member.name} LinkedIn Profile`}>
                 <Linkedin size={16} />
               </a>
             )}
             {member.socials.github && (
-              <a href={member.socials.github} target="_blank" rel="noopener noreferrer" className="founder-social-icon">
+              <a href={member.socials.github} target="_blank" rel="noopener noreferrer" className="founder-social-icon" aria-label={`${member.name} GitHub Coding Profile`}>
                 <Github size={16} />
               </a>
             )}
             {member.socials.email && (
-              <a href={`mailto:${member.socials.email}`} className="founder-social-icon">
+              <a href={`mailto:${member.socials.email}`} className="founder-social-icon" aria-label={`Email ${member.name}`}>
                 <Mail size={16} />
               </a>
             )}
@@ -55,7 +55,7 @@ export const FounderCard: React.FC<{ member: TeamMember }> = ({ member }) => {
 
           {/* Portfolio CTA */}
           {member.cta && member.cta !== '#' && (
-            <a href={member.cta} target="_blank" rel="noopener noreferrer" className="founder-portfolio-btn">
+            <a href={member.cta} target="_blank" rel="noopener noreferrer" className="founder-portfolio-btn" aria-label={`${member.name} Portfolio Website`}>
               <span>View Portfolio</span>
               <ArrowRight size={14} />
             </a>
@@ -109,24 +109,24 @@ export const OfficialCard: React.FC<{ member: TeamMember }> = ({ member }) => {
       <div className="official-techy-footer">
         <div className="official-techy-socials">
           {member.socials.linkedin && (
-            <a href={member.socials.linkedin} target="_blank" rel="noopener noreferrer" className="techy-social-icon">
+            <a href={member.socials.linkedin} target="_blank" rel="noopener noreferrer" className="techy-social-icon" aria-label={`${member.name} LinkedIn Profile`}>
               <Linkedin size={15} />
             </a>
           )}
           {member.socials.github && (
-            <a href={member.socials.github} target="_blank" rel="noopener noreferrer" className="techy-social-icon">
+            <a href={member.socials.github} target="_blank" rel="noopener noreferrer" className="techy-social-icon" aria-label={`${member.name} GitHub Coding Profile`}>
               <Github size={15} />
             </a>
           )}
           {member.socials.email && (
-            <a href={`mailto:${member.socials.email}`} className="techy-social-icon">
+            <a href={`mailto:${member.socials.email}`} className="techy-social-icon" aria-label={`Email ${member.name}`}>
               <Mail size={15} />
             </a>
           )}
         </div>
 
         {member.cta && member.cta !== '#' && (
-          <a href={member.cta} target="_blank" rel="noopener noreferrer" className="techy-portfolio-btn">
+          <a href={member.cta} target="_blank" rel="noopener noreferrer" className="techy-portfolio-btn" aria-label={`${member.name} Portfolio`}>
             <span>Portfolio</span>
             <ArrowRight size={12} />
           </a>
@@ -173,24 +173,24 @@ export const CoreCard: React.FC<{ member: TeamMember }> = ({ member }) => {
       <div className="core-left-footer">
         <div className="core-left-socials">
           {member.socials.linkedin && (
-            <a href={member.socials.linkedin} target="_blank" rel="noopener noreferrer" className="core-left-social-icon">
+            <a href={member.socials.linkedin} target="_blank" rel="noopener noreferrer" className="core-left-social-icon" aria-label={`${member.name} LinkedIn Profile`}>
               <Linkedin size={14} />
             </a>
           )}
           {member.socials.github && (
-            <a href={member.socials.github} target="_blank" rel="noopener noreferrer" className="core-left-social-icon">
+            <a href={member.socials.github} target="_blank" rel="noopener noreferrer" className="core-left-social-icon" aria-label={`${member.name} GitHub Coding Profile`}>
               <Github size={14} />
             </a>
           )}
           {member.socials.email && (
-            <a href={`mailto:${member.socials.email}`} className="core-left-social-icon">
+            <a href={`mailto:${member.socials.email}`} className="core-left-social-icon" aria-label={`Email ${member.name}`}>
               <Mail size={14} />
             </a>
           )}
         </div>
 
         {member.cta && member.cta !== '#' && (
-          <a href={member.cta} target="_blank" rel="noopener noreferrer" className="core-left-portfolio-btn">
+          <a href={member.cta} target="_blank" rel="noopener noreferrer" className="core-left-portfolio-btn" aria-label={`${member.name} Portfolio`}>
             <span>Portfolio</span>
             <ArrowRight size={12} />
           </a>
