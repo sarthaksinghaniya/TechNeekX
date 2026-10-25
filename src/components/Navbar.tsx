@@ -10,31 +10,19 @@ import '../styles/Navbar.css';
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('hero');
   const mobileMenuRef = useRef<HTMLDivElement | null>(null);
   const router = useRouter();
   const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
-      let scrolled = false;
-      if (pathname === '/') {
-        const heroHeight = window.innerHeight;
-        scrolled = window.scrollY > (heroHeight - 80);
-      } else {
-        scrolled = true;
-      }
-      setIsScrolled(scrolled);
-      
-      // Update active section based on scroll position
+      setIsScrolled(window.scrollY > 20);
     };
-    
-    // Set initial state
+
     handleScroll();
-    
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [pathname]);
+  }, []);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -54,16 +42,16 @@ const Navbar = () => {
     { name: 'GIT', href: '/girls-in-techneekx' },
     { name: 'Partners', href: '/partners' },
     { name: 'Team', href: '/team' },
+    { name: 'Journey', href: '/journey' },
   ];
 
   const socialLinks = [
     { icon: Github, href: 'https://github.com/teamtechneekx', label: 'GitHub' },
     { icon: Linkedin, href: 'https://www.linkedin.com/company/techneekx/', label: 'LinkedIn' },
-    { icon: Instagram, href: 'https://www.instagram.com/thetechneekx?igsh=MXZ6Yjgyd3VnN250NA==', label: 'Instagram' },
-    { icon: Mail, href: 'https://mail.google.com/mail/?view=cm&fs=1&to=teamtechneekx.netlify.app', label: 'Email' },
+    { icon: Instagram, href: 'https://www.instagram.com/thetechneekx', label: 'Instagram' },
+    { icon: Mail, href: 'mailto:teamtechneekx@gmail.com', label: 'Email' },
   ];
 
-  // Smooth scroll handler
   const handleNavClick = (href: string) => {
     if (href.startsWith('/')) {
       router.push(href);
@@ -81,27 +69,19 @@ const Navbar = () => {
     }
     const targetId = href.replace('#', '');
     const targetElement = document.getElementById(targetId);
-    
     if (targetElement) {
-      targetElement.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
-      });
-      
-      // Close mobile menu if open
+      targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
       if (isMobileMenuOpen) {
         setIsMobileMenuOpen(false);
       }
     }
   };
 
-  // Check if link is active
   const isActiveLink = (href: string) => {
     if (href.startsWith('/')) {
       return pathname === href || pathname === `${href}/`;
     }
-    const targetId = href.replace('#', '');
-    return activeSection === targetId;
+    return false;
   };
 
   const { scrollYProgress } = useScroll();
@@ -109,29 +89,25 @@ const Navbar = () => {
   return (
     <>
       {/* Scroll Progress Indicator */}
-      <motion.div 
-        className="scroll-progress"
+      <motion.div
+        className="scroll-progress fixed top-0 left-0 right-0 h-[2px] bg-[#0062FF] origin-left z-[1000] pointer-events-none"
         style={{ scaleX: scrollYProgress }}
       />
-      
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className={`tx-navbar ${isScrolled ? 'tx-scrolled' : ''}`}
-      >
+
+      <header className={`tx-navbar ${isScrolled ? 'tx-scrolled' : ''}`}>
         <div className="tx-navbar-wrap">
           {/* Logo */}
           <motion.button
-            onClick={() => handleNavClick('#hero')}
-            whileHover={{ scale: 1.02 }}
+            onClick={() => handleNavClick('/')}
+            whileHover={{ scale: 1.01 }}
             whileTap={{ scale: 0.98 }}
             className="tx-logo-area"
+            aria-label="TechNeekX Home"
           >
             <div className="tx-logo-img-container">
-              <Image 
-                src="/logo.webp" 
-                alt="TechNeekX Logo" 
+              <Image
+                src="/logo.webp"
+                alt="TechNeekX Logo"
                 fill
                 sizes="40px"
                 className="object-cover"
@@ -139,50 +115,44 @@ const Navbar = () => {
               />
             </div>
             <div className="tx-logo-text-group">
-              <span className="tx-logo-text">TechNeek<span className="tx-logo-x">X</span></span>
+              <span className="tx-logo-text">
+                TechNeek<span className="tx-logo-x">X</span>
+              </span>
               <span className="tx-logo-subtitle">BUILD • INNOVATE • INSPIRE</span>
             </div>
           </motion.button>
 
-          {/* Desktop Navigation Links */}
+          {/* Desktop Navigation Center Dock */}
           <div className="tx-nav-group">
-            <div>
-            {navItems.map((item) => (
-              <motion.button
-                key={item.name}
-                onClick={() => handleNavClick(item.href)}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className={`tx-nav-item ${isActiveLink(item.href) ? 'tx-active' : ''}`}
-              >
-                {item.name}
-                {isActiveLink(item.href) && (
-                  <motion.div
-                    className="tx-nav-underline"
-                    layoutId="activeUnderline"
-                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                  />
-                )}
-              </motion.button>
-            ))}
-            </div>
+            <nav className="tx-nav-dock" aria-label="Main Navigation">
+              {navItems.map((item) => (
+                <button
+                  key={item.name}
+                  onClick={() => handleNavClick(item.href)}
+                  className={`tx-nav-item ${isActiveLink(item.href) ? 'tx-active' : ''}`}
+                >
+                  {item.name}
+                </button>
+              ))}
+            </nav>
+
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               onClick={() => router.push('/join')}
               className="tx-btn-cta"
             >
-              <span>Join TechNeekX</span>
-              <ArrowRight size={16} />
+              <span>Join Us</span>
+              <ArrowRight size={14} />
             </motion.button>
           </div>
 
-          {/* Mobile menu hamburger toggle */}
+          {/* Mobile Menu Hamburger Toggle */}
           <motion.button
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="tx-mobile-toggle"
-            aria-label="Toggle menu"
+            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
           >
             <AnimatePresence mode="wait">
               {isMobileMenuOpen ? (
@@ -193,7 +163,7 @@ const Navbar = () => {
                   exit={{ rotate: 90, opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <X size={24} />
+                  <X size={20} />
                 </motion.div>
               ) : (
                 <motion.div
@@ -203,7 +173,7 @@ const Navbar = () => {
                   exit={{ rotate: -90, opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <Menu size={24} />
+                  <Menu size={20} />
                 </motion.div>
               )}
             </AnimatePresence>
@@ -213,12 +183,7 @@ const Navbar = () => {
         {/* Mobile Navigation Drawer */}
         <AnimatePresence>
           {isMobileMenuOpen && (
-            <motion.div
-              className="tx-drawer-backdrop"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
+            <div className="tx-drawer-backdrop">
               <motion.div
                 className="tx-drawer-overlay"
                 onClick={() => setIsMobileMenuOpen(false)}
@@ -228,13 +193,14 @@ const Navbar = () => {
                 transition={{ duration: 0.2 }}
               />
 
-              <motion.div
+              <motion.aside
                 ref={mobileMenuRef}
                 initial={{ x: '100%' }}
                 animate={{ x: 0 }}
                 exit={{ x: '100%' }}
-                transition={{ type: 'spring', stiffness: 260, damping: 30 }}
+                transition={{ type: 'spring', stiffness: 280, damping: 32 }}
                 className="tx-drawer-content"
+                aria-label="Mobile Navigation"
               >
                 <div className="tx-drawer-header">
                   <div className="tx-drawer-logo">
@@ -249,8 +215,10 @@ const Navbar = () => {
                       />
                     </div>
                     <div className="tx-logo-text-group">
-                      <span className="tx-drawer-logo-text">TechNeek<b className="tx-logo-x">X</b></span>
-                      <span className="tx-logo-subtitle tx-drawer-logo-subtitle">BUILD • INNOVATE • INSPIRE</span>
+                      <span className="tx-drawer-logo-text">
+                        TechNeek<span className="tx-logo-x">X</span>
+                      </span>
+                      <span className="tx-logo-subtitle">BUILD • INNOVATE • INSPIRE</span>
                     </div>
                   </div>
                   <motion.button
@@ -259,7 +227,7 @@ const Navbar = () => {
                     className="tx-drawer-close"
                     aria-label="Close menu"
                   >
-                    <X size={24} />
+                    <X size={18} />
                   </motion.button>
                 </div>
 
@@ -268,12 +236,17 @@ const Navbar = () => {
                     <motion.button
                       key={item.name}
                       onClick={() => handleNavClick(item.href)}
-                      initial={{ opacity: 0, x: 20 }}
+                      initial={{ opacity: 0, x: 15 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.25, delay: index * 0.05 }}
+                      transition={{ duration: 0.2, delay: index * 0.04 }}
                       className={`tx-drawer-nav-btn ${isActiveLink(item.href) ? 'tx-active-drawer' : ''}`}
                     >
-                      {item.name}
+                      <span>{item.name}</span>
+                      {isActiveLink(item.href) ? (
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#111318]" />
+                      ) : (
+                        <ArrowRight size={14} className="text-[#8A92A0]" />
+                      )}
                     </motion.button>
                   ))}
                 </div>
@@ -291,12 +264,12 @@ const Navbar = () => {
                         className="tx-drawer-social-link"
                         aria-label={social.label}
                       >
-                        <social.icon size={20} />
+                        <social.icon size={18} />
                       </motion.a>
                     ))}
                   </div>
                   <motion.button
-                    whileTap={{ scale: 0.96 }}
+                    whileTap={{ scale: 0.98 }}
                     onClick={() => {
                       setIsMobileMenuOpen(false);
                       router.push('/join');
@@ -304,18 +277,16 @@ const Navbar = () => {
                     className="tx-drawer-cta"
                   >
                     <span>Join TechNeekX</span>
-                    <ArrowRight size={16} />
+                    <ArrowRight size={15} />
                   </motion.button>
                 </div>
-              </motion.div>
-            </motion.div>
+              </motion.aside>
+            </div>
           )}
         </AnimatePresence>
-      </motion.nav>
+      </header>
     </>
   );
 };
-
-
 
 export default Navbar;

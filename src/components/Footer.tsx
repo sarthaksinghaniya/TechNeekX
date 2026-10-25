@@ -1,9 +1,10 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Github, Instagram, Linkedin, Mail, ArrowUp, Code2, MapPin } from 'lucide-react';
+import { Github, Instagram, Linkedin, Mail, ArrowUp, Code2, MapPin, Globe } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const Footer = () => {
   const socialLinks = [
@@ -14,40 +15,36 @@ const Footer = () => {
     { icon: FaWhatsapp, href: 'https://wa.me/916387860126', label: 'WhatsApp' },
   ];
 
-  const footerLinks = [
+  const productLinks = [
+    { name: 'AI Projects & Code', href: '/projects', external: false },
+    { name: 'Events & Hackathons', href: '/events', external: false },
+    { name: 'Girls in TechNeekX', href: '/girls-in-techneekx', external: false },
+    { name: 'Our Journey', href: '/journey', external: false },
+    { name: 'Photo Gallery', href: '/gallery', external: false },
+  ];
+
+  const companyLinks = [
+    { name: 'About TechNeekX', href: '/#about', external: false },
+    { name: 'Builders & Leadership', href: '/team', external: false },
+    { name: 'Join TechNeekX', href: '/join', external: false },
     {
-      title: 'Coding Profiles',
-      links: [
-        { name: 'TechNeekX GitHub', href: 'https://github.com/teamtechneekx', external: true },
-        { name: 'Founder GitHub (Sarthak S.)', href: 'https://github.com/sarthaksinghaniya', external: true },
-        { name: 'Founder Portfolio', href: 'https://sarthaksinghaniya.netlify.app', external: true },
-        { name: 'AI Projects & Code', href: '/projects', external: false },
-        { name: 'Builders & Leadership', href: '/team', external: false },
-      ],
+      name: 'Partner with Us',
+      href: 'https://docs.google.com/forms/d/e/1FAIpQLSfFvcsPMtG-lAi7b31q-TMg-M3hZo0m_IYQecbRDbjFjzm3BA/viewform',
+      external: true,
     },
     {
-      title: 'Company',
-      links: [
-        { name: 'About Us', href: '/#about', external: false },
-        { name: 'Girls in TechNeekX', href: '/girls-in-techneekx', external: false },
-        { name: 'Events & Hackathons', href: '/events', external: false },
-        { name: 'Our Journey', href: '/journey', external: false },
-        { name: 'Privacy Policy', href: '/privacy', external: false },
-        { name: 'Terms & Conditions', href: '/terms', external: false },
-        { name: 'Partner with Us', href: 'https://docs.google.com/forms/d/e/1FAIpQLSfFvcsPMtG-lAi7b31q-TMg-M3hZo0m_IYQecbRDbjFjzm3BA/viewform', external: true },
-        { name: 'Join WhatsApp Community', href: 'https://chat.whatsapp.com/KOlhO8eb4aHHD5iJkJneV0', external: true },
-      ],
+      name: 'Join WhatsApp Community',
+      href: 'https://chat.whatsapp.com/KOlhO8eb4aHHD5iJkJneV0',
+      external: true,
     },
-    {
-      title: 'Contact & Location',
-      links: [
-        { name: 'teamtechneekx@gmail.com', href: 'mailto:teamtechneekx@gmail.com', external: true },
-        { name: '+91 6387860126', href: 'tel:6387860126', external: true },
-        { name: 'Lucknow, Uttar Pradesh, India', href: 'https://maps.google.com/?q=Lucknow,Uttar+Pradesh,India', external: true },
-        { name: 'LinkedIn (@techneekx)', href: 'https://www.linkedin.com/company/techneekx/', external: true },
-        { name: 'Instagram (@thetechneekx)', href: 'https://www.instagram.com/thetechneekx', external: true },
-      ],
-    },
+  ];
+
+  const contactLinks = [
+    { name: 'teamtechneekx@gmail.com', href: 'mailto:teamtechneekx@gmail.com', external: true },
+    { name: '+91 6387860126', href: 'tel:6387860126', external: true },
+    { name: 'Founder Portfolio (Sarthak S.)', href: 'https://sarthaksinghaniya.netlify.app', external: true },
+    { name: 'Privacy Policy', href: '/privacy', external: false },
+    { name: 'Terms & Conditions', href: '/terms', external: false },
   ];
 
   const scrollToTop = () => {
@@ -55,141 +52,190 @@ const Footer = () => {
   };
 
   return (
-    <footer className="relative bg-[#090b11] border-t border-slate-800 text-slate-400">
-      {/* Sleek top border accent */}
-      <div className="h-[1px] bg-gradient-to-r from-blue-600 via-sky-500 to-blue-600"></div>
+    <footer className="relative bg-[#111318] border-t border-[#232731] text-[#8A92A0]">
+      {/* Subtle hairline gradient top edge */}
+      <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-[#0062FF]/40 to-transparent" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
-          {/* Brand Section */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-12">
+          {/* Brand Section (2 columns on lg) */}
           <div className="lg:col-span-2">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.5 }}
               viewport={{ once: true }}
             >
               {/* Logo */}
-              <div className="flex items-center gap-1 mb-4">
-                <div className="w-10 h-10 relative rounded-full overflow-hidden flex-shrink-0">
+              <div className="flex items-center gap-2.5 mb-4">
+                <div className="w-10 h-10 relative rounded-full overflow-hidden border border-[#232731] bg-[#181B22] flex-shrink-0">
                   <Image
                     src="/logo.webp"
                     alt="TechNeekX Logo"
-                    width={40}
-                    height={40}
-                    className="w-full h-full object-cover"
+                    fill
+                    sizes="40px"
+                    className="object-cover"
                   />
                 </div>
-                <div className="flex flex-col items-start justify-center">
-                  <span className="text-[18px] font-bold text-white/100 tracking-[0.04em] leading-[1.1]">
-                    TechNeek<span className="font-extrabold bg-clip-text text-transparent bg-gradient-to-br from-[#ec4899] to-[#3b82f6] ml-[1px]">X</span>
+                <div className="flex flex-col">
+                  <span className="text-[17px] font-bold text-white tracking-tight leading-none">
+                    TechNeek<span className="text-[#0062FF]">X</span>
                   </span>
-                  <span className="text-[7.5px] font-semibold text-slate-400 tracking-[0.12em] mt-[1px] leading-[1]">
+                  <span className="text-[8px] font-semibold text-[#8A92A0] tracking-[0.16em] mt-0.5 uppercase">
                     BUILD • INNOVATE • INSPIRE
                   </span>
                 </div>
               </div>
 
-              {/* Description with Aliases & Geographic Location for SEO & AI */}
-              <p className="text-slate-400 mb-4 leading-relaxed max-w-sm text-sm">
-                <strong className="text-white font-medium">TechNeekX</strong> (also known as <span className="text-slate-300">TNX / TechNX / GIT / techneek</span>) is a premier student-driven AI product studio and innovation ecosystem founded by <span className="text-white font-medium">Sarthak Singhaniya</span>.
+              {/* Description */}
+              <p className="text-[#8A92A0] mb-5 leading-relaxed text-sm max-w-sm">
+                <strong className="text-white font-medium">TechNeekX</strong> (TNX) is a premier AI product studio and technology ecosystem founded by <span className="text-white font-medium">Sarthak Singhaniya</span>, building scalable software, intelligent autonomous tools, and next-generation engineering communities.
               </p>
 
               {/* Location Badge */}
-              <div className="flex items-center gap-1.5 text-xs text-slate-400 mb-6">
-                <MapPin size={14} className="text-pink-500 flex-shrink-0" />
-                <span>Lucknow, Uttar Pradesh, India • Global Developer Network</span>
+              <div className="flex items-center gap-2 text-xs text-[#8A92A0] mb-6">
+                <MapPin size={14} className="text-[#0062FF] flex-shrink-0" />
+                <span>Lucknow, Uttar Pradesh, India • Global Network</span>
               </div>
 
-              {/* Social & Coding Links */}
-              <div className="flex space-x-3">
+              {/* Social and Coding Links */}
+              <div className="flex flex-wrap items-center gap-2.5">
                 {socialLinks.map((social) => (
                   <motion.a
                     key={social.label}
                     href={social.href}
                     target={social.href.startsWith('http') ? '_blank' : undefined}
                     rel={social.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                    whileHover={{ scale: 1.1, rotate: 4 }}
-                    whileTap={{ scale: 0.9 }}
-                    className="w-10 h-10 rounded-full glass-dark border border-slate-800 flex items-center justify-center text-slate-400 hover:text-slate-200 hover:border-slate-700 transition-colors duration-200"
+                    whileHover={{ scale: 1.06, y: -2 }}
+                    whileTap={{ scale: 0.96 }}
+                    className="w-9 h-9 rounded-full bg-[#181B22] border border-[#232731] flex items-center justify-center text-[#8A92A0] hover:text-white hover:border-[#DDE1E6] hover:bg-[#232731] transition-all duration-200"
                     aria-label={social.label}
                   >
-                    <social.icon size={18} />
+                    <social.icon size={16} />
                   </motion.a>
                 ))}
                 <motion.a
                   href="https://github.com/sarthaksinghaniya"
                   target="_blank"
                   rel="noopener noreferrer"
-                  whileHover={{ scale: 1.1, rotate: 4 }}
-                  whileTap={{ scale: 0.9 }}
-                  className="w-10 h-10 rounded-full glass-dark border border-slate-800 flex items-center justify-center text-slate-400 hover:text-sky-400 hover:border-sky-500/50 transition-colors duration-200"
+                  whileHover={{ scale: 1.06, y: -2 }}
+                  whileTap={{ scale: 0.96 }}
+                  className="w-9 h-9 rounded-full bg-[#181B22] border border-[#232731] flex items-center justify-center text-[#8A92A0] hover:text-[#0062FF] hover:border-[#0062FF]/50 hover:bg-[#232731] transition-all duration-200"
                   aria-label="Founder GitHub Profile"
                   title="Founder GitHub (Sarthak Singhaniya)"
                 >
-                  <Code2 size={18} />
+                  <Code2 size={16} />
                 </motion.a>
               </div>
             </motion.div>
           </div>
 
-          {/* Footer Link Columns */}
-          {footerLinks.map((section, sectionIndex) => (
-            <motion.div
-              key={section.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: sectionIndex * 0.1 }}
-              viewport={{ once: true }}
-            >
-              <h4 className="text-slate-200 font-semibold mb-4 text-sm tracking-wide uppercase">{section.title}</h4>
-              <ul className="space-y-2.5">
-                {section.links.map((link) => (
-                  <li key={link.name}>
+          {/* Column 1: Products */}
+          <div>
+            <h4 className="text-white font-semibold mb-4 text-xs tracking-wider uppercase">
+              Products &amp; Code
+            </h4>
+            <ul className="space-y-2.5">
+              {productLinks.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-[#8A92A0] hover:text-white transition-colors duration-150 block"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 2: Company & Community */}
+          <div>
+            <h4 className="text-white font-semibold mb-4 text-xs tracking-wider uppercase">
+              Studio &amp; Community
+            </h4>
+            <ul className="space-y-2.5">
+              {companyLinks.map((link) => (
+                <li key={link.name}>
+                  {link.external ? (
                     <a
                       href={link.href}
-                      target={link.external && link.href.startsWith('http') ? '_blank' : undefined}
-                      rel={link.external && link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                      className="text-slate-400 hover:text-white transition-colors duration-200 text-sm block"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-[#8A92A0] hover:text-white transition-colors duration-150 block"
                     >
                       {link.name}
                     </a>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className="text-sm text-[#8A92A0] hover:text-white transition-colors duration-150 block"
+                    >
+                      {link.name}
+                    </Link>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 3: Contact & Legal */}
+          <div>
+            <h4 className="text-white font-semibold mb-4 text-xs tracking-wider uppercase">
+              Contact &amp; Connect
+            </h4>
+            <ul className="space-y-2.5">
+              {contactLinks.map((link) => (
+                <li key={link.name}>
+                  {link.external ? (
+                    <a
+                      href={link.href}
+                      target={link.href.startsWith('http') ? '_blank' : undefined}
+                      rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                      className="text-sm text-[#8A92A0] hover:text-white transition-colors duration-150 block truncate"
+                    >
+                      {link.name}
+                    </a>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className="text-sm text-[#8A92A0] hover:text-white transition-colors duration-150 block"
+                    >
+                      {link.name}
+                    </Link>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         {/* Bottom Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="mt-12 pt-8 border-t border-slate-800/80 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400"
-        >
-          {/* Copyright, Entity statement & Legal Links */}
+        <div className="mt-14 pt-8 border-t border-[#232731] flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-[#8A92A0]">
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-            <span>Copyright © 2026 TechNeekX (TNX). All rights reserved.</span>
-            <span className="text-slate-600">•</span>
-            <a href="/privacy" className="hover:text-white transition-colors">Privacy Policy</a>
-            <span className="text-slate-600">•</span>
-            <a href="/terms" className="hover:text-white transition-colors">Terms &amp; Conditions</a>
+            <span>© 2026 TechNeekX (TNX). Engineered with precision.</span>
+            <span className="text-[#323846]">•</span>
+            <Link href="/privacy" className="hover:text-white transition-colors">
+              Privacy Policy
+            </Link>
+            <span className="text-[#323846]">•</span>
+            <Link href="/terms" className="hover:text-white transition-colors">
+              Terms &amp; Conditions
+            </Link>
           </div>
 
-          {/* Back to Top Button */}
+          {/* Back to Top Pill Button */}
           <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.03, y: -1 }}
+            whileTap={{ scale: 0.97 }}
             onClick={scrollToTop}
-            className="glass-dark border border-slate-800 hover:border-slate-700 px-4 py-2 rounded-xl text-slate-300 hover:text-white transition-colors duration-200 flex items-center gap-2 text-xs cursor-pointer"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#181B22] border border-[#232731] text-[#8A92A0] hover:text-white hover:border-[#DDE1E6] transition-all text-xs cursor-pointer"
             aria-label="Back to top of page"
           >
-            Back to top
-            <ArrowUp size={14} className="text-slate-400" />
+            <span>Back to top</span>
+            <ArrowUp size={13} />
           </motion.button>
-        </motion.div>
+        </div>
       </div>
     </footer>
   );
