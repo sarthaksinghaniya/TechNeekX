@@ -42,7 +42,7 @@ export const PROJECTS: ReadonlyArray<Project> = [
     tagline: 'Real-World AI Innovation',
     categories: ['advanced', 'ai', 'platform'],
     icon: Cpu,
-    color: 'from-indigo-500 to-purple-500',
+    color: 'from-indigo-500 to-blue-500',
     description:
       'Revibe Hub is an AI-powered platform focused on real-world innovation, helping users transform ideas into practical, impactful solutions. It provides guided workflows, smart suggestions, and resources to build projects efficiently.',
     features: [
@@ -198,7 +198,7 @@ export const PROJECTS: ReadonlyArray<Project> = [
     category: 'EdTech',
     categories: ['edtech', 'community'],
     icon: BookOpen,
-    color: 'from-blue-500 to-purple-500',
+    color: 'from-blue-500 to-cyan-500',
     description: 'Gamified learning platform for hackathons, AI/ML, and coding',
     features: [
       'Provides updates, engagement, and skill-building ecosystem',

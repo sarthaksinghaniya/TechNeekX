@@ -144,15 +144,15 @@ export default function JoinPage() {
               variants={itemVariants}
               className="text-4xl sm:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight"
             >
-              Become a Part of <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 font-extrabold">TechNeekX</span>
+              Become a Part of <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-sky-500 to-blue-600 font-extrabold">TechNeekX</span>
             </motion.h1>
             
             <motion.p 
               variants={itemVariants}
               className="text-lg text-slate-600 mb-10 leading-relaxed"
             >
-              We're setting up the builder ecosystem for the next generation of engineers, designers, and AI developers.
-              While we prepare for the onboarding phase, here's what you can expect as a member of TechNeekX:
+              We&apos;re setting up the builder ecosystem for the next generation of engineers, designers, and AI developers.
+              While we prepare for the onboarding phase, here&apos;s what you can expect as a member of TechNeekX:
             </motion.p>
 
             {/* Benefits Checklist */}

@@ -179,7 +179,7 @@ const JourneySummary = () => {
             </h2>
             <p className="tnx-body-text">
               Consistently shipping, hacking, and building since August 2025.
-              We track our growth through milestones of work—participating in national events,
+              We track our growth through milestones of work: participating in national events,
               forming a robust builder network, and launching AI products.
             </p>
           </motion.div>

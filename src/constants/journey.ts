@@ -52,7 +52,7 @@ export const journey: ReadonlyArray<Milestone> = [
     title: "Team Formation",
     description: "Connected with developers, builders, and early contributors",
     icon: Users,
-    gradient: "from-indigo-500 to-purple-500",
+    gradient: "from-indigo-500 to-blue-500",
     status: "completed",
     impact: "Core network formed"
   },

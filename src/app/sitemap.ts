@@ -42,5 +42,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/gallery/`,
       lastModified: currentDate
     },
+    {
+      url: `${baseUrl}/privacy/`,
+      lastModified: currentDate
+    },
+    {
+      url: `${baseUrl}/terms/`,
+      lastModified: currentDate
+    },
   ];
 }

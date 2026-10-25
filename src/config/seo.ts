@@ -36,7 +36,7 @@ export const SITE_CONFIG = {
   ],
   ogImage: 'https://teamtechneekx.netlify.app/heroImg.webp',
   logo: 'https://teamtechneekx.netlify.app/logo.webp',
-  tagline: 'Youth • Innovation • Unity — AI Product Studio & Developer Ecosystem',
+  tagline: 'Youth • Innovation • Unity | AI Product Studio & Developer Ecosystem',
   description:
     'TechNeekX (TNX / TechNX / GIT / techneek) is a premier student-driven innovation hub, AI product studio, and developer community founded by Sarthak Singhaniya. Building production AI solutions, competing in 80+ hackathons, and empowering 1000+ builders worldwide.',
   email: 'teamtechneekx@gmail.com',

@@ -16,7 +16,6 @@ const iconMap: { [key: string]: any } = {
 };
 
 const FinalCTA = () => {
-  const [clickRotation, setClickRotation] = useState(0);
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: false, amount: 0.1 });
   const containerVariants = {
@@ -50,7 +49,7 @@ const FinalCTA = () => {
 
   return (
     <section ref={sectionRef} className="w-full h-auto py-12 md:py-0 md:h-[45dvh] min-h-[320px] bg-[#030508] dark relative overflow-hidden flex items-center z-10">
-      {/* Moving Blue & Pink Gradient Background */}
+      {/* Moving Blue Gradient Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
         <motion.div 
           className="absolute w-[200%] h-[200%] top-[-50%] left-[-50%] mix-blend-screen"
@@ -59,31 +58,31 @@ const FinalCTA = () => {
           } : {}}
           transition={{
             repeat: Infinity,
-            duration: 25,
+            duration: 35,
             ease: 'linear'
           }}
           style={{
-            background: 'linear-gradient(135deg, #0062ff 0%, #ff0080 50%, #0062ff 100%)',
+            background: 'linear-gradient(135deg, #0284c7 0%, #0062ff 50%, #1e40af 100%)',
             willChange: 'transform',
           }}
         />
       </div>
       
       {/* Radial overlay to make it dark and minimal */}
-      <div className="absolute inset-0 bg-slate-950/75 mix-blend-multiply pointer-events-none z-0" />
+      <div className="absolute inset-0 bg-slate-950/80 mix-blend-multiply pointer-events-none z-0" />
       <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-transparent to-slate-950 pointer-events-none z-0" />
       <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950 pointer-events-none z-0" />
 
       {/* Decorative background glows with back-and-forth linear moving animation */}
       <motion.div 
-        className="absolute w-[500px] h-[500px] rounded-full blur-[130px] bg-[#0062ff]/40 pointer-events-none z-0"
+        className="absolute w-[500px] h-[500px] rounded-full blur-[130px] bg-[#0062ff]/30 pointer-events-none z-0"
         animate={isInView ? {
-          x: [-120, 120, -120],
-          y: [-40, 40, -40],
+          x: [-100, 100, -100],
+          y: [-30, 30, -30],
         } : {}}
         transition={{
           repeat: Infinity,
-          duration: 14,
+          duration: 16,
           ease: 'easeInOut'
         }}
         style={{ 
@@ -94,14 +93,14 @@ const FinalCTA = () => {
         }}
       />
       <motion.div 
-        className="absolute w-[450px] h-[450px] rounded-full blur-[130px] bg-[#ff0080]/40 pointer-events-none z-0"
+        className="absolute w-[450px] h-[450px] rounded-full blur-[130px] bg-sky-500/20 pointer-events-none z-0"
         animate={isInView ? {
-          x: [120, -120, 120],
-          y: [40, -40, 40],
+          x: [100, -100, 100],
+          y: [30, -30, 30],
         } : {}}
         transition={{
           repeat: Infinity,
-          duration: 16,
+          duration: 18,
           ease: 'easeInOut'
         }}
         style={{ 
@@ -124,7 +123,7 @@ const FinalCTA = () => {
           <div className="md:col-span-7 flex flex-col items-start text-left space-y-3">
             <motion.span
               variants={itemVariants}
-              className="text-xs font-bold tracking-widest text-[#ff4d8d] uppercase"
+              className="text-xs font-bold tracking-widest text-sky-400 uppercase"
             >
               Dear Future Innovator
             </motion.span>
@@ -134,7 +133,7 @@ const FinalCTA = () => {
               className="text-xl md:text-2xl lg:text-3xl font-extrabold text-white leading-tight"
             >
               The future is not something we wait for.<br />
-              It's something we build together.
+              It&apos;s something we build together.
             </motion.h2>
 
             <motion.p
@@ -157,9 +156,9 @@ const FinalCTA = () => {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white/60 hover:text-white transition-all duration-300 flex items-center justify-center p-2.5 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 shadow-sm hover:scale-110 active:scale-95"
+                    className="text-white/70 hover:text-white transition-all duration-300 flex items-center justify-center p-2.5 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 shadow-sm hover:scale-105 active:scale-95"
                     aria-label={social.label}
-                    whileHover={{ scale: 1.1, y: -2 }}
+                    whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.95 }}
                   >
                     {IconComponent && <IconComponent size={18} />}
@@ -173,33 +172,30 @@ const FinalCTA = () => {
           <div className="md:col-span-5 flex justify-center md:justify-end items-center">
             <motion.div
               variants={itemVariants}
-              className="relative w-36 h-36 md:w-44 md:h-44 rounded-full flex items-center justify-center"
+              className="relative w-36 h-36 md:w-44 md:h-44 rounded-2xl flex items-center justify-center"
             >
               {/* Outer pulsing ring */}
               <motion.div
-                className="absolute inset-0 rounded-full border border-blue-500/20 shadow-[0_0_30px_rgba(0,98,255,0.1)] pointer-events-none"
-                animate={isInView ? { scale: [1, 1.05, 1], opacity: [0.5, 0.8, 0.5] } : { scale: 1, opacity: 0.5 }}
+                className="absolute inset-0 rounded-2xl border border-blue-500/20 shadow-[0_0_30px_rgba(0,98,255,0.1)] pointer-events-none"
+                animate={isInView ? { scale: [1, 1.03, 1], opacity: [0.5, 0.8, 0.5] } : { scale: 1, opacity: 0.5 }}
                 transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }}
               />
               
               {/* Inner glowing background */}
-              <div className="absolute inset-3 rounded-full bg-slate-950/40 backdrop-blur-sm border border-white/5 shadow-[inset_0_0_20px_rgba(255,255,255,0.05)] flex items-center justify-center" />
+              <div className="absolute inset-3 rounded-xl bg-slate-950/40 backdrop-blur-sm border border-white/5 shadow-[inset_0_0_20px_rgba(255,255,255,0.05)] flex items-center justify-center" />
 
-              {/* Logo container with floating animation and click/hover spin */}
+              {/* Logo container with gentle float and subtle hover scale */}
               <motion.div
-                className="relative w-28 h-28 md:w-34 md:h-34 z-10 cursor-pointer"
+                className="relative w-28 h-28 md:w-34 md:h-34 z-10"
                 animate={isInView ? { 
-                  y: [0, -6, 0],
-                  rotate: clickRotation
+                  y: [0, -4, 0]
                 } : {
-                  y: 0,
-                  rotate: clickRotation
+                  y: 0
                 }}
-                whileHover={{ rotate: clickRotation + 1800 }}
-                onClick={() => setClickRotation(prev => prev + 1800)}
+                whileHover={{ scale: 1.05 }}
                 transition={{
                   y: { repeat: Infinity, duration: 4, ease: 'easeInOut' },
-                  rotate: { duration: 0.8, ease: 'easeInOut' }
+                  scale: { duration: 0.25, ease: 'easeOut' }
                 }}
               >
                 <Image

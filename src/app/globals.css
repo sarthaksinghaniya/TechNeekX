@@ -7,7 +7,7 @@
   --background-start-rgb: 249, 250, 251; /* #F9FAFB */
   --background-end-rgb: 249, 250, 251;
   --accent-primary: #ff4d8d;
-  --accent-secondary: #7c3aed;
+  --accent-secondary: #0284c7;
   --text-primary: #0f172a;
   --text-secondary: #64748b;
   --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
@@ -510,7 +510,7 @@ a {
 :root {
   /* Color system */
   --tnx-blue: #0062ff;
-  --tnx-purple: #7c3aed;
+  --tnx-purple: #0284c7;
   --tnx-pink: #ff0080;
   --tnx-bg-light: #ffffff;
   --tnx-bg-slate: #f9fafb;
@@ -598,7 +598,7 @@ a {
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 12px;
-  background: linear-gradient(90deg, var(--tnx-blue) 0%, var(--tnx-purple) 50%, var(--tnx-pink) 100%);
+  background: linear-gradient(90deg, #0062ff 0%, #0284c7 50%, #0ea5e9 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

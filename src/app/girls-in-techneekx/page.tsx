@@ -195,7 +195,7 @@ export default function GirlsInTechPage() {
             aria-label="Core Inspiration Quote"
           >
             <p className="git-hero-quote-text">{meta.quote}</p>
-            <span className="git-hero-quote-author">— {meta.quoteAuthor}</span>
+            <span className="git-hero-quote-author">- {meta.quoteAuthor}</span>
           </motion.aside>
 
           {/* Key Community Metrics & Stats */}
@@ -327,7 +327,7 @@ export default function GirlsInTechPage() {
                     <p className="git-profile-role">{member.role}</p>
 
                     <blockquote className="git-profile-quote">
-                      "{member.quote}"
+                      &ldquo;{member.quote}&rdquo;
                     </blockquote>
 
                     {/* Superpowers Pills */}

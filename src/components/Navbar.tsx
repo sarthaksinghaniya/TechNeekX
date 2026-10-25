@@ -51,7 +51,7 @@ const Navbar = () => {
   const navItems = [
     { name: 'Projects', href: '/projects' },
     { name: 'Events', href: '/events' },
-    { name: 'Girls in TNX', href: '/girls-in-techneekx' },
+    { name: 'GIT', href: '/girls-in-techneekx' },
     { name: 'Partners', href: '/partners' },
     { name: 'Team', href: '/team' },
   ];

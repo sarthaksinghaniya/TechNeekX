@@ -472,7 +472,7 @@
   padding: 10px 14px;
   font-size: 13px;
   font-weight: 700;
-  border-radius: 35px;
+  border-radius: 10px;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
   border: none;

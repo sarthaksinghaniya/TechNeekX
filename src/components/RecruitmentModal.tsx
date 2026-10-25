@@ -83,7 +83,7 @@ export default function RecruitmentModal() {
             {/* Title & Description */}
             <h2 id="recruitment-modal-title" className="recruitment-modal-title">
               Member Recruitment is{' '}
-              <span className="recruitment-title-gradient">Live! 🚀</span>
+              <span className="recruitment-title-gradient">Open Now</span>
             </h2>
 
             <p className="recruitment-modal-desc">

@@ -40,7 +40,7 @@ const FounderNote = () => {
           {/* Note Content */}
           <div className="founder-note-body">
             <p>
-              The world is moving faster than ever. Standard education isn't keeping up. The old paths are crumbling.
+              The world is moving faster than ever. Standard education isn&apos;t keeping up. The old paths are crumbling.
             </p>
             <p className="founder-note-accent">
               The truth is:
@@ -49,13 +49,13 @@ const FounderNote = () => {
               No one knows exactly what the future looks like. But we know who will build it.
             </p>
             <p>
-              At <strong>TechNeekX</strong>, we aren't just a community; we are an engine. An engine that turns raw potential into shipping products. We believe that the most valuable thing we can do is help each other create.
+              At <strong>TechNeekX</strong>, we aren&apos;t just a community; we are an engine. An engine that turns raw potential into shipping products. We believe that the most valuable thing we can do is help each other create.
             </p>
             <p>
               We are here to make sense of this new era, one line of code at a time.
             </p>
             <p>
-              Welcome to TechNeekX. Let's build the future we want to live in.
+              Welcome to TechNeekX. Let&apos;s build the future we want to live in.
             </p>
           </div>
 

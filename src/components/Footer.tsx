@@ -32,6 +32,8 @@ const Footer = () => {
         { name: 'Girls in TechNeekX', href: '/girls-in-techneekx', external: false },
         { name: 'Events & Hackathons', href: '/events', external: false },
         { name: 'Our Journey', href: '/journey', external: false },
+        { name: 'Privacy Policy', href: '/privacy', external: false },
+        { name: 'Terms & Conditions', href: '/terms', external: false },
         { name: 'Partner with Us', href: 'https://docs.google.com/forms/d/e/1FAIpQLSfFvcsPMtG-lAi7b31q-TMg-M3hZo0m_IYQecbRDbjFjzm3BA/viewform', external: true },
         { name: 'Join WhatsApp Community', href: 'https://chat.whatsapp.com/KOlhO8eb4aHHD5iJkJneV0', external: true },
       ],
@@ -54,8 +56,8 @@ const Footer = () => {
 
   return (
     <footer className="relative bg-[#090b11] border-t border-slate-800 text-slate-400">
-      {/* Gradient top border */}
-      <div className="h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
+      {/* Sleek top border accent */}
+      <div className="h-[1px] bg-gradient-to-r from-blue-600 via-sky-500 to-blue-600"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
@@ -121,7 +123,7 @@ const Footer = () => {
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1, rotate: 4 }}
                   whileTap={{ scale: 0.9 }}
-                  className="w-10 h-10 rounded-full glass-dark border border-slate-800 flex items-center justify-center text-slate-400 hover:text-purple-400 hover:border-purple-500/50 transition-colors duration-200"
+                  className="w-10 h-10 rounded-full glass-dark border border-slate-800 flex items-center justify-center text-slate-400 hover:text-sky-400 hover:border-sky-500/50 transition-colors duration-200"
                   aria-label="Founder GitHub Profile"
                   title="Founder GitHub (Sarthak Singhaniya)"
                 >
@@ -167,11 +169,13 @@ const Footer = () => {
           viewport={{ once: true }}
           className="mt-12 pt-8 border-t border-slate-800/80 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400"
         >
-          {/* Copyright & Entity statement */}
-          <div>
+          {/* Copyright, Entity statement & Legal Links */}
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
             <span>Copyright © 2026 TechNeekX (TNX). All rights reserved.</span>
-            <span className="hidden sm:inline mx-2">•</span>
-            <span className="hidden sm:inline text-slate-500">Built with Next.js, AI Systems &amp; Youth Innovation</span>
+            <span className="text-slate-600">•</span>
+            <a href="/privacy" className="hover:text-white transition-colors">Privacy Policy</a>
+            <span className="text-slate-600">•</span>
+            <a href="/terms" className="hover:text-white transition-colors">Terms &amp; Conditions</a>
           </div>
 
           {/* Back to Top Button */}

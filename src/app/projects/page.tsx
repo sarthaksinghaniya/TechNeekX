@@ -372,7 +372,7 @@ const ProjectsPage = () => {
                     <Search className="mx-auto text-slate-300" size={48} />
                     <h3 className="projects-empty-title">No projects found</h3>
                     <p className="projects-empty-desc">
-                      We couldn't find any projects matching your search query or tab filters. Try adjusting your filters.
+                      We couldn&apos;t find any projects matching your search query or tab filters. Try adjusting your filters.
                     </p>
                   </div>
                 </motion.div>

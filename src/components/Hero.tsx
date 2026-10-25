@@ -65,16 +65,16 @@ const Hero = () => {
       >
         <div className="hero-text-col">
           <m.div className="hero-subtitle" variants={itemVariants}>
-            We build the future
+            AI Product Studio &amp; Student Developer Ecosystem
           </m.div>
 
           <m.h1 className="hero-heading" variants={itemVariants}>
-            Empowering Innovators.<br />
-            Building <span className="hero-text-gradient">Tomorrow.</span>
+            Building Real-World AI Systems.<br />
+            Shipping <span className="hero-text-gradient">Production Code.</span>
           </m.h1>
 
           <m.p className="hero-description" variants={itemVariants}>
-            TechNeekX is a student-driven community where curious minds come together to learn, build, and create impact through technology.
+            TechNeekX unites student developers, software architects, and AI builders in Lucknow to design, build, and ship high-impact software while competing at top national hackathons.
           </m.p>
 
           <m.div className="hero-buttons" variants={itemVariants}>

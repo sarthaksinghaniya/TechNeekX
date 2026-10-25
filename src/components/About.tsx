@@ -32,13 +32,14 @@ const StatCounter = ({ target, duration = 2000, suffix = "" }: StatCounterProps)
       { threshold: 0.1 }
     );
 
-    if (elementRef.current) {
-      observer.observe(elementRef.current);
+    const el = elementRef.current;
+    if (el) {
+      observer.observe(el);
     }
 
     return () => {
-      if (elementRef.current) {
-        observer.unobserve(elementRef.current);
+      if (el) {
+        observer.unobserve(el);
       }
     };
   }, [hasAnimated]);

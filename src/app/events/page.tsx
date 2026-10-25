@@ -395,7 +395,7 @@ const EventsPage = () => {
                     <Search className="mx-auto text-slate-300" size={48} />
                     <h3 className="events-empty-title">No events found</h3>
                     <p className="events-empty-desc">
-                      We couldn't find any events matching your search or filter criteria. Try adjusting your query or tab selection.
+                      We couldn&apos;t find any events matching your search or filter criteria. Try adjusting your query or tab selection.
                     </p>
                   </div>
                 </motion.div>
@@ -479,7 +479,7 @@ const EventsPage = () => {
                   {/* Tagline */}
                   {selectedEvent.tagline && (
                     <p className="event-modal-tagline">
-                      "{selectedEvent.tagline}"
+                      &ldquo;{selectedEvent.tagline}&rdquo;
                     </p>
                   )}
 

@@ -23,15 +23,15 @@ const Loader = () => {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="dark fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-blue-900 via-purple-900 to-pink-900"
+          className="dark fixed inset-0 z-50 flex items-center justify-center bg-[#030508]"
         >
           <div className="relative">
-            {/* Animated gradient blobs */}
+            {/* Animated subtle tech glow blobs */}
             <m.div
-              className="absolute inset-0 w-32 h-32 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full blur-2xl"
+              className="absolute inset-0 w-32 h-32 bg-blue-600/30 rounded-full blur-2xl"
               animate={{
-                scale: [1, 1.5, 1],
-                opacity: [0.5, 0.8, 0.5],
+                scale: [1, 1.3, 1],
+                opacity: [0.3, 0.6, 0.3],
               }}
               transition={{
                 duration: 2,
@@ -40,10 +40,10 @@ const Loader = () => {
               }}
             />
             <m.div
-              className="absolute inset-0 w-32 h-32 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full blur-2xl"
+              className="absolute inset-0 w-32 h-32 bg-sky-500/20 rounded-full blur-2xl"
               animate={{
-                scale: [1.5, 1, 1.5],
-                opacity: [0.8, 0.5, 0.8],
+                scale: [1.3, 1, 1.3],
+                opacity: [0.6, 0.3, 0.6],
               }}
               transition={{
                 duration: 2,
@@ -65,13 +65,12 @@ const Loader = () => {
             >
               {/* Logo */}
               <m.div
-                className="w-16 h-16 mb-4 rounded-lg overflow-hidden"
+                className="w-16 h-16 mb-4 rounded-xl overflow-hidden"
                 animate={{
-                  rotate: [0, 360],
-                  scale: [1, 1.1, 1],
+                  scale: [1, 1.05, 1],
                 }}
                 transition={{
-                  duration: 3,
+                  duration: 2.5,
                   repeat: Infinity,
                   ease: [0.22, 1, 0.36, 1],
                 }}
@@ -90,7 +89,7 @@ const Loader = () => {
               <m.h1
                 className="text-2xl font-bold text-white mb-2"
                 animate={{
-                  opacity: [0.5, 1, 0.5],
+                  opacity: [0.7, 1, 0.7],
                 }}
                 transition={{
                   duration: 2,
@@ -98,7 +97,7 @@ const Loader = () => {
                   ease: [0.22, 1, 0.36, 1],
                 }}
               >
-                <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-blue-400 to-sky-400 bg-clip-text text-transparent">
                   TechNeekX
                 </span>
               </m.h1>
