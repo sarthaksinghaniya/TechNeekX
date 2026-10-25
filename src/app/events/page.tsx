@@ -16,6 +16,7 @@ import {
   Cpu,
   Sparkles,
   Brain,
+  Mic,
   Image as ImageIcon,
   ChevronLeft,
   X
@@ -58,12 +59,13 @@ const iconMap: Record<string, React.ComponentType<any>> = {
   Trophy,
   Cpu,
   Sparkles,
-  Brain
+  Brain,
+  Mic
 };
 
 const EventsPage = () => {
   const router = useRouter();
-  const [activeTab, setActiveTab] = useState<'all' | 'current' | 'upcoming' | 'previous'>('upcoming');
+  const [activeTab, setActiveTab] = useState<'all' | 'current' | 'upcoming' | 'previous'>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [isMounted, setIsMounted] = useState(false);
   const [today, setToday] = useState('2026-07-03'); // User's local workspace date as baseline
