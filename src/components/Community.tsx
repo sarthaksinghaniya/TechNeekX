@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import * as LucideIcons from 'lucide-react';
+import { Cpu, BookOpen, Users, Rocket, ArrowRight } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import '../styles/Community.css';
 
@@ -10,33 +10,33 @@ const Community = () => {
 
   const cards = [
     {
-      icon: LucideIcons.Cpu,
-      title: "Build",
-      description: "Transforming raw ideas into production-ready software, AI products, and real-world tools that scale.",
-      bgImage: "/gallery/IMG_0683.JPG.webp",
-      color: "linear-gradient(135deg, #0062ff, #7c3aed)"
+      icon: Cpu,
+      title: 'Build',
+      description:
+        'Transforming raw ideas into production-ready software, AI products, and real-world tools that scale.',
+      bgImage: '/gallery/IMG_0683.JPG.webp',
     },
     {
-      icon: LucideIcons.BookOpen,
-      title: "Learn",
-      description: "Mastering advanced AI stacks, cloud infrastructure, and product engineering through hands-on development.",
-      bgImage: "/gallery/gal5.webp",
-      color: "linear-gradient(135deg, #7c3aed, #ff0080)"
+      icon: BookOpen,
+      title: 'Learn',
+      description:
+        'Mastering advanced AI stacks, cloud infrastructure, and product engineering through hands-on development.',
+      bgImage: '/gallery/gal5.webp',
     },
     {
-      icon: LucideIcons.Users,
-      title: "Collaborate",
-      description: "Syncing with high-caliber designers and engineers to hack on ambitious projects and learn together.",
-      bgImage: "/gallery/WhatsApp Image 2026-04-09 at 8.20.03 PM.webp",
-      color: "linear-gradient(135deg, #0062ff, #7c3aed)"
+      icon: Users,
+      title: 'Collaborate',
+      description:
+        'Syncing with high-caliber designers and engineers to hack on ambitious projects and learn together.',
+      bgImage: '/gallery/WhatsApp Image 2026-04-09 at 8.20.03 PM.webp',
     },
     {
-      icon: LucideIcons.Rocket,
-      title: "Ship",
-      description: "Deploying code regularly, presenting live demos, competing in hackathons, and launching real products.",
-      bgImage: "/gallery/IMG-2.jpg.webp",
-      color: "linear-gradient(135deg, #ff0080, #7c3aed)"
-    }
+      icon: Rocket,
+      title: 'Ship',
+      description:
+        'Deploying code regularly, presenting live demos, competing in hackathons, and launching real products.',
+      bgImage: '/gallery/IMG-2.jpg.webp',
+    },
   ];
 
   const containerVariants = {
@@ -45,61 +45,65 @@ const Community = () => {
       opacity: 1,
       transition: {
         staggerChildren: 0.1,
-        delayChildren: 0.1
-      }
-    }
+        delayChildren: 0.1,
+      },
+    },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.7,
-        ease: [0.22, 1, 0.36, 1]
-      }
-    }
+        duration: 0.5,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
   };
 
   return (
-    <section id="community" className="tnx-section">
-      {/* Background blobs */}
-      <div className="community-bg-blob community-blob-1" />
-      <div className="community-bg-blob community-blob-2" />
-
+    <section id="community" className="community-section-enterprise">
       <div className="tnx-container">
         <div className="tnx-grid-layout">
-
           {/* Left Column: Heading and Info */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.6 }}
             className="community-info-col"
           >
-            <span className="tnx-section-label">
-              OUR <span style={{ textTransform: 'none' }}>TechNeekX</span> COMMUNITY
-            </span>
-            <h2 className="tnx-main-heading">
+            <div className="mb-4">
+              <span className="badge-enterprise">Collaborative Culture</span>
+            </div>
+
+            <h2 className="heading-section mb-5">
               A High-Octane Builder Ecosystem
             </h2>
-            <p className="tnx-body-text">
-              We are not just a community. We are builders of the next tech generation.
-              Together, we shape the future of technology through intense collaboration,
-              constant shipping, and a shared passion for creating digital experiences.
+
+            <p className="subheading-section mb-8 max-w-md">
+              We are not just a community. We are builders of the next tech
+              generation. Together, we shape the future of technology through
+              intense collaboration, constant shipping, and a shared passion for
+              creating digital experiences.
             </p>
 
-
+            <button
+              onClick={() => router.push('/join')}
+              className="btn-pill-primary"
+            >
+              <span>Join the Community</span>
+              <ArrowRight size={15} />
+            </button>
           </motion.div>
 
-          {/* Right Column: 2x2 Grid of Premium Cards */}
+          {/* Right Column: 2x2 Grid of Cards */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
+            viewport={{ once: true }}
             className="community-grid-col"
           >
             <div className="community-cards-grid">
@@ -109,21 +113,18 @@ const Community = () => {
                   <motion.div
                     key={index}
                     variants={itemVariants}
-                    className="tnx-premium-card community-card"
+                    className="community-card-enterprise"
                   >
-                    {/* Event Photography low-opacity background */}
                     <div
                       className="community-card-bg-image"
                       style={{ backgroundImage: `url(${card.bgImage})` }}
                     />
-                    <div className="community-card-overlay" />
 
-                    {/* Card Content */}
                     <div className="community-card-content">
-                      <div className="flex-header mb-6">
+                      <div className="community-card-header">
                         <h3 className="community-card-title">{card.title}</h3>
-                        <div className="community-card-icon-wrapper" style={{ background: card.color }}>
-                          <IconComponent size={20} className="text-white" />
+                        <div className="community-card-icon-box">
+                          <IconComponent size={18} />
                         </div>
                       </div>
 
@@ -136,7 +137,6 @@ const Community = () => {
               })}
             </div>
           </motion.div>
-
         </div>
       </div>
     </section>

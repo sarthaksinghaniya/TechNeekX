@@ -1,10 +1,10 @@
 'use client';
 
-import { useState, useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { Github, Linkedin, Instagram, Mail } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Github, Linkedin, Instagram, Mail, ArrowRight } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
 import Image from 'next/image';
+import Link from 'next/link';
 import data from '../constants/data.json';
 
 const iconMap: { [key: string]: any } = {
@@ -12,202 +12,109 @@ const iconMap: { [key: string]: any } = {
   Linkedin: Linkedin,
   Instagram: Instagram,
   Mail: Mail,
-  Whatsapp: FaWhatsapp
+  Whatsapp: FaWhatsapp,
 };
 
 const FinalCTA = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: false, amount: 0.1 });
-  const containerVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        staggerChildren: 0.1,
-        ease: [0.22, 1, 0.36, 1]
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 15 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: [0.22, 1, 0.36, 1]
-      }
-    }
-  };
-
-  const socialLinksWithWhatsapp = [
-    ...data.socialLinks
-  ];
-
   return (
-    <section ref={sectionRef} className="w-full h-auto py-12 md:py-0 md:h-[45dvh] min-h-[320px] bg-[#030508] dark relative overflow-hidden flex items-center z-10">
-      {/* Moving Blue Gradient Background */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-        <motion.div 
-          className="absolute w-[200%] h-[200%] top-[-50%] left-[-50%] mix-blend-screen"
-          animate={isInView ? {
-            rotate: [0, 360],
-          } : {}}
-          transition={{
-            repeat: Infinity,
-            duration: 35,
-            ease: 'linear'
-          }}
-          style={{
-            background: 'linear-gradient(135deg, #0284c7 0%, #0062ff 50%, #1e40af 100%)',
-            willChange: 'transform',
-          }}
-        />
-      </div>
-      
-      {/* Radial overlay to make it dark and minimal */}
-      <div className="absolute inset-0 bg-slate-950/80 mix-blend-multiply pointer-events-none z-0" />
-      <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-transparent to-slate-950 pointer-events-none z-0" />
-      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950 pointer-events-none z-0" />
-
-      {/* Decorative background glows with back-and-forth linear moving animation */}
-      <motion.div 
-        className="absolute w-[500px] h-[500px] rounded-full blur-[130px] bg-[#0062ff]/30 pointer-events-none z-0"
-        animate={isInView ? {
-          x: [-100, 100, -100],
-          y: [-30, 30, -30],
-        } : {}}
-        transition={{
-          repeat: Infinity,
-          duration: 16,
-          ease: 'easeInOut'
-        }}
-        style={{ 
-          top: '-10%', 
-          left: '5%',
-          willChange: 'transform',
-          transform: 'translate3d(0, 0, 0)'
-        }}
-      />
-      <motion.div 
-        className="absolute w-[450px] h-[450px] rounded-full blur-[130px] bg-sky-500/20 pointer-events-none z-0"
-        animate={isInView ? {
-          x: [100, -100, 100],
-          y: [30, -30, 30],
-        } : {}}
-        transition={{
-          repeat: Infinity,
-          duration: 18,
-          ease: 'easeInOut'
-        }}
-        style={{ 
-          bottom: '-10%', 
-          right: '5%',
-          willChange: 'transform',
-          transform: 'translate3d(0, 0, 0)'
-        }}
-      />
-
-      <div className="w-full max-w-6xl mx-auto px-6 md:px-12 relative z-10">
+    <section className="w-full py-20 bg-[#F7F8FA] border-t border-[#DDE1E6]">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center"
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="relative bg-[#111318] rounded-3xl p-8 sm:p-12 md:p-16 text-white overflow-hidden border border-[#232731] shadow-2xl"
         >
-          {/* Left Text Column */}
-          <div className="md:col-span-7 flex flex-col items-start text-left space-y-3">
-            <motion.span
-              variants={itemVariants}
-              className="text-xs font-bold tracking-widest text-sky-400 uppercase"
-            >
-              Dear Future Innovator
-            </motion.span>
+          {/* Subtle editorial grid pattern on dark */}
+          <div
+            className="absolute inset-0 pointer-events-none opacity-20"
+            style={{
+              backgroundImage:
+                'linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px)',
+              backgroundSize: '40px 40px',
+            }}
+          />
 
-            <motion.h2
-              variants={itemVariants}
-              className="text-xl md:text-2xl lg:text-3xl font-extrabold text-white leading-tight"
-            >
-              The future is not something we wait for.<br />
-              It&apos;s something we build together.
-            </motion.h2>
+          {/* Glow vignette */}
+          <div className="absolute top-0 right-0 w-96 h-96 bg-[#0062FF]/15 rounded-full blur-3xl pointer-events-none" />
 
-            <motion.p
-              variants={itemVariants}
-              className="text-slate-300 text-xs md:text-sm leading-relaxed max-w-lg"
-            >
-              Join TechNeekX and be part of a community that learns, builds, ships, and creates impact.
-            </motion.p>
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            {/* Left Content */}
+            <div className="lg:col-span-8 flex flex-col items-start text-left">
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1D212A] border border-[#2B303C] text-xs font-semibold uppercase tracking-wider text-[#A0A8B4] mb-4">
+                <span className="w-2 h-2 rounded-full bg-[#0062FF]" />
+                Next Cohort &amp; Ecosystem
+              </span>
 
-            {/* Social Links below text, matching the Hero style */}
-            <motion.div 
-              variants={itemVariants} 
-              className="flex flex-wrap gap-3 pt-2 items-center z-10"
-            >
-              {socialLinksWithWhatsapp.map((social, idx) => {
-                const IconComponent = iconMap[social.icon];
-                return (
-                  <motion.a
-                    key={idx}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-white/70 hover:text-white transition-all duration-300 flex items-center justify-center p-2.5 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 shadow-sm hover:scale-105 active:scale-95"
-                    aria-label={social.label}
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    {IconComponent && <IconComponent size={18} />}
-                  </motion.a>
-                );
-              })}
-            </motion.div>
-          </div>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white leading-tight tracking-tight mb-4">
+                The future is not something we wait for.{' '}
+                <span className="text-[#0062FF]">
+                  It&apos;s something we build together.
+                </span>
+              </h2>
 
-          {/* Right Logo Column */}
-          <div className="md:col-span-5 flex justify-center md:justify-end items-center">
-            <motion.div
-              variants={itemVariants}
-              className="relative w-36 h-36 md:w-44 md:h-44 rounded-2xl flex items-center justify-center"
-            >
-              {/* Outer pulsing ring */}
-              <motion.div
-                className="absolute inset-0 rounded-2xl border border-blue-500/20 shadow-[0_0_30px_rgba(0,98,255,0.1)] pointer-events-none"
-                animate={isInView ? { scale: [1, 1.03, 1], opacity: [0.5, 0.8, 0.5] } : { scale: 1, opacity: 0.5 }}
-                transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }}
-              />
-              
-              {/* Inner glowing background */}
-              <div className="absolute inset-3 rounded-xl bg-slate-950/40 backdrop-blur-sm border border-white/5 shadow-[inset_0_0_20px_rgba(255,255,255,0.05)] flex items-center justify-center" />
+              <p className="text-[#A0A8B4] text-sm sm:text-base leading-relaxed max-w-xl mb-8">
+                Join TechNeekX and be part of an elite ecosystem that designs,
+                builds, and deploys high-impact autonomous AI products,
+                competing at premier national hackathons.
+              </p>
 
-              {/* Logo container with gentle float and subtle hover scale */}
-              <motion.div
-                className="relative w-28 h-28 md:w-34 md:h-34 z-10"
-                animate={isInView ? { 
-                  y: [0, -4, 0]
-                } : {
-                  y: 0
-                }}
-                whileHover={{ scale: 1.05 }}
-                transition={{
-                  y: { repeat: Infinity, duration: 4, ease: 'easeInOut' },
-                  scale: { duration: 0.25, ease: 'easeOut' }
-                }}
-              >
+              {/* Action Buttons */}
+              <div className="flex flex-wrap items-center gap-3.5 mb-8">
+                <Link
+                  href="/join"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-[#111318] font-semibold text-sm hover:bg-[#F1F3F6] transition-all shadow-md"
+                >
+                  <span>Join TechNeekX</span>
+                  <ArrowRight size={15} />
+                </Link>
+
+                <a
+                  href="https://chat.whatsapp.com/KOlhO8eb4aHHD5iJkJneV0"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#1D212A] border border-[#2B303C] text-white font-semibold text-sm hover:bg-[#2B303C] transition-all"
+                >
+                  <FaWhatsapp size={16} className="text-[#25D366]" />
+                  <span>WhatsApp Community</span>
+                </a>
+              </div>
+
+              {/* Social links row */}
+              <div className="flex flex-wrap items-center gap-2">
+                {data.socialLinks.map((social, idx) => {
+                  const IconComponent = iconMap[social.icon];
+                  return (
+                    <motion.a
+                      key={idx}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-9 h-9 rounded-full bg-[#1D212A] border border-[#2B303C] text-[#A0A8B4] hover:text-white hover:border-[#DDE1E6] flex items-center justify-center transition-all"
+                      aria-label={social.label}
+                      whileHover={{ scale: 1.06 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      {IconComponent && <IconComponent size={15} />}
+                    </motion.a>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Right Emblem */}
+            <div className="lg:col-span-4 flex justify-center lg:justify-end">
+              <div className="relative w-40 h-40 sm:w-48 sm:h-48 rounded-3xl bg-[#181B22] border border-[#2B303C] p-6 flex items-center justify-center shadow-xl">
                 <Image
                   src="/logo.webp"
-                  alt="TechNeekX Crest"
-                  fill
-                  sizes="(max-width: 768px) 112px, 136px"
+                  alt="TechNeekX Emblem"
+                  width={140}
+                  height={140}
                   className="object-contain"
-                  priority
                 />
-              </motion.div>
-            </motion.div>
+              </div>
+            </div>
           </div>
         </motion.div>
       </div>

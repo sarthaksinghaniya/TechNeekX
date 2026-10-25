@@ -17,47 +17,45 @@ interface Partner {
 }
 
 const PartnersMarquee = () => {
-  // Filter out CTA card, only show actual partners
   const activePartners = (partnersData as Partner[]).filter(partner => !partner.isCTA);
-
-  // Helper to get initials
-  const getInitials = (name: string) => {
-    return name
-      .split(' ')
-      .map(word => word[0])
-      .join('')
-      .toUpperCase()
-      .slice(0, 2);
-  };
-
-  // Duplicate list to make it dense and loop seamlessly
-  const marqueeList = [...activePartners, ...activePartners, ...activePartners, ...activePartners];
+  const marqueeList = [...activePartners, ...activePartners, ...activePartners];
 
   return (
-    <motion.section 
-      id='partners-marquee'
+    <motion.section
+      id="partners-marquee"
       className="partners-marquee-section"
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: true, margin: '-50px' }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
     >
-      <h3 className="partners-marquee-header">Our Partners</h3>
-      
+      <div className="partners-marquee-header-wrap">
+        <span className="badge-enterprise">
+          Ecosystem Collaborators &amp; Partner Networks
+        </span>
+      </div>
+
       <div className="partners-marquee-container">
         {[0, 1].map((trackIndex) => (
-          <div 
+          <div
             key={trackIndex}
             className="partners-marquee-content"
-            aria-hidden={trackIndex === 1 ? "true" : undefined}
+            aria-hidden={trackIndex === 1 ? 'true' : undefined}
           >
             {marqueeList.map((partner, index) => (
-              <div 
-                key={`${trackIndex}-${index}`} 
+              <div
+                key={`${trackIndex}-${index}`}
                 className="partner-marquee-item"
-                onClick={() => partner.link && window.open(partner.link, '_blank', 'noopener,noreferrer')}
+                onClick={() =>
+                  partner.link &&
+                  window.open(partner.link, '_blank', 'noopener,noreferrer')
+                }
               >
+                <span className="partner-marquee-dot" />
                 <span className="partner-marquee-name">{partner.name}</span>
+                {partner.role && (
+                  <span className="partner-marquee-role">/ {partner.role}</span>
+                )}
               </div>
             ))}
           </div>

@@ -112,17 +112,17 @@ const Gallery = () => {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="gallery-left"
           >
-            <span className="gallery-subtitle">Our memorable moments</span>
-            <h2 className="gallery-title">Have a Peek</h2>
+            <span className="gallery-subtitle">Studio Moments &amp; Hackathons</span>
+            <h2 className="gallery-title">Our Visual Chronicle</h2>
             <p className="gallery-description">
-              A glimpse into our builder culture. Late-night sprints, intense hackathons, and community meetups where we build, deploy, and ship the future of AI.
+              A glimpse into our builder culture. Late-night sprints, intense hackathons, and community meetups where we design, build, and ship real AI systems.
             </p>
             <Link
               href="/gallery"
               className="gallery-cta"
             >
-              <span>View Gallery</span>
-              <ArrowRight size={16} />
+              <span>Explore Complete Gallery</span>
+              <ArrowRight size={15} />
             </Link>
           </m.div>
 

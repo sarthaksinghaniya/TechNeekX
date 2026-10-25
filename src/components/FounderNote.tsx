@@ -84,7 +84,7 @@ const FounderNote = () => {
                 rel="noopener noreferrer"
                 title="View Sarthak Singhaniya Portfolio"
               >
-                <h4 className="founder-name bg-gradient-to-r from-[#0062ff] to-[#ff0080] bg-clip-text text-transparent !text-transparent hover:opacity-90 transition-opacity">
+                <h4 className="founder-name text-[#111318] hover:text-[#0062FF] font-bold text-base transition-colors">
                   Sarthak Singhaniya
                 </h4>
               </a>

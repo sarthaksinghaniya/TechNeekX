@@ -1,22 +1,20 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { m, AnimatePresence } from 'framer-motion';
-// Let's use clean imports
+import { motion, AnimatePresence } from 'framer-motion';
 import data from '../constants/data.json';
 import Image from 'next/image';
 import '../styles/About.css';
 
-const MotionImage = m.create(Image);
+const MotionImage = motion(Image);
 
-// Reusable animated count component using IntersectionObserver
 interface StatCounterProps {
   target: number;
   duration?: number;
   suffix?: string;
 }
 
-const StatCounter = ({ target, duration = 2000, suffix = "" }: StatCounterProps) => {
+const StatCounter = ({ target, duration = 2000, suffix = '' }: StatCounterProps) => {
   const [count, setCount] = useState(0);
   const elementRef = useRef<HTMLSpanElement>(null);
   const [hasAnimated, setHasAnimated] = useState(false);
@@ -52,7 +50,7 @@ const StatCounter = ({ target, duration = 2000, suffix = "" }: StatCounterProps)
     const start = performance.now();
     const animate = (now: number) => {
       const progress = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 4); // easeOutQuart
+      const eased = 1 - Math.pow(1 - progress, 4);
       setCount(Math.floor(target * eased));
       if (progress < 1) {
         rafId = requestAnimationFrame(animate);
@@ -64,34 +62,10 @@ const StatCounter = ({ target, duration = 2000, suffix = "" }: StatCounterProps)
 
   return (
     <span ref={elementRef} className="about-stat-value">
-      {count.toLocaleString()}{suffix}
+      {count.toLocaleString()}
+      {suffix}
     </span>
   );
-};
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.20,
-      delayChildren: 0.3,
-    },
-  },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, scale: 0.9, y: 30 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    transition: {
-      type: 'tween',
-      duration: 1,
-      ease: [0.22, 1, 0.36, 1], // easeOutQuart
-    },
-  },
 };
 
 const AboutMosaic = ({ images }: { images: typeof data.carouselImages }) => {
@@ -134,12 +108,13 @@ const AboutMosaic = ({ images }: { images: typeof data.carouselImages }) => {
             }
           }
           if (availableIndices.length === 0) return prev;
-          const randomIndex = availableIndices[Math.floor(Math.random() * availableIndices.length)];
+          const randomIndex =
+            availableIndices[Math.floor(Math.random() * availableIndices.length)];
           const next = [...prev];
           next[blockToUpdate] = randomIndex;
           return next;
         });
-      }, 3000);
+      }, 3500);
     };
 
     const stopTimer = () => {
@@ -167,96 +142,77 @@ const AboutMosaic = ({ images }: { images: typeof data.carouselImages }) => {
   }, [isInView, images.length]);
 
   return (
-    <m.div
-      ref={wrapperRef}
-      variants={containerVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-100px" }}
-      className="about-mosaic-wrapper"
-    >
+    <div ref={wrapperRef} className="about-mosaic-wrapper">
       <div className="about-photo-layout">
-        {/* Photo 1: Left/Middle */}
-        <m.div
-          variants={cardVariants}
-          className="about-photo-card about-photo-card-1"
-        >
+        <div className="about-photo-card about-photo-card-1">
           <AnimatePresence mode="wait">
             <MotionImage
               key={activeIndices[0]}
               src={images[activeIndices[0]].src}
               alt={images[activeIndices[0]].title}
               fill
-              initial={{ opacity: 0, scale: 0.95 }}
+              sizes="(max-width: 768px) 50vw, 30vw"
+              initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 1.05 }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="about-photo-img object-cover"
+              exit={{ opacity: 0, scale: 1.04 }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="about-photo-img"
             />
           </AnimatePresence>
-        </m.div>
+        </div>
 
-        {/* Photo 2: Top Right */}
-        <m.div
-          variants={cardVariants}
-          className="about-photo-card about-photo-card-2"
-        >
+        <div className="about-photo-card about-photo-card-2">
           <AnimatePresence mode="wait">
             <MotionImage
               key={activeIndices[1]}
               src={images[activeIndices[1]].src}
               alt={images[activeIndices[1]].title}
               fill
-              initial={{ opacity: 0, scale: 0.95 }}
+              sizes="(max-width: 768px) 50vw, 25vw"
+              initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 1.05 }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="about-photo-img object-cover"
+              exit={{ opacity: 0, scale: 1.04 }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="about-photo-img"
             />
           </AnimatePresence>
-        </m.div>
+        </div>
 
-        {/* Photo 3: Bottom Center */}
-        <m.div
-          variants={cardVariants}
-          className="about-photo-card about-photo-card-3"
-        >
+        <div className="about-photo-card about-photo-card-3">
           <AnimatePresence mode="wait">
             <MotionImage
               key={activeIndices[2]}
               src={images[activeIndices[2]].src}
               alt={images[activeIndices[2]].title}
               fill
-              initial={{ opacity: 0, scale: 0.95 }}
+              sizes="(max-width: 768px) 60vw, 35vw"
+              initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 1.05 }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="about-photo-img object-cover"
+              exit={{ opacity: 0, scale: 1.04 }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="about-photo-img"
             />
           </AnimatePresence>
-        </m.div>
+        </div>
 
-        {/* Photo 4: Small Middle-Right */}
-        <m.div
-          variants={cardVariants}
-          className="about-photo-card about-photo-card-4"
-        >
+        <div className="about-photo-card about-photo-card-4">
           <AnimatePresence mode="wait">
             <MotionImage
               key={activeIndices[3]}
               src={images[activeIndices[3]].src}
               alt={images[activeIndices[3]].title}
               fill
-              initial={{ opacity: 0, scale: 0.95 }}
+              sizes="(max-width: 768px) 25vw, 15vw"
+              initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 1.05 }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="about-photo-img object-cover"
+              exit={{ opacity: 0, scale: 1.04 }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="about-photo-img"
             />
           </AnimatePresence>
-        </m.div>
+        </div>
       </div>
-    </m.div>
+    </div>
   );
 };
 
@@ -264,50 +220,49 @@ const About = () => {
   const images = data.carouselImages;
 
   return (
-    <section id="about" className="tnx-section-alt">
-      {/* Background blur blobs */}
-      <div className="about-bg-blob about-blob-1" />
-      <div className="about-bg-blob about-blob-2" />
-
-      <div className="tnx-container">
-        <div className="tnx-grid-layout-swapped">
-
-          {/* Left Column: Overlapping 4-Photo Layout */}
-          <AboutMosaic images={images} />
-
-          {/* Right Column: Intro & Stats */}
-          <m.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+    <section id="about" className="about-section-enterprise">
+      <div className="about-container">
+        <div className="about-grid-enterprise">
+          {/* Left Column: Rotating 4-Photo Mosaic */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="about-content"
+            transition={{ duration: 0.6 }}
           >
-            <div className="about-watermark">
-              <Image src="/about/tnx-wings.webp" alt="Watermark" width={500} height={500} />
+            <AboutMosaic images={images} />
+          </motion.div>
+
+          {/* Right Column: Mission & Verified Stat Cards */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="about-content-col"
+          >
+            <div className="about-badge-wrap">
+              <span className="badge-enterprise">Our Studio &amp; Mission</span>
             </div>
 
-            <span className="tnx-section-label">
-              ABOUT <span style={{ textTransform: 'none' }}>TechNeekX</span>
-            </span>
-            <h2 className="tnx-main-heading">{data.aboutTitle}</h2>
+            <h2 className="about-title-main">{data.aboutTitle}</h2>
 
-            <p className="tnx-body-text" style={{ marginBottom: '32px' }}>
-              {data.aboutDescription1} <br /><br />
+            <p className="about-description-text">
+              {data.aboutDescription1}
+              <br />
+              <br />
               {data.aboutDescription2}
             </p>
 
-            <div className="about-stats-grid">
+            <div className="about-stats-grid-enterprise">
               {data.stats.map((stat, idx) => (
-                <div key={idx} className="about-stat-card">
-                  <span className="tnx-stat-number">
-                    <StatCounter target={stat.value} suffix={stat.suffix} />
-                  </span>
-                  <span className="tnx-stat-label">{stat.label}</span>
+                <div key={idx} className="about-stat-card-enterprise">
+                  <StatCounter target={stat.value} suffix={stat.suffix} />
+                  <span className="about-stat-label">{stat.label}</span>
                 </div>
               ))}
             </div>
-          </m.div>
+          </motion.div>
         </div>
       </div>
     </section>
