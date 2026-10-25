@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, Users, Code, Trophy, Briefcase, Sparkles, CheckCircle2 } from 'lucide-react';
-import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Loader from '@/components/Loader';
@@ -38,55 +37,45 @@ export default function JoinPage() {
     {
       icon: Users,
       title: "Collaborate with Talented Builders",
-      description: "Work side-by-side with India's most passionate developers, designers, and AI innovators.",
-      color: "text-blue-500",
-      bgColor: "bg-blue-50"
+      description: "Work side-by-side with India's most passionate developers, designers, and AI innovators."
     },
     {
       icon: Code,
       title: "Work on Real AI Products",
-      description: "Get hands-on experience building and deploying actual AI solutions that solve real problems.",
-      color: "text-purple-500",
-      bgColor: "bg-purple-50"
+      description: "Get hands-on experience building and deploying actual AI solutions that solve real problems."
     },
     {
       icon: Trophy,
       title: "Participate in National Hackathons",
-      description: "Join high-performing teams and access resources to compete and win at the national level.",
-      color: "text-orange-500",
-      bgColor: "bg-orange-50"
+      description: "Join high-performing teams and access resources to compete and win at the national level."
     },
     {
       icon: Briefcase,
       title: "Build a Strong Portfolio",
-      description: "Create high-impact projects that showcase your skills and stand out to top-tier companies.",
-      color: "text-green-500",
-      bgColor: "bg-green-50"
+      description: "Create high-impact projects that showcase your skills and stand out to top-tier companies."
     },
     {
       icon: Sparkles,
       title: "Priority Access & Mentorship",
-      description: "Receive direct mentorship from experienced founders and early access to exclusive events.",
-      color: "text-pink-500",
-      bgColor: "bg-pink-50"
+      description: "Receive direct mentorship from experienced founders and early access to exclusive events."
     }
   ];
 
   const containerVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 16 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
-        staggerChildren: 0.1,
-        ease: [0.22, 1, 0.36, 1]
+        duration: 0.5,
+        staggerChildren: 0.08,
+        ease: [0.16, 1, 0.3, 1]
       }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 10 },
+    hidden: { opacity: 0, y: 8 },
     visible: { opacity: 1, y: 0 }
   };
 
@@ -98,13 +87,13 @@ export default function JoinPage() {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -10 }}
         transition={{ duration: 0.35, ease: 'easeOut' }}
-        className="join-page-container"
+        className="join-page-container editorial-grid-subtle"
       >
         <ScrollProgress />
         <Loader />
         <Navbar />
 
-        {/* Background animated decorative blobs */}
+        {/* Background subtle decorative blobs */}
         <div className="join-page-bg-blob join-page-blob-1" />
         <div className="join-page-bg-blob join-page-blob-2" />
 
@@ -115,7 +104,7 @@ export default function JoinPage() {
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
             onClick={() => window.location.href = '/'}
-            className="flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-slate-900 transition-colors mb-8 bg-transparent border-none cursor-pointer"
+            className="flex items-center gap-2 text-sm font-semibold text-[#626873] hover:text-[#111318] transition-colors mb-8 bg-transparent border-none cursor-pointer"
           >
             <ArrowLeft size={16} />
             Back to Home
@@ -125,31 +114,31 @@ export default function JoinPage() {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="glass p-8 pb-12 sm:p-12 sm:pb-16 border border-slate-200/50 shadow-xl rounded-3xl"
+            className="join-enterprise-card"
           >
             {/* Announcement Badge */}
             <motion.div 
               variants={itemVariants}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-red-500/10 to-red-500/10 border border-red-200/30 text-red-600 rounded-full text-xs font-semibold mb-8 float-badge"
+              className="join-page-badge join-status-closed"
             > 
               <span className="flex h-2 w-2 relative">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
               </span>
-              Recruitment is Closed. 
+              Recruitment is Closed
             </motion.div>
 
             {/* Title & Description */}
             <motion.h1 
               variants={itemVariants}
-              className="text-4xl sm:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight"
+              className="join-page-title"
             >
-              Become a Part of <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-sky-500 to-blue-600 font-extrabold">TechNeekX</span>
+              Become a Part of <span className="text-[#0062FF]">TechNeekX</span>
             </motion.h1>
             
             <motion.p 
               variants={itemVariants}
-              className="text-lg text-slate-600 mb-10 leading-relaxed"
+              className="join-page-description mb-10"
             >
               We&apos;re setting up the builder ecosystem for the next generation of engineers, designers, and AI developers.
               While we prepare for the onboarding phase, here&apos;s what you can expect as a member of TechNeekX:
@@ -158,26 +147,25 @@ export default function JoinPage() {
             {/* Benefits Checklist */}
             <motion.div 
               variants={itemVariants}
-              className="space-y-6 mb-12"
+              className="space-y-4 mb-12"
             >
-              <h3 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">Membership Benefits</h3>
-              <div className="grid gap-6">
+              <h3 className="text-xs font-bold text-[#626873] uppercase tracking-wider mb-4">Membership Benefits</h3>
+              <div className="grid gap-4">
                 {benefits.map((benefit, idx) => (
                   <motion.div 
                     key={idx}
                     variants={itemVariants}
-                    whileHover={{ x: 4 }}
-                    className="flex gap-4 p-4 rounded-2xl hover:bg-slate-50 border border-transparent hover:border-slate-100 transition-all duration-200"
+                    className="join-benefit-card"
                   >
-                    <div className={`w-12 h-12 rounded-xl ${benefit.bgColor} flex items-center justify-center flex-shrink-0`}>
-                      <benefit.icon className={`w-6 h-6 ${benefit.color}`} />
+                    <div className="join-benefit-icon-box">
+                      <benefit.icon className="w-5 h-5" />
                     </div>
                     <div>
-                      <h4 className="font-bold text-slate-800 text-lg flex items-center gap-2">
+                      <h4 className="font-bold text-[#111318] text-base flex items-center gap-2">
                         {benefit.title}
-                        <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0" />
+                        <CheckCircle2 className="w-4 h-4 text-[#0062FF] flex-shrink-0" />
                       </h4>
-                      <p className="text-slate-600 text-sm mt-1 leading-relaxed">
+                      <p className="text-[#626873] text-sm mt-1 leading-relaxed">
                         {benefit.description}
                       </p>
                     </div>
@@ -186,26 +174,22 @@ export default function JoinPage() {
               </div>
             </motion.div>
 
-            {/* Navigation Back */}
+            {/* Navigation Back & CTA */}
             <motion.div 
               variants={itemVariants}
-              className="border-t border-slate-100 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4"
+              className="border-t border-[#DDE1E6] pt-8 flex flex-col sm:flex-row items-center justify-between gap-4"
             >
-              <div className="text-sm text-slate-500">
+              <div className="text-sm text-[#626873]">
                 Join 100+ builders already in the network.
               </div>
-              {/* <Link  href=" https://forms.gle/3RVngAv93Cj5oBVd7" className="join-btn-primary inline-flex items-center gap-2 text-white no-underline">
-                Join TechNeekX
-              </Link> */}
 
-              <button disabled className="join-btn-primary inline-flex items-center gap-2 text-white no-underline">
-                  Join TechNeekX
+              {/* Recruitment action button */}
+              <button disabled className="join-btn-primary">
+                Applications Currently Paused
               </button>
             </motion.div>
           </motion.div>
         </div>
-
-      
 
         <Footer />
       </motion.main>

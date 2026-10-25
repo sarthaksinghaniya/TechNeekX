@@ -1,23 +1,23 @@
-/* TechNeekX RealJourney Page Timeline Stylesheet */
+/* TechNeekX Enterprise AI RealJourney Stylesheet */
 
 .real-journey-section {
   position: relative;
-  padding: 45px 0;
-  background-color: var(--tnx-bg-slate);
+  padding: 60px 0 80px 0;
+  background-color: #F7F8FA;
   overflow: hidden;
-  font-family: var(--nav-font, 'Inter', sans-serif);
+  font-family: inherit;
 }
 
 .real-journey-container {
   width: 100%;
-  max-width: 1280px;
+  max-width: 1240px;
   margin: 0 auto;
   padding: 0 24px;
   position: relative;
   z-index: 1;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 640px) {
   .real-journey-container {
     padding: 0 16px;
   }
@@ -28,7 +28,7 @@
   position: relative;
   width: 100%;
   max-width: 1000px;
-  margin: 64px auto 0 auto;
+  margin: 48px auto 0 auto;
 }
 
 /* SVG Curved Connector Path (Behind Cards) */
@@ -56,7 +56,7 @@
   display: flex;
   align-items: center;
   width: 100%;
-  margin-bottom: 72px;
+  margin-bottom: 64px;
   z-index: 2;
 }
 
@@ -73,14 +73,14 @@
 }
 
 .real-milestone-row.align-left .real-card {
-  margin-left: 3%;
+  margin-left: 4%;
 }
 
 .real-milestone-row.align-right .real-card {
-  margin-right: 3%;
+  margin-right: 4%;
 }
 
-/* Milestone Pin / Indicator Node (Top Center of Card) */
+/* Milestone Pin */
 .real-card-pin {
   position: absolute;
   top: -10px;
@@ -88,13 +88,13 @@
   transform: translateX(-50%);
   width: 22px;
   height: 22px;
-  border-radius: 50%;
-  background: rgba(124, 58, 237, 0.15);
+  border-radius: 9999px;
+  background: rgba(0, 98, 255, 0.12);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 4;
-  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.25s ease;
 }
 
 .real-card:hover .real-card-pin {
@@ -102,32 +102,24 @@
 }
 
 .real-card-pin-inner {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #7c3aed, #ff0080);
-  border: 2px solid #ffffff;
-  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.35);
+  width: 12px;
+  height: 12px;
+  border-radius: 9999px;
+  background: #0062FF;
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 0 0 2px rgba(0, 98, 255, 0.25);
 }
 
 .real-card-pin.now .real-card-pin-inner {
-  background: #ff0080;
-  box-shadow: 0 0 12px rgba(255, 0, 128, 0.6);
+  background: #0062FF;
+  box-shadow: 0 0 10px rgba(0, 98, 255, 0.5);
   animation: real-pin-pulse 2s infinite;
 }
 
 @keyframes real-pin-pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(255, 0, 128, 0.5);
-  }
-
-  70% {
-    box-shadow: 0 0 0 8px rgba(255, 0, 128, 0);
-  }
-
-  100% {
-    box-shadow: 0 0 0 0 rgba(255, 0, 128, 0);
-  }
+  0% { box-shadow: 0 0 0 0 rgba(0, 98, 255, 0.4); }
+  70% { box-shadow: 0 0 0 6px rgba(0, 98, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(0, 98, 255, 0); }
 }
 
 /* Card Container */
@@ -137,20 +129,19 @@
   display: flex;
   flex-direction: column;
   padding: 24px 28px;
-  background: #ffffff;
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  border-radius: 24px;
-  box-shadow: 0 15px 35px rgba(15, 23, 42, 0.04),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  background: #FFFFFF;
+  border: 1px solid #DDE1E6;
+  border-radius: 20px;
+  box-shadow: 0 1px 3px rgba(17, 19, 24, 0.02);
+  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
   position: relative;
   z-index: 2;
 }
 
 .real-card:hover {
-  transform: translateY(-6px);
-  border-color: rgba(15, 23, 42, 0.15);
-  box-shadow: 0 25px 50px rgba(15, 23, 42, 0.1);
+  transform: translateY(-4px);
+  border-color: #111318;
+  box-shadow: 0 8px 24px rgba(17, 19, 24, 0.06);
 }
 
 /* Card Date Badge Header */
@@ -162,19 +153,19 @@
 }
 
 .real-card-date {
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 700;
-  color: var(--tnx-purple);
-  letter-spacing: 0.01em;
+  color: #0062FF;
+  letter-spacing: 0.02em;
 }
 
 @media (max-width: 768px) {
   .real-timeline-wrapper {
-    margin-top: 40px;
+    margin-top: 36px;
   }
 
   .real-milestone-row {
-    margin-bottom: 48px;
+    margin-bottom: 40px;
   }
 
   .real-milestone-row.align-left,
@@ -198,83 +189,4 @@
   .real-card:hover .real-card-pin {
     transform: scale(1.15);
   }
-}
-
-/* Card content details */
-.real-card-content {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.real-card-mobile-date {
-  display: none;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--tnx-purple);
-  margin-bottom: 6px;
-}
-
-@media (max-width: 768px) {
-  .real-card-mobile-date {
-    display: block;
-  }
-}
-
-.real-card-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 12px;
-}
-
-.real-card-title-group {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.real-card-icon-box {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-}
-
-.real-card-title {
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--tnx-text-dark);
-}
-
-.real-card-description {
-  font-size: 14px;
-  color: var(--tnx-text-muted);
-  line-height: 1.6;
-}
-
-/* Status and Impact Badges */
-.real-status-badge {
-  font-size: 9px;
-  font-weight: 700;
-  padding: 3px 8px;
-  border-radius: 99px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  line-height: 1;
-}
-
-.real-status-badge.completed {
-  background: rgba(16, 185, 129, 0.08);
-  color: #10b981;
-  border: 1px solid rgba(16, 185, 129, 0.15);
-}
-
-.real-status-badge.now {
-  background: rgba(236, 72, 153, 0.08);
-  color: var(--tnx-pink);
-  border: 1px solid rgba(236, 72, 153, 0.15);
 }
