@@ -230,3 +230,17 @@
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(17, 19, 24, 0.12);
 }
+
+@media (max-width: 480px) {
+  .events-grid.mobile-carousel-deck .event-card {
+    padding: 16px;
+    height: 410px;
+    border-radius: 20px;
+  }
+  .event-image-container {
+    height: 180px;
+  }
+  .events-deck-wrapper {
+    height: 440px;
+  }
+}

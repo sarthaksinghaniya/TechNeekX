@@ -274,3 +274,14 @@
   border-color: #111318;
   transform: translateY(-1.5px);
 }
+
+@media (max-width: 480px) {
+  .featured-projects-grid.mobile-carousel-deck .featured-project-card {
+    padding: 20px 16px;
+    height: 400px;
+    border-radius: 20px;
+  }
+  .featured-projects-deck-wrapper {
+    height: 440px;
+  }
+}

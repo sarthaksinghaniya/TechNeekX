@@ -160,12 +160,16 @@
 }
 
 @media (max-width: 768px) {
+  .real-journey-svg-connector {
+    display: none;
+  }
+
   .real-timeline-wrapper {
     margin-top: 36px;
   }
 
   .real-milestone-row {
-    margin-bottom: 40px;
+    margin-bottom: 24px;
   }
 
   .real-milestone-row.align-left,
@@ -181,12 +185,12 @@
     margin-right: 0;
   }
 
-  .real-card-pin {
-    left: 36px;
-    transform: none;
+  .real-card {
+    padding: 20px 18px;
+    border-radius: 18px;
   }
 
-  .real-card:hover .real-card-pin {
-    transform: scale(1.15);
+  .real-card-pin {
+    display: none;
   }
 }

@@ -463,3 +463,23 @@
   padding-top: 20px;
   border-top: 1px solid #E7E9ED;
 }
+
+@media (max-width: 640px) {
+  .project-modal-content {
+    border-radius: 20px;
+    max-height: 94vh;
+  }
+  .project-modal-image-container {
+    height: 180px;
+  }
+  .project-modal-body {
+    padding: 20px 16px;
+  }
+  .project-modal-title {
+    font-size: 1.25rem;
+  }
+  .project-modal-actions {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}

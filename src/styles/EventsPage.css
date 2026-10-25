@@ -383,3 +383,19 @@
   line-height: 1.7;
   margin-bottom: 20px;
 }
+
+@media (max-width: 640px) {
+  .event-modal-content {
+    border-radius: 20px;
+    max-height: 94vh;
+  }
+  .event-modal-image-container {
+    height: 180px;
+  }
+  .event-modal-body {
+    padding: 20px 16px;
+  }
+  .event-modal-title {
+    font-size: 1.25rem;
+  }
+}

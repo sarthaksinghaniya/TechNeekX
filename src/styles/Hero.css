@@ -232,3 +232,24 @@
   border-color: #111318;
   transform: translateY(-2px);
 }
+
+@media (max-width: 640px) {
+  .hero-floating-card-top {
+    top: 12px;
+    left: 12px;
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+  .hero-floating-card-bottom {
+    bottom: 12px;
+    right: 12px;
+    padding: 8px 12px;
+    border-radius: 14px;
+  }
+  .hero-stats-ribbon {
+    gap: 16px;
+  }
+  .hero-stat-value {
+    font-size: 1.25rem;
+  }
+}
