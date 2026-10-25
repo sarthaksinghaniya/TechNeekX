@@ -40,7 +40,7 @@ export default function JourneyPage() {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -10 }}
         transition={{ duration: 0.35, ease: 'easeOut' }}
-        className="min-h-screen bg-[#f9fafb]"
+        className="min-h-screen bg-[#F7F8FA] editorial-grid-subtle"
       >
         <ScrollProgress />
         <Loader />

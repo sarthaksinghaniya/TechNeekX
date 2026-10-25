@@ -14,13 +14,6 @@ import '@/styles/TeamPage.css';
 
 export default function TeamPage() {
   const router = useRouter();
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  if (!isMounted) return null;
 
   const data = Array.isArray(teamData) ? teamData[0] : teamData;
   const { officialTeam = [], coreTeam = [] } = data || {};

@@ -80,13 +80,9 @@ interface Milestone {
 
 export default function GirlsInTechPage() {
   const router = useRouter();
-  const [isMounted, setIsMounted] = useState(false);
   const [activeTab, setActiveTab] = useState<string>('All');
   const [selectedProfile, setSelectedProfile] = useState<Trailblazer | null>(null);
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   useEffect(() => {
     if (selectedProfile) {
@@ -104,7 +100,6 @@ export default function GirlsInTechPage() {
     }
   }, [selectedProfile]);
 
-  if (!isMounted) return null;
 
   const {
     meta,

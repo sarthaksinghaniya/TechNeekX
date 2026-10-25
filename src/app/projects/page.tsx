@@ -115,12 +115,7 @@ const ProjectsPage = () => {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState<'all' | 'ai-advanced' | 'healthcare' | 'platforms-tools'>('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [isMounted, setIsMounted] = useState(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   useEffect(() => {
     if (selectedProject) {
@@ -138,19 +133,7 @@ const ProjectsPage = () => {
     }
   }, [selectedProject]);
 
-  if (!isMounted) {
-    return (
-      <div className="projects-page-container">
-        <div className="projects-page-content-wrapper">
-          <div className="projects-page-header">
-            <span className="projects-page-badge">PORTFOLIO</span>
-            <h1 className="projects-page-title">TechNeekX Projects</h1>
-            <p className="projects-page-description">Loading project portfolio...</p>
-          </div>
-        </div>
-      </div>
-    );
-  }
+
 
   // Filter projects based on active tab and search query
   const filteredProjects = (projectsData as Project[]).filter((project) => {

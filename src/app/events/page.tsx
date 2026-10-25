@@ -67,12 +67,10 @@ const EventsPage = () => {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState<'all' | 'current' | 'upcoming' | 'previous'>('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [isMounted, setIsMounted] = useState(false);
-  const [today, setToday] = useState('2026-07-03'); // User's local workspace date as baseline
+  const [today, setToday] = useState('2026-07-03');
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
 
   useEffect(() => {
-    setIsMounted(true);
     // Dynamically fetch today's date in local YYYY-MM-DD format to match system time
     const d = new Date();
     const year = d.getFullYear();
@@ -96,20 +94,6 @@ const EventsPage = () => {
       document.body.style.overflow = '';
     }
   }, [selectedEvent]);
-
-  if (!isMounted) {
-    return (
-      <div className="events-page-container">
-        <div className="events-page-content-wrapper">
-          <div className="events-page-header">
-            <span className="events-page-badge">MILSTONES & CALENDAR</span>
-            <h1 className="events-page-title">TechNeekX Events</h1>
-            <p className="events-page-description">Loading events calendar...</p>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   // Helper to normalize dates (handles formats like "2026-7-24" by padding single digits to "2026-07-24")
   const normalizeDateStr = (str?: string) => {

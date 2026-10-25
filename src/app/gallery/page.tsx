@@ -72,11 +72,7 @@ const ScrollProgress = () => {
 export default function GalleryPage() {
   const router = useRouter();
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
-  const [isMounted, setIsMounted] = useState(false);
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   // Keyboard navigation and body scroll lock for Lightbox
   useEffect(() => {
@@ -116,19 +112,7 @@ export default function GalleryPage() {
     }
   };
 
-  if (!isMounted) {
-    return (
-      <div className="gallery-page-container">
-        <div className="gallery-page-content-wrapper">
-          <div className="gallery-page-header">
-            <span className="gallery-page-badge">MEMORIES</span>
-            <h1 className="gallery-page-title">TechNeekX Gallery</h1>
-            <p className="gallery-page-description">Loading gallery...</p>
-          </div>
-        </div>
-      </div>
-    );
-  }
+
 
   return (
     <AnimatePresence mode="wait">

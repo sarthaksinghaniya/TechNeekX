@@ -28,25 +28,6 @@ interface Partner {
 
 const PartnersPage = () => {
   const router = useRouter();
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  if (!isMounted) {
-    return (
-      <div className="partners-page-container">
-        <div className="partners-page-content-wrapper">
-          <div className="partners-page-header">
-            <span className="partners-page-badge">Ecosystem</span>
-            <h1 className="partners-page-title">Community Partners</h1>
-            <p className="partners-page-description">Loading community partners...</p>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   const getInitials = (name: string) => {
     return name.split(' ').map(word => word[0]).join('').toUpperCase().slice(0, 2);
