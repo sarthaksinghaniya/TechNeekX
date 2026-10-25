@@ -122,6 +122,22 @@ const ProjectsPage = () => {
     setIsMounted(true);
   }, []);
 
+  useEffect(() => {
+    if (selectedProject) {
+      document.body.style.overflow = 'hidden';
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') setSelectedProject(null);
+      };
+      window.addEventListener('keydown', handleKeyDown);
+      return () => {
+        document.body.style.overflow = '';
+        window.removeEventListener('keydown', handleKeyDown);
+      };
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [selectedProject]);
+
   if (!isMounted) {
     return (
       <div className="projects-page-container">
@@ -339,7 +355,7 @@ const ProjectsPage = () => {
                           <button
                             onClick={(e) => {
                               e.stopPropagation();
-                              if (project.link) window.open(project.link, '_blank');
+                              if (project.link) window.open(project.link, '_blank', 'noopener,noreferrer');
                             }}
                             className={`project-page-btn-action project-page-btn-hero ${!project.link ? 'disabled' : ''}`}
                             disabled={!project.link}
@@ -350,7 +366,7 @@ const ProjectsPage = () => {
                           <button
                             onClick={(e) => {
                               e.stopPropagation();
-                              window.open(project.github, '_blank');
+                              window.open(project.github, '_blank', 'noopener,noreferrer');
                             }}
                             className="project-page-btn-action project-page-btn-outline"
                           >
@@ -494,7 +510,7 @@ const ProjectsPage = () => {
                   <div className="project-modal-actions">
                     <button
                       onClick={() => {
-                        if (selectedProject.link) window.open(selectedProject.link, '_blank');
+                        if (selectedProject.link) window.open(selectedProject.link, '_blank', 'noopener,noreferrer');
                       }}
                       className={`project-page-btn-action project-page-btn-hero ${!selectedProject.link ? 'disabled' : ''}`}
                       disabled={!selectedProject.link}
@@ -503,7 +519,7 @@ const ProjectsPage = () => {
                       <ExternalLink size={16} />
                     </button>
                     <button
-                      onClick={() => window.open(selectedProject.github, '_blank')}
+                      onClick={() => window.open(selectedProject.github, '_blank', 'noopener,noreferrer')}
                       className="project-page-btn-action project-page-btn-outline"
                     >
                       <Github size={16} />

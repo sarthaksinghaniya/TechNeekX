@@ -78,9 +78,14 @@ export default function GalleryPage() {
     setIsMounted(true);
   }, []);
 
-  // Keyboard navigation for Lightbox
+  // Keyboard navigation and body scroll lock for Lightbox
   useEffect(() => {
-    if (selectedImageIndex === null) return;
+    if (selectedImageIndex === null) {
+      document.body.style.overflow = '';
+      return;
+    }
+
+    document.body.style.overflow = 'hidden';
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -93,7 +98,10 @@ export default function GalleryPage() {
     };
 
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', handleKeyDown);
+    };
   }, [selectedImageIndex]);
 
   const handleNext = () => {

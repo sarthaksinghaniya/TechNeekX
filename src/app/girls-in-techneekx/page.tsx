@@ -88,6 +88,22 @@ export default function GirlsInTechPage() {
     setIsMounted(true);
   }, []);
 
+  useEffect(() => {
+    if (selectedProfile) {
+      document.body.style.overflow = 'hidden';
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') setSelectedProfile(null);
+      };
+      window.addEventListener('keydown', handleKeyDown);
+      return () => {
+        document.body.style.overflow = '';
+        window.removeEventListener('keydown', handleKeyDown);
+      };
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [selectedProfile]);
+
   if (!isMounted) return null;
 
   const {

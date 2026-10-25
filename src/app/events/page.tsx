@@ -81,6 +81,22 @@ const EventsPage = () => {
     setToday(`${year}-${month}-${day}`);
   }, []);
 
+  useEffect(() => {
+    if (selectedEvent) {
+      document.body.style.overflow = 'hidden';
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') setSelectedEvent(null);
+      };
+      window.addEventListener('keydown', handleKeyDown);
+      return () => {
+        document.body.style.overflow = '';
+        window.removeEventListener('keydown', handleKeyDown);
+      };
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [selectedEvent]);
+
   if (!isMounted) {
     return (
       <div className="events-page-container">
@@ -373,7 +389,7 @@ const EventsPage = () => {
                                 if (event.cta?.text.toLowerCase().includes('detail')) {
                                   setSelectedEvent(event);
                                 } else if (event.cta?.link) {
-                                  window.open(event.cta.link, '_blank');
+                                  window.open(event.cta.link, '_blank', 'noopener,noreferrer');
                                 }
                               }}
                               className="event-page-btn-action event-page-btn-hero"
@@ -513,7 +529,7 @@ const EventsPage = () => {
                   {selectedEvent.cta && !selectedEvent.cta.text.toLowerCase().includes('detail') && selectedEvent.cta.link && (
                     <div className="event-modal-actions">
                       <button
-                        onClick={() => window.open(selectedEvent.cta!.link, '_blank')}
+                        onClick={() => window.open(selectedEvent.cta!.link, '_blank', 'noopener,noreferrer')}
                         className="event-page-btn-action event-page-btn-hero"
                       >
                         <span>{selectedEvent.cta.text}</span>

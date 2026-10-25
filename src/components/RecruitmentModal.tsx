@@ -24,6 +24,25 @@ export default function RecruitmentModal() {
     }
   }, []);
 
+  // Lock body scroll and listen for Escape key when modal is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') {
+          handleClose();
+        }
+      };
+      window.addEventListener('keydown', handleKeyDown);
+      return () => {
+        document.body.style.overflow = '';
+        window.removeEventListener('keydown', handleKeyDown);
+      };
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [isOpen]);
+
   const handleClose = () => {
     setIsOpen(false);
     sessionStorage.setItem(STORAGE_KEY, 'true');
@@ -42,27 +61,23 @@ export default function RecruitmentModal() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.3, ease: 'easeOut' }}
+          transition={{ duration: 0.25, ease: 'easeOut' }}
           onClick={handleClose}
         >
           <m.div
             className="recruitment-modal-container"
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            initial={{ opacity: 0, scale: 0.94, y: 16 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.92, y: 15 }}
+            exit={{ opacity: 0, scale: 0.94, y: 12 }}
             transition={{
-              duration: 0.4,
-              ease: [0.22, 1, 0.36, 1],
+              duration: 0.3,
+              ease: [0.16, 1, 0.3, 1],
             }}
             onClick={(e) => e.stopPropagation()}
             role="dialog"
             aria-modal="true"
             aria-labelledby="recruitment-modal-title"
           >
-            {/* Ambient Background Glows */}
-            <div className="recruitment-modal-glow-1" />
-            <div className="recruitment-modal-glow-2" />
-
             {/* Close Button */}
             <button
               onClick={handleClose}
@@ -96,19 +111,19 @@ export default function RecruitmentModal() {
             <div className="recruitment-perks-list">
               <div className="recruitment-perk-item">
                 <span className="recruitment-perk-icon">
-                  <Rocket size={13} />
+                  <Rocket size={14} />
                 </span>
-                <span>Work on high-impact, real-world tech projects</span>
+                <span>Work on high-impact, real-world AI and tech projects</span>
               </div>
               <div className="recruitment-perk-item">
                 <span className="recruitment-perk-icon">
-                  <Sparkles size={13} />
+                  <Sparkles size={14} />
                 </span>
-                <span>Exclusive workshops, hackathons & mentorship</span>
+                <span>Exclusive workshops, hackathons &amp; direct mentorship</span>
               </div>
               <div className="recruitment-perk-item">
                 <span className="recruitment-perk-icon">
-                  <CheckCircle2 size={13} />
+                  <CheckCircle2 size={14} />
                 </span>
                 <span>Direct networking with industry professionals</span>
               </div>

@@ -165,7 +165,7 @@ const PartnersPage = () => {
                     <button
                       onClick={() => {
                         if (partner.link) {
-                          window.open(partner.link, '_blank');
+                          window.open(partner.link, '_blank', 'noopener,noreferrer');
                         } else {
                           openTeamForm('partner');
                         }
