@@ -8,13 +8,38 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        canvas: "#F7F8FA",
+        surface: {
+          DEFAULT: "#FFFFFF",
+          subtle: "#F1F3F6",
+        },
+        graphite: {
+          DEFAULT: "#111318",
+          dark: "#0B0D11",
+          light: "#232731",
+        },
+        silver: {
+          DEFAULT: "#E7E9ED",
+          border: "#DDE1E6",
+        },
+        muted: "#626873",
+        subtle: "#8A92A0",
+        enterprise: {
+          blue: "#0062FF",
+          "blue-hover": "#0052DB",
+          "blue-subtle": "rgba(0, 98, 255, 0.08)",
+        },
+      },
+      borderRadius: {
+        "2xl": "16px",
+        "3xl": "24px",
+        "4xl": "32px",
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-        "hero-gradient": "linear-gradient(135deg, #87CEEB 0%, #9370DB 100%)",
-        "aqua-green": "linear-gradient(135deg, #40E0D0 0%, #32CD32 100%)",
-        "coral-pink": "linear-gradient(135deg, #FF7F50 0%, #FF69B4 100%)",
       },
       animation: {
         "gradient-x": "gradient-x 15s ease infinite",
