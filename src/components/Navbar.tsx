@@ -51,6 +51,7 @@ const Navbar = () => {
   const navItems = [
     { name: 'Projects', href: '/projects' },
     { name: 'Events', href: '/events' },
+    { name: 'Girls in TNX', href: '/girls-in-techneekx' },
     { name: 'Partners', href: '/partners' },
     { name: 'Team', href: '/team' },
   ];
@@ -96,6 +97,9 @@ const Navbar = () => {
 
   // Check if link is active
   const isActiveLink = (href: string) => {
+    if (href.startsWith('/')) {
+      return pathname === href || pathname === `${href}/`;
+    }
     const targetId = href.replace('#', '');
     return activeSection === targetId;
   };

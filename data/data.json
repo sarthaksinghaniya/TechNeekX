@@ -1,0 +1,315 @@
+{
+  "meta": {
+    "pageTitle": "Girls in TechNeekX (GIT) | Women in Tech & Leadership",
+    "badge": "Women in Tech • Feminism & Innovation",
+    "heading": "Girls in TechNeekX",
+    "subheading": "Breaking Stereotypes. Engineering Tomorrow. Leading with Purpose.",
+    "description": "Celebrating the brilliant female engineers, designers, researchers, and leaders shaping TechNeekX. We champion unapologetic feminism in tech—ensuring equal opportunity, autonomous leadership, and technical excellence.",
+    "quote": "“Feminism isn't about making women stronger. Women are already strong. It's about changing the way the world perceives that strength in tech and innovation.”",
+    "quoteAuthor": "The Women of TechNeekX"
+  },
+  "stats": [
+    {
+      "value": "45%+",
+      "label": "Women in Core Leadership",
+      "subtext": "Directing operations, media, design, and AI research",
+      "icon": "ShieldCheck"
+    },
+    {
+      "value": "18+",
+      "label": "Hackathon Podiums & Wins",
+      "subtext": "National, state, and collegiate coding victories",
+      "icon": "Trophy"
+    },
+    {
+      "value": "500+",
+      "label": "Girls Mentored & Inspired",
+      "subtext": "Across workshops, hackathons, and bootcamps",
+      "icon": "Users"
+    },
+    {
+      "value": "100%",
+      "label": "Equal Voice & Merit",
+      "subtext": "Zero tokenism—every girl leads real architecture",
+      "icon": "Sparkles"
+    }
+  ],
+  "feministPillars": [
+    {
+      "id": "equal-code",
+      "title": "Equal Code, Equal Voice",
+      "tagline": "Meritocracy without Prejudice",
+      "description": "Women at TechNeekX don't just participate; they architect systems, write production backend pipelines, and lead high-stakes technical decisions.",
+      "icon": "Code2",
+      "gradient": "from-pink-500 to-rose-600"
+    },
+    {
+      "id": "shattering-ceilings",
+      "title": "Shattering The Glass Ceiling",
+      "tagline": "Redefining Tech Leadership",
+      "description": "From Director of Operations to AI/ML Leads and Creative Directors, our leadership roster proves that modern tech flourishes when women hold the helm.",
+      "icon": "Crown",
+      "gradient": "from-purple-500 to-indigo-600"
+    },
+    {
+      "id": "sisterhood-stem",
+      "title": "Sisterhood in STEM",
+      "tagline": "Lifting As We Climb",
+      "description": "We foster a supportive, zero-gatekeeping community where senior female mentors train, debug with, and champion junior builders stepping into the field.",
+      "icon": "HeartHandshake",
+      "gradient": "from-rose-500 to-purple-600"
+    },
+    {
+      "id": "tangible-impact",
+      "title": "Tangible Impact over Tokenism",
+      "tagline": "Recognizing Real Results",
+      "description": "Every achievement highlighted here represents real sleepless hackathon nights, functional repositories, deployed platforms, and impactful community events.",
+      "icon": "Flame",
+      "gradient": "from-amber-500 to-pink-600"
+    }
+  ],
+  "trailblazers": [
+    {
+      "id": "arpita-sharma",
+      "name": "Arpita Sharma",
+      "role": "Director of Core Operations",
+      "domain": "Operations & Community Architecture",
+      "image": "/team/arpita.webp",
+      "alt": "Portrait of Arpita Sharma, Director of Core Operations at TechNeekX",
+      "bio": "Strategic powerhouse orchestrating TechNeekX's internal operations, partner relations, and massive hackathons. Skilled in ORM, team coordination, and scaling youth initiatives.",
+      "quote": "Leadership is not about demanding authority; it is about building an ecosystem where every girl coder feels powerful enough to innovate without hesitation.",
+      "achievements": [
+        "Head of Operations for the InnVedX Hackathon hosting 491+ participants across multiple technical tracks.",
+        "Built standardized cross-team operational workflows bridging design, dev, and media departments.",
+        "Drove community engagement initiatives that onboarded dozens of prospective female developers."
+      ],
+      "superpowers": ["Operations Strategy", "ORM & Partnerships", "Cross-Team Leadership", "Logistics Scaling"],
+      "socials": {
+        "linkedin": "https://www.linkedin.com/in/arpita-sharma-899bba381?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+        "github": "https://github.com/sharmaarpita307-ai/Hello-Python",
+        "email": "sharmaarpita307@gmail.com",
+        "cta": "https://arpiii-dev.netlify.app"
+      },
+      "badge": "Operational Anchor"
+    },
+    {
+      "id": "sneha-yadav",
+      "name": "Sneha Yadav",
+      "role": "Design Lead",
+      "domain": "UI/UX & Full-Stack Development",
+      "image": "/team/sneha.webp",
+      "alt": "Portrait of Sneha Yadav, Design Lead and Software Developer at TechNeekX",
+      "bio": "Passionate 2nd-year B.Tech computer science engineer fusing technical precision in Java and DSA with intuitive, aesthetically striking UI/UX design.",
+      "quote": "Great software is both functional and empathetic. As women designers and engineers, we bring distinct human intuition and relentless craftsmanship to the screen.",
+      "achievements": [
+        "Led creative direction and design judging for the 'Vibe Designing' university competition with 100+ participants.",
+        "Co-designed sleek component systems and user journeys for TechNeekX platforms and community hubs.",
+        "Mentors first-year women builders in Git, GitHub, Java foundations, and modern design principles."
+      ],
+      "superpowers": ["UI/UX Prototyping", "Java & DSA", "Design Systems", "Web Design"],
+      "socials": {
+        "linkedin": "https://www.linkedin.com/in/sneha-yadav-4b2351237?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+        "github": "https://github.com/mailmesneha2005-hub",
+        "email": "mailmesneha2005@gmail.com",
+        "cta": ""
+      },
+      "badge": "Design Maestro"
+    },
+    {
+      "id": "arshi",
+      "name": "Arshi",
+      "role": "Media Lead",
+      "domain": "Creative Direction & Video Production",
+      "image": "/team/arshi.webp",
+      "alt": "Portrait of Arshi, Media Lead and Creative Storyteller at TechNeekX",
+      "bio": "Computer Science student and creative director blending coding prowess, data science curiosities, and cinematic video editing to define the TechNeekX visual brand.",
+      "quote": "Storytelling is how we rewrite the narrative in STEM. When young girls witness women commanding cameras, timelines, and terminals, they realize there are no boundaries.",
+      "achievements": [
+        "Headed digital media and cinematic recaps for flagship events including Frame by Frame and Kalpathon 2.0.",
+        "Grew community social engagement across digital channels with viral tech reels and event teasers.",
+        "Built compelling visual narratives celebrating women hackers and team milestones."
+      ],
+      "superpowers": ["Cinematic Video Production", "Digital Brand Identity", "Data Exploration", "Media Campaigns"],
+      "socials": {
+        "linkedin": "https://www.linkedin.com/in/arshi-ahmad-973173369?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+        "github": "https://github.com/thearshi02",
+        "email": "arshiidrisi0202@gmail.com",
+        "cta": "https://arshi-aura-cosmos.lovable.app"
+      },
+      "badge": "Creative Storyteller"
+    },
+    {
+      "id": "kriti-jain",
+      "name": "Kriti Jain",
+      "role": "AI/ML Lead",
+      "domain": "Machine Learning & Backend Systems",
+      "image": "/team/kriti.webp",
+      "alt": "Portrait of Kriti Jain, AI/ML Lead and Backend Engineer at TechNeekX",
+      "bio": "B.Tech CSE engineer deeply immersed in backend architecture, AI algorithms, neural network fine-tuning, and scalable predictive systems.",
+      "quote": "The algorithms of tomorrow must be coded by diverse minds today. Women in AI are not consumers of technology—we are the architects of intelligence.",
+      "achievements": [
+        "Key contributor to intelligent backend pipelines and machine learning experiments in the community.",
+        "Active podium contender and technical lead in collegiate competitive programming and hackathon sprints.",
+        "Conducts hands-on machine learning problem-solving sessions for junior tech enthusiasts."
+      ],
+      "superpowers": ["Machine Learning", "Backend Engineering", "Python & Data Structures", "API Architecture"],
+      "socials": {
+        "linkedin": "https://www.linkedin.com/in/connect-with-kriti",
+        "github": "https://github.com/kriti-on-git",
+        "email": "er.jainkriti@gmail.com",
+        "cta": "https://kriti-web.netlify.app"
+      },
+      "badge": "AI Architect"
+    },
+    {
+      "id": "akshara-dixit",
+      "name": "Akshara Dixit",
+      "role": "AI-ML Lead",
+      "domain": "Data Science & Collaborative Intelligence",
+      "image": "/team/akshara.webp",
+      "alt": "Portrait of Akshara Dixit, AI-ML Lead and Data Scientist at TechNeekX",
+      "bio": "Aspiring Data Scientist with sharp analytical rigor, passionate about exploring datasets, AI innovation, and solving complex human problems collaboratively.",
+      "quote": "Data is the voice of our world. When women interpret that voice, we build tech that is fairer, smarter, and deeply impactful.",
+      "achievements": [
+        "Core technical lead in the 8-hour intensive TNX Codathon hosting 148 collegiate builders.",
+        "Developed end-to-end data preprocessing and exploratory models for AI track projects.",
+        "Pioneering voice for inclusivity and technical rigor among first-generation female techies."
+      ],
+      "superpowers": ["Data Science", "Exploratory Data Analysis", "AI/ML Workflows", "Collaborative Problem Solving"],
+      "socials": {
+        "linkedin": "https://www.linkedin.com/in/akshara-dixit-04b378385",
+        "github": "https://github.com/dixitakshara96",
+        "email": "dixitakshara96@gmail.com",
+        "cta": "https://drive.google.com/file/d/1aooryqS10MfnccMQA3H_KWgnKo41DJ43/view?usp=drivesdk"
+      },
+      "badge": "Data Strategist"
+    },
+    {
+      "id": "harshita-agnihotri",
+      "name": "Harshita Agnihotri",
+      "role": "Research & Analysis Lead | AIML Mentor",
+      "domain": "Research, Neural Architectures & Mentorship",
+      "image": "/team/Harshita Agnihotri.jpg",
+      "alt": "Portrait of Harshita Agnihotri, Research & Analysis Lead and AIML Mentor at TechNeekX",
+      "bio": "4th-year B.Tech CSE-AI scholar at Babu Banarasi Das University. Dedicated researcher, keynote speaker, and mentor cultivating the next generation of engineers.",
+      "quote": "Knowledge expands when you share it freely. True feminism in tech means holding the door wide open and pulling every sister up with you.",
+      "achievements": [
+        "Mentored 100+ student developers across computer vision, NLP, and model evaluation techniques.",
+        "Headed technical analysis on generative AI models and intelligent system scalability.",
+        "Key mentor and judge for university-wide coding initiatives and research presentations."
+      ],
+      "superpowers": ["Academic Research", "AIML Mentorship", "Neural Networks", "Technical Evaluation"],
+      "socials": {
+        "linkedin": "https://www.linkedin.com/in/harshita-agnihotri-5811012a1?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+        "github": "",
+        "email": "agnihotriharshita@yahoo.com",
+        "cta": "https://www.linkedin.com/in/harshita-agnihotri-5811012a1?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+      },
+      "badge": "Senior Research Mentor"
+    }
+  ],
+  "milestones": [
+    {
+      "id": "m1",
+      "title": "InnVedX Hackathon Operations Triumph",
+      "category": "Operations & Scale",
+      "date": "April 2026",
+      "impact": "491 Registrations • 200+ Attendees • 100+ Teams",
+      "description": "Orchestrated by Arpita Sharma and our operations squad, InnVedX became one of the largest student hackathons at BBD University, delivering seamless logistics and real-world coding tracks.",
+      "image": "/gallery/IMG_0697.JPG.webp",
+      "alt": "Participants collaborating at InnVedX Hackathon organized by TechNeekX female leaders",
+      "leadBy": "Arpita Sharma & Core Operations",
+      "tag": "Flagship Hackathon"
+    },
+    {
+      "id": "m2",
+      "title": "Vibe Designing UI/UX Championship",
+      "category": "Design & Creativity",
+      "date": "May 2026",
+      "impact": "100+ Participants • 50+ Live Teams",
+      "description": "Spearheaded by Design Lead Sneha Yadav, Vibe Designing challenged designers to construct accessible, modern design systems under intense time constraints, judged with meticulous standards.",
+      "image": "/gallery/WhatsApp Image 2026-04-06 at 3.43.28 PM.webp",
+      "alt": "Designers competing at the Vibe Designing UI/UX event led by Sneha Yadav",
+      "leadBy": "Sneha Yadav (Design Lead)",
+      "tag": "Design Competition"
+    },
+    {
+      "id": "m3",
+      "title": "TNX Codathon AI Sprint Execution",
+      "category": "AI & Engineering",
+      "date": "September 2026",
+      "impact": "148 Hackers • 8-Hour Agentic AI Marathon",
+      "description": "Hosted at SRMCEM Lucknow, our female AI leads—Kriti Jain, Akshara Dixit, and mentor Harshita Agnihotri—guided dozens of teams building LLM agents, cognitive workflows, and neural models.",
+      "image": "/IMG_1150.webp",
+      "alt": "Crowded hackathon hall at TNX Codathon with female AI leads mentoring coders",
+      "leadBy": "Kriti Jain, Akshara Dixit & Harshita Agnihotri",
+      "tag": "AI Hackathon"
+    },
+    {
+      "id": "m4",
+      "title": "Frame by Frame Creative Sprint",
+      "category": "Media & Storytelling",
+      "date": "February 2026",
+      "impact": "100+ Registrations • Hands-on Workshop",
+      "description": "Led by Arshi (Media Lead), this hands-on media production summit empowered creators to merge visual aesthetics, video editing, and tech storytelling for high impact.",
+      "image": "/gallery/image2.webp",
+      "alt": "Media and photography gear showcase during the Frame by Frame event directed by Arshi",
+      "leadBy": "Arshi (Media Lead)",
+      "tag": "Creative Direction"
+    },
+    {
+      "id": "m5",
+      "title": "Kalpathon 2.0 24-Hour Code Odyssey",
+      "category": "Hackathon & Resilience",
+      "date": "June 2026",
+      "impact": "250+ Registrations • 80+ Teams overnight",
+      "description": "A grueling 24-hour overnight national hackathon where female builders stood on the frontlines—coordinating mentorship, validating repo submissions, and building award-winning solutions.",
+      "image": "/gallery/IMG_0683.JPG.webp",
+      "alt": "Teams hacking overnight during the 24-hour Kalpathon 2.0 hackathon",
+      "leadBy": "TechNeekX Women Leaders",
+      "tag": "24h National Sprint"
+    },
+    {
+      "id": "m6",
+      "title": "SheMentors 1-on-1 Code Labs",
+      "category": "Mentorship & Inclusion",
+      "date": "Ongoing 2026",
+      "impact": "300+ Hours of Technical Mentorship",
+      "description": "A dedicated mentorship track pairing incoming female university students with our senior leads to master Git, DSA, Full-Stack development, and AI engineering without fear.",
+      "image": "/gallery/WhatsApp Image 2026-04-09 at 8.20.03 PM.webp",
+      "alt": "TechNeekX mentorship session connecting senior female mentors with junior builders",
+      "leadBy": "Harshita Agnihotri, Sneha Yadav & Arpita Sharma",
+      "tag": "Community Impact"
+    }
+  ],
+  "feministManifesto": {
+    "title": "Our Feminist Tech Manifesto",
+    "lead": "We believe technology is humanity's highest leverage tool—and it should never be defined by gender stereotyping or glass ceilings.",
+    "points": [
+      {
+        "title": "Radical Inclusivity",
+        "description": "Every project, repo, and initiative actively welcomes and equips female developers, designers, and organizers."
+      },
+      {
+        "title": "Autonomy in Leadership",
+        "description": "Women don't just hold titles here—they make budget calls, set technical architecture, and dictate operational policy."
+      },
+      {
+        "title": "Zero Gatekeeping",
+        "description": "From 'How to create your first GitHub PR' to 'Deploying transformer models on GPUs', knowledge is shared transparently."
+      },
+      {
+        "title": "Amplifying Visibility",
+        "description": "We ensure women speak on stages, receive public recognition for their commits, and build portfolios that open doors globally."
+      }
+    ]
+  },
+  "ctaSection": {
+    "title": "Ready to Write Your Chapter in Tech?",
+    "subtitle": "Join Girls in TechNeekX. Build production AI, enter national hackathons, and shape the future of technology with sisters who have your back.",
+    "primaryBtnText": "Join TechNeekX Community",
+    "primaryBtnLink": "/join",
+    "secondaryBtnText": "Connect on WhatsApp",
+    "secondaryBtnLink": "https://chat.whatsapp.com/KOlhO8eb4aHHD5iJkJneV0"
+  }
+}

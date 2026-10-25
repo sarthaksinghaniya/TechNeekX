@@ -27,57 +27,41 @@
 .real-timeline-wrapper {
   position: relative;
   width: 100%;
-  max-width: 960px;
+  max-width: 1000px;
   margin: 64px auto 0 auto;
 }
 
-/* Central vertical line track */
-.real-timeline-line {
-  position: absolute;
-  left: 50%;
-  top: 10px;
-  bottom: 80px;
-  width: 2px;
-  background: rgba(124, 58, 237, 0.15);
-  transform: translateX(-50%);
-  z-index: 0;
-  mask-image: repeating-linear-gradient(to bottom, black 0px, black 6px, transparent 6px, transparent 12px);
-  -webkit-mask-image: repeating-linear-gradient(to bottom, black 0px, black 6px, transparent 6px, transparent 12px);
-}
-
-.real-timeline-line-progress {
+/* SVG Curved Connector Path (Behind Cards) */
+.real-journey-svg-connector {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom, #7c3aed, #ff0080);
-  box-shadow: 0 0 12px rgba(124, 58, 237, 0.3);
-  mask-image: repeating-linear-gradient(to bottom, black 0px, black 6px, transparent 6px, transparent 12px);
-  -webkit-mask-image: repeating-linear-gradient(to bottom, black 0px, black 6px, transparent 6px, transparent 12px);
-}
-
-@media (max-width: 768px) {
-  .real-timeline-line {
-    left: 20px;
-    transform: translateX(-50%);
-  }
+  pointer-events: none;
+  z-index: 1;
+  overflow: visible;
 }
 
 /* Timeline Items Container */
 .real-timeline-items {
   width: 100%;
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
-/* Milestone Row */
+/* Milestone Row: Alternating Left & Right */
 .real-milestone-row {
   position: relative;
   display: flex;
   align-items: center;
   width: 100%;
-  margin-bottom: 56px;
+  margin-bottom: 72px;
+  z-index: 2;
+}
+
+.real-milestone-row:last-child {
+  margin-bottom: 0;
 }
 
 .real-milestone-row.align-left {
@@ -88,96 +72,68 @@
   justify-content: flex-end;
 }
 
-@media (max-width: 768px) {
-  .real-milestone-row.align-left,
-  .real-milestone-row.align-right {
-    justify-content: flex-start;
-    padding-left: 48px;
-  }
+.real-milestone-row.align-left .real-card {
+  margin-left: 3%;
 }
 
-/* Indicator Dot on Central Line */
-.real-dot-wrapper {
+.real-milestone-row.align-right .real-card {
+  margin-right: 3%;
+}
+
+/* Milestone Pin / Indicator Node (Top Center of Card) */
+.real-card-pin {
   position: absolute;
-  left: 49.2%;
+  top: -10px;
+  left: 50%;
   transform: translateX(-50%);
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(124, 58, 237, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 5;
+  z-index: 4;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.real-dot {
-  width: 16px;
-  height: 16px;
+.real-card:hover .real-card-pin {
+  transform: translateX(-50%) scale(1.15);
+}
+
+.real-card-pin-inner {
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
-  background: var(--tnx-purple);
-  border: 3px solid #ffffff;
-  box-shadow: 0 0 10px rgba(124, 58, 237, 0.4);
-  transition: all 0.3s ease;
+  background: linear-gradient(135deg, #7c3aed, #ff0080);
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.35);
 }
 
-.real-milestone-row:hover .real-dot {
-  transform: scale(1.2);
-  background: var(--tnx-pink);
-  box-shadow: 0 0 15px rgba(255, 0, 128, 0.6);
+.real-card-pin.now .real-card-pin-inner {
+  background: #ff0080;
+  box-shadow: 0 0 12px rgba(255, 0, 128, 0.6);
+  animation: real-pin-pulse 2s infinite;
 }
 
-.real-dot-wrapper.now .real-dot {
-  background: var(--tnx-pink);
-  box-shadow: 0 0 12px rgba(255, 0, 128, 0.5);
-  animation: real-dot-pulse 2s infinite;
-}
-
-@keyframes real-dot-pulse {
+@keyframes real-pin-pulse {
   0% {
-    box-shadow: 0 0 0 0 rgba(255, 0, 128, 0.4);
+    box-shadow: 0 0 0 0 rgba(255, 0, 128, 0.5);
   }
+
   70% {
     box-shadow: 0 0 0 8px rgba(255, 0, 128, 0);
   }
+
   100% {
     box-shadow: 0 0 0 0 rgba(255, 0, 128, 0);
   }
 }
 
-@media (max-width: 768px) {
-  .real-dot-wrapper {
-    left: 13px;
-    transform: translateX(-50%);
-  }
-}
-
-/* Date Label on opposite side of line */
-.real-date-label {
-  position: absolute;
-  width: calc(50% - 48px);
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--tnx-purple);
-  display: flex;
-  align-items: center;
-}
-
-.real-milestone-row.align-left .real-date-label {
-  left: calc(50% + 32px);
-  justify-content: flex-start;
-}
-
-.real-milestone-row.align-right .real-date-label {
-  right: calc(50% + 32px);
-  justify-content: flex-end;
-}
-
-@media (max-width: 768px) {
-  .real-date-label {
-    display: none; /* date shown inside card on mobile */
-  }
-}
-
 /* Card Container */
 .real-card {
-  width: calc(50% - 32px);
+  width: 46%;
+  max-width: 440px;
   display: flex;
   flex-direction: column;
   padding: 24px 28px;
@@ -185,7 +141,7 @@
   border: 1px solid rgba(15, 23, 42, 0.08);
   border-radius: 24px;
   box-shadow: 0 15px 35px rgba(15, 23, 42, 0.04),
-              inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
   transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   position: relative;
   z-index: 2;
@@ -197,9 +153,50 @@
   box-shadow: 0 25px 50px rgba(15, 23, 42, 0.1);
 }
 
+/* Card Date Badge Header */
+.real-card-date-badge {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.real-card-date {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--tnx-purple);
+  letter-spacing: 0.01em;
+}
+
 @media (max-width: 768px) {
-  .real-card {
+  .real-timeline-wrapper {
+    margin-top: 40px;
+  }
+
+  .real-milestone-row {
+    margin-bottom: 48px;
+  }
+
+  .real-milestone-row.align-left,
+  .real-milestone-row.align-right {
+    justify-content: flex-start;
+  }
+
+  .real-milestone-row.align-left .real-card,
+  .real-milestone-row.align-right .real-card {
     width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .real-card-pin {
+    left: 36px;
+    transform: none;
+  }
+
+  .real-card:hover .real-card-pin {
+    transform: scale(1.15);
   }
 }
 

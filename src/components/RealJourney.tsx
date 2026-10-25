@@ -1,7 +1,7 @@
 'use client';
 
-import { useRef, useState, useEffect } from 'react';
-import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
+import { useRef, useState, useEffect, useCallback } from 'react';
+import { motion, useScroll, useSpring } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import * as LucideIcons from 'lucide-react';
 import { journey } from '@/constants/journey';
@@ -10,33 +10,99 @@ import '../styles/RealJourney.css';
 const RealJourney = () => {
   const router = useRouter();
   const containerRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [svgDimensions, setSvgDimensions] = useState({ width: 0, height: 0 });
+  const [pathD, setPathD] = useState('');
   const [isMobile, setIsMobile] = useState(false);
 
-  // Screen size detection for responsive animations
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  // Track scroll progress of the timeline container
+  // Track scroll progress across the journey container
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start 75%', 'end 65%']
+    offset: ['start 80%', 'end 65%']
   });
 
-  // Smooth out the scroll progress
+  // Smooth out the scroll progress for connector animation
   const smoothProgress = useSpring(scrollYProgress, {
     stiffness: 80,
     damping: 25,
     restDelta: 0.001
   });
 
-  // Reveal the dashed progress line downwards without stretching
-  const clipPath = useTransform(smoothProgress, [0, 1], ["inset(0 0 100% 0)", "inset(0 0 0% 0)"]);
+  // Dynamically compute the curved Bézier path between consecutive cards
+  const updateConnector = useCallback(() => {
+    if (!containerRef.current) return;
+    const container = containerRef.current;
+    const width = container.offsetWidth;
+    const height = container.offsetHeight;
+    setSvgDimensions({ width, height });
+
+    const mobileCheck = window.innerWidth <= 768;
+    setIsMobile(mobileCheck);
+
+    const points: { x: number; y: number }[] = [];
+
+    cardRefs.current.forEach((cardEl) => {
+      if (!cardEl) return;
+      const row = cardEl.parentElement;
+      const rowTop = row ? row.offsetTop : 0;
+      const cardLeft = cardEl.offsetLeft;
+      const cardWidth = cardEl.offsetWidth;
+
+      // Anchor calculation: on mobile aligns with pin at 36px; on desktop centers on the card
+      const anchorX = mobileCheck ? cardLeft + 36 : cardLeft + cardWidth / 2;
+      const anchorY = rowTop; // Top edge where the pin is located
+
+      points.push({ x: anchorX, y: anchorY });
+    });
+
+    if (points.length < 2) {
+      setPathD('');
+      return;
+    }
+
+    // Build the cubic Bézier S-curves
+    let d = `M ${points[0].x} ${points[0].y}`;
+    for (let i = 0; i < points.length - 1; i++) {
+      const p1 = points[i];
+      const p2 = points[i + 1];
+      const dx = p2.x - p1.x;
+      const dy = p2.y - p1.y;
+
+      // Cubic Bézier curve between p1 and p2:
+      // Control points create a smooth, continuous S-curve flow alternating between cards
+      const cp1x = p1.x + dx * 0.5;
+      const cp1y = p1.y + dy * 0.15;
+      const cp2x = p1.x + dx * 0.5;
+      const cp2y = p2.y - dy * 0.15;
+
+      d += ` C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${p2.x} ${p2.y}`;
+    }
+
+    setPathD(d);
+  }, []);
+
+  // Update path on mount, resize, and layout settlement
+  useEffect(() => {
+    updateConnector();
+
+    const timer = setTimeout(updateConnector, 150);
+
+    const container = containerRef.current;
+    let resizeObserver: ResizeObserver | null = null;
+    if (typeof ResizeObserver !== 'undefined' && container) {
+      resizeObserver = new ResizeObserver(() => {
+        updateConnector();
+      });
+      resizeObserver.observe(container);
+    }
+
+    window.addEventListener('resize', updateConnector);
+    return () => {
+      clearTimeout(timer);
+      if (resizeObserver) resizeObserver.disconnect();
+      window.removeEventListener('resize', updateConnector);
+    };
+  }, [updateConnector]);
 
   const rowVariants = {
     hidden: {},
@@ -48,44 +114,16 @@ const RealJourney = () => {
     }
   };
 
-  const dotVariants = {
-    hidden: { opacity: 0, scale: 0 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        type: 'spring',
-        stiffness: 200,
-        damping: 15
-      }
-    }
-  };
-
-  const dateVariants = {
-    hidden: (isCardRight: boolean) => ({
+  const cardVariants = {
+    hidden: ({ isCardRight, isMobile }: { isCardRight: boolean; isMobile: boolean }) => ({
       opacity: 0,
-      x: isCardRight ? -40 : 40
+      x: isMobile ? 25 : isCardRight ? 50 : -50
     }),
     visible: {
       opacity: 1,
       x: 0,
       transition: {
         duration: 0.6,
-        ease: 'easeOut'
-      }
-    }
-  };
-
-  const cardVariants = {
-    hidden: ({ isCardRight, isMobile }: { isCardRight: boolean; isMobile: boolean }) => ({
-      opacity: 0,
-      x: (isMobile || isCardRight) ? 100 : -100
-    }),
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.7,
         ease: [0.22, 1, 0.36, 1]
       }
     }
@@ -97,7 +135,7 @@ const RealJourney = () => {
     const parts = gradientString.split(' ');
     const fromClass = parts.find(p => p.startsWith('from-'))?.replace('from-', '') || 'purple-500';
     const toClass = parts.find(p => p.startsWith('to-'))?.replace('to-', '') || 'pink-500';
-    
+
     const colorMap: Record<string, string> = {
       'indigo-500': '#6366f1',
       'purple-500': '#7c3aed',
@@ -132,7 +170,7 @@ const RealJourney = () => {
 
       <div className="real-journey-container">
         {/* Back to Home Link */}
-        <motion.button 
+        <motion.button
           initial={{ opacity: 0, x: -10 }}
           animate={{ opacity: 1, x: 0 }}
           onClick={() => router.push('/')}
@@ -151,28 +189,68 @@ const RealJourney = () => {
             Our Journey
           </h1>
           <p className="tnx-body-text mx-auto text-center">
-            Consistently shipping, hacking, and building since 28th August 2025. 
+            Consistently shipping, hacking, and building since 28th August 2025.
             Every milestone in our path is backed by execution, learning, and collaboration.
           </p>
         </div>
 
-        {/* Centered Timeline Wrapper */}
+        {/* Timeline Wrapper */}
         <div className="real-timeline-wrapper" ref={containerRef}>
-          {/* Dashed Timeline vertical line (track and progress fill) */}
-          <div className="real-timeline-line">
-            <motion.div
-              className="real-timeline-line-progress"
-              style={{ clipPath }}
-            />
-          </div>
+          {/* Flowing Curved Connecting Path (behind cards, z-index: 1) */}
+          <svg
+            className="real-journey-svg-connector"
+            width={svgDimensions.width || '100%'}
+            height={svgDimensions.height || '100%'}
+            viewBox={`0 0 ${svgDimensions.width || 800} ${svgDimensions.height || 1200}`}
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <linearGradient id="journeyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#7c3aed" />
+                <stop offset="50%" stopColor="#a855f7" />
+                <stop offset="100%" stopColor="#ff0080" />
+              </linearGradient>
+            </defs>
 
+            {/* Subtle dashed background guide path */}
+            {pathD && (
+              <path
+                d={pathD}
+                stroke="rgba(124, 58, 237, 0.2)"
+                strokeWidth="2.5"
+                strokeDasharray="6 6"
+                strokeLinecap="round"
+                fill="none"
+              />
+            )}
+
+            {/* Scroll-driven illuminated gradient dashed progress path */}
+            {pathD && (
+              <motion.path
+                d={pathD}
+                stroke="url(#journeyGradient)"
+                strokeWidth="2.5"
+                strokeDasharray="6 6"
+                strokeLinecap="round"
+                fill="none"
+                style={{ pathLength: smoothProgress }}
+              />
+            )}
+          </svg>
+
+          {/* Timeline Items */}
           <div className="real-timeline-items">
             {journey.map((milestone, idx) => {
               const IconComponent = milestone.icon;
-              
-              // Alternating: Index 0, 2, 4... date left, card right
-              // Index 1, 3, 5... card left, date right
-              const isCardRight = idx % 2 === 0;
+
+              // Alternating Card Arrangement:
+              // Card 1 (idx 0): Left side
+              // Card 2 (idx 1): Right side
+              // Card 3 (idx 2): Left side
+              // Card 4 (idx 3): Right side...
+              const isCardLeft = idx % 2 === 0;
+              const isCardRight = !isCardLeft;
 
               return (
                 <motion.div
@@ -183,34 +261,26 @@ const RealJourney = () => {
                   viewport={{ once: true, amount: isMobile ? 0.15 : 0.3 }}
                   className={`real-milestone-row ${isCardRight ? 'align-right' : 'align-left'}`}
                 >
-                  {/* Central Indicator Dot */}
-                  <motion.div 
-                    variants={dotVariants}
-                    className={`real-dot-wrapper ${milestone.status}`}
-                  >
-                    <div className="real-dot" />
-                  </motion.div>
-
-                  {/* Date Label on opposite side (Desktop only) */}
-                  <motion.span 
-                    variants={dateVariants}
-                    custom={isCardRight}
-                    className="real-date-label"
-                  >
-                    {milestone.date}
-                  </motion.span>
-
                   {/* Milestone Card */}
-                  <motion.div 
+                  <motion.div
+                    ref={(el) => { cardRefs.current[idx] = el; }}
                     variants={cardVariants}
                     custom={{ isCardRight, isMobile }}
                     className="real-card"
                   >
+                    {/* Top Center Pin / Milestone Node */}
+                    <div className={`real-card-pin ${milestone.status}`}>
+                      <div className="real-card-pin-inner" />
+                    </div>
+
                     {/* Content */}
                     <div className="real-card-content">
-                      <span className="real-card-mobile-date">
-                        {milestone.date}
-                      </span>
+                      {/* Date Header matching reference step style */}
+                      <div className="real-card-date-badge">
+                        <span className="real-card-date">
+                          {milestone.date}
+                        </span>
+                      </div>
 
                       <div className="real-card-header">
                         <div className="real-card-title-group">
@@ -229,7 +299,7 @@ const RealJourney = () => {
                         <span className={`real-status-badge ${milestone.status}`}>
                           {milestone.status === 'now' ? 'In Progress' : 'Completed'}
                         </span>
-                        
+
                         <div className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-purple-500/5 border border-purple-500/10 text-purple-600 text-[10px] font-semibold">
                           <LucideIcons.Zap size={10} />
                           <span>{milestone.impact}</span>

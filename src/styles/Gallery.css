@@ -37,36 +37,44 @@
 .gallery-subtitle {
   font-size: 13px;
   font-weight: 700;
-  letter-spacing: 12px; /* Updated to 12px spacing */
+  letter-spacing: 12px;
+  /* Updated to 12px spacing */
   background: linear-gradient(135deg, #a855f7, #ec4899);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-transform: uppercase;
-  margin-bottom: 24px; /* Updated to 24px margin-bottom */
+  margin-bottom: 24px;
+  /* Updated to 24px margin-bottom */
   display: inline-block;
 }
 
 .gallery-title {
-  font-size: 56px; /* Updated to 56px main heading */
+  font-size: 56px;
+  /* Updated to 56px main heading */
   font-weight: 800;
   color: #0f172a;
   line-height: 1.15;
   letter-spacing: -0.02em;
-  margin-bottom: 24px; /* Updated to 24px */
+  margin-bottom: 24px;
+  /* Updated to 24px */
 }
 
 .gallery-title-line {
-  display: none; /* Removed for Apple-style simplicity */
+  display: none;
+  /* Removed for Apple-style simplicity */
 }
 
 .gallery-description {
-  font-size: 18px; /* Updated to 18px body text */
+  font-size: 18px;
+  /* Updated to 18px body text */
   color: #475569;
   line-height: 1.7;
-  max-width: 650px; /* Updated to 650px max width */
+  max-width: 650px;
+  /* Updated to 650px max width */
   margin-bottom: 32px;
-  text-align: left; /* Updated to left alignment */
+  text-align: left;
+  /* Updated to left alignment */
 }
 
 /* Right Column (Coverflow Carousel) */
@@ -100,14 +108,16 @@
   position: absolute;
   width: 280px;
   height: 380px;
-  border-radius: 24px; /* Maintain 24px radius */
+  border-radius: 24px;
+  /* Maintain 24px radius */
   overflow: hidden;
   background-color: #f1f5f9;
   box-shadow: 0 15px 35px rgba(15, 23, 42, 0.04),
-              0 0 0 1px rgba(15, 23, 42, 0.05);
+    0 0 0 1px rgba(15, 23, 42, 0.05);
   transform-style: preserve-3d;
   user-select: none;
-  pointer-events: auto; /* enable click */
+  pointer-events: auto;
+  /* enable click */
   will-change: transform;
   backface-visibility: hidden;
   transition: border-color 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.4s cubic-bezier(0.22, 1, 0.36, 1);
@@ -115,7 +125,7 @@
 
 .gallery-carousel-card.active {
   box-shadow: 0 25px 50px rgba(168, 85, 247, 0.25),
-              0 0 0 1px rgba(168, 85, 247, 0.1);
+    0 0 0 1px rgba(168, 85, 247, 0.1);
 }
 
 .gallery-image-container {
@@ -275,15 +285,15 @@
   .gallery-section {
     padding: 80px 0;
   }
-  
+
   .gallery-grid {
     grid-template-columns: 1fr;
-    grid-template-areas: 
+    grid-template-areas:
       "info"
       "carousel";
     gap: 48px;
   }
-  
+
   .gallery-left {
     grid-area: info;
     align-items: center;
@@ -293,22 +303,24 @@
   .gallery-right {
     grid-area: carousel;
   }
-  
+
   .gallery-title {
-    font-size: 40px; /* Updated to 40px Tablet */
+    font-size: 40px;
+    /* Updated to 40px Tablet */
   }
-  
+
   .gallery-description {
-    font-size: 16px; /* Updated to 16px */
+    font-size: 16px;
+    /* Updated to 16px */
     max-width: 650px;
     margin: 0 auto 16px auto;
     text-align: center;
   }
-  
+
   .gallery-carousel-wrapper {
     height: 420px;
   }
-  
+
   .gallery-carousel-card {
     width: 240px;
     height: 320px;
@@ -317,27 +329,29 @@
 
 @media (max-width: 640px) {
   .gallery-section {
-    padding: 80px 0; /* Updated to 80px mobile padding */
+    padding: 80px 0;
+    /* Updated to 80px mobile padding */
   }
-  
+
   .gallery-container {
     padding: 0 16px;
   }
-  
+
   .gallery-title {
-    font-size: 32px; /* Updated to 32px Mobile */
+    font-size: 32px;
+    /* Updated to 32px Mobile */
   }
-  
+
   .gallery-carousel-wrapper {
     height: 360px;
     padding: 0 1rem;
   }
-  
+
   .gallery-carousel-card {
     width: 200px;
     height: 280px;
   }
-  
+
   .gallery-caption {
     font-size: 13px;
   }
@@ -373,12 +387,10 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.25),
-    transparent
-  );
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.25),
+      transparent);
   transition: left 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -396,9 +408,11 @@
   0% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0% 50%;
   }

@@ -29,6 +29,7 @@ const Footer = () => {
       title: 'Company',
       links: [
         { name: 'About Us', href: '/#about', external: false },
+        { name: 'Girls in TechNeekX', href: '/girls-in-techneekx', external: false },
         { name: 'Events & Hackathons', href: '/events', external: false },
         { name: 'Our Journey', href: '/journey', external: false },
         { name: 'Partner with Us', href: 'https://docs.google.com/forms/d/e/1FAIpQLSfFvcsPMtG-lAi7b31q-TMg-M3hZo0m_IYQecbRDbjFjzm3BA/viewform', external: true },

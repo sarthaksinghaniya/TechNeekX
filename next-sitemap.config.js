@@ -11,6 +11,7 @@ module.exports = {
     const priorities = {
       '/': 1.0,
       '/team/': 0.95,
+      '/girls-in-techneekx/': 0.95,
       '/projects/': 0.95,
       '/join/': 0.9,
       '/events/': 0.85,

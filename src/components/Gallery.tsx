@@ -105,7 +105,7 @@ const Gallery = () => {
       <div className="gallery-container">
         <div className="gallery-grid">
           {/* Left Column: Heading and Info */}
-          <m.div 
+          <m.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -117,8 +117,8 @@ const Gallery = () => {
             <p className="gallery-description">
               A glimpse into our builder culture. Late-night sprints, intense hackathons, and community meetups where we build, deploy, and ship the future of AI.
             </p>
-            <Link 
-              href="/gallery" 
+            <Link
+              href="/gallery"
               className="gallery-cta"
             >
               <span>View Gallery</span>
@@ -127,7 +127,7 @@ const Gallery = () => {
           </m.div>
 
           {/* Right Column: 3D Coverflow Carousel */}
-          <m.div 
+          <m.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -153,7 +153,7 @@ const Gallery = () => {
               {galleryImages.map((image, index) => {
                 const offset = getRelativeOffset(index);
                 const absOffset = Math.abs(offset);
-                
+
                 // Only render or show elements within 2 steps from center
                 const isVisible = absOffset <= 2;
                 if (!isVisible) return null;
@@ -210,9 +210,9 @@ const Gallery = () => {
                       isInitial
                         ? { duration: 0 }
                         : {
-                            duration: 0.35,
-                            ease: [0.22, 1, 0.36, 1],
-                          }
+                          duration: 0.35,
+                          ease: [0.22, 1, 0.36, 1],
+                        }
                     }
                   >
                     <div className="gallery-image-container">
