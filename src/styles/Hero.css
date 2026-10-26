@@ -26,7 +26,7 @@
 .turnover-glow-blue {
   width: 480px;
   height: 480px;
-  background: radial-gradient(circle, rgba(0, 98, 255, 0.28) 0%, rgba(0, 98, 255, 0) 70%);
+  background: radial-gradient(circle, rgba(0, 98, 255, 0.05) 0%, transparent 70%);
   top: 10%;
   right: 15%;
 }
@@ -34,22 +34,13 @@
 .turnover-glow-cyan {
   width: 360px;
   height: 360px;
-  background: radial-gradient(circle, rgba(0, 240, 255, 0.22) 0%, rgba(0, 240, 255, 0) 70%);
+  background: radial-gradient(circle, rgba(235, 240, 248, 0.7) 0%, transparent 70%);
   bottom: 12%;
   right: 5%;
 }
 
 .turnover-grid-overlay {
-  position: absolute;
-  inset: 0;
-  background-image: 
-    linear-gradient(to right, rgba(17, 19, 24, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(17, 19, 24, 0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
-  mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, #000 60%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, #000 60%, transparent 100%);
-  pointer-events: none;
-  z-index: 0;
+  display: none;
 }
 
 .turnover-hero-container {
@@ -133,9 +124,7 @@
 }
 
 .turnover-heading-highlight {
-  background: linear-gradient(135deg, #0062FF 0%, #0099FF 60%, #00D2FF 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #0062FF;
   display: inline-block;
 }
 

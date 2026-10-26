@@ -107,9 +107,7 @@
 }
 
 .text-gradient-turnover {
-  background: linear-gradient(135deg, #0062FF 0%, #00B4D8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #0062FF;
 }
 
 .journey-lead-turnover {
