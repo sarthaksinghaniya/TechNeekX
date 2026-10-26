@@ -1,27 +1,31 @@
-/* TechNeekX Enterprise AI FounderNote Stylesheet */
+/* ==========================================================================
+   TechNeekX Turnover Aesthetic — Founder Note Stylesheet
+   ========================================================================== */
 
 .founder-note-section {
   position: relative;
-  padding: 100px 0;
+  padding: 110px 0 100px 0;
   background-color: #FFFFFF;
-  border-top: 1px solid #DDE1E6;
+  border-top: 1px solid #E7E9ED;
   overflow: hidden;
 }
 
 @media (max-width: 768px) {
   .founder-note-section {
-    padding: 64px 0;
+    padding: 70px 0 60px 0;
   }
 }
 
 .founder-note-container {
   width: 100%;
-  max-width: 1280px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 0 24px;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  z-index: 2;
 }
 
 @media (max-width: 480px) {
@@ -30,24 +34,38 @@
   }
 }
 
-/* Paper Card styling */
+/* Background Ambient Glow */
+.founder-glow-backdrop {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(0, 98, 255, 0.04) 0%, rgba(0, 210, 255, 0.02) 40%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Studio Manifesto Card */
 .founder-note-paper {
   position: relative;
   overflow: hidden;
-  background: #FFFFFF;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   width: 100%;
-  max-width: 820px;
-  padding: 60px 68px;
-  border-radius: 28px;
-  border: 1px solid #DDE1E6;
-  box-shadow: 0 10px 30px rgba(17, 19, 24, 0.04), 0 20px 60px rgba(17, 19, 24, 0.03);
-  transform-origin: center center;
-  transition: box-shadow 0.35s ease, border-color 0.35s ease;
+  padding: 64px 72px;
+  border-radius: 32px;
+  border: 1px solid #E7E9ED;
+  box-shadow: 0 16px 40px rgba(17, 19, 24, 0.04), 0 32px 80px rgba(17, 19, 24, 0.03);
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .founder-note-paper:hover {
-  border-color: #C5CBD3;
-  box-shadow: 0 16px 40px rgba(17, 19, 24, 0.06), 0 32px 80px rgba(17, 19, 24, 0.05);
+  border-color: rgba(0, 98, 255, 0.3);
+  box-shadow: 0 20px 50px rgba(0, 98, 255, 0.08), 0 40px 90px rgba(17, 19, 24, 0.05);
+  transform: translateY(-2px);
 }
 
 @media (max-width: 768px) {
@@ -57,19 +75,54 @@
   }
 }
 
-/* Headings */
+/* Top Badge & Quote Icon */
+.founder-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.founder-studio-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  background: rgba(0, 98, 255, 0.06);
+  border: 1px solid rgba(0, 98, 255, 0.18);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #0062FF;
+}
+
+.founder-quote-symbol {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #F7F8FA;
+  border: 1px solid #E7E9ED;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0062FF;
+}
+
+/* Heading */
 .founder-note-heading {
   position: relative;
   z-index: 2;
-  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+  font-size: clamp(1.85rem, 3.4vw, 2.5rem);
   font-weight: 800;
   color: #111318;
   line-height: 1.2;
   margin-bottom: 28px;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.03em;
 }
 
-/* Body Text formatting */
+/* Body text */
 .founder-note-body {
   position: relative;
   z-index: 2;
@@ -80,7 +133,7 @@
 
 .founder-note-body p {
   font-size: 1.0625rem;
-  color: #626873;
+  color: #555C68;
   line-height: 1.75;
   margin: 0;
   text-align: left;
@@ -94,6 +147,7 @@
 .founder-note-accent {
   font-weight: 700;
   color: #111318 !important;
+  font-size: 1.125rem !important;
 }
 
 @media (max-width: 768px) {
@@ -103,22 +157,48 @@
   }
 }
 
+/* Watermark */
+.founder-note-watermark {
+  position: absolute;
+  top: 50%;
+  right: -5%;
+  transform: translateY(-50%);
+  width: 480px;
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 1;
+  user-select: none;
+}
+
 /* Signature & Avatar */
 .founder-note-signature {
   position: relative;
   z-index: 2;
   display: flex;
   align-items: center;
-  gap: 16px;
+  justify-content: space-between;
   margin-top: 40px;
   padding-top: 28px;
-  border-top: 1px solid #DDE1E6;
+  border-top: 1px solid #E7E9ED;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.founder-profile-lockup {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
 .founder-avatar-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 4px 14px rgba(17, 19, 24, 0.1), 0 0 0 1px #E7E9ED;
+  flex-shrink: 0;
 }
 
 .founder-meta {
@@ -127,38 +207,49 @@
   align-items: flex-start;
 }
 
+.founder-name-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .founder-name {
   font-size: 1.0625rem;
   font-weight: 700;
   color: #111318;
-  margin: 0 0 2px 0;
+  margin: 0;
   line-height: 1.2;
+  transition: color 0.2s ease;
+}
+
+.founder-name:hover {
+  color: #0062FF;
 }
 
 .founder-role {
   font-size: 0.8125rem;
   font-weight: 500;
-  color: #626873;
-  margin: 0;
-  line-height: 1.2;
+  color: #6C727F;
+  margin-top: 2px;
 }
 
-/* Background Watermark styling */
-.founder-note-watermark {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.65);
-  width: 90%;
-  max-width: 700px;
-  opacity: 0.05;
-  pointer-events: none;
-  z-index: 1;
-  user-select: none;
+.founder-portfolio-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  background: #F7F8FA;
+  border: 1px solid #E7E9ED;
+  font-size: 12px;
+  font-weight: 600;
+  color: #111318;
+  text-decoration: none;
+  transition: all 0.2s ease;
 }
 
-.founder-note-watermark img {
-  width: 100%;
-  height: auto;
-  display: block;
+.founder-portfolio-link:hover {
+  background: #111318;
+  color: #FFFFFF;
+  border-color: #111318;
 }

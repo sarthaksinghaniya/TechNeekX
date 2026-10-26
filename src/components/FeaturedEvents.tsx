@@ -1,11 +1,21 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
-import { m } from 'framer-motion';
-import { MapPin, ArrowRight } from 'lucide-react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+  MapPin,
+  ArrowRight,
+  Users,
+  Trophy,
+  Calendar,
+  Sparkles,
+  ChevronLeft,
+  ChevronRight,
+  ExternalLink
+} from 'lucide-react';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import eventsData from '../../data/events.json';
-import Image from 'next/image';
 import '../styles/FeaturedEvents.css';
 
 interface Event {
@@ -18,206 +28,254 @@ interface Event {
   image: string;
   cardTheme: string;
   isFeatured: boolean;
+  description?: string;
+  tagline?: string;
+  date?: string;
+  teams?: string;
+  cta?: {
+    text: string;
+    link: string;
+  };
 }
 
 const FeaturedEvents = () => {
   const router = useRouter();
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isMounted, setIsMounted] = useState(false);
-  const isInitialRef = useRef(true);
 
-  // Only display featured events
-  const featuredEvents = (eventsData as Event[]).filter((e) => e.isFeatured);
+  // Filter for featured events with valid images
+  const featuredEvents = (eventsData as Event[]).filter((e) => e.isFeatured && e.image);
 
-  useEffect(() => {
-    setIsMounted(true);
-    const timer = setTimeout(() => {
-      isInitialRef.current = false;
-    }, 50);
-    return () => clearTimeout(timer);
-  }, []);
+  const activeEvent = featuredEvents[activeIndex] || featuredEvents[0];
 
-  // Prevent layout shifts during initial SSR hydration
-  if (!isMounted) {
-    return (
-      <section id="featured-events" className="featured-events-section">
-        <div className="events-bg-blob events-blob-1" />
-        <div className="events-bg-blob events-blob-2" />
-        <div className="events-container">
-          <div className="events-layout">
-            <div className="events-content">
-              <span className="events-subtitle-badge">MILESTONES</span>
-              <h2 className="events-title">Featured Events</h2>
-              <p className="events-description">
-                Bringing the developer community together through high-impact hackathons, workshops, and meetups.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-    );
-  }
+  const handleNext = () => {
+    setActiveIndex((prev) => (prev + 1) % featuredEvents.length);
+  };
+
+  const handlePrev = () => {
+    setActiveIndex((prev) => (prev - 1 + featuredEvents.length) % featuredEvents.length);
+  };
 
   return (
-    <section id="featured-events" className="featured-events-section">
-      {/* Decorative Blobs */}
-      <div className="events-bg-blob events-blob-1" />
-      <div className="events-bg-blob events-blob-2" />
+    <section id="featured-events" className="turnover-events-section" aria-label="Featured Hackathons and Summits">
+      {/* Background ambient lighting */}
+      <div className="turnover-ambient-glow turnover-glow-blue events-glow-1" />
+      <div className="turnover-ambient-glow turnover-glow-cyan events-glow-2" />
 
-      <div className="events-container">
-        <div className="events-layout">
+      <div className="turnover-events-container">
+        
+        {/* Section Header */}
+        <div className="turnover-events-header">
+          <div className="turnover-badge-pill">
+            <span className="turnover-badge-dot" />
+            <span className="turnover-badge-text">Competitive Hackathons &amp; Technical Summits</span>
+          </div>
 
-          {/* Left Side: Drag Carousel Deck */}
-          <m.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="events-deck-wrapper"
-          >
-            <div className="events-grid mobile-carousel-deck">
-              {featuredEvents.map((event, index) => {
-                // Calculate relative index for stack animation
-                const relativeIndex = (index - activeIndex + featuredEvents.length) % featuredEvents.length;
+          <h2 className="turnover-events-title">
+            Where Builders Compete <br />
+            <span className="turnover-heading-highlight">And Ship Under Pressure</span>
+          </h2>
 
-                let xOffset = 0;
-                let scale = 1;
-                let rotate = 0;
-                let opacity = 1;
-                let zIndex = 10;
-                let pointerEvents: 'auto' | 'none' = 'auto';
+          <p className="turnover-events-subtitle">
+            From 24-hour sprint hackathons to national tech summits, TechNeekX convenes
+            high-octane developers to build production software against real constraints.
+          </p>
 
-                if (relativeIndex === 0) {
-                  xOffset = 0;
-                  scale = 1;
-                  rotate = 0;
-                  opacity = 1;
-                  zIndex = 10;
-                  pointerEvents = 'auto';
-                } else if (relativeIndex === 1) {
-                  xOffset = -20;
-                  scale = 0.94;
-                  rotate = -3;
-                  opacity = 0.75;
-                  zIndex = 9;
-                  pointerEvents = 'none';
-                } else if (relativeIndex === 2) {
-                  xOffset = -40;
-                  scale = 0.88;
-                  rotate = -6;
-                  opacity = 0.45;
-                  zIndex = 8;
-                  pointerEvents = 'none';
-                } else {
-                  xOffset = -60;
-                  scale = 0.82;
-                  rotate = -9;
-                  opacity = 0;
-                  zIndex = 0;
-                  pointerEvents = 'none';
-                }
+          {/* Event Switcher Dock */}
+          <div className="turnover-event-switcher-dock" role="tablist" aria-label="Featured events switcher">
+            {featuredEvents.map((event, idx) => {
+              const isActive = idx === activeIndex;
 
-                const isCardVisible = relativeIndex <= 2;
-
-                return (
-                  <m.div
-                    key={event.id}
-                    className={`event-card theme-${event.cardTheme}`}
-                    style={{ pointerEvents, zIndex, display: opacity === 0 ? 'none' : 'flex' }}
-                    animate={{
-                      x: xOffset,
-                      scale: scale,
-                      rotate: rotate,
-                      opacity: opacity,
-                    }}
-                    transition={
-                      isInitialRef.current
-                        ? { duration: 0 }
-                        : {
-                            duration: 0.35,
-                            ease: [0.22, 1, 0.36, 1],
-                          }
-                    }
-                    drag={relativeIndex === 0 ? 'x' : false}
-                    dragConstraints={{ left: 0, right: 0 }}
-                    dragElastic={0.5}
-                    onDragEnd={(e, info) => {
-                      if (info.offset.x < -80) {
-                        setActiveIndex((prev) => (prev + 1) % featuredEvents.length);
-                      } else if (info.offset.x > 80) {
-                        setActiveIndex((prev) => (prev - 1 + featuredEvents.length) % featuredEvents.length);
-                      }
-                    }}
-                  >
-                    {/* Event Name Header */}
-                    <div className="event-card-header">
-                      <h3 className="event-name">{event.name}</h3>
-                    </div>
-
-                    {/* Event Image & Overlay Badges */}
-                    <div className="event-image-container">
-                      {isCardVisible && (
-                        <Image 
-                          src={event.image || '/placeholder-event.png'} 
-                          alt={event.name} 
-                          fill 
-                          sizes="(max-width: 768px) 90vw, 380px"
-                          className="event-image object-cover" 
-                          priority={relativeIndex === 0}
-                        />
-                      )}
-                      <div className="event-badges-overlay">
-                        <div className="event-stat-badge">
-                          <span className="badge-value">{event.registrations}</span>
-                          <span className="badge-label"> Registrations</span>
-                        </div>
-                        <div className="event-stat-badge">
-                          <span className="badge-value">{event.attendees}</span>
-                          <span className="badge-label"> Attendees</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Event Footer Location Badge */}
-                    <div className="event-card-footer">
-                      <div className="event-location-badge">
-                        <MapPin size={16} className="location-pin-icon" />
-                        <span className="location-text">{event.location}</span>
-                      </div>
-                    </div>
-                  </m.div>
-                );
-              })}
-            </div>
-          </m.div>
-
-          {/* Right Side: Typographic Content */}
-          <m.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-            className="events-content"
-          >
-            <span className="events-subtitle-badge">MILESTONES</span>
-            <h2 className="events-title">Featured Events</h2>
-            <p className="events-description">
-              Bringing the developer community together through high-impact hackathons, workshops, and meetups.
-            </p>
-            <div className="events-cta-wrapper">
-              <m.button
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                onClick={() => router.push('/events')}
-                className="events-cta"
-              >
-                Explore Events
-                <ArrowRight size={16} />
-              </m.button>
-            </div>
-          </m.div>
-
+              return (
+                <button
+                  key={event.id}
+                  role="tab"
+                  aria-selected={isActive}
+                  onClick={() => setActiveIndex(idx)}
+                  className={`turnover-event-tab ${isActive ? 'active' : ''}`}
+                >
+                  <Trophy size={14} className="turnover-event-tab-icon" />
+                  <span className="turnover-event-tab-name">{event.name}</span>
+                  {isActive && <span className="turnover-tab-active-dot" />}
+                </button>
+              );
+            })}
+          </div>
         </div>
+
+        {/* Main Event Showcase Grid */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeEvent.id}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -16 }}
+            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            className="turnover-event-showcase-grid"
+          >
+            {/* LEFT: Live Event Photo Visual */}
+            <div className="turnover-event-visual-col">
+              <div className="turnover-event-visual-frame">
+                <div className="turnover-event-top-bar">
+                  <div className="turnover-event-location-pill">
+                    <MapPin size={13} className="text-[#0062FF]" />
+                    <span>{activeEvent.location || 'India'}</span>
+                  </div>
+                  {activeEvent.date && (
+                    <div className="turnover-event-date-pill">
+                      <Calendar size={13} className="text-[#626873]" />
+                      <span>{activeEvent.date}</span>
+                    </div>
+                  )}
+                </div>
+
+                <div className="turnover-event-image-wrap">
+                  <Image
+                    src={activeEvent.image || '/hero/techneekx-sculpt.jpg'}
+                    alt={activeEvent.name}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 560px"
+                    className="turnover-event-img"
+                    priority
+                  />
+                  <div className="turnover-image-overlay-vignette" />
+                </div>
+
+                {/* Floating Attendee Stats Badge */}
+                <div className="turnover-event-floating-badge">
+                  <Users size={15} className="text-[#0062FF]" />
+                  <div className="turnover-badge-content">
+                    <span className="badge-impact-label">Hackathon Turnout</span>
+                    <span className="badge-impact-val">
+                      {activeEvent.attendees} Attendees • {activeEvent.registrations} Registered
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* RIGHT: Event Narrative & Metrics */}
+            <div className="turnover-event-details-col">
+              
+              <div className="turnover-event-category-row">
+                <span className="turnover-event-type-badge">
+                  {activeEvent.type || 'Hackathon Sprint'}
+                </span>
+                {activeEvent.tagline && (
+                  <span className="turnover-event-tagline">{activeEvent.tagline}</span>
+                )}
+              </div>
+
+              <h3 className="turnover-event-heading">{activeEvent.name}</h3>
+
+              <p className="turnover-event-description">
+                {activeEvent.description || 'An intensive developer competition bringing together students, engineers, and founders to solve real-world industry problem statements under timed conditions.'}
+              </p>
+
+              {/* Event Metrics Ribbon */}
+              <div className="turnover-event-metrics-bar">
+                <div className="turnover-event-metric-box">
+                  <span className="event-metric-val">{activeEvent.registrations}</span>
+                  <span className="event-metric-lbl">Total Registrations</span>
+                </div>
+                <div className="turnover-event-metric-box">
+                  <span className="event-metric-val">{activeEvent.attendees}</span>
+                  <span className="event-metric-lbl">In-Person Hackers</span>
+                </div>
+                {activeEvent.teams && (
+                  <div className="turnover-event-metric-box">
+                    <span className="event-metric-val">{activeEvent.teams}</span>
+                    <span className="event-metric-lbl">Competing Teams</span>
+                  </div>
+                )}
+              </div>
+
+              {/* Event Highlights Checklist */}
+              <div className="turnover-event-highlights">
+                <div className="turnover-highlight-item">
+                  <Sparkles size={14} className="text-[#0062FF]" />
+                  <span>Real-time code evaluation and live demos to industry mentors</span>
+                </div>
+                <div className="turnover-highlight-item">
+                  <Trophy size={14} className="text-[#0062FF]" />
+                  <span>Cash prizes, incubation support, and national hackathon ranking points</span>
+                </div>
+              </div>
+
+              {/* CTA Row */}
+              <div className="turnover-event-actions">
+                {activeEvent.cta?.link ? (
+                  <a
+                    href={activeEvent.cta.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="turnover-btn-primary"
+                    aria-label={`View ${activeEvent.name} project showcase`}
+                  >
+                    <span>{activeEvent.cta.text || 'View Projects'}</span>
+                    <ExternalLink size={15} className="turnover-btn-icon" />
+                  </a>
+                ) : (
+                  <button
+                    onClick={() => router.push('/events')}
+                    className="turnover-btn-primary"
+                  >
+                    <span>Explore Event Reel</span>
+                    <ArrowRight size={15} className="turnover-btn-icon" />
+                  </button>
+                )}
+
+                <button
+                  onClick={() => router.push('/events')}
+                  className="turnover-btn-video"
+                >
+                  <div className="turnover-play-icon-wrap">
+                    <Calendar size={14} />
+                  </div>
+                  <div className="turnover-video-text-wrap">
+                    <span className="turnover-video-title">All Hackathons</span>
+                    <span className="turnover-video-duration">Full Calendar</span>
+                  </div>
+                </button>
+              </div>
+
+              {/* Pagination Slider Controls */}
+              <div className="turnover-event-nav-row">
+                <span className="turnover-counter-text">
+                  0{activeIndex + 1} <span className="text-[#8A92A0]">/ 0{featuredEvents.length}</span>
+                </span>
+                <div className="turnover-arrow-group">
+                  <button
+                    onClick={handlePrev}
+                    className="turnover-arrow-btn"
+                    aria-label="Previous event"
+                  >
+                    <ChevronLeft size={16} />
+                  </button>
+                  <button
+                    onClick={handleNext}
+                    className="turnover-arrow-btn"
+                    aria-label="Next event"
+                  >
+                    <ChevronRight size={16} />
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Bottom CTA to Events Page */}
+        <div className="turnover-events-footer">
+          <button
+            onClick={() => router.push('/events')}
+            className="turnover-explore-all-btn"
+          >
+            <span>Explore Complete Events &amp; Hackathon Calendar</span>
+            <ArrowRight size={16} />
+          </button>
+        </div>
+
       </div>
     </section>
   );

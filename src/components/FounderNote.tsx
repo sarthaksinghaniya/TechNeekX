@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { Quote, Sparkles, ExternalLink, ShieldCheck } from 'lucide-react';
 import Image from 'next/image';
 import '../styles/FounderNote.css';
 
@@ -17,22 +18,30 @@ const FounderNote = () => {
 
   return (
     <section id="founder-note" className="founder-note-section">
-      <div className="founder-note-container">
+      <div className="founder-glow-backdrop" />
 
+      <div className="founder-note-container">
         {/* Paper card with initial animation and slight tilt toward left when in focus */}
         <motion.div
           className="founder-note-paper"
-          initial={{ opacity: 0, y: 40, rotate: 0 }}
-          whileInView={{ opacity: 1, y: 0, rotate: isMobile ? 0 : -2 }}
-          viewport={{ once: true, margin: "-100px" }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{
-            type: "spring",
-            stiffness: 70,
-            damping: 15,
-            duration: 0.8
+            duration: 0.7,
+            ease: [0.22, 1, 0.36, 1],
           }}
         >
-
+          {/* Top row with badge & quote icon */}
+          <div className="founder-top-row">
+            <span className="founder-studio-badge">
+              <Sparkles size={12} className="text-[#0062FF]" />
+              FOUNDER MANIFESTO
+            </span>
+            <div className="founder-quote-symbol">
+              <Quote size={18} />
+            </div>
+          </div>
 
           {/* Note Title */}
           <h2 className="founder-note-heading">Dear Future Innovator,</h2>
@@ -61,39 +70,52 @@ const FounderNote = () => {
 
           {/* Background Watermark */}
           <div className="founder-note-watermark">
-            <Image src="/about/tnx-wings.webp" alt="Watermark" width={500} height={500} />
+            <Image src="/about/tnx-wings.webp" alt="Watermark" width={480} height={480} />
           </div>
 
           {/* Signature & Avatar */}
           <div className="founder-note-signature">
-            <div className="founder-avatar-wrapper">
-              <div className="relative w-12 h-12 rounded-full overflow-hidden border border-slate-200/80 shadow-[0_4px_12px_rgba(15,23,42,0.06)]">
+            <div className="founder-profile-lockup">
+              <div className="founder-avatar-wrapper">
                 <Image
                   src="/sarthak.webp"
                   alt="Sarthak Singhaniya"
                   fill
-                  sizes="48px"
+                  sizes="52px"
                   className="object-cover"
                 />
               </div>
+              <div className="founder-meta">
+                <div className="founder-name-row">
+                  <a
+                    href="https://sarthaksinghaniya.netlify.app"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="View Sarthak Singhaniya Portfolio"
+                  >
+                    <h4 className="founder-name">
+                      Sarthak Singhaniya
+                    </h4>
+                  </a>
+                  <span title="Verified Founder" className="flex items-center">
+                    <ShieldCheck size={16} className="text-[#0062FF]" />
+                  </span>
+                </div>
+                <span className="founder-role">Founder &amp; CEO, TechNeekX (TNX)</span>
+              </div>
             </div>
-            <div className="founder-meta">
-              <a
-                href="https://sarthaksinghaniya.netlify.app"
-                target="_blank"
-                rel="noopener noreferrer"
-                title="View Sarthak Singhaniya Portfolio"
-              >
-                <h4 className="founder-name text-[#111318] hover:text-[#0062FF] font-bold text-base transition-colors">
-                  Sarthak Singhaniya
-                </h4>
-              </a>
-              <span className="founder-role">Founder &amp; CEO, TechNeekX (TNX)</span>
-            </div>
+
+            <a
+              href="https://sarthaksinghaniya.netlify.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="founder-portfolio-link"
+            >
+              <span>Explore Founder Portfolio</span>
+              <ExternalLink size={13} />
+            </a>
           </div>
-
         </motion.div>
-
       </div>
     </section>
   );

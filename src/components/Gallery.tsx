@@ -112,7 +112,10 @@ const Gallery = () => {
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             className="gallery-left"
           >
-            <span className="gallery-subtitle">Studio Moments &amp; Hackathons</span>
+            <span className="gallery-subtitle">
+              <span className="badge-radar-dot" style={{ width: 6, height: 6, borderRadius: '50%', background: '#0062FF' }} />
+              Studio Moments &amp; Hackathons
+            </span>
             <h2 className="gallery-title">Our Visual Chronicle</h2>
             <p className="gallery-description">
               A glimpse into our builder culture. Late-night sprints, intense hackathons, and community meetups where we design, build, and ship real AI systems.

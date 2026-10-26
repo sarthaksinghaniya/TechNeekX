@@ -1,210 +1,332 @@
-/* TechNeekX Enterprise AI About Component Stylesheet */
+/* ==========================================================================
+   TechNeekX Turnover-Inspired About Stylesheet
+   Signature High-Tech Light Palette + Studio Frame & Pillar Cards
+   ========================================================================== */
 
-.about-section-enterprise {
+.turnover-about-section {
   position: relative;
-  padding: 100px 0 90px 0;
+  padding: 88px 0 100px 0;
   background-color: #F7F8FA;
-  border-top: 1px solid #DDE1E6;
+  border-top: 1px solid #E2E6EC;
   overflow: hidden;
 }
 
-@media (max-width: 768px) {
-  .about-section-enterprise {
-    padding: 64px 0 54px 0;
-  }
+.about-glow-1 {
+  width: 420px;
+  height: 420px;
+  top: 15%;
+  left: -80px;
 }
 
-.about-container {
+.about-glow-2 {
+  width: 380px;
+  height: 380px;
+  bottom: 12%;
+  right: -80px;
+}
+
+.turnover-about-container {
   width: 100%;
-  max-width: 1280px;
+  max-width: 1320px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 32px;
   position: relative;
   z-index: 1;
 }
 
-@media (max-width: 640px) {
-  .about-container {
-    padding: 0 16px;
-  }
+/* ==========================================================================
+   HEADER
+   ========================================================================== */
+.turnover-about-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 52px;
 }
 
-.about-grid-enterprise {
+.turnover-about-title {
+  font-size: clamp(2.3rem, 3.8vw, 3.5rem);
+  font-weight: 850;
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+  color: #111318;
+  margin: 14px 0 16px 0;
+}
+
+.turnover-about-subtitle {
+  font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+  line-height: 1.65;
+  color: #626873;
+  max-width: 660px;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   2-COLUMN GRID
+   ========================================================================== */
+.turnover-about-grid {
   display: grid;
-  grid-template-columns: 0.95fr 1.05fr;
-  gap: 64px;
+  grid-template-columns: 1fr 1.08fr;
+  gap: 52px;
   align-items: center;
 }
 
-@media (max-width: 1024px) {
-  .about-grid-enterprise {
-    grid-template-columns: 1fr;
-    gap: 48px;
-  }
+/* LEFT: Studio Visual Frame */
+.turnover-about-visual-col {
+  width: 100%;
 }
 
-/* Content Column */
-.about-content-col {
+.turnover-about-frame {
+  position: relative;
+  width: 100%;
+  border-radius: 28px;
+  overflow: hidden;
+  background: #FFFFFF;
+  border: 1px solid rgba(221, 225, 230, 0.9);
+  box-shadow: 0 18px 45px rgba(17, 19, 24, 0.06), 0 4px 16px rgba(17, 19, 24, 0.02);
+}
+
+.turnover-about-image-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: #111318;
+  overflow: hidden;
+}
+
+.turnover-about-img {
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.4s ease-out;
+}
+
+.turnover-about-frame:hover .turnover-about-img {
+  transform: scale(1.02);
+}
+
+.turnover-about-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(17, 19, 24, 0.5) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+/* Caption Strip */
+.turnover-about-caption-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 22px;
+  background: #FFFFFF;
+  border-top: 1px solid #E2E6EC;
+}
+
+.turnover-caption-title {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #111318;
+}
+
+.turnover-caption-loc {
+  display: block;
+  font-size: 0.72rem;
+  color: #626873;
+}
+
+.turnover-photo-pills {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.turnover-photo-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #DDE1E6;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.turnover-photo-dot.active {
+  width: 14px;
+  border-radius: 9999px;
+  background: #0062FF;
+}
+
+/* Floating Badges */
+.turnover-about-badge-top {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(221, 225, 230, 0.9);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 6px 20px rgba(17, 19, 24, 0.08);
+}
+
+.turnover-about-badge-bottom {
+  position: absolute;
+  bottom: 74px;
+  right: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(221, 225, 230, 0.9);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 6px 20px rgba(17, 19, 24, 0.08);
+}
+
+/* ==========================================================================
+   RIGHT: Philosophy Pillars & Counter Ribbon
+   ========================================================================== */
+.turnover-about-details-col {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  position: relative;
+  text-align: left;
 }
 
-.about-badge-wrap {
-  margin-bottom: 16px;
-}
-
-.about-title-main {
-  font-size: clamp(2rem, 3.5vw, 2.75rem);
-  font-weight: 800;
-  color: #111318;
-  line-height: 1.15;
-  letter-spacing: -0.03em;
-  margin-bottom: 20px;
-}
-
-.about-description-text {
-  font-size: 1.0625rem;
-  color: #626873;
-  line-height: 1.7;
-  margin-bottom: 36px;
-}
-
-/* Stats Cards Grid */
-.about-stats-grid-enterprise {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-}
-
-.about-stat-card-enterprise {
-  background-color: #FFFFFF;
-  border: 1px solid #DDE1E6;
-  border-radius: 16px;
-  padding: 20px;
+.turnover-pillars-list {
   display: flex;
   flex-direction: column;
-  box-shadow: 0 1px 3px rgba(17, 19, 24, 0.02);
+  gap: 14px;
+  width: 100%;
+}
+
+.turnover-pillar-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px 20px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(221, 225, 230, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 2px 8px rgba(17, 19, 24, 0.02);
   transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.about-stat-card-enterprise:hover {
-  border-color: #111318;
+.turnover-pillar-card:hover {
+  background: #FFFFFF;
+  border-color: rgba(0, 98, 255, 0.35);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(17, 19, 24, 0.06);
+  box-shadow: 0 10px 25px rgba(0, 98, 255, 0.08);
 }
 
-.about-stat-value {
-  font-size: 2.25rem;
+.turnover-pillar-icon-box {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.turnover-pillar-content {
+  flex: 1;
+}
+
+.turnover-pillar-title {
+  font-size: 0.96rem;
+  font-weight: 700;
+  color: #111318;
+  margin: 0 0 4px 0;
+}
+
+.turnover-pillar-desc {
+  font-size: 0.84rem;
+  line-height: 1.55;
+  color: #626873;
+  margin: 0;
+}
+
+/* Live Stats Ribbon */
+.turnover-about-stats-ribbon {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding-top: 22px;
+  margin-top: 22px;
+  border-top: 1px solid #E2E6EC;
+  width: 100%;
+}
+
+.turnover-about-stat-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-stat-number {
+  font-size: 1.45rem;
   font-weight: 800;
-  line-height: 1.1;
   color: #111318;
   letter-spacing: -0.03em;
-  margin-bottom: 4px;
+  line-height: 1.1;
 }
 
 .about-stat-label {
-  font-size: 0.8125rem;
+  font-size: 0.72rem;
   font-weight: 600;
   color: #626873;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  margin-top: 3px;
+  line-height: 1.25;
 }
 
-/* Overlapping 4-Photo Mosaic */
-.about-mosaic-wrapper {
+/* Actions Row */
+.turnover-about-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin-top: 26px;
   width: 100%;
-  position: relative;
 }
 
-.about-photo-layout {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 4 / 3.2;
-  margin: 0 auto;
-  max-width: 580px;
-}
-
-.about-photo-card {
-  position: absolute;
-  border-radius: 20px;
-  overflow: hidden;
-  background-color: #FFFFFF;
-  border: 3px solid #FFFFFF;
-  box-shadow: 0 4px 16px rgba(17, 19, 24, 0.06), 0 16px 40px rgba(17, 19, 24, 0.08);
-  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.about-photo-card:hover {
-  transform: translateY(-6px) scale(1.02);
-  border-color: #0062FF;
-  box-shadow: 0 12px 32px rgba(17, 19, 24, 0.12), 0 24px 60px rgba(17, 19, 24, 0.1);
-  z-index: 10 !important;
-}
-
-.about-photo-card-1 {
-  width: 52%;
-  aspect-ratio: 1.45;
-  top: 22%;
-  left: 0;
-  z-index: 1;
-}
-
-.about-photo-card-2 {
-  width: 48%;
-  aspect-ratio: 1.35;
-  top: 4%;
-  right: 6%;
-  z-index: 1;
-}
-
-.about-photo-card-3 {
-  width: 56%;
-  aspect-ratio: 1.5;
-  bottom: 4%;
-  left: 22%;
-  z-index: 3;
-}
-
-.about-photo-card-4 {
-  width: 20%;
-  aspect-ratio: 1.35;
-  top: 50%;
-  right: 0;
-  z-index: 2;
-}
-
-.about-photo-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+/* Responsive */
+@media (max-width: 1024px) {
+  .turnover-about-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
 }
 
 @media (max-width: 640px) {
-  .about-stats-grid-enterprise {
-    gap: 12px;
+  .turnover-about-section {
+    padding: 60px 0 72px 0;
   }
-  .about-stat-card-enterprise {
-    padding: 14px;
-    border-radius: 14px;
-  }
-  .about-stat-value {
-    font-size: 1.75rem;
-  }
-  .about-stat-label {
-    font-size: 0.75rem;
-  }
-  .about-photo-card {
-    border-radius: 14px;
-    border-width: 2px;
-  }
-}
 
-@media (max-width: 380px) {
-  .about-stats-grid-enterprise {
-    grid-template-columns: 1fr;
+  .turnover-about-container {
+    padding: 0 16px;
+  }
+
+  .turnover-about-stats-ribbon {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .turnover-about-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .turnover-about-actions .turnover-btn-primary,
+  .turnover-about-actions .turnover-btn-video {
+    width: 100%;
+    justify-content: center;
   }
 }

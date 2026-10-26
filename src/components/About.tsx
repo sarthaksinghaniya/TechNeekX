@@ -1,12 +1,22 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import data from '../constants/data.json';
+import { motion } from 'framer-motion';
+import {
+  Terminal,
+  Trophy,
+  Users,
+  Sparkles,
+  ArrowRight,
+  ExternalLink,
+  ShieldCheck,
+  CheckCircle2,
+  Flame
+} from 'lucide-react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import data from '../constants/data.json';
 import '../styles/About.css';
-
-const MotionImage = motion(Image);
 
 interface StatCounterProps {
   target: number;
@@ -61,209 +71,214 @@ const StatCounter = ({ target, duration = 2000, suffix = '' }: StatCounterProps)
   }, [hasAnimated, target, duration]);
 
   return (
-    <span ref={elementRef} className="about-stat-value">
+    <span ref={elementRef} className="about-stat-number">
       {count.toLocaleString()}
       {suffix}
     </span>
   );
 };
 
-const AboutMosaic = ({ images }: { images: typeof data.carouselImages }) => {
-  const [activeIndices, setActiveIndices] = useState<number[]>([0, 1, 2, 3]);
-  const activeBlockRef = useRef(0);
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const [isInView, setIsInView] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsInView(entry.isIntersecting);
-      },
-      { threshold: 0.05 }
-    );
-
-    if (wrapperRef.current) {
-      observer.observe(wrapperRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (!isInView) return;
-
-    let intervalId: NodeJS.Timeout;
-
-    const startTimer = () => {
-      intervalId = setInterval(() => {
-        const blockToUpdate = activeBlockRef.current;
-        activeBlockRef.current = (activeBlockRef.current + 1) % 4;
-
-        setActiveIndices((prev) => {
-          const otherIndices = prev.filter((_, idx) => idx !== blockToUpdate);
-          const availableIndices = [];
-          for (let i = 0; i < images.length; i++) {
-            if (!otherIndices.includes(i) && i !== prev[blockToUpdate]) {
-              availableIndices.push(i);
-            }
-          }
-          if (availableIndices.length === 0) return prev;
-          const randomIndex =
-            availableIndices[Math.floor(Math.random() * availableIndices.length)];
-          const next = [...prev];
-          next[blockToUpdate] = randomIndex;
-          return next;
-        });
-      }, 3500);
-    };
-
-    const stopTimer = () => {
-      clearInterval(intervalId);
-    };
-
-    const handleVisibilityChange = () => {
-      if (document.hidden) {
-        stopTimer();
-      } else {
-        startTimer();
-      }
-    };
-
-    if (!document.hidden) {
-      startTimer();
-    }
-
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-
-    return () => {
-      stopTimer();
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
-    };
-  }, [isInView, images.length]);
-
-  return (
-    <div ref={wrapperRef} className="about-mosaic-wrapper">
-      <div className="about-photo-layout">
-        <div className="about-photo-card about-photo-card-1">
-          <AnimatePresence mode="wait">
-            <MotionImage
-              key={activeIndices[0]}
-              src={images[activeIndices[0]].src}
-              alt={images[activeIndices[0]].title}
-              fill
-              sizes="(max-width: 768px) 50vw, 30vw"
-              initial={{ opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 1.04 }}
-              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="about-photo-img"
-            />
-          </AnimatePresence>
-        </div>
-
-        <div className="about-photo-card about-photo-card-2">
-          <AnimatePresence mode="wait">
-            <MotionImage
-              key={activeIndices[1]}
-              src={images[activeIndices[1]].src}
-              alt={images[activeIndices[1]].title}
-              fill
-              sizes="(max-width: 768px) 50vw, 25vw"
-              initial={{ opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 1.04 }}
-              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="about-photo-img"
-            />
-          </AnimatePresence>
-        </div>
-
-        <div className="about-photo-card about-photo-card-3">
-          <AnimatePresence mode="wait">
-            <MotionImage
-              key={activeIndices[2]}
-              src={images[activeIndices[2]].src}
-              alt={images[activeIndices[2]].title}
-              fill
-              sizes="(max-width: 768px) 60vw, 35vw"
-              initial={{ opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 1.04 }}
-              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="about-photo-img"
-            />
-          </AnimatePresence>
-        </div>
-
-        <div className="about-photo-card about-photo-card-4">
-          <AnimatePresence mode="wait">
-            <MotionImage
-              key={activeIndices[3]}
-              src={images[activeIndices[3]].src}
-              alt={images[activeIndices[3]].title}
-              fill
-              sizes="(max-width: 768px) 25vw, 15vw"
-              initial={{ opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 1.04 }}
-              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="about-photo-img"
-            />
-          </AnimatePresence>
-        </div>
-      </div>
-    </div>
-  );
-};
-
 const About = () => {
-  const images = data.carouselImages;
+  const router = useRouter();
+  const [currentImageIdx, setCurrentImageIdx] = useState(0);
+
+  const studioImages = [
+    {
+      src: '/gallery/IMG-2.jpg.webp',
+      title: 'TRAE Re:Vibe Hackathon',
+      location: 'GeeksforGeeks Office, Noida',
+    },
+    {
+      src: '/gallery/IMG_0150.JPG.webp',
+      title: 'Kalpathon 2.0 Winners',
+      location: 'National Podium Finish',
+    },
+    {
+      src: '/gallery/gal5.webp',
+      title: 'InnVedX Hackathon Coding Sprint',
+      location: 'BBD University, Lucknow',
+    },
+  ];
+
+  // Auto-cycle through the 3 hero photos every 5 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImageIdx((prev) => (prev + 1) % studioImages.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [studioImages.length]);
+
+  const activePhoto = studioImages[currentImageIdx];
+
+  const pillars = [
+    {
+      icon: Terminal,
+      title: 'Shipping Over Theorizing',
+      desc: 'We replace textbook assignments with production AI systems, distributed microservices, and live client architectures.',
+      iconBg: 'rgba(0, 98, 255, 0.1)',
+      iconColor: '#0062FF',
+    },
+    {
+      icon: Flame,
+      title: 'Premier Hackathon DNA',
+      desc: 'Our squads build against strict 24-hour constraints, securing podiums across Smart India Hackathon, TRAE, and Kalpathon.',
+      iconBg: 'rgba(255, 170, 0, 0.1)',
+      iconColor: '#FF9500',
+    },
+    {
+      icon: Sparkles,
+      title: 'Architectural Co-Design',
+      desc: 'Student developers build alongside seasoned software architects, computer vision researchers, and technical founders.',
+      iconBg: 'rgba(0, 240, 255, 0.1)',
+      iconColor: '#00D2FF',
+    },
+  ];
 
   return (
-    <section id="about" className="about-section-enterprise">
-      <div className="about-container">
-        <div className="about-grid-enterprise">
-          {/* Left Column: Rotating 4-Photo Mosaic */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <AboutMosaic images={images} />
-          </motion.div>
+    <section id="about" className="turnover-about-section" aria-label="About TechNeekX">
+      {/* Ambient background glows */}
+      <div className="turnover-ambient-glow turnover-glow-blue about-glow-1" />
+      <div className="turnover-ambient-glow turnover-glow-cyan about-glow-2" />
 
-          {/* Right Column: Mission & Verified Stat Cards */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="about-content-col"
-          >
-            <div className="about-badge-wrap">
-              <span className="badge-enterprise">Our Studio &amp; Mission</span>
+      <div className="turnover-about-container">
+        
+        {/* Section Header */}
+        <div className="turnover-about-header">
+          <div className="turnover-badge-pill">
+            <span className="turnover-badge-dot" />
+            <span className="turnover-badge-text">Studio Mission &amp; Builder Philosophy</span>
+          </div>
+
+          <h2 className="turnover-about-title">
+            We Build Real Software. <br />
+            <span className="turnover-heading-highlight">Not Just Slide Decks.</span>
+          </h2>
+
+          <p className="turnover-about-subtitle">
+            TechNeekX was founded to solve a critical gap: universities teach syntax, but industry requires shipping.
+            We unite student developers to engineer production AI, win national competitions, and launch real products.
+          </p>
+        </div>
+
+        {/* 2-Column Studio Showcase */}
+        <div className="turnover-about-grid">
+          
+          {/* LEFT: Multi-Layer Studio Frame with Floating Glass Badges */}
+          <div className="turnover-about-visual-col">
+            <div className="turnover-about-frame">
+              
+              {/* Photo Viewport */}
+              <div className="turnover-about-image-wrap">
+                <Image
+                  key={activePhoto.src}
+                  src={activePhoto.src}
+                  alt={activePhoto.title}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 580px"
+                  className="turnover-about-img turnover-thumb-fade"
+                  priority
+                />
+                <div className="turnover-about-overlay" />
+              </div>
+
+              {/* Photo Caption Strip */}
+              <div className="turnover-about-caption-strip">
+                <div>
+                  <span className="turnover-caption-title">{activePhoto.title}</span>
+                  <span className="turnover-caption-loc">{activePhoto.location}</span>
+                </div>
+                <div className="turnover-photo-pills">
+                  {studioImages.map((_, i) => (
+                    <span
+                      key={i}
+                      className={`turnover-photo-dot ${i === currentImageIdx ? 'active' : ''}`}
+                      onClick={() => setCurrentImageIdx(i)}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {/* Floating Glass Badge 1 (Top-Left) */}
+              <div className="turnover-about-badge-top">
+                <Users size={15} className="text-[#0062FF]" />
+                <div className="flex flex-col">
+                  <span className="text-[10px] uppercase font-bold tracking-wider text-[#8A92A0]">Ecosystem</span>
+                  <span className="text-xs font-bold text-[#111318]">2,500+ Active Builders</span>
+                </div>
+              </div>
+
+              {/* Floating Glass Badge 2 (Bottom-Right) */}
+              <div className="turnover-about-badge-bottom">
+                <Trophy size={15} className="text-[#FF9500]" />
+                <div className="flex flex-col">
+                  <span className="text-[10px] uppercase font-bold tracking-wider text-[#8A92A0]">National Podiums</span>
+                  <span className="text-xs font-bold text-[#111318]">Rank #4 • 80+ Hackathons</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* RIGHT: 3 Philosophy Pillars & Counter Ribbon */}
+          <div className="turnover-about-details-col">
+            
+            {/* 3 Pillars */}
+            <div className="turnover-pillars-list">
+              {pillars.map((pillar, idx) => {
+                const Icon = pillar.icon;
+                return (
+                  <div key={idx} className="turnover-pillar-card">
+                    <div
+                      className="turnover-pillar-icon-box"
+                      style={{ backgroundColor: pillar.iconBg, color: pillar.iconColor }}
+                    >
+                      <Icon size={18} />
+                    </div>
+                    <div className="turnover-pillar-content">
+                      <h3 className="turnover-pillar-title">{pillar.title}</h3>
+                      <p className="turnover-pillar-desc">{pillar.desc}</p>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
 
-            <h2 className="about-title-main">{data.aboutTitle}</h2>
-
-            <p className="about-description-text">
-              {data.aboutDescription1}
-              <br />
-              <br />
-              {data.aboutDescription2}
-            </p>
-
-            <div className="about-stats-grid-enterprise">
+            {/* Live KPI Counting Ribbon */}
+            <div className="turnover-about-stats-ribbon">
               {data.stats.map((stat, idx) => (
-                <div key={idx} className="about-stat-card-enterprise">
+                <div key={idx} className="turnover-about-stat-box">
                   <StatCounter target={stat.value} suffix={stat.suffix} />
                   <span className="about-stat-label">{stat.label}</span>
                 </div>
               ))}
             </div>
-          </motion.div>
+
+            {/* Dual CTA Actions */}
+            <div className="turnover-about-actions">
+              <button
+                onClick={() => router.push('/journey')}
+                className="turnover-btn-primary"
+              >
+                <span>Discover Our Journey</span>
+                <ArrowRight size={16} className="turnover-btn-icon" />
+              </button>
+
+              <button
+                onClick={() => router.push('/team')}
+                className="turnover-btn-video"
+              >
+                <div className="turnover-play-icon-wrap">
+                  <Users size={14} />
+                </div>
+                <div className="turnover-video-text-wrap">
+                  <span className="turnover-video-title">Meet The Squad</span>
+                  <span className="turnover-video-duration">Core Team &amp; Leads</span>
+                </div>
+              </button>
+            </div>
+
+          </div>
         </div>
+
       </div>
     </section>
   );

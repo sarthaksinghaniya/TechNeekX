@@ -1,8 +1,10 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import * as LucideIcons from 'lucide-react';
+import { ArrowRight, ExternalLink, Github, CheckCircle2, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import projectsData from '../../data/project.json';
 import '../styles/FeaturedProjects.css';
@@ -28,252 +30,240 @@ interface Project {
   image: string;
 }
 
-const getGradientStyle = (colorString: string) => {
-  if (!colorString) return { background: 'linear-gradient(135deg, #8b5cf6, #a855f7)' };
-  const parts = colorString.split(' ');
-  const fromClass = parts.find(p => p.startsWith('from-'))?.replace('from-', '') || 'indigo-500';
-  const toClass = parts.find(p => p.startsWith('to-'))?.replace('to-', '') || 'purple-500';
-  
-  const colorMap: Record<string, string> = {
-    'indigo-500': '#6366f1',
-    'purple-500': '#a855f7',
-    'pink-500': '#ec4899',
-    'red-500': '#ef4444',
-    'blue-500': '#3b82f6',
-    'cyan-500': '#06b6d4',
-    'green-500': '#22c55e',
-    'emerald-500': '#10b981',
-    'teal-500': '#14b8a6',
-    'orange-500': '#f97316',
-    'violet-500': '#8b5cf6',
-    'fuchsia-500': '#d946ef',
-  };
-
-  const fromColor = colorMap[fromClass] || '#6366f1';
-  const toColor = colorMap[toClass] || '#a855f7';
-
-  return {
-    background: `linear-gradient(135deg, ${fromColor}, ${toColor})`
-  };
-};
-
 const FeaturedProjects = () => {
   const router = useRouter();
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isMounted, setIsMounted] = useState(false);
-  const [isInitial, setIsInitial] = useState(true);
 
   // Filter projects to only show featured ones
   const featuredProjects = (projectsData as Project[]).filter(
     (project) => project.isFeatured
   );
 
-  useEffect(() => {
-    setIsMounted(true);
-    const timer = setTimeout(() => {
-      setIsInitial(false);
-    }, 50);
-    return () => clearTimeout(timer);
-  }, []);
+  const activeProject = featuredProjects[activeIndex] || featuredProjects[0];
+  const IconComponent = (LucideIcons as any)[activeProject.icon || 'Cpu'] || LucideIcons.Cpu;
 
-  // Prevent layout shifts during initial SSR hydration
-  if (!isMounted) {
-    return (
-      <section id="featured-projects" className="featured-projects-section">
-        <div className="featured-projects-blob featured-projects-blob-1" />
-        <div className="featured-projects-blob featured-projects-blob-2" />
-        <div className="featured-projects-container">
-          <div className="featured-projects-layout">
-            <div className="featured-projects-content">
-              <span className="featured-projects-subtitle-badge">PORTFOLIO</span>
-              <h2 className="featured-projects-title">Featured Projects</h2>
-              <p className="featured-projects-subtitle">
-                A handpicked collection of our most impactful production-ready applications, solving real-world challenges with AI and modern software engineering.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-    );
-  }
+  const handleNext = () => {
+    setActiveIndex((prev) => (prev + 1) % featuredProjects.length);
+  };
+
+  const handlePrev = () => {
+    setActiveIndex((prev) => (prev - 1 + featuredProjects.length) % featuredProjects.length);
+  };
 
   return (
-    <section id="featured-projects" className="featured-projects-section">
-      {/* Decorative Blobs */}
-      <div className="featured-projects-blob featured-projects-blob-1" />
-      <div className="featured-projects-blob featured-projects-blob-2" />
+    <section id="featured-projects" className="turnover-projects-section" aria-label="Featured Engineering Builds">
+      {/* Background ambient lighting */}
+      <div className="turnover-ambient-glow turnover-glow-blue projects-glow-1" />
+      <div className="turnover-ambient-glow turnover-glow-cyan projects-glow-2" />
 
-      <div className="featured-projects-container">
-        <div className="featured-projects-layout">
-          
-          {/* Left Side: Drag Carousel Deck */}
-          <motion.div 
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="featured-projects-deck-wrapper"
-          >
-            <div className="featured-projects-grid mobile-carousel-deck">
-              {featuredProjects.map((project, index) => {
-                const IconComponent = (LucideIcons as any)[project.icon || 'Cpu'] || LucideIcons.Cpu;
-                
-                // Calculate relative index for stack animation
-                const relativeIndex = (index - activeIndex + featuredProjects.length) % featuredProjects.length;
+      <div className="turnover-projects-container">
+        
+        {/* Section Header */}
+        <div className="turnover-projects-header">
+          <div className="turnover-badge-pill">
+            <span className="turnover-badge-dot" />
+            <span className="turnover-badge-text">Production Builds &amp; Hackathon Winners</span>
+          </div>
 
-                let xOffset = 0;
-                let scale = 1;
-                let rotate = 0;
-                let opacity = 1;
-                let zIndex = 10;
-                let pointerEvents: 'auto' | 'none' = 'auto';
+          <h2 className="turnover-projects-title">
+            Engineering Systems <br />
+            <span className="turnover-heading-highlight">That Ship To Production</span>
+          </h2>
 
-                if (relativeIndex === 0) {
-                  xOffset = 0;
-                  scale = 1;
-                  rotate = 0;
-                  opacity = 1;
-                  zIndex = 10;
-                  pointerEvents = 'auto';
-                } else if (relativeIndex === 1) {
-                  xOffset = -20;
-                  scale = 0.94;
-                  rotate = -3;
-                  opacity = 0.75;
-                  zIndex = 9;
-                  pointerEvents = 'none';
-                } else if (relativeIndex === 2) {
-                  xOffset = -40;
-                  scale = 0.88;
-                  rotate = -6;
-                  opacity = 0.45;
-                  zIndex = 8;
-                  pointerEvents = 'none';
-                } else {
-                  xOffset = -60;
-                  scale = 0.82;
-                  rotate = -9;
-                  opacity = 0;
-                  zIndex = 0;
-                  pointerEvents = 'none';
-                }
+          <p className="turnover-projects-subtitle">
+            A curated showcase of autonomous AI platforms, healthcare diagnostic engines,
+            and developer tooling shipped by TechNeekX builder squads.
+          </p>
 
-                return (
-                  <motion.div
-                    key={project.id}
-                    className="featured-project-card"
-                    style={{ pointerEvents, zIndex }}
-                    animate={{
-                      x: xOffset,
-                      scale: scale,
-                      rotate: rotate,
-                      opacity: opacity,
-                    }}
-                    transition={
-                      isInitial
-                        ? { duration: 0 }
-                        : {
-                            type: 'spring',
-                            stiffness: 260,
-                            damping: 26,
-                          }
-                    }
-                    drag={relativeIndex === 0 ? "x" : false}
-                    dragConstraints={{ left: 0, right: 0 }}
-                    dragElastic={0.7}
-                    onDragEnd={(event, info) => {
-                      if (info.offset.x < -100) {
-                        setActiveIndex((prev) => (prev + 1) % featuredProjects.length);
-                      } else if (info.offset.x > 100) {
-                        setActiveIndex((prev) => (prev - 1 + featuredProjects.length) % featuredProjects.length);
-                      }
-                    }}
-                  >
-                    {/* Card Header: Badges (left) and App Icon (right) */}
-                    
+          {/* Interactive Project Switcher Dock */}
+          <div className="turnover-project-switcher-dock" role="tablist" aria-label="Featured projects switcher">
+            {featuredProjects.map((project, idx) => {
+              const TabIcon = (LucideIcons as any)[project.icon || 'Cpu'] || LucideIcons.Cpu;
+              const isActive = idx === activeIndex;
 
-                    {/* Title */}
-                    <div className="flex items-center justify-between">
-                      <h3 className="featured-project-card-title">{project.title}</h3>
-                      <div className="featured-card-header">
-                      <div 
-                        className="featured-card-app-icon-wrapper" 
-                        style={getGradientStyle(project.color)}
-                      >
-                        <IconComponent size={24} className="featured-card-app-icon" />
-                      </div>
-                    </div>
-                    </div>
-
-                    {/* Subtitle / Category */}
-                    <div className="featured-project-card-subtitle">{project.category}</div>
-
-                    {/* Description */}
-                    <p className="featured-project-card-description">{project.description}</p>
-
-                    {/* Tech Stack Tags */}
-                    <div className="featured-card-tech-stack">
-                      {project.techStack?.slice(0, 3).map((tech) => (
-                        <span key={tech} className="tech-tag">
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* Actions Row */}
-                    <div className="featured-card-actions">
-                      <a
-                        href={project.link || '#'}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`btn-visit-site ${!project.link ? 'disabled' : ''}`}
-                        onClick={(e) => !project.link && e.preventDefault()}
-                      >
-                        <span>Visit Site</span>
-                        <LucideIcons.ArrowRight size={16} />
-                      </a>
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn-code"
-                      >
-                        <span>Code</span>
-                      </a>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </motion.div>
-
-          {/* Right Side: Typographic Content */}
-          <motion.div 
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-            className="featured-projects-content"
-          >
-            <span className="featured-projects-subtitle-badge">PORTFOLIO</span>
-            <h2 className="featured-projects-title">Featured Projects</h2>
-            <p className="featured-projects-subtitle">
-              A handpicked collection of our most impactful production-ready applications, solving real-world challenges with AI and modern software engineering.
-            </p>
-            <div className="featured-projects-cta-wrapper">
-              <motion.button
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                onClick={() => router.push('/projects')}
-                className="featured-projects-cta"
-              >
-                View Projects
-                <LucideIcons.ArrowRight size={16} />
-              </motion.button>
-            </div>
-          </motion.div>
-
+              return (
+                <button
+                  key={project.id}
+                  role="tab"
+                  aria-selected={isActive}
+                  onClick={() => setActiveIndex(idx)}
+                  className={`turnover-switcher-tab ${isActive ? 'active' : ''}`}
+                >
+                  <TabIcon size={14} className="turnover-tab-icon" />
+                  <span className="turnover-tab-title">{project.title}</span>
+                  {isActive && <span className="turnover-tab-active-dot" />}
+                </button>
+              );
+            })}
+          </div>
         </div>
+
+        {/* Main Interactive Showcase Card */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeProject.id}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -16 }}
+            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            className="turnover-project-showcase-grid"
+          >
+            {/* LEFT: Live Screenshot & Interactive Terminal Visual */}
+            <div className="turnover-project-visual-col">
+              <div className="turnover-project-visual-frame">
+                <div className="turnover-visual-top-bar">
+                  <div className="turnover-window-dots">
+                    <span className="window-dot dot-red" />
+                    <span className="window-dot dot-yellow" />
+                    <span className="window-dot dot-green" />
+                  </div>
+                  <span className="turnover-window-url">{activeProject.link || 'techneekx.io/labs/' + activeProject.id}</span>
+                  <span className="turnover-window-status">
+                    <span className="status-live-pulse" />
+                    {activeProject.status || 'Live'}
+                  </span>
+                </div>
+
+                <div className="turnover-project-image-wrap">
+                  <Image
+                    src={activeProject.image || '/hero/techneekx-sculpt.jpg'}
+                    alt={activeProject.title}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 560px"
+                    className="turnover-project-img"
+                    priority
+                  />
+                  <div className="turnover-image-overlay-vignette" />
+                </div>
+
+                {/* Floating Bottom Card: Impact Metric */}
+                <div className="turnover-visual-floating-badge">
+                  <Sparkles size={14} className="text-[#0062FF]" />
+                  <div className="turnover-badge-content">
+                    <span className="badge-impact-label">Architecture</span>
+                    <span className="badge-impact-val">{activeProject.impact || 'Enterprise Build'}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* RIGHT: Project Deep Dive & Technical Specifications */}
+            <div className="turnover-project-details-col">
+              
+              <div className="turnover-project-category-row">
+                <span className="turnover-project-category-badge">
+                  {activeProject.category}
+                </span>
+                {activeProject.tagline && (
+                  <span className="turnover-project-tagline">{activeProject.tagline}</span>
+                )}
+              </div>
+
+              <h3 className="turnover-project-heading">{activeProject.title}</h3>
+
+              <p className="turnover-project-description">
+                {activeProject.description}
+              </p>
+
+              {/* Key Features Checklist */}
+              {activeProject.features && activeProject.features.length > 0 && (
+                <div className="turnover-features-list">
+                  {activeProject.features.slice(0, 3).map((feat, i) => (
+                    <div key={i} className="turnover-feature-item">
+                      <CheckCircle2 size={15} className="turnover-check-icon" />
+                      <span>{feat}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Tech Stack Chips */}
+              <div className="turnover-project-tech-chips">
+                {activeProject.techStack?.map((tech) => (
+                  <span key={tech} className="turnover-tech-chip">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+
+              {/* Dual Action Buttons */}
+              <div className="turnover-project-actions">
+                {activeProject.link ? (
+                  <a
+                    href={activeProject.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="turnover-btn-primary"
+                    aria-label={`Launch ${activeProject.title} live demo`}
+                  >
+                    <span>Launch Live Demo</span>
+                    <ExternalLink size={15} className="turnover-btn-icon" />
+                  </a>
+                ) : (
+                  <button
+                    disabled
+                    className="turnover-btn-primary opacity-60 cursor-not-allowed"
+                  >
+                    <span>Private Deployment</span>
+                  </button>
+                )}
+
+                {activeProject.github && (
+                  <a
+                    href={activeProject.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="turnover-btn-video"
+                    aria-label={`View ${activeProject.title} source code on GitHub`}
+                  >
+                    <div className="turnover-play-icon-wrap">
+                      <Github size={15} />
+                    </div>
+                    <div className="turnover-video-text-wrap">
+                      <span className="turnover-video-title">Source Code</span>
+                      <span className="turnover-video-duration">GitHub Repository</span>
+                    </div>
+                  </a>
+                )}
+              </div>
+
+              {/* Slider Navigation Arrows */}
+              <div className="turnover-project-nav-row">
+                <span className="turnover-counter-text">
+                  0{activeIndex + 1} <span className="text-[#8A92A0]">/ 0{featuredProjects.length}</span>
+                </span>
+                <div className="turnover-arrow-group">
+                  <button
+                    onClick={handlePrev}
+                    className="turnover-arrow-btn"
+                    aria-label="Previous project"
+                  >
+                    <ChevronLeft size={16} />
+                  </button>
+                  <button
+                    onClick={handleNext}
+                    className="turnover-arrow-btn"
+                    aria-label="Next project"
+                  >
+                    <ChevronRight size={16} />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Bottom Link to Full Portfolio */}
+        <div className="turnover-projects-footer">
+          <button
+            onClick={() => router.push('/projects')}
+            className="turnover-explore-all-btn"
+          >
+            <span>Explore All 15+ Production Builds</span>
+            <ArrowRight size={16} />
+          </button>
+        </div>
+
       </div>
     </section>
   );
